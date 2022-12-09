@@ -8,6 +8,7 @@ namespace loremipsum.Entities
 
         public Employee(string forename, string surname, Address address, string eMail, int iban, DateTime birthday, string status)
         {
+            EmployeeID = ++EmployeeID;
             Forename = forename;
             Surname = surname;
             Address = address;
@@ -42,7 +43,7 @@ namespace loremipsum.Entities
 
         public override string ToString()
         {
-            return Forename + " " + Surname + " " + Address + " " + EMail + " " + Iban + " " + Birthday+" "+Status;
+            return EmployeeID+" "+Forename + " " + Surname + " " + Address + " " + EMail + " " + Iban + " " + Birthday+" "+Status;
         }
 
 

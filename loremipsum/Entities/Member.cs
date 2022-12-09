@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace loremipsum.Entities
@@ -10,7 +8,7 @@ namespace loremipsum.Entities
     {
         public Member(string forename,string surname,Address address,string eMail, int iban, DateTime birthday)
         {
-            MemberID = MemberID++;
+            MemberID = ++MemberID;
             Forename = forename;
             Surname = surname;
             Address = address;
@@ -42,7 +40,7 @@ namespace loremipsum.Entities
 
         public override string ToString() 
         {
-            return Forename+" "+Surname+" "+Address+" "+EMail+" "+Iban+" "+ Birthday;
+            return MemberID+" "+Forename+" "+Surname+" "+Address+" "+EMail+" "+Iban+" "+ Birthday;
         }
     }
 }
