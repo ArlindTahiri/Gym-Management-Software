@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace loremipsum.Entities
 {
+    [Serializable]
     public class Employee : IComparable<Employee>
     {
 
@@ -20,7 +21,7 @@ namespace loremipsum.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int EmployeeID { get;}
+        public int EmployeeID { get; }
 
         [Required] public string Forename { get; set; }
 

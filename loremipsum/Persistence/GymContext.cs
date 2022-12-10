@@ -11,6 +11,8 @@ namespace loremipsum.Persistence
 
         public virtual DbSet<Contract> Contracts { get; set; }
 
+        public virtual DbSet<Article> Articles { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server = (localdb)\\MSSQLLocalDB; Database = Gym;Trusted_Connection = True;");

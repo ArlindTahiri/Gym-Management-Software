@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace loremipsum.Entities
 {
+    [Serializable]
     public class Contract : IComparable<Contract>
     {
         public Contract(string contractType, TimeSpan duration, int price)
@@ -20,7 +16,7 @@ namespace loremipsum.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ContractID { get;}
+        public int ContractID { get; }
 
         [Required] public string ContractType { get; set; }
 

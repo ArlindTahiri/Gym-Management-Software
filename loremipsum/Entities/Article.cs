@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace loremipsum.Entities
 {
+    [Serializable]
     public class Article : IComparable<Article>
     {
 
@@ -18,15 +16,17 @@ namespace loremipsum.Entities
             ActualStock = actualStock;
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ArticleID { get; }
 
-        public string ArticleName { get; set; }
+        [Required] public string ArticleName { get; set; }
 
-        public int Price { get; set; }
+        [Required] public int Price { get; set; }
 
-        public int TargetStock { get; set; }
+        [Required] public int TargetStock { get; set; }
 
-        public int ActualStock { get; set; }
+        [Required] public int ActualStock { get; set; }
 
         public int CompareTo(Article other)
         {
