@@ -29,7 +29,7 @@ namespace loremipsum.Entities
 
         [Required] public Address Address { get; set; }
 
-        [Required] public string EMail { get; set; }
+        [Required] [EmailAddress] public string EMail { get; set; }
 
         [Required] public int Iban { get; set; }
 
