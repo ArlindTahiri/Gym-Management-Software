@@ -9,7 +9,7 @@ namespace loremipsum.Persistence
 
         public virtual DbSet<Employee> Employees { get; set; }
 
-        public virtual DbSet<Contract> Contracts { get; set; }
+        public virtual DbSet<Contracts> Contracts { get; set; }
 
         public virtual DbSet<Article> Articles { get; set; }
 

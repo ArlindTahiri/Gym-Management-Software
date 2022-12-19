@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace loremipsum.Entities
 {
     [Serializable]
-    public class Contract : IComparable<Contract>
+    public class Contracts : IComparable<Contracts>
     {
-        public Contract(string contractType, TimeSpan duration, int price)
+        public Contracts(string contractType, TimeSpan duration, int price)
         {
             ContractID = ++ContractID;
             ContractType = contractType;
@@ -24,7 +24,7 @@ namespace loremipsum.Entities
 
         [Required] public int Price { get; set; }
 
-        public int CompareTo(Contract other)
+        public int CompareTo(Contracts other)
         {
             return ContractID.CompareTo(other.ContractID);
         }
