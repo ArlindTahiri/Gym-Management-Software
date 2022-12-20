@@ -8,20 +8,16 @@ namespace loremipsum.Entities
 
         public Checkout(Member member, Contract contract)
         {
-
+            this.CheckoutID = ++CheckoutID;
             this.Member = member;
             this.ActiveContract = contract;
             this.Sum = BuildSum();
-            this.CheckoutID = ++CheckoutID;
-
         }
-
-
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-
         public int CheckoutID { get; }
+
         [Required] public decimal Sum { get; set; }
 
         [Required] public Contract ActiveContract { get; set; }
@@ -29,9 +25,6 @@ namespace loremipsum.Entities
         [Required] public Member Member { get; set; }
 
         [Required] private LinkedList<Order> Orders = new LinkedList<Order>();
-
-
-
 
         public void AddOrder(Order o)
         {
@@ -54,7 +47,6 @@ namespace loremipsum.Entities
         public decimal BuildSum()
         {
             decimal CurrentSum = 0;
-
             IEnumerator<Order> enumerator = Orders.GetEnumerator();
             while (enumerator.MoveNext())
             {
