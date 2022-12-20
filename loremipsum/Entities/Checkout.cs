@@ -1,24 +1,16 @@
-﻿using loremipsum.Entities;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace loremipsum
+namespace loremipsum.Entities
 {
     public class Checkout
     {
 
-        public Checkout(Member Member, Contracts Contract)
+        public Checkout(Member member, Contract contract)
         {
 
-            this.Member = Member;
-            this.ActiveContract = Contract;
+            this.Member = member;
+            this.ActiveContract = contract;
             this.Sum = BuildSum();
             this.CheckoutID = ++CheckoutID;
 
@@ -32,7 +24,7 @@ namespace loremipsum
         public int CheckoutID { get; }
         [Required] public decimal Sum { get; set; }
 
-        [Required] public Contracts ActiveContract { get; set; }
+        [Required] public Contract ActiveContract { get; set; }
 
         [Required] public Member Member { get; set; }
 
