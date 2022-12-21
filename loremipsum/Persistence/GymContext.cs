@@ -17,7 +17,7 @@ namespace loremipsum.Persistence
 
         public virtual DbSet<Order> Orders { get; set; }
 
-        puvlic virtual DbSet<Dispencer> Dispencers { get; set; }
+        public virtual DbSet<Dispencer> Dispencers { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
