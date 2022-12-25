@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace loremipsum
+namespace loremipsum.Gym
 {
     public class Address
     {

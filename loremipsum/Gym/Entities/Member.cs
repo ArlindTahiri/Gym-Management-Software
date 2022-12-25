@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace loremipsum.Entities
+namespace loremipsum.Gym.Entities
 {
     [Serializable]
     public class Member: IComparable<Member>
@@ -32,6 +32,13 @@ namespace loremipsum.Entities
         [Required] public int Iban { get; set; }
 
         [Required] public DateTime Birthday { get; set;}
+
+        //many-to one Relation
+        public int ContractID { get; set; }
+        public Contract Contract { get; set;}
+
+        //one-to-many Relation
+        public ICollection<Order> Orders { get; set;}
 
         public int CompareTo(Member other)
         {

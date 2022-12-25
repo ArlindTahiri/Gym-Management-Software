@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace loremipsum.Entities
+namespace loremipsum.Gym.Entities
 {
     [Serializable]
     public class Article : IComparable<Article>
@@ -27,6 +27,9 @@ namespace loremipsum.Entities
         [Required] public int TargetStock { get; set; }
 
         [Required] public int ActualStock { get; set; }
+
+        //one-to-many Relation
+        public ICollection<Order> Orders { get; set; }
 
         public int CompareTo(Article other)
         {

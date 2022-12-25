@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace loremipsum.Entities
+namespace loremipsum.Gym.Entities
 {
     public class Checkout
     {

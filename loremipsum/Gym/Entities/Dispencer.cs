@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace loremipsum.Entities
+namespace loremipsum.Gym.Entities
 {
     public class Dispencer
     {

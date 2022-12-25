@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace loremipsum.Entities
+namespace loremipsum.Gym.Entities
 {
     [Serializable]
     public class Employee : IComparable<Employee>
