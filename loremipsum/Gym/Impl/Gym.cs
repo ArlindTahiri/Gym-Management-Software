@@ -14,127 +14,140 @@ namespace loremipsum.Gym.Impl
         # region IProductAdmin
         public void AddArticle(Article article)
         {
-            throw new NotImplementedException();
+           persistence.CreateArticle(article);
         }
 
         public void AddContract(Contract contract)
         {
-            throw new NotImplementedException();
+            persistence.CreateContract(contract);
         }
 
         public void AddEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            persistence.CreateEmployee(employee);
         }
 
         public void AddMember(Member member, int contractID)
         {
-            throw new NotImplementedException();
+            persistence.CreateMember(member);
         }
 
         public void AddMemberToOrder(int orderID, int memberID)
         {
-            throw new NotImplementedException();
+          Order order = persistence.FindOrder(orderID);
+            if (order != null) 
+                persistence.UpdateMemberFromOrder(order, memberID);
         }
 
         public void AddOrder(Order order)
         {
-            throw new NotImplementedException();
+           persistence.CreateOrder(order);
         }
 
         public void RemoveArticle(int articleID, int memberID)
         {
-            throw new NotImplementedException();
+            persistence.DeleteArticle(articleID);
         }
 
         public void DeleteArticles()
         {
-            throw new NotImplementedException();
+            persistence.DeleteArticles();
         }
 
         public void DeleteContract(int contractID)
         {
-            throw new NotImplementedException();
+           persistence.DeleteContract(contractID);
         }
 
         public void DeleteContracts()
         {
-            throw new NotImplementedException();
+            persistence.DeleteContracts();  
         }
 
         public void DeleteEmployee(int employeeID)
         {
-            throw new NotImplementedException();
+            persistence.DeleteEmployee(employeeID); 
         }
 
         public void DeleteEmployees()
         {
-            throw new NotImplementedException();
+           persistence.DeleteEmployees();
         }
 
         public void DeleteMember(int memberID)
         {
-            throw new NotImplementedException();
+           persistence.DeleteMember(memberID);
         }
 
         public void DeleteMembers()
         {
-            throw new NotImplementedException();
+           persistence.DeleteMembers();
         }
 
         public void DeleteOrder(int orderID)
         {
-            throw new NotImplementedException();
+            persistence.DeleteOrder(orderID);
         }
 
         public void DeleteOrders()
         {
-            throw new NotImplementedException();
+            persistence.DeleteOrders();
         }
 
         public IList<Order> ListAllOrdersFromMember(int memberID)
         {
-            throw new NotImplementedException();
+            Member member = persistence.FindMember(memberID);
+
+            IList<Order> result = (IList<Order>)persistence.FindOrder(memberID);
+            return result;
         }
 
         public IList<Article> ListArticles()
         {
-            throw new NotImplementedException();
+            IList<Article> result = persistence.FindArticles();
+            return result;
         }
 
         public IList<Contract> ListContracts()
         {
-            throw new NotImplementedException();
+           IList<Contract> result = persistence.FindContracts();
+            return result;
         }
 
         public IList<Employee> ListEmployees()
         {
-            throw new NotImplementedException();
+            IList<Employee> result = persistence.FindEmployees();
+            return result;
         }
 
         public IList<Member> ListMembers()
         {
-            throw new NotImplementedException();
+            IList<Member> result = persistence.FindMembers();
+            return result;
         }
 
         public IList<Order> ListOrders()
         {
-            throw new NotImplementedException();
+            IList<Order> result = persistence.FindOrders();
+            return result;
         }
 
-        public void UpdateContractFromMember(int memberid, int contractID)
+        public void UpdateContractFromMember(int memberID, int contractID)
         {
-            throw new NotImplementedException();
+            persistence.FindMember(memberID).ContractID = contractID;
         }
 
-        public void UpdateArticle(int articleID, int acutalStock, int targetStock)
+        public void UpdateArticle(int articleID, int actualStock, int targetStock)
         {
-            throw new NotImplementedException();
+            persistence.FindArticle(articleID).ActualStock = actualStock;
+            persistence.FindArticle(articleID).TargetStock= targetStock;
         }
 
         public void AddArticleToOrder(int orderID, int articleID)
         {
-            throw new NotImplementedException();
+            Order order = persistence.FindOrder(orderID);
+            if(order!= null) 
+                persistence.UpdateOrder(order, articleID);
         }
 
         #endregion
@@ -144,62 +157,102 @@ namespace loremipsum.Gym.Impl
 
         public IDictionary<Article, int> SearchArticle(string searchTerm)
         {
-            throw new NotImplementedException();
+           IList<Article> articles = ListArticles();
+            IDictionary<Article, int> result = new SortedList<Article, int>();
+
+            foreach(Article a in articles)
+            {
+                if (a.ArticleName.IndexOf(searchTerm) != -1)
+                    result.Add(a, GetArticlesTargetStock(a.TargetStock));
+            }
+            return result;
         }
 
         public IDictionary<Contract, int> SearchContract(string searchTerm)
         {
-            throw new NotImplementedException();
+            IList<Contract> contracts = ListContracts();
+            IDictionary<Contract, int> result = new SortedList<Contract, int>();
+
+            foreach (Contract c in contracts)
+            {
+                if (c.ContractType.IndexOf(searchTerm) != -1)
+                    result.Add(c, c.ContractID);
+            }
+            return result;
         }
 
         public IDictionary<Employee, int> SearchEmployee(string searchTerm)
         {
-            throw new NotImplementedException();
+            IList<Employee> employees = ListEmployees();
+            IDictionary<Employee, int> result = new SortedList<Employee, int>();
+
+            foreach (Employee e in employees)
+            {
+                if (e.Surname.IndexOf(searchTerm) != -1)
+                    result.Add(e, e.EmployeeID);
+            }
+            return result;
         }
 
         public IDictionary<Member, int> SearchMember(string searchTerm)
         {
-            throw new NotImplementedException();
+            IList<Member> members = ListMembers();
+            IDictionary<Member, int> result = new SortedList<Member, int>();
+
+            foreach (Member m in members)
+            {
+                if (m.Surname.IndexOf(searchTerm) != -1)
+                    result.Add(m, m.MemberID);
+            }
+            return result;
         }
 
         public IDictionary<Order, int> SearchOrder(string searchTerm)
         {
-            throw new NotImplementedException();
+            IList<Order> orders = ListOrders();
+            IDictionary<Order, int> result = new SortedList<Order, int>();
+
+            foreach (Order o in orders)
+            {
+                if (o.Member.Surname.IndexOf(searchTerm) != -1)
+                    result.Add(o, o.MemberID);
+            }
+            return result;
         }
 
         public Article GetArticleDetails(int articleID)
         {
-            throw new NotImplementedException();
+           return persistence.FindArticle(articleID);
         }
 
         public int GetArticlesActualStock(int articleID)
         {
-            throw new NotImplementedException();
+            return persistence.FindArticle(articleID).ActualStock;
         }
 
         public int GetArticlesTargetStock(int articleID)
         {
-            throw new NotImplementedException();
+            return persistence.FindArticle(articleID).TargetStock;
         }
 
         public Contract GetContractDetails(int contractID)
         {
-            throw new NotImplementedException();
+            return persistence.FindContract(contractID);
         }
 
         public Employee GetEmployeeDetails(int employeeID)
         {
-            throw new NotImplementedException();
+           return persistence.FindEmployee(employeeID);
         }
 
         public Member GetMemberDetails(int memberID)
         {
-            throw new NotImplementedException();
+           return persistence.FindMember(memberID);
         }
 
         public Order GetOrderDetails(int orderID)
         {
-            throw new NotImplementedException();
+           return persistence.FindOrder(orderID);
         }
         
         #endregion

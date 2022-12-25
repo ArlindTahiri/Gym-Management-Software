@@ -72,7 +72,6 @@ namespace loremipsum.Gym
         IList<Order> FindOrders();
 
         void UpdateMemberFromOrder(Order order, int memberID);
-
-
+        void UpdateOrder(Order order, int articleID);
     }
 }

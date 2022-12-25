@@ -6,27 +6,52 @@ namespace loremipsum.Gym.Persistence
     {
         public void CreateArticle(Article article)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                db.Articles.Add(article);
+                db.SaveChanges();
+            }
         }
 
         public void CreateContract(Contract contract)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                db.Contracts.Add(contract);
+                db.SaveChanges();
+            }
         }
 
         public void CreateEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                db.Employees.Add(employee);
+                db.SaveChanges();
+            }
         }
 
         public void CreateMember(Member member)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                db.Members.Add(member);
+                db.SaveChanges();
+            }
         }
 
         public void CreateOrder(Order order)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                db.Orders.Add(order);
+                db.SaveChanges();
+            }
         }
 
         public void DeleteArticle(int articleID)
@@ -130,6 +155,11 @@ namespace loremipsum.Gym.Persistence
         }
 
         public void UpdateArticle(int articleid, int actualStock, int targetStock)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateOrder(Order order, int articleID)
         {
             throw new NotImplementedException();
         }
