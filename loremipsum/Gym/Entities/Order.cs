@@ -6,27 +6,21 @@ namespace loremipsum.Gym.Entities
     [Serializable]
     public class Order : IComparable<Order>
     {
-        public Order(int articleID, int amount)
+        public Order(int memberID, int articleID, int amount)
         {
-            
             OrderID = ++OrderID;
-            //acutalstock query and deduction should be implemented in dispencer
-
-            /* 
-            Price = article.Price;
-            if (amount <= article.ActualStock)
-            {
-                article.ActualStock = article.ActualStock - amount;
-                
-            }
-            */
-
+            ArticleID = articleID;
+            Amount = amount;
+            MemberID= memberID;
         }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int OrderID { get; }
 
         [Required] public int Price { get; set; }
+
+        [Required] public int Amount { get; set; }
 
         //many-to-one Relation
         public int MemberID { get; set; }

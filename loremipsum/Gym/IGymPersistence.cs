@@ -5,7 +5,7 @@ namespace loremipsum.Gym
     public interface IGymPersistence
     {
         //Member
-        void UpdateContractFromMember(Member member, int contractID);
+        void UpdateContractFromMember(Member member, Contract contract);
 
         void CreateMember(Member member);
 
@@ -56,7 +56,7 @@ namespace loremipsum.Gym
 
         IList<Article> FindArticles();
 
-        void UpdateArticle(int articleid, int actualStock, int targetStock);
+        void UpdateArticle(Article article, int actualStock, int targetStock);
 
 
 
@@ -71,8 +71,8 @@ namespace loremipsum.Gym
 
         IList<Order> FindOrders();
 
-        void UpdateMemberFromOrder(Order order, int memberID);
+        void UpdateMemberFromOrder(Order order, Member member);
 
-        void UpdateOrder(Order order, int articleID);
+        void UpdateOrder(Order order, Article article, int amount);
     }
 }

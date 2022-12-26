@@ -4,7 +4,9 @@ namespace loremipsum.Gym
 {
     public interface IProductAdmin
     {
-        void AddMember(Member member, int contractID);
+
+        //Member
+        void AddMember(Member member);
 
         void DeleteMember(int memberID);
 
@@ -12,6 +14,8 @@ namespace loremipsum.Gym
 
         void DeleteMembers();
 
+
+        //Contract
         void UpdateContractFromMember(int memberid, int contractID);
 
         void AddContract(Contract contract);
@@ -22,6 +26,8 @@ namespace loremipsum.Gym
 
         void DeleteContracts();
 
+
+        //Employee
         void AddEmployee(Employee employee);
 
         void DeleteEmployee(int employeeID);
@@ -30,9 +36,11 @@ namespace loremipsum.Gym
 
         void DeleteEmployees();
 
+
+        //Article
         void AddArticle(Article article);
 
-        void RemoveArticle(int articleID, int memberID);
+        void DeleteArticle(int articleID);
 
         IList<Article> ListArticles();
 
@@ -40,6 +48,8 @@ namespace loremipsum.Gym
 
         void DeleteArticles();
 
+
+        //Order
         void AddOrder(Order order);
 
         void DeleteOrder(int orderID);
@@ -48,9 +58,9 @@ namespace loremipsum.Gym
 
         void DeleteOrders();
 
-        void AddMemberToOrder(int orderID, int memberID);
+        void UpdateMemberFromOrder(int orderID, int memberID);
 
-        void AddArticleToOrder(int orderID, int articleID);
+        void UpdateArticleToOrder(int orderID, int articleID, int amount);
 
         IList<Order> ListAllOrdersFromMember(int memberID);
 
