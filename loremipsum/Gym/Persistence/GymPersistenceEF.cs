@@ -56,102 +56,236 @@ namespace loremipsum.Gym.Persistence
 
         public void DeleteArticle(int articleID)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                Article article = FindArticle(articleID);
+                if (article != null)
+                {
+                    db.Remove<Article>(article);
+                    db.SaveChanges();
+                }
+            }
         }
 
         public void DeleteArticles()
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                IList<Article> articles = FindArticles();
+                db.RemoveRange(articles);
+                db.SaveChanges();
+            }
         }
 
         public void DeleteContract(int contractID)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                Contract contract = FindContract(contractID);
+                if (contract != null)
+                {
+                    db.Remove<Contract>(contract);
+                    db.SaveChanges();
+                }
+            }
         }
 
         public void DeleteContracts()
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                IList<Contract> contracts = FindContracts();
+                db.RemoveRange(contracts);
+                db.SaveChanges();
+            }
         }
 
         public void DeleteEmployee(int employeeID)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                Employee employee = FindEmployee(employeeID);
+                if (employee != null)
+                {
+                    db.Remove<Employee>(employee);
+                    db.SaveChanges();
+                }
+            }
         }
 
         public void DeleteEmployees()
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                IList<Employee> employees = FindEmployees();
+                db.RemoveRange(employees);
+                db.SaveChanges();
+            }
         }
 
         public void DeleteMember(int memberID)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                Member member = FindMember(memberID);
+                if (member != null)
+                {
+                    db.Remove<Member>(member);
+                    db.SaveChanges();
+                }
+            }
         }
 
         public void DeleteMembers()
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                IList<Member> members = FindMembers();
+                db.RemoveRange(members);
+                db.SaveChanges();
+            }
         }
 
         public void DeleteOrder(int orderID)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                Order order = FindOrder(orderID);
+                if (order != null)
+                {
+                    db.Remove<Order>(order);
+                    db.SaveChanges();
+                }
+            }
         }
 
         public void DeleteOrders()
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                IList<Order> orders = FindOrders();
+                db.RemoveRange(orders);
+                db.SaveChanges();
+            }
         }
 
         public Article FindArticle(int articleID)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                Article article = db.Articles
+                    .Where(b => b.ArticleID == articleID)
+                    .FirstOrDefault();
+                return article;
+            }
         }
 
         public IList<Article> FindArticles()
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+                IEnumerable<Article> articles = db.Articles
+                    .ToList();
+                return (List<Article>)articles;
+            }
         }
 
         public Contract FindContract(int contractID)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                Contract contract = db.Contracts
+                    .Where(b => b.ContractID == contractID)
+                    .FirstOrDefault();
+                return contract;
+            }
         }
 
         public IList<Contract> FindContracts()
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+                IEnumerable<Contract> contracts = db.Contracts
+                    .ToList();
+                return (List<Contract>)contracts;
+            }
         }
 
         public Employee FindEmployee(int employeeID)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                Employee employee = db.Employees
+                    .Where(b => b.EmployeeID == employeeID)
+                    .FirstOrDefault();
+                return employee;
+            }
         }
 
         public IList<Employee> FindEmployees()
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+                IEnumerable<Employee> employees = db.Employees
+                    .ToList();
+                return (List<Employee>)employees;
+            }
         }
 
         public Member FindMember(int memberID)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+                Member member = db.Members
+                    .Where(b => b.MemberID == memberID)
+                    .FirstOrDefault();
+                return member;
+            }
         }
 
         public IList<Member> FindMembers()
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+                IEnumerable<Member> members= db.Members
+                    .ToList();
+                return (List<Member>)members;
+            }
         }
 
         public Order FindOrder(int orderID)
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+
+                Order order = db.Orders
+                    .Where(b => b.OrderID == orderID)
+                    .FirstOrDefault();
+                return order;
+            }
         }
 
         public IList<Order> FindOrders()
         {
-            throw new NotImplementedException();
+            using (GymContext db = new GymContext())
+            {
+                IEnumerable<Order> orders= db.Orders
+                    .ToList();
+                return (List<Order>) orders;
+            }
         }
 
         public void UpdateArticle(int articleid, int actualStock, int targetStock)
