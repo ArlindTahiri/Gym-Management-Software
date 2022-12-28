@@ -6,12 +6,15 @@ namespace loremipsum.Gym.Entities
     [Serializable]
     public class Member: IComparable<Member>
     {
-        public Member(string forename,string surname,Address address,string eMail, int iban, DateTime birthday)
+        public Member(string forename, string surname, string street,int postcalCode, string city, string country, string eMail, int iban, DateTime birthday)
         {
             MemberID = ++MemberID;
             Forename = forename;
             Surname = surname;
-            Address = address;
+            Street = street;
+            PostcalCode = postcalCode;
+            City = city;
+            Country = country;
             EMail = eMail;
             Iban = iban;
             Birthday = birthday;
@@ -19,13 +22,19 @@ namespace loremipsum.Gym.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int MemberID { get; }
+        public int MemberID { get; set; }
 
         [Required] public string Forename { get; set; }
 
         [Required] public string Surname { get; set;}
 
-        [Required] public Address Address { get; set; }
+        [Required] public string Street { get; set;}
+
+        [Required] public int PostcalCode { get; set;}
+
+        [Required] public string City { get; set; }
+
+        [Required] public string Country { get; set; }
 
         [Required] [EmailAddress] public string EMail { get; set; }
 
@@ -47,7 +56,7 @@ namespace loremipsum.Gym.Entities
 
         public override string ToString() 
         {
-            return MemberID+" "+Forename+" "+Surname+" "+Address+" "+EMail+" "+Iban+" "+ Birthday;
+            return MemberID+" "+Forename+" "+Surname+" "+Street+" "+PostcalCode+" "+City+" "+Country+" "+EMail+" "+Iban+" "+ Birthday;
         }
     }
 }

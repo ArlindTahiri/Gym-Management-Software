@@ -7,12 +7,15 @@ namespace loremipsum.Gym.Entities
     public class Employee : IComparable<Employee>
     {
 
-        public Employee(string forename, string surname, Address address, string eMail, int iban, DateTime birthday, string status)
+        public Employee(string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday, string status)
         {
             EmployeeID = ++EmployeeID;
             Forename = forename;
             Surname = surname;
-            Address = address;
+            Street = street;
+            PostcalCode = postcalCode;
+            City = city;
+            Country = country;
             EMail = eMail;
             Iban = iban;
             Birthday = birthday;
@@ -21,13 +24,19 @@ namespace loremipsum.Gym.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int EmployeeID { get; }
+        public int EmployeeID { get; set; }
 
         [Required] public string Forename { get; set; }
 
         [Required] public string Surname { get; set; }
 
-        [Required] public Address Address { get; set; }
+        [Required] public string Street { get; set; }
+
+        [Required] public int PostcalCode { get; set; }
+
+        [Required] public string City { get; set; }
+
+        [Required] public string Country { get; set; }
 
         [Required] [EmailAddress] public string EMail { get; set; }
 
@@ -44,7 +53,7 @@ namespace loremipsum.Gym.Entities
 
         public override string ToString()
         {
-            return EmployeeID+" "+Forename + " " + Surname + " " + Address + " " + EMail + " " + Iban + " " + Birthday+" "+Status;
+            return EmployeeID + " " + Forename + " " + Surname + " " + Street + " " + PostcalCode + " " + City + " " + Country + " " + EMail + " " + Iban + " " + Birthday + " " + Status;
         }
 
 

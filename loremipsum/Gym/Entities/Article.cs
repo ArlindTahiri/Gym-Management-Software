@@ -18,7 +18,7 @@ namespace loremipsum.Gym.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ArticleID { get; }
+        public int ArticleID { get; set; }
 
         [Required] public string ArticleName { get; set; }
 

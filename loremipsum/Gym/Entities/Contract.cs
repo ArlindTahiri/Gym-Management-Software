@@ -16,7 +16,7 @@ namespace loremipsum.Gym.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ContractID { get; }
+        public int ContractID { get; set; }
 
         [Required] public string ContractType { get; set; }
 

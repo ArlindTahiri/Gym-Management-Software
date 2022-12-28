@@ -16,7 +16,7 @@ namespace loremipsum.Gym.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int OrderID { get; }
+        public int OrderID { get; set; }
 
         [Required] public int Price { get; set; }
 
