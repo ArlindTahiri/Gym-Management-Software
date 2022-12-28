@@ -42,6 +42,8 @@ namespace loremipsum.Gym.Entities
 
         [Required] public DateTime Birthday { get; set;}
 
+        [Required] public int CurrentBill { get; set;}
+
         //many-to one Relation
         public int ContractID { get; set; }
         public Contract Contract { get; set;}

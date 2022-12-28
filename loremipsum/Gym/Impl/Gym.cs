@@ -179,25 +179,30 @@ namespace loremipsum.Gym.Impl
             }
         }
 
-        public void DeleteOrder(int orderID)
+        public void DeleteOrder(int orderID)//mistake order--> money back to member
         {
             Order order = persistence.FindOrder(orderID);
             Article originalArticle = persistence.FindArticle(order.ArticleID);
-            if (originalArticle != null & order != null)//can only be deleted if article still exists
+            Member member = persistence.FindMember(order.MemberID);
+            if (originalArticle != null & order != null & member != null)//can only be deleted if article still exists and member still exists
             {
                 persistence.DeleteOrder(orderID);
             }
 
         }
 
-        public void DeleteOrders()
+        public void DeleteOrders()//this delete just deletes all orders to have a cleaner database --> no mistake --> no money back for members
         {
+            /* if the articles need to be returned then:
             IList<Order> orders = persistence.FindOrders();
             IList<Article> articles = persistence.FindArticles();
 
-            //NEED TO DO: check if the articles of the orders still exist and only then do it in persistence
-
-
+              
+            if(orders.Select(i => i.ArticleID).Intersect(articles.Select(b => b.ArticleID)) == null)
+            {
+                persistence.DeleteOrders();// check if all the articles of the orders still exist in articles table and only then delete
+            }
+            */
             persistence.DeleteOrders();
         }
 

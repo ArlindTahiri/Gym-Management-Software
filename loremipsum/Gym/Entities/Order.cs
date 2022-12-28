@@ -18,8 +18,6 @@ namespace loremipsum.Gym.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int OrderID { get; set; }
 
-        [Required] public int Price { get; set; }
-
         [Required] public int Amount { get; set; }
 
         //many-to-one Relation
