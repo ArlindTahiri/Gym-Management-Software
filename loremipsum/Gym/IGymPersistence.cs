@@ -17,6 +17,8 @@ namespace loremipsum.Gym
 
         IList<Member> FindMembers();
 
+        void UpdateMember(Member member, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday);
+
 
 
         //Contract
@@ -29,6 +31,8 @@ namespace loremipsum.Gym
         Contract FindContract(int contractID);
 
         IList<Contract> FindContracts();
+
+        void UpdateContract(Contract contract, string contractType, TimeSpan duration, int price);
 
 
 
@@ -43,6 +47,8 @@ namespace loremipsum.Gym
 
         IList<Employee> FindEmployees();
 
+        void UpdateEmployee(Employee employee, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday, string status);
+
 
 
         //Article
@@ -56,7 +62,7 @@ namespace loremipsum.Gym
 
         IList<Article> FindArticles();
 
-        void UpdateArticle(Article article, int actualStock, int targetStock);
+        void UpdateArticle(Article article, string articleName, int price, int actualStock, int targetStock);
 
 
 

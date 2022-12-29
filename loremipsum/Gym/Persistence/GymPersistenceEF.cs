@@ -83,6 +83,29 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        public void UpdateMember(Member member, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday)
+        {
+            using (GymContext db = new GymContext())
+            {
+                Member m = db.Members
+                    .Where(b => b.MemberID == member.MemberID)
+                    .Include(b => b.Orders)
+                .FirstOrDefault();
+
+                m.Forename = forename;
+                m.Surname = surname;
+                m.Street = street;
+                m.PostcalCode = postcalCode;
+                m.City = city;
+                m.Country = country;
+                m.EMail = eMail;
+                m.Iban = iban;
+                m.Birthday = birthday;
+
+                db.SaveChanges();
+            }
+        }
+
 
 
         //Contract
@@ -148,6 +171,24 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        public void UpdateContract(Contract contract, string contractType, TimeSpan duration, int price)
+        {
+            using (GymContext db = new GymContext())
+            {
+                Contract c = db.Contracts
+                    .Where(b => b.ContractID == contract.ContractID)
+                    .Include(b => b.Members)
+                    .FirstOrDefault();
+                
+                c.ContractType = contractType;
+                c.Duration = duration;
+                c.Price = price;
+
+                db.SaveChanges();
+
+            }
+        }
+
 
 
         //Employee
@@ -206,6 +247,30 @@ namespace loremipsum.Gym.Persistence
                 IEnumerable<Employee> employees = db.Employees
                     .ToList();
                 return (List<Employee>)employees;
+            }
+        }
+
+        public void UpdateEmployee(Employee employee, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday, string status)
+        {
+            using (GymContext db = new GymContext())
+            {
+
+                Employee e = db.Employees
+                    .Where(b => b.EmployeeID == employee.EmployeeID)
+                    .FirstOrDefault();
+
+                e.Forename = forename;
+                e.Surname = surname;
+                e.Street = street;
+                e.PostcalCode = postcalCode;
+                e.City = city;
+                e.Country = country;
+                e.EMail = eMail;
+                e.Iban= iban;
+                e.Birthday = birthday;
+                e.Status = status;
+
+                db.SaveChanges();
             }
         }
 
@@ -273,7 +338,7 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
-        public void UpdateArticle(Article article, int actualStock, int targetStock)
+        public void UpdateArticle(Article article, string articleName, int price, int actualStock, int targetStock)
         {
             using (GymContext db = new GymContext())
             {
@@ -282,8 +347,11 @@ namespace loremipsum.Gym.Persistence
                     .Include(b => b.Orders)
                     .FirstOrDefault();
 
+                a.ArticleName = articleName;
+                a.Price = price;
                 a.ActualStock = actualStock;
                 a.TargetStock = targetStock;
+
                 db.SaveChanges();
             }
         }

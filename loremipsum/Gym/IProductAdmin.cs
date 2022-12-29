@@ -14,6 +14,8 @@ namespace loremipsum.Gym
 
         void DeleteMembers();
 
+        void UpdateMember(int memberID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday);
+
 
         //Contract
         void UpdateContractFromMember(int memberid, int contractID);
@@ -26,6 +28,8 @@ namespace loremipsum.Gym
 
         void DeleteContracts();
 
+        void UpdateContract(int contractID, string contractType, TimeSpan duration, int price);
+
 
         //Employee
         void AddEmployee(Employee employee);
@@ -36,6 +40,8 @@ namespace loremipsum.Gym
 
         void DeleteEmployees();
 
+        void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday, string status);
+
 
         //Article
         void AddArticle(Article article);
@@ -44,7 +50,7 @@ namespace loremipsum.Gym
 
         IList<Article> ListArticles();
 
-        void UpdateArticle(int articleID, int acutalStock, int targetStock );
+        void UpdateArticle(int articleID, string articleName, int price, int actualStock, int targetStock);
 
         void DeleteArticles();
 

@@ -56,6 +56,15 @@ namespace loremipsum.Gym.Impl
 
         }
 
+        public void UpdateMember(int memberID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday)
+        {
+            Member member = persistence.FindMember(memberID);
+            if(member != null)
+            {
+                persistence.UpdateMember(member, forename, surname, street, postcalCode, city, country, eMail, iban, birthday);
+            }
+        }
+
 
 
         //Contract
@@ -93,6 +102,15 @@ namespace loremipsum.Gym.Impl
             return result;
         }
 
+        public void UpdateContract(int contractID, string contractType, TimeSpan duration, int price)
+        {
+            Contract contract = persistence.FindContract(contractID);
+            if(contract != null)
+            {
+                persistence.UpdateContract(contract, contractType, duration, price);
+            }
+        }
+
 
 
         //Employee
@@ -115,6 +133,15 @@ namespace loremipsum.Gym.Impl
         {
             IList<Employee> result = persistence.FindEmployees();
             return result;
+        }
+
+        public void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday, string status)
+        {
+            Employee employee= persistence.FindEmployee(employeeID);
+            if(employee != null)
+            {
+                persistence.UpdateEmployee(employee, forename, surname, street, postcalCode, city, country, eMail, iban, birthday, status);
+            }
         }
 
 
@@ -153,12 +180,12 @@ namespace loremipsum.Gym.Impl
             return result;
         }
 
-        public void UpdateArticle(int articleID, int actualStock, int targetStock)
+        public void UpdateArticle(int articleID, string articleName, int price, int actualStock, int targetStock)
         {
             Article article = persistence.FindArticle(articleID);
             if(article != null)
             {
-                persistence.UpdateArticle(article, actualStock, targetStock);
+                persistence.UpdateArticle(article, articleName, price, actualStock, targetStock);
             }
         }
 
