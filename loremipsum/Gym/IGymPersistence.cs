@@ -80,5 +80,24 @@ namespace loremipsum.Gym
         void UpdateMemberFromOrder(Order order, Member member);
 
         void UpdateOrder(Order order, Article article, int amount);
+
+
+
+        //LogIn
+        void CreateLogIn(LogIn logIn);
+
+        void DeleteLogIn(string logInName);
+
+        IList<LogIn> FindLogIns();
+
+        LogIn FindLogIn(string logInName);
+
+        void DeleteLogIns();
+
+        void UpdateLogInName(LogIn logIn, string newLogInName, string logInPassword);
+
+        void UpdateLogInPassword(LogIn logIn, string newLogInPassword);
+
+        void UpdateLogInRank(LogIn logIn, int rank);
     }
 }

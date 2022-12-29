@@ -286,6 +286,55 @@ namespace loremipsum.Gym.Impl
                 
         }
 
+
+
+        //LogIn
+        public void AddLogIn(LogIn logIn)
+        {
+            persistence.CreateLogIn(logIn);
+        }
+
+        public void DeleteLogIn(string logInName)
+        {
+            persistence.DeleteLogIn(logInName);
+        }
+
+        public IList<LogIn> ListLogIns()
+        {
+            IList<LogIn> result = persistence.FindLogIns();
+            return result;
+        }
+
+        public void DeleteLogIns()
+        {
+            persistence.DeleteLogIns();
+        }
+
+        public void UpdateLogInName(string logInName, string newLogInName, string logInPassword)
+        {
+            LogIn logIn = persistence.FindLogIn(logInName);
+            LogIn logInNew = persistence.FindLogIn(newLogInName);
+
+            if(logInNew!= null)
+            {
+                persistence.UpdateLogInName(logIn, newLogInName, logInPassword);
+            }
+            
+        }
+
+        public void UpdateLogInPassword(string logInName, string newLogInPassword)
+        {
+            LogIn logIn=persistence.FindLogIn(logInName);
+            persistence.UpdateLogInPassword(logIn, newLogInPassword);
+        }
+
+        public void UpdateLogInRank(string logInName, int rank)
+        {
+            LogIn logIn = persistence.FindLogIn(logInName);
+            persistence.UpdateLogInRank(logIn, rank);
+        }
+
+
         #endregion
 
 

@@ -28,7 +28,7 @@ namespace loremipsum.Gym.Persistence
 
                 if (member != null)
                 {
-                    db.Remove<Member>(member);
+                    db.Members.Remove(member);
                     db.SaveChanges();
                 }
             }
@@ -40,7 +40,7 @@ namespace loremipsum.Gym.Persistence
             {
 
                 IList<Member> members = FindMembers();
-                db.RemoveRange(members);
+                db.Members.RemoveRange(members);
                 db.SaveChanges();
             }
         }
@@ -130,7 +130,7 @@ namespace loremipsum.Gym.Persistence
 
                 if (contract != null)
                 {
-                    db.Remove<Contract>(contract);
+                    db.Contracts.Remove(contract);
                     db.SaveChanges();
                 }
             }
@@ -142,7 +142,7 @@ namespace loremipsum.Gym.Persistence
             {
 
                 IList<Contract> contracts = FindContracts();
-                db.RemoveRange(contracts);
+                db.Contracts.RemoveRange(contracts);
                 db.SaveChanges();
             }
         }
@@ -211,7 +211,7 @@ namespace loremipsum.Gym.Persistence
                     .FirstOrDefault();
                 if (employee != null)
                 {
-                    db.Remove<Employee>(employee);
+                    db.Employees.Remove(employee);
                     db.SaveChanges();
                 }
             }
@@ -223,7 +223,7 @@ namespace loremipsum.Gym.Persistence
             {
 
                 IList<Employee> employees = FindEmployees();
-                db.RemoveRange(employees);
+                db.Employees.RemoveRange(employees);
                 db.SaveChanges();
             }
         }
@@ -297,7 +297,7 @@ namespace loremipsum.Gym.Persistence
                     .FirstOrDefault();
                 if (article != null)
                 {
-                    db.Remove<Article>(article);
+                    db.Articles.Remove(article);
                     db.SaveChanges();
                 }
             }
@@ -309,7 +309,7 @@ namespace loremipsum.Gym.Persistence
             {
 
                 IList<Article> articles = FindArticles();
-                db.RemoveRange(articles);
+                db.Articles.RemoveRange(articles);
                 db.SaveChanges();
             }
         }
@@ -415,7 +415,7 @@ namespace loremipsum.Gym.Persistence
             using (GymContext db = new GymContext())
             {
                 IList<Order> orders = FindOrders();
-                db.RemoveRange(orders);
+                db.Orders.RemoveRange(orders);
                 db.SaveChanges();
             }
         }
@@ -482,6 +482,110 @@ namespace loremipsum.Gym.Persistence
                     .FirstOrDefault();
 
                 o.MemberID = member.MemberID;
+                db.SaveChanges();
+            }
+        }
+
+
+
+        //LogIn
+        public void CreateLogIn(LogIn logIn)
+        {
+            using (GymContext db = new GymContext())
+            {
+                db.LogIns.Add(logIn);
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteLogIn(string logInName)
+        {
+            using (GymContext db = new GymContext())
+            {
+                LogIn logIn = db.LogIns
+                    .Where(b => b.LogInName == logInName)
+                    .FirstOrDefault();
+
+                if (logIn != null)
+                {
+                    db.LogIns.Remove(logIn);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public IList<LogIn> FindLogIns()
+        {
+            using (GymContext db = new GymContext())
+            {
+                IEnumerable<LogIn> logIns = db.LogIns
+                    .ToList();
+                return (List<LogIn>)logIns;
+            }
+        }
+
+        public LogIn FindLogIn(string logInName)
+        {
+            using (GymContext db = new GymContext())
+            {
+
+                LogIn logIn = db.LogIns
+                    .Where(b => b.LogInName == logInName)
+                    .FirstOrDefault();
+                return logIn;
+            }
+        }
+
+        public void DeleteLogIns()
+        {
+            using (GymContext db = new GymContext())
+            {
+
+                IList<LogIn> logIns = FindLogIns();
+                db.LogIns.RemoveRange(logIns);
+                db.SaveChanges();
+            }
+        }
+
+        public void UpdateLogInName(LogIn logIn, string newLogInName, string logInPassword)
+        {
+            using (GymContext db = new GymContext())
+            {
+                LogIn l = db.LogIns
+                    .Where(b => b.LogInName == logIn.LogInName)
+                    .FirstOrDefault();
+
+                l.LogInName=newLogInName;
+
+                db.SaveChanges();
+            }
+
+        }
+
+        public void UpdateLogInPassword(LogIn logIn, string newLogInPassword)
+        {
+            using (GymContext db = new GymContext())
+            {
+                LogIn l = db.LogIns
+                    .Where(b => b.LogInName == logIn.LogInName)
+                    .FirstOrDefault();
+
+                l.LogInPassword=newLogInPassword;
+
+                db.SaveChanges();
+            }
+        }
+
+        public void UpdateLogInRank(LogIn logIn, int rank)
+        {
+            using (GymContext db = new GymContext())
+            {
+                LogIn l = db.LogIns
+                    .Where(b => b.LogInName == logIn.LogInName)
+                    .FirstOrDefault();
+
+                l.Rank = rank;
+
                 db.SaveChanges();
             }
         }

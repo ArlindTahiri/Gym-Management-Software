@@ -12,7 +12,7 @@ using loremipsum.Gym.Persistence;
 namespace loremipsum.Migrations
 {
     [DbContext(typeof(GymContext))]
-    [Migration("20221228193658_Gym")]
+    [Migration("20221229094447_Gym")]
     partial class Gym
     {
         /// <inheritdoc />
@@ -115,6 +115,23 @@ namespace loremipsum.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("loremipsum.Gym.Entities.LogIn", b =>
+                {
+                    b.Property<string>("LogInName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LogInPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
+
+                    b.HasKey("LogInName");
+
+                    b.ToTable("LogIns");
+                });
+
             modelBuilder.Entity("loremipsum.Gym.Entities.Member", b =>
                 {
                     b.Property<int>("MemberID")
@@ -133,6 +150,9 @@ namespace loremipsum.Migrations
                     b.Property<string>("Country")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CurrentBill")
+                        .HasColumnType("int");
 
                     b.Property<string>("EMail")
                         .IsRequired()
@@ -175,9 +195,6 @@ namespace loremipsum.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("MemberID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.HasKey("OrderID");

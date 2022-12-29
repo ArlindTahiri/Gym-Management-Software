@@ -62,6 +62,19 @@ namespace loremipsum.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LogIns",
+                columns: table => new
+                {
+                    LogInName = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LogInPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rank = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LogIns", x => x.LogInName);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Members",
                 columns: table => new
                 {
@@ -75,6 +88,7 @@ namespace loremipsum.Migrations
                     EMail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Iban = table.Column<int>(type: "int", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CurrentBill = table.Column<int>(type: "int", nullable: false),
                     ContractID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -93,7 +107,6 @@ namespace loremipsum.Migrations
                 columns: table => new
                 {
                     OrderID = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false),
                     MemberID = table.Column<int>(type: "int", nullable: false),
                     ArticleID = table.Column<int>(type: "int", nullable: false)
@@ -136,6 +149,9 @@ namespace loremipsum.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "LogIns");
 
             migrationBuilder.DropTable(
                 name: "Orders");

@@ -15,6 +15,8 @@ namespace loremipsum.Gym.Persistence
 
         public virtual DbSet<Order> Orders { get; set; }
 
+        public virtual DbSet<LogIn> LogIns { get; set; }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

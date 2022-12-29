@@ -4,7 +4,6 @@ namespace loremipsum.Gym
 {
     public interface IProductAdmin
     {
-
         //Member
         void AddMember(Member member);
 
@@ -71,5 +70,19 @@ namespace loremipsum.Gym
         IList<Order> ListAllOrdersFromMember(int memberID);
 
 
+        //LogIn
+        void AddLogIn(LogIn logIn);
+
+        void DeleteLogIn(string logInName);
+
+        IList<LogIn> ListLogIns();
+
+        void DeleteLogIns();
+
+        void UpdateLogInName(string logInName, string newLogInName, string logInPassword);
+
+        void UpdateLogInPassword(string logInName, string newLogInPassword);
+
+        void UpdateLogInRank(string logInName, int rank);
     }
 }
