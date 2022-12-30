@@ -31,6 +31,8 @@ namespace GUI
             string username = Username.Text;
             string password = Password.Text;
             IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+            MemberPage member = new MemberPage();//nur grad hier um zu testen ob die navigation geht
+            NavigationService.Navigate(member);
             //if (admin.checkUser(username, password)){
             //navigate to next window, check which one 
         }
