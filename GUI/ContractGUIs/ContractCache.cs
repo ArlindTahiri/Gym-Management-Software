@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GUI
+namespace GUI.ContractGUIs
 {
-     static class MemberCache
-    {
-        
-        public static int cacheID { get; set; }
 
-       
+     
+    internal class ContractCache
+    {
+        public static int cacheID { get; set; }
     }
 }

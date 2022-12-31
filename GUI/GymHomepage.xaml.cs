@@ -27,13 +27,13 @@ namespace GUI
 
         private void Member_Click(object sender, RoutedEventArgs e)
         {
-            GymPasswordPage gymPasswordPage= new GymPasswordPage();
-            NavigationService.Navigate(gymPasswordPage);
+            GymPasswordMemberPage gymPasswordMemberPage = new GymPasswordMemberPage();
+            NavigationService.Navigate(gymPasswordMemberPage);
         }
 
         private void Contract_Click(object sender, RoutedEventArgs e)
         {
-            GymPasswordPage gymPasswordPage = new GymPasswordPage();
+            GymPasswordContractPage gymPasswordPage = new GymPasswordContractPage();
             NavigationService.Navigate(gymPasswordPage);
         }
     }

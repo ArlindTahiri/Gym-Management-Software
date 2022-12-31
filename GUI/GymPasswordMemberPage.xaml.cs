@@ -13,15 +13,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GUI.MemberGUIs;
 
 namespace GUI
 {
     /// <summary>
     /// Interaktionslogik für GymPasswordPage.xaml
     /// </summary>
-    public partial class GymPasswordPage : Page
+    public partial class GymPasswordMemberPage : Page
     {
-        public GymPasswordPage()
+        public GymPasswordMemberPage()
         {
             InitializeComponent();
         }
