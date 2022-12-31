@@ -40,8 +40,8 @@ namespace GUI
 
         private void EmployeeButton_Click(object sender, RoutedEventArgs e)
         {
-            EmployeePage emplyee = new EmployeePage();
-            NavigationService.Navigate(emplyee);
+            EmployeePage employee = new EmployeePage();
+            NavigationService.Navigate(employee);
         }
     }
 }

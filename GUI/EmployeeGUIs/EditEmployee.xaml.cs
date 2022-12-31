@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI
+namespace GUI.EmployeeGUIs
 {
     /// <summary>
     /// Interaktionslogik für EditEmployee.xaml

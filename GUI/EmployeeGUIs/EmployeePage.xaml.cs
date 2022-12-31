@@ -17,7 +17,7 @@ using GUI.ArticleGUIs;
 namespace GUI.EmployeeGUIs
 {
     /// <summary>
-    /// Interaktionslogik für EmployeePage.xaml
+    /// Interaktionslogik für Page1.xaml
     /// </summary>
     public partial class EmployeePage : Page
     {
@@ -26,11 +26,18 @@ namespace GUI.EmployeeGUIs
             InitializeComponent();
         }
 
-        private void ArticleButton_Click(object sender, RoutedEventArgs e)
+        private void EditEmployee_Click(object sender, RoutedEventArgs e)
         {
 
-            ArticlePage order= new ArticlePage();
-            NavigationService.Navigate(order);
+            EmployeeChangeOptions changeOptions = new EmployeeChangeOptions();
+            NavigationService.Navigate(changeOptions);
+
+        }
+
+        private void ShoppingListButton_Click(object sender, RoutedEventArgs e)
+        {
+            ArticlePage articlePage = new ArticlePage();
+            NavigationService.Navigate(articlePage);
         }
     }
 }

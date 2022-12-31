@@ -1,5 +1,4 @@
 ﻿using loremipsum.Gym;
-using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,22 +14,30 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI
+namespace GUI.EmployeeGUIs
 {
     /// <summary>
-    /// Interaktionslogik für AddEmployee.xaml
+    /// Interaktionslogik für DeleteEmployee.xaml
     /// </summary>
-    public partial class AddEmployee : Page
+    public partial class DeleteEmployee : Page
     {
-        public AddEmployee()
+        IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+
+        public DeleteEmployee()
         {
             InitializeComponent();
         }
 
-        private void AddEmployee_Click(object sender, RoutedEventArgs e)
+        private void YesButton_Click(object sender, RoutedEventArgs e)
         {
-            Employee employee = new (Forename.Text, Surename.Text, Street.Text, Int32.Parse(PostcalCode.Text), City.Text, Country.Text, EMail.Text, Int32.Parse(Iban.Text), DateTime.Parse(Birthday.Text), " ");
+            admin.DeleteMember(EmployeeCache.cacheID);
 
+            GymHomepage home = new GymHomepage();
+            NavigationService.Navigate(home);
+        }
+
+        private void NoButton_Click(object sender, RoutedEventArgs e)
+        {
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);
         }
