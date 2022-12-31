@@ -1,4 +1,5 @@
-﻿using loremipsum.Gym;
+﻿using GUI.MemberGUIs;
+using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI
+namespace GUI.MemberGUIs
 {
     /// <summary>
     /// Interaktionslogik für DeleteMemberIDCheck.xaml
@@ -23,7 +24,7 @@ namespace GUI
     public partial class DeleteMemberIDCheck : Page
     {
 
-      
+
         IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         public DeleteMemberIDCheck()
         {
@@ -33,7 +34,7 @@ namespace GUI
         private void IDCheck_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             string content = IDCheck.Text;
-           //braucht noch ne aushnahmenbehandlung
+            //braucht noch ne aushnahmenbehandlung
             if (e.Key == Key.Enter)
             {
                 if (query.SearchMember(content) != null)
@@ -45,6 +46,6 @@ namespace GUI
             }
         }
 
-       
+
     }
 }

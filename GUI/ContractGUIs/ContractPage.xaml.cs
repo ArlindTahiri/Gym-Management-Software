@@ -13,16 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI
+namespace GUI.ContractGUIs
 {
     /// <summary>
-    /// Interaktionslogik für EditMember.xaml
+    /// Interaktionslogik für ContractPage.xaml
     /// </summary>
-    public partial class EditMember : Page
+    public partial class ContractPage : Page
     {
-        public EditMember()
+        public ContractPage()
         {
-            InitializeComponent();
+          InitializeComponent();
+        }
+
+        private void EditContractButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContractIDCheck iDCheck = new ContractIDCheck();
+            NavigationService.Navigate(iDCheck);
         }
     }
 }
