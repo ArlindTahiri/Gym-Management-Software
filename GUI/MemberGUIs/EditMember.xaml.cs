@@ -33,7 +33,7 @@ namespace GUI.MemberGUIs
         private void EditMember1_Click(object sender, RoutedEventArgs e)
         {
             admin.UpdateMember(MemberCache.cacheID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
-                Int32.Parse(ContoE.Text), DateTime.Parse(BirthdayE.Text));
+                ContoE.Text, DateTime.Parse(BirthdayE.Text));
 
            
             GymHomepage home = new GymHomepage();

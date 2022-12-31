@@ -13,12 +13,11 @@ namespace loremipsum.Gym
 
         void DeleteMembers();
 
-        void UpdateMember(int memberID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday);
+        void UpdateMember(int memberID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday);
 
+        void UpdateContractFromMember(Member member, int contractID);
 
         //Contract
-        void UpdateContractFromMember(int memberid, int contractID);
-
         void AddContract(Contract contract);
 
         void DeleteContract(int contractID);
@@ -27,7 +26,7 @@ namespace loremipsum.Gym
 
         void DeleteContracts();
 
-        void UpdateContract(int contractID, string contractType, TimeSpan duration, int price);
+        void UpdateContract(int contractID, string contractType, int price);
 
 
         //Employee
@@ -39,7 +38,7 @@ namespace loremipsum.Gym
 
         void DeleteEmployees();
 
-        void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday, string status);
+        void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday, string status);
 
 
         //Article

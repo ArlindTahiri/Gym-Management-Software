@@ -29,7 +29,7 @@ namespace GUI.EmployeeGUIs
 
         private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
-            Employee employee = new (Forename.Text, Surename.Text, Street.Text, Int32.Parse(PostcalCode.Text), City.Text, Country.Text, EMail.Text, Int32.Parse(Iban.Text), DateTime.Parse(Birthday.Text), " ");
+            Employee employee = new (Forename.Text, Surename.Text, Street.Text, Int32.Parse(PostcalCode.Text), City.Text, Country.Text, EMail.Text, Iban.Text, DateTime.Parse(Birthday.Text), " ");
 
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);

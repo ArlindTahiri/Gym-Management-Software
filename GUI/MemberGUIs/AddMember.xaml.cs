@@ -38,7 +38,7 @@ namespace GUI.MemberGUIs
 
             
           Member memberToAdd = new(NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
-                CountryM.Text, ContactAdressM.Text, Int32.Parse(ContoM.Text), DateTime.Parse(BirthdayM.Text));
+                CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
             memberToAdd.Contract = null;
             memberToAdd.CurrentBill = 0;
         

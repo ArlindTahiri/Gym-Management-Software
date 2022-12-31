@@ -7,7 +7,7 @@ namespace loremipsum.Gym.Entities
     public class Employee : IComparable<Employee>
     {
 
-        public Employee(string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday, string status)
+        public Employee(string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday, string status)
         {
             EmployeeID = ++EmployeeID;
             Forename = forename;
@@ -40,7 +40,7 @@ namespace loremipsum.Gym.Entities
 
         [Required] [EmailAddress] public string EMail { get; set; }
 
-        [Required] public int Iban { get; set; }
+        [Required] public string Iban { get; set; }
 
         [Required] public DateTime Birthday { get; set; }
 

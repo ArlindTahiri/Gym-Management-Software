@@ -83,7 +83,7 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
-        public void UpdateMember(Member member, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday)
+        public void UpdateMember(Member member, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             using (GymContext db = new GymContext())
             {
@@ -171,7 +171,7 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
-        public void UpdateContract(Contract contract, string contractType, TimeSpan duration, int price)
+        public void UpdateContract(Contract contract, string contractType, int price)
         {
             using (GymContext db = new GymContext())
             {
@@ -181,7 +181,6 @@ namespace loremipsum.Gym.Persistence
                     .FirstOrDefault();
                 
                 c.ContractType = contractType;
-                c.Duration = duration;
                 c.Price = price;
 
                 db.SaveChanges();
@@ -250,7 +249,7 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
-        public void UpdateEmployee(Employee employee, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday, string status)
+        public void UpdateEmployee(Employee employee, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday, string status)
         {
             using (GymContext db = new GymContext())
             {

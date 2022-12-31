@@ -32,7 +32,6 @@ namespace loremipsum.Migrations
                 {
                     ContractID = table.Column<int>(type: "int", nullable: false),
                     ContractType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Duration = table.Column<TimeSpan>(type: "time", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -52,7 +51,7 @@ namespace loremipsum.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EMail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Iban = table.Column<int>(type: "int", nullable: false),
+                    Iban = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -86,7 +85,7 @@ namespace loremipsum.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EMail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Iban = table.Column<int>(type: "int", nullable: false),
+                    Iban = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CurrentBill = table.Column<int>(type: "int", nullable: false),
                     ContractID = table.Column<int>(type: "int", nullable: false)

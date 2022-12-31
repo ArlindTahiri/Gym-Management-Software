@@ -6,11 +6,10 @@ namespace loremipsum.Gym.Entities
     [Serializable]
     public class Contract : IComparable<Contract>
     {
-        public Contract(string contractType, TimeSpan duration, int price)
+        public Contract(string contractType, int price)
         {
             ContractID = ++ContractID;
             ContractType = contractType;
-            Duration= duration;
             Price = price;
         }
 
@@ -19,8 +18,6 @@ namespace loremipsum.Gym.Entities
         public int ContractID { get; set; }
 
         [Required] public string ContractType { get; set; }
-
-        [Required] public TimeSpan Duration { get; set; }
 
         [Required] public int Price { get; set; }
 
@@ -34,7 +31,7 @@ namespace loremipsum.Gym.Entities
 
         public override string ToString()
         {
-            return ContractID+" "+ContractType+" "+Duration+" "+Price;
+            return ContractID+" "+ContractType+" "+Price;
         }
     }
 }
