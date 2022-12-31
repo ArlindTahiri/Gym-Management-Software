@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GUI.EmployeeGUIs;
 
 namespace GUI
 {
@@ -35,6 +36,12 @@ namespace GUI
         {
             GymPasswordContractPage gymPasswordPage = new GymPasswordContractPage();
             NavigationService.Navigate(gymPasswordPage);
+        }
+
+        private void EmployeeButton_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeePage emplyee = new EmployeePage();
+            NavigationService.Navigate(emplyee);
         }
     }
 }

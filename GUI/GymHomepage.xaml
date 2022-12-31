@@ -10,7 +10,7 @@
 
     <Grid>
         <Button Content="Mitglieder" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="61" Width="122" Click="Member_Click"/>
-        <Button x:Name="MemberButton" Content="Mitarbeiter" HorizontalAlignment="Left" Margin="231,10,0,0" VerticalAlignment="Top" Height="61" Width="122"/>
+        <Button x:Name="EmployeeButton" Content="Mitarbeiter" HorizontalAlignment="Left" Margin="231,10,0,0" VerticalAlignment="Top" Height="61" Width="122" Click="EmployeeButton_Click"/>
         <Button Content="Nachrichten" HorizontalAlignment="Left" Margin="668,10,0,0" VerticalAlignment="Top" Height="61" Width="122"/>
         <Button x:Name="ContractButton" Content="Verträge" HorizontalAlignment="Left" Margin="441,10,0,0" VerticalAlignment="Top" Height="61" Width="122" Click="Contract_Click"/>
         <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,203,367,10"/>
