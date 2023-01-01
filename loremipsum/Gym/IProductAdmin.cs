@@ -5,7 +5,7 @@ namespace loremipsum.Gym
     public interface IProductAdmin
     {
         //Member
-        void AddMember(Member member);
+        Member AddMember(int contractID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday);
 
         void DeleteMember(int memberID);
 
@@ -15,7 +15,7 @@ namespace loremipsum.Gym
 
         void UpdateMember(int memberID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday);
 
-        void UpdateContractFromMember(Member member, int contractID);
+        void UpdateContractFromMember(int memberID, int contractID);
 
         //Contract
         void AddContract(Contract contract);
@@ -54,7 +54,7 @@ namespace loremipsum.Gym
 
 
         //Order
-        void AddOrder(Order order);
+        Order AddOrder(int memberID, int articleID, int amount);
 
         void DeleteOrder(int orderID);
 

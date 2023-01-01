@@ -7,7 +7,7 @@ namespace loremipsum.Gym
         //Member
         void UpdateContractFromMember(Member member, Contract contract);
 
-        void CreateMember(Member member);
+        Member CreateMember(Contract contract, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday);
 
         void DeleteMember(int memberID);
 
@@ -67,7 +67,7 @@ namespace loremipsum.Gym
 
 
         //Order
-        void CreateOrder(Order order);
+        Order CreateOrder(Member member, Article article, int amount);
 
         void DeleteOrder(int orderID);
 

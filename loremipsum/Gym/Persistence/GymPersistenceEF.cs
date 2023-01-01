@@ -7,12 +7,22 @@ namespace loremipsum.Gym.Persistence
     {
 
         //Member
-        public void CreateMember(Member member)
+        public Member CreateMember(Contract contract, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             using (GymContext db = new GymContext())
             {
-                db.Members.Add(member);
-                db.SaveChanges();
+                Member member = new Member(forename, surname, street, postcalCode, city, country, eMail, iban, birthday, contract.ContractID);
+                Contract c = db.Contracts
+                    .Where(b => b.ContractID == contract.ContractID)
+                    .Include(b => b.Members)
+                    .FirstOrDefault();
+                if(c != null)
+                {
+                    db.Members.Add(member); //1:n relation
+                    db.SaveChanges();
+                    return member;
+                }
+                else { return null;}
             }
         }
 
@@ -358,26 +368,33 @@ namespace loremipsum.Gym.Persistence
 
 
         //Order
-        public void CreateOrder(Order order)
+        public Order CreateOrder(Member member, Article article, int amount)
         {
             using (GymContext db = new GymContext())
             {
-                Article article = db.Articles
-                    .Where(b => b.ArticleID == order.ArticleID)
+                Order order = new Order(member.MemberID, article.ArticleID, amount);
+
+                Article a = db.Articles
+                    .Where(b => b.ArticleID == article.ArticleID)
                     .Include(b => b.Orders)
                     .FirstOrDefault();
 
-                Member member = db.Members
-                    .Where(b => b.MemberID == order.MemberID)
+                Member m = db.Members
+                    .Where(b => b.MemberID == member.MemberID)
                     .Include(b => b.Orders)
                     .FirstOrDefault();
+                
 
-                article.ActualStock = article.ActualStock - order.Amount;
-
-                member.CurrentBill = member.CurrentBill + order.Amount* FindArticle(order.ArticleID).Price;
-
-                db.Orders.Add(order);
-                db.SaveChanges();
+                if(m!= null && a != null)
+                {
+                    db.Orders.Add(order);
+                    a.ActualStock = a.ActualStock - amount;
+                    m.CurrentBill = m.CurrentBill + amount * FindArticle(order.ArticleID).Price;
+                    db.SaveChanges();
+                    return order;
+                }
+                else { return null; }
+                
             }
         }
 
