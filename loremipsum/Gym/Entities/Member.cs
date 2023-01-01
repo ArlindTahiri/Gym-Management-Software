@@ -8,7 +8,6 @@ namespace loremipsum.Gym.Entities
     {
         public Member(string forename, string surname, string street,int postcalCode, string city, string country, string eMail, string iban, DateTime birthday, int contractID)
         {
-            MemberID = ++MemberID;
             Forename = forename;
             Surname = surname;
             Street = street;
@@ -22,7 +21,7 @@ namespace loremipsum.Gym.Entities
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MemberID { get; set; }
 
         [Required] public string Forename { get; set; }

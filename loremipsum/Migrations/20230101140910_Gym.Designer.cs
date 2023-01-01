@@ -12,7 +12,7 @@ using loremipsum.Gym.Persistence;
 namespace loremipsum.Migrations
 {
     [DbContext(typeof(GymContext))]
-    [Migration("20230101135927_Gym")]
+    [Migration("20230101140910_Gym")]
     partial class Gym
     {
         /// <inheritdoc />
@@ -28,7 +28,10 @@ namespace loremipsum.Migrations
             modelBuilder.Entity("loremipsum.Gym.Entities.Article", b =>
                 {
                     b.Property<int>("ArticleID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleID"));
 
                     b.Property<int>("ActualStock")
                         .HasColumnType("int");
@@ -51,7 +54,10 @@ namespace loremipsum.Migrations
             modelBuilder.Entity("loremipsum.Gym.Entities.Contract", b =>
                 {
                     b.Property<int>("ContractID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContractID"));
 
                     b.Property<string>("ContractType")
                         .IsRequired()
@@ -68,7 +74,10 @@ namespace loremipsum.Migrations
             modelBuilder.Entity("loremipsum.Gym.Entities.Employee", b =>
                 {
                     b.Property<int>("EmployeeID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeID"));
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
@@ -133,7 +142,10 @@ namespace loremipsum.Migrations
             modelBuilder.Entity("loremipsum.Gym.Entities.Member", b =>
                 {
                     b.Property<int>("MemberID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberID"));
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
@@ -185,7 +197,10 @@ namespace loremipsum.Migrations
             modelBuilder.Entity("loremipsum.Gym.Entities.Order", b =>
                 {
                     b.Property<int>("OrderID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"));
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");

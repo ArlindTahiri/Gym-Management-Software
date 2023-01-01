@@ -8,13 +8,12 @@ namespace loremipsum.Gym.Entities
     {
         public Contract(string contractType, int price)
         {
-            ContractID = ++ContractID;
             ContractType = contractType;
             Price = price;
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ContractID { get; set; }
 
         [Required] public string ContractType { get; set; }
