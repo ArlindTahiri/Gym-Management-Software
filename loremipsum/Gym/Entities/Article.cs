@@ -9,7 +9,6 @@ namespace loremipsum.Gym.Entities
 
         public Article(string articleName, int price, int targetStock, int actualStock)
         {
-            ArticleID = ++ArticleID;
             ArticleName = articleName;
             Price = price;
             TargetStock = targetStock;
@@ -17,7 +16,7 @@ namespace loremipsum.Gym.Entities
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ArticleID { get; set; }
 
         [Required] public string ArticleName { get; set; }

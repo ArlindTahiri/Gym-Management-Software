@@ -8,14 +8,13 @@ namespace loremipsum.Gym.Entities
     {
         public Order(int memberID, int articleID, int amount)
         {
-            OrderID = ++OrderID;
             ArticleID = articleID;
             Amount = amount;
             MemberID= memberID;
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderID { get; set; }
 
         [Required] public int Amount { get; set; }

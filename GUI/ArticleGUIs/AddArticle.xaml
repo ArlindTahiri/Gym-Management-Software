@@ -1,0 +1,23 @@
+﻿<Page x:Class="GUI.ArticleGUIs.AddArticle"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GUI.ArticleGUIs"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="500"
+      Title="AddArticle">
+
+    <Grid>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="18,286,0,0" VerticalAlignment="Top"/>
+        <Label Content="Preis" HorizontalAlignment="Left" Margin="146,286,0,0" VerticalAlignment="Top"/>
+        <Label Content="Soll-Bestand" HorizontalAlignment="Left" Margin="250,286,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ist-Bestand" HorizontalAlignment="Left" Margin="400,286,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Name" HorizontalAlignment="Left" Margin="10,346,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89" Height="94"/>
+        <TextBox x:Name="Price" HorizontalAlignment="Left" Margin="119,346,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89" Height="94"/>
+        <TextBox x:Name="TargetStock" HorizontalAlignment="Left" Margin="250,346,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89" Height="94"/>
+        <TextBox x:Name="ActualStock" HorizontalAlignment="Left" Margin="390,346,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89" Height="94"/>
+        <Button x:Name="AddArticle1" Content="ArtikelHinzufügen" HorizontalAlignment="Left" Margin="109,185,0,0" VerticalAlignment="Top" Height="67" Width="250" Click="AddArticle1_Click"/>
+
+    </Grid>
+</Page>

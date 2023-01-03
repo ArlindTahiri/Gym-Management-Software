@@ -36,13 +36,9 @@ namespace GUI.MemberGUIs
          private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            
-          Member memberToAdd = new(NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
-                CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
-            memberToAdd.Contract = null;
-            memberToAdd.CurrentBill = 0;
-        
-           admin.AddMember(memberToAdd);
+
+            admin.AddMember(Int32.Parse(ContractIDM.Text), NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
+                  CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
           // keine objektreferenz???
             GymHomepage home = new GymHomepage();
            NavigationService.Navigate(home);

@@ -33,7 +33,7 @@ namespace GUI.ContractGUIs
         {
             TimeSpan duration = new TimeSpan(30, 0, 0, 0, 0);
 
-            admin.UpdateContract(ContractCache.cacheID, "Standard monthly", duration, 30);
+            admin.UpdateContract(ContractCache.cacheID, "Standard monthly", 30);
 
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);
@@ -43,7 +43,7 @@ namespace GUI.ContractGUIs
         {
             TimeSpan duration = new TimeSpan(365, 0, 0, 0, 0);
 
-            admin.UpdateContract(ContractCache.cacheID, "Standard monthly", duration, 20);
+            admin.UpdateContract(ContractCache.cacheID, "Standard monthly", 20);
 
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);
@@ -53,7 +53,7 @@ namespace GUI.ContractGUIs
         {
             TimeSpan duration = new TimeSpan(30, 0, 0, 0, 0);
 
-            admin.UpdateContract(ContractCache.cacheID, "Standard monthly", duration, 35);
+            admin.UpdateContract(ContractCache.cacheID, "Standard monthly", 35);
 
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);
@@ -63,7 +63,7 @@ namespace GUI.ContractGUIs
         {
             TimeSpan duration = new TimeSpan(365, 0, 0, 0, 0);
 
-            admin.UpdateContract(ContractCache.cacheID, "Standard monthly", duration, 25);
+            admin.UpdateContract(ContractCache.cacheID, "Standard monthly", 25);
 
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);

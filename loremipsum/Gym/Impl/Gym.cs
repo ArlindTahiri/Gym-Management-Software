@@ -1,4 +1,5 @@
 ﻿using loremipsum.Gym.Entities;
+using System.Diagnostics.Metrics;
 
 namespace loremipsum.Gym.Impl
 {
@@ -14,13 +15,15 @@ namespace loremipsum.Gym.Impl
         # region IProductAdmin
 
         //Member
-        public void AddMember(Member member)
+        public Member AddMember(int contractID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
-            Contract contract = persistence.FindContract(member.ContractID);
+            Contract contract = persistence.FindContract(contractID);
             if (contract != null)
             {
-                persistence.CreateMember(member);
+                return persistence.CreateMember(contract, forename, surname, street, postcalCode, city, country, eMail, iban, birthday);
             }
+            else { return null; }
+            
         }
 
         public void DeleteMember(int memberID)
@@ -47,16 +50,16 @@ namespace loremipsum.Gym.Impl
 
         public void UpdateContractFromMember(int memberID, int contractID)
         {
-            Member member = persistence.FindMember(memberID);
             Contract contract = persistence.FindContract(contractID);
-            if (member != null & contract != null)
+            Member member = persistence.FindMember(memberID);
+            if (contract != null)
             {
                 persistence.UpdateContractFromMember(member, contract);//only update if they already exists
             }
 
         }
 
-        public void UpdateMember(int memberID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday)
+        public void UpdateMember(int memberID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             Member member = persistence.FindMember(memberID);
             if(member != null)
@@ -102,12 +105,12 @@ namespace loremipsum.Gym.Impl
             return result;
         }
 
-        public void UpdateContract(int contractID, string contractType, TimeSpan duration, int price)
+        public void UpdateContract(int contractID, string contractType, int price)
         {
             Contract contract = persistence.FindContract(contractID);
             if(contract != null)
             {
-                persistence.UpdateContract(contract, contractType, duration, price);
+                persistence.UpdateContract(contract, contractType, price);
             }
         }
 
@@ -135,7 +138,7 @@ namespace loremipsum.Gym.Impl
             return result;
         }
 
-        public void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, int iban, DateTime birthday, string status)
+        public void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday, string status)
         {
             Employee employee= persistence.FindEmployee(employeeID);
             if(employee != null)
@@ -192,18 +195,20 @@ namespace loremipsum.Gym.Impl
 
 
         //Order
-        public void AddOrder(Order order)
+        public Order AddOrder(int memberID, int articleID, int amount)
         {
             //order still exists with the orderID, but never was saved
-            Article a1 = persistence.FindArticle(order.ArticleID);
-            Member m1 = persistence.FindMember(order.MemberID);
+            Article a1 = persistence.FindArticle(articleID);
+            Member m1 = persistence.FindMember(memberID);
             if (a1 != null & m1 != null)
             {
-                if(a1.ActualStock>order.Amount)
+                if(a1.ActualStock>amount)
                 {
-                    persistence.CreateOrder(order);//only save the order if the article&member exists and the amount is lower than actualstock
+                    return persistence.CreateOrder(m1, a1, amount);//only save the order if the article&member exists and the amount is lower than actualstock
                 }
+                else { return null;}
             }
+            else { return null;}
         }
 
         public void DeleteOrder(int orderID)//mistake order--> money back to member

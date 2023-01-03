@@ -1,6 +1,4 @@
-﻿using GUI.MemberGUIs;
-using loremipsum.Gym;
-using loremipsum.Gym.Entities;
+﻿using loremipsum.Gym;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,26 +14,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI.MemberGUIs
+namespace GUI.ArticleGUIs
 {
     /// <summary>
-    /// Interaktionslogik für EditMember.xaml
+    /// Interaktionslogik für ChangeArticle.xaml
     /// </summary>
-    public partial class EditMember : Page
+    public partial class ChangeArticle : Page
     {
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        public EditMember()
+        public ChangeArticle()
         {
             InitializeComponent();
         }
 
-        private void EditMember1_Click(object sender, RoutedEventArgs e)
+        private void ChangeArticle1_Click(object sender, RoutedEventArgs e)
         {
-            admin.UpdateMember(MemberCache.cacheID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
-                ContoE.Text, DateTime.Parse(BirthdayE.Text));
+            admin.UpdateArticle(ArticleCache.articleID, Name.Text, Int32.Parse(Price.Text), Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
 
-           
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);
         }
