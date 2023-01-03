@@ -1,14 +1,13 @@
-﻿<Page x:Class="GUI.EmployeeGUIs.EditEmployeeIDCheck"
+﻿<Page x:Class="GUI.EmployeeGUIs.DeleteEmployeeIDCheck"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.EmployeeGUIs"
         mc:Ignorable="d"
-        Title="EditEmployeeIDCheck" Height="250" Width="500">
+        Title="DeleteEmployeeIDCheck" Height="250" Width="400">
     <Grid>
-
-        <Label Content="Bitte geben Sie die ID des Mitarbeiters ein, welchen Sie bearbeiten wollen" HorizontalAlignment="Center" Margin="0,41,0,0" VerticalAlignment="Top" Width="414"/>
+        <Label Content="Bitte geben Sie die ID des Mitarbeiters ein, welchen Sie entfernen wollen" HorizontalAlignment="Center" Margin="0,41,0,0" VerticalAlignment="Top" Width="414"/>
         <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353"/>
 
     </Grid>

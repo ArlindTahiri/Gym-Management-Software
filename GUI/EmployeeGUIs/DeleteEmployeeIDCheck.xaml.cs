@@ -12,19 +12,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace GUI.MemberGUIs
+namespace GUI.EmployeeGUIs
 {
     /// <summary>
-    /// Interaktionslogik für EditMemberIDCheck.xaml
+    /// Interaktionslogik für DeleteEmployeeIDCheck.xaml
     /// </summary>
-    public partial class EditMemberIDCheck : Page
+    public partial class DeleteEmployeeIDCheck : Page
     {
-        private IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        public EditMemberIDCheck()
+
+        IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+
+        public DeleteEmployeeIDCheck()
         {
             InitializeComponent();
         }
@@ -34,11 +35,11 @@ namespace GUI.MemberGUIs
             string content = IDCheck.Text;
             if (e.Key == Key.Enter)
             {
-                if (query.SearchMember(content) != null)
+                if (query.SearchEmployee(content) != null)
                 {
-                    MemberCache.cacheID = Int32.Parse(content);
-                    EditMember editMember = new EditMember();
-                    NavigationService.Navigate(editMember);
+                    EmployeeCache.cacheID = Int32.Parse(content);
+                    DeleteEmployee DeleteEmployee = new DeleteEmployee();
+                    NavigationService.Navigate(DeleteEmployee);
                 }
             }
         }

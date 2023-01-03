@@ -33,11 +33,5 @@ namespace GUI.EmployeeGUIs
             NavigationService.Navigate(changeOptions);
 
         }
-
-        private void ShoppingListButton_Click(object sender, RoutedEventArgs e)
-        {
-            ArticlePage articlePage = new ArticlePage();
-            NavigationService.Navigate(articlePage);
-        }
     }
 }

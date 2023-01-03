@@ -31,17 +31,16 @@ namespace GUI.MemberGUIs
             InitializeComponent();
         }
 
-        private void IDCheck_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void IDCheck_KeyDown(object sender, KeyEventArgs e)
         {
             string content = IDCheck.Text;
-            //braucht noch ne aushnahmenbehandlung
             if (e.Key == Key.Enter)
             {
                 if (query.SearchMember(content) != null)
                 {
                     MemberCache.cacheID = Int32.Parse(content);
-                    DeleteMember deleteMember = new DeleteMember();
-                    NavigationService.Navigate(deleteMember);
+                    DeleteMember DeleteMember = new DeleteMember();
+                    NavigationService.Navigate(DeleteMember);
                 }
             }
         }

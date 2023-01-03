@@ -9,7 +9,7 @@
       Title="AddEmployee">
 
     <Grid>
-        <Button x:Name="AddEmployee" Content="Mitarbeiter hinzufügen" HorizontalAlignment="Center" Height="86" Margin="0,339,0,0" VerticalAlignment="Top" Width="218" Click="AddEmployee_Click"/>
+        <Button x:Name="AddEmployeeButton" Content="Mitarbeiter hinzufügen" HorizontalAlignment="Center" Height="86" Margin="0,339,0,0" VerticalAlignment="Top" Width="218" Click="AddEmployeeButton_Click"/>
         <Label Content="Vorname" HorizontalAlignment="Left" Margin="50,48,0,0" VerticalAlignment="Top" Height="38" Width="74"/>
         <Label Content="Nachname" HorizontalAlignment="Left" Margin="182,47,0,0" VerticalAlignment="Top" Height="39" Width="72"/>
         <Label Content="Straße" HorizontalAlignment="Left" Margin="328,48,0,0" VerticalAlignment="Top" Height="39" Width="74"/>

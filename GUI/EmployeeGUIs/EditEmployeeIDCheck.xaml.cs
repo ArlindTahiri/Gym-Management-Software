@@ -29,7 +29,7 @@ namespace GUI.EmployeeGUIs
             InitializeComponent();
         }
 
-        private void IDCheck_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void IDCheck_KeyDown(object sender, KeyEventArgs e)
         {
             string content = IDCheck.Text;
 

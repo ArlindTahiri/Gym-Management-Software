@@ -18,7 +18,7 @@
         <Label Content="Zahlungskonto&#xA;" HorizontalAlignment="Left" Margin="812,287,0,0" VerticalAlignment="Top"/>
         <Label Content="Geburtstag&#xA;" HorizontalAlignment="Left" Margin="925,287,0,0" VerticalAlignment="Top"/>
         <Label Content="Vertragsart&#xA;" HorizontalAlignment="Left" Margin="1039,287,0,0" VerticalAlignment="Top"/>
-        <Label Content="Fällig am&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="1148,287,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fällig am&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="1118,287,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="AdressM" HorizontalAlignment="Left" Margin="182,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
         <TextBox x:Name="ContactAdressM" HorizontalAlignment="Left" Margin="673,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
         <TextBox x:Name="ContoM" HorizontalAlignment="Left" Margin="790,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />

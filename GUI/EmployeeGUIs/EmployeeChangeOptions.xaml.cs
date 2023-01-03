@@ -34,8 +34,8 @@ namespace GUI.EmployeeGUIs
 
         private void DeleteMember_Click(object sender, RoutedEventArgs e)
         {
-            DeleteEmployee deleteEmployee = new DeleteEmployee();
-            NavigationService.Navigate(deleteEmployee);
+            DeleteEmployeeIDCheck deleteEmployeeIDCheck = new DeleteEmployeeIDCheck();
+            NavigationService.Navigate(deleteEmployeeIDCheck);
         }
 
         private void EditMember_Click(object sender, RoutedEventArgs e)

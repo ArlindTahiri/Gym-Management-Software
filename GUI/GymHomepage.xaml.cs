@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GUI.ArticleGUIs;
 using GUI.EmployeeGUIs;
 
 namespace GUI
@@ -28,20 +29,26 @@ namespace GUI
 
         private void Member_Click(object sender, RoutedEventArgs e)
         {
-            GymPasswordMemberPage gymPasswordMemberPage = new GymPasswordMemberPage();
-            NavigationService.Navigate(gymPasswordMemberPage);
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("Member");
+            NavigationService.Navigate(gymPasswordPage);
         }
 
         private void Contract_Click(object sender, RoutedEventArgs e)
         {
-            GymPasswordContractPage gymPasswordPage = new GymPasswordContractPage();
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("Contract");
             NavigationService.Navigate(gymPasswordPage);
         }
 
         private void EmployeeButton_Click(object sender, RoutedEventArgs e)
         {
-            EmployeePage employee = new EmployeePage();
-            NavigationService.Navigate(employee);
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("Employee");
+            NavigationService.Navigate(gymPasswordPage);
+        }
+
+        private void Inventar_Click(object sender, RoutedEventArgs e)
+        {
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("Inventar");
+            NavigationService.Navigate(gymPasswordPage);
         }
     }
 }
