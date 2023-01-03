@@ -6,7 +6,7 @@ namespace loremipsum.Gym.Entities
     [Serializable]
     public class Member: IComparable<Member>
     {
-        public Member(string forename, string surname, string street,int postcalCode, string city, string country, string eMail, int iban, DateTime birthday)
+        public Member(string forename, string surname, string street,int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             MemberID = ++MemberID;
             Forename = forename;
@@ -38,7 +38,7 @@ namespace loremipsum.Gym.Entities
 
         [Required] [EmailAddress] public string EMail { get; set; }
 
-        [Required] public int Iban { get; set; }
+        [Required] public string Iban { get; set; }
 
         [Required] public DateTime Birthday { get; set;}
 

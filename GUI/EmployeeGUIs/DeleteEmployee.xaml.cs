@@ -1,6 +1,5 @@
-﻿using GUI.MemberGUIs;
+﻿using GUI.EmployeeGUIs;
 using loremipsum.Gym;
-using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,26 +15,30 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI.MemberGUIs
+namespace GUI
 {
     /// <summary>
-    /// Interaktionslogik für EditMember.xaml
+    /// Interaktionslogik für DeleteEmployee.xaml
     /// </summary>
-    public partial class EditMember : Page
+    public partial class DeleteEmployee : Page
     {
+        IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
 
-        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        public EditMember()
+        public DeleteEmployee()
         {
             InitializeComponent();
         }
 
-        private void EditMember1_Click(object sender, RoutedEventArgs e)
+        private void YesButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.UpdateMember(MemberCache.cacheID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
-                (ContoE.Text), DateTime.Parse(BirthdayE.Text));
+            admin.DeleteEmployee(EmployeeCache.cacheID);
 
-           
+            GymHomepage home = new GymHomepage();
+            NavigationService.Navigate(home);
+        }
+
+        private void NoButton_Click(object sender, RoutedEventArgs e)
+        {
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);
         }

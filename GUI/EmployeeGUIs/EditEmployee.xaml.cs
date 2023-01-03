@@ -1,5 +1,5 @@
-﻿using loremipsum.Gym;
-using loremipsum.Gym.Entities;
+﻿using GUI.EmployeeGUIs;
+using loremipsum.Gym;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,19 +18,19 @@ using System.Windows.Shapes;
 namespace GUI
 {
     /// <summary>
-    /// Interaktionslogik für AddEmployee.xaml
+    /// Interaktionslogik für EditEmployee.xaml
     /// </summary>
-    public partial class AddEmployee : Page
+    public partial class EditEmployee : Page
     {
-        public AddEmployee()
+        private readonly IProductAdmin admin = Application.Current.Properties["IProductAdmin"] as IProductAdmin;
+        public EditEmployee()
         {
             InitializeComponent();
         }
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            Employee employee = new (Forename.Text, Surename.Text, Street.Text, Int32.Parse(PostcalCode.Text), City.Text, Country.Text, EMail.Text, Int32.Parse(Iban.Text), DateTime.Parse(Birthday.Text), " ");
-
+            admin.UpdateEmployee(EmployeeCache.cacheID, Forename.Text, Surename.Text, Street.Text, Int32.Parse(PostcalCode.Text), City.Text, Country.Text, EMail.Text, Iban.Text, DateTime.Parse(Birthday.Text), " ");
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);
         }

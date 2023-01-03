@@ -10,9 +10,9 @@
 
     <Grid>
 
-        <Label Content="Do you want to delete this employee?" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Height="72"/>
-        <Button x:Name="Yes" Content="Yes" HorizontalAlignment="Left" Margin="251,239,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="YesButton_Click"/>
-        <Button x:Name="No" Content="No" HorizontalAlignment="Left" Margin="500,239,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="NoButton_Click"/>
+        <Label Content="Wollen sie diesen Mitarbeiter entfernen?" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Height="72"/>
+        <Button x:Name="Yes" Content="Ja" HorizontalAlignment="Left" Margin="251,239,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="YesButton_Click"/>
+        <Button x:Name="No" Content="Nein" HorizontalAlignment="Left" Margin="496,239,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="NoButton_Click"/>
 
     </Grid>
 </Page>

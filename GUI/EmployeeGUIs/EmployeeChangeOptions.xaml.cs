@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI.EmployeeGUIs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,8 @@ namespace GUI
 
         private void EditMember_Click(object sender, RoutedEventArgs e)
         {
-            //todo
+            EditEmployeeIDCheck editEmployeeIDCheck = new EditEmployeeIDCheck();
+            NavigationService.Navigate(editEmployeeIDCheck);
         }
     }
 }
