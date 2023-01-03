@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI
+namespace GUI.EmployeeGUIs
 {
     /// <summary>
     /// Interaktionslogik für AddEmployee.xaml
@@ -29,7 +29,7 @@ namespace GUI
             InitializeComponent();
         }
 
-        private void AddEmployee_Click(object sender, RoutedEventArgs e)
+        private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
             Employee employee = new (Forename.Text, Surename.Text, Street.Text, Int32.Parse(PostcalCode.Text), City.Text, Country.Text, EMail.Text, Iban.Text, DateTime.Parse(Birthday.Text), " ");
 

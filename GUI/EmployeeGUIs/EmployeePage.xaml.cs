@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GUI.ArticleGUIs;
 
-namespace GUI
+namespace GUI.EmployeeGUIs
 {
     /// <summary>
     /// Interaktionslogik für Page1.xaml
@@ -31,6 +32,12 @@ namespace GUI
             EmployeeChangeOptions changeOptions = new EmployeeChangeOptions();
             NavigationService.Navigate(changeOptions);
 
+        }
+
+        private void ShoppingListButton_Click(object sender, RoutedEventArgs e)
+        {
+            ArticlePage articlePage = new ArticlePage();
+            NavigationService.Navigate(articlePage);
         }
     }
 }
