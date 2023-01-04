@@ -31,10 +31,12 @@ namespace GUI.ArticleGUIs
         {
             if (e.Key == Key.Enter)
             {
-                if (query.SearchArticle(IDCheck.Text) != null)
+                int articleID = Int32.Parse(IDCheck.Text);
+
+                if (query.GetArticleDetails(articleID)!=null ) 
                 {
-                    ArticleCache.articleID = Int32.Parse(IDCheck.Text);
-                    ChangeArticle changeArticle = new ChangeArticle();
+                   
+                    ChangeArticle changeArticle = new ChangeArticle(articleID);
                     NavigationService.Navigate(changeArticle);
                 }
             }

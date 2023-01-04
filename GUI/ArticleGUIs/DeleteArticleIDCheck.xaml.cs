@@ -35,11 +35,10 @@ namespace GUI.ArticleGUIs
             {
                 string content = IDCheck.Text;
 
-                if (query.SearchArticle(content) != null)
+                if (query.GetArticleDetails(Int32.Parse(content))!=null)
                 {
-                    admin.DeleteArticle(Int32.Parse(content));
-                    GymHomepage gymHomepage = new GymHomepage();
-                    NavigationService.Navigate(gymHomepage);
+                   DeleteArticle deleteArticle = new DeleteArticle(Int32.Parse(content));
+                    NavigationService.Navigate(deleteArticle);
                 }
             }
         }

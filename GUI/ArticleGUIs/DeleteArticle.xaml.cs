@@ -17,25 +17,29 @@ using System.Windows.Shapes;
 namespace GUI.ArticleGUIs
 {
     /// <summary>
-    /// Interaktionslogik für ChangeArticle.xaml
+    /// Interaktionslogik für DeleteArticle.xaml
     /// </summary>
-    public partial class ChangeArticle : Page
+    public partial class DeleteArticle : Page
     {
-
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private int articleID;
-        public ChangeArticle(int articleID)
+        public DeleteArticle(int articleID)
         {
             InitializeComponent();
             this.articleID = articleID;
         }
 
-        private void ChangeArticle1_Click(object sender, RoutedEventArgs e)
+        private void YesButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.UpdateArticle(articleID, Name.Text, Int32.Parse(Price.Text), Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
+            admin.DeleteArticle(articleID);
+            GymHomepage gymHomepage = new GymHomepage();
+            NavigationService.Navigate(gymHomepage);
+        }
 
-            GymHomepage home = new GymHomepage();
-            NavigationService.Navigate(home);
+        private void NoButton_Click(object sender, RoutedEventArgs e)
+        {
+            GymHomepage gymHomepage = new GymHomepage();
+            NavigationService.Navigate(gymHomepage);
         }
     }
 }
