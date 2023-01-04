@@ -16,8 +16,6 @@ namespace UnitTestLoremIpsum
         private IProductModule Query;
         private Contract contract1, contract2;
         private Article article1, article2;
-        private Member member1, member2;
-        private Order order1, order2;
         private Employee employee1, employee2;
 
 
@@ -38,36 +36,27 @@ namespace UnitTestLoremIpsum
             article1 = new Article("Protein Shake Vanille", 499, 10, 10);
             article2 = new Article("Energydrink", 299, 15, 15);
 
-            member1 = new Member("Paul", "Peters", "Rosenheimer Straﬂe 32", 83059, "Kolbermoor", "Deutschland",
-                    "paul.peters@gmail.com", "DE90500105171113716976", new DateTime(2002, 10, 01), contract1.ContractID);
-            member2 = new Member("Lisa", "Berger", "Bergen 23", 83234, "Bergen", "Deutschland",
-                    "lisa.berger@gmail.com", "DE01234567890123456789", new DateTime(2000, 4, 20), contract2.ContractID);
-
             employee1 = new Employee("Anton", "Zunhammer", "Lindenstraﬂe 3", 83374, "Traunwalchen", "Deutschland", 
                     "Anton.Zunhammer@gmail.com", "DE23423423423423423423", new DateTime(1999, 1, 1), " ");
             employee2 = new Employee("Nina", "Niedl", "Eichenweg 3", 83301, "Traunreut", "Deutschland", 
                     "Nina.Niedl@gmail.com", "DE11112222333344445555", new DateTime(1987, 2, 23), " ");
 
-
-            order1 = new Order(member1.MemberID, article1.ArticleID, 3);
-            order2 = new Order(member2.MemberID, article2.ArticleID, 3);
         }
-
-        //member is a problem to initalize. in "addMember" the first to initalize is (int)  contractID and in "member" is contract ID the last --> forename is no int
 
         [TestMethod]
         public void TestOrder()
         {
             Admin.AddContract(contract1);
             Admin.AddArticle(article1);
-            Admin.AddMember(member1);
+            Member member1 = Admin.AddMember(contract1.ContractID, "Paul", "Peters", "Rosenheimer Straﬂe 32", 83059, "Kolbermoor", "Deutschland", 
+                    "paul.peters@gmail.com", "DE90500105171113716976", new DateTime(2002, 10, 01));
             Assert.IsTrue(Query.GetContractDetails(contract1.ContractID) != null);
             Assert.IsTrue(Query.GetArticleDetails(article1.ArticleID) != null);
             Assert.IsTrue(Query.GetMemberDetails(member1.MemberID) != null);
 
             //create Order
 
-            Admin.AddOrder(order1.OrderID);                                             //here error because "AddMember"                              
+            Order order1 = Admin.AddOrder(member1.MemberID, article1.ArticleID, 3);                          
             Assert.IsTrue(Query.GetOrderDetails(order1.OrderID) != null);
 
             //Edit Order
@@ -104,8 +93,10 @@ namespace UnitTestLoremIpsum
         [TestMethod]
         public void TestMember()
         {
+
             //create Member
-            Admin.AddMember(member2);
+            Member member2 = Admin.AddMember(contract2.ContractID, "Lisa", "Berger", "Bergen 23", 83234, "Bergen", "Deutschland",
+                    "lisa.berger@gmail.com", "DE01234567890123456789", new DateTime(2000, 4, 20));
             Assert.IsTrue(Query.GetMemberDetails(member2.MemberID) != null);
 
             //update Memberdata
@@ -118,9 +109,9 @@ namespace UnitTestLoremIpsum
             //check if contract changed from member
 
             //delete member
-            if(Query.GetMemberDetails(member1.MemberID) != null)                    //check if money from member is 0
+            if(Query.GetMemberDetails(member2.MemberID) != null)                    //check if money from member is 0
             {
-                Admin.DeleteMember(member1.MemberID);
+                Admin.DeleteMember(member2.MemberID);
             }
             Assert.IsTrue(Query.GetMemberDetails(contract1.ContractID) == null);
         }
