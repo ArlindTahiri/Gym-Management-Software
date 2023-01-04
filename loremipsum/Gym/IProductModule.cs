@@ -36,5 +36,8 @@ namespace loremipsum.Gym
         IDictionary<Order, int> SearchOrder(string searchTerm);
 
         Order GetOrderDetails(int orderID);
+
+        //LogIn
+        LogIn GetLogInDetails(string logInName);
     }
 }

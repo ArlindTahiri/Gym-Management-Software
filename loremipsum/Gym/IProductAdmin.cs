@@ -78,10 +78,6 @@ namespace loremipsum.Gym
 
         void DeleteLogIns();
 
-        void UpdateLogInName(string logInName, string newLogInName, string logInPassword);
-
-        void UpdateLogInPassword(string logInName, string newLogInPassword);
-
-        void UpdateLogInRank(string logInName, int rank);
+        void UpdateLogIn(string logInName, string newLogInName, string newlogInPassword, int rank);
     }
 }

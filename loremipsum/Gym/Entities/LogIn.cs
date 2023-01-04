@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace loremipsum.Gym.Entities
 {
     [Serializable]
-    public class LogIn
+    public class LogIn : IComparable<LogIn>
     {
         public LogIn(string logInName, string logInPassword, int rank)
         {
@@ -25,5 +25,11 @@ namespace loremipsum.Gym.Entities
         [Required] public string LogInPassword { get; set;}
 
         [Required] public int Rank { get; set; }
+
+        public int CompareTo(LogIn other)
+        {
+            return LogInName.CompareTo(other.LogInName);
+        }
+
     }
 }

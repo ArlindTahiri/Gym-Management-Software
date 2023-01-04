@@ -315,28 +315,16 @@ namespace loremipsum.Gym.Impl
             persistence.DeleteLogIns();
         }
 
-        public void UpdateLogInName(string logInName, string newLogInName, string logInPassword)
+        public void UpdateLogIn(string logInName, string newLogInName, string newlogInPassword, int rank)
         {
             LogIn logIn = persistence.FindLogIn(logInName);
             LogIn logInNew = persistence.FindLogIn(newLogInName);
 
             if(logInNew!= null)
             {
-                persistence.UpdateLogInName(logIn, newLogInName, logInPassword);
+                persistence.UpdateLogIn(logIn, newLogInName, newlogInPassword, rank);
             }
             
-        }
-
-        public void UpdateLogInPassword(string logInName, string newLogInPassword)
-        {
-            LogIn logIn=persistence.FindLogIn(logInName);
-            persistence.UpdateLogInPassword(logIn, newLogInPassword);
-        }
-
-        public void UpdateLogInRank(string logInName, int rank)
-        {
-            LogIn logIn = persistence.FindLogIn(logInName);
-            persistence.UpdateLogInRank(logIn, rank);
         }
 
 
@@ -461,7 +449,15 @@ namespace loremipsum.Gym.Impl
         {
            return persistence.FindOrder(orderID);
         }
-        
+
+
+
+        //LogIn
+        public LogIn GetLogInDetails(string logInName)
+        {
+            return persistence.FindLogIn(logInName);
+        }
+
         #endregion
 
     }

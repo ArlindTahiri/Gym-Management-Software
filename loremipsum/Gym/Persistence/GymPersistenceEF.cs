@@ -563,7 +563,7 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
-        public void UpdateLogInName(LogIn logIn, string newLogInName, string logInPassword)
+        public void UpdateLogIn(LogIn logIn, string newLogInName, string logInPassword, int rank)
         {
             using (GymContext db = new GymContext())
             {
@@ -572,38 +572,12 @@ namespace loremipsum.Gym.Persistence
                     .FirstOrDefault();
 
                 l.LogInName=newLogInName;
-
-                db.SaveChanges();
-            }
-
-        }
-
-        public void UpdateLogInPassword(LogIn logIn, string newLogInPassword)
-        {
-            using (GymContext db = new GymContext())
-            {
-                LogIn l = db.LogIns
-                    .Where(b => b.LogInName == logIn.LogInName)
-                    .FirstOrDefault();
-
-                l.LogInPassword=newLogInPassword;
-
-                db.SaveChanges();
-            }
-        }
-
-        public void UpdateLogInRank(LogIn logIn, int rank)
-        {
-            using (GymContext db = new GymContext())
-            {
-                LogIn l = db.LogIns
-                    .Where(b => b.LogInName == logIn.LogInName)
-                    .FirstOrDefault();
-
+                l.LogInPassword=logInPassword;
                 l.Rank = rank;
 
                 db.SaveChanges();
             }
+
         }
 
     }

@@ -10,7 +10,7 @@ using Contract = loremipsum.Gym.Entities.Contract;
 namespace UnitTestLoremIpsum
 {
     [TestClass]
-    public class UnitTestOrders
+    public class UnitTestOrder
     {
         private IProductAdmin Admin;
         private IProductModule Query;
@@ -26,6 +26,7 @@ namespace UnitTestLoremIpsum
             GymFactory factory = new GymFactory(persistence);
             Admin = factory.GetProductAdmin();
             Query = factory.GetProductModule();
+            GenerateTestData();
         }
 
         public void GenerateTestData()
