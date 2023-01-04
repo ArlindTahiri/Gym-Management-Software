@@ -1,4 +1,5 @@
-﻿using System;
+﻿using loremipsum.Gym;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,24 +21,22 @@ namespace GUI.ContractGUIs
     /// </summary>
     public partial class ContractIDCheck : Page
     {
+
+        IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         public ContractIDCheck()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void IDCheck_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
             {
-                ContractCache.cacheID = Int32.Parse(IDCheck.Text);
-
-                ContractChangeOptions contractChangeOptions = new ContractChangeOptions();
-                NavigationService.Navigate(contractChangeOptions);
+               if(query.GetContractDetails(Int32.Parse(IDCheck.Text))!=null)
+                {
+                    DeleteContract deleteContract = new DeleteContract(int.Parse(IDCheck.Text));   
+                    NavigationService.Navigate(deleteContract);
+                } 
             }
         }
     }

@@ -23,14 +23,16 @@ namespace GUI.ContractGUIs
     {
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        public DeleteContract()
+        private int contractID;
+        public DeleteContract(int contractID)
         {
             InitializeComponent();
+            this.contractID = contractID;
         }
 
         private void YesButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.DeleteContract(ContractCache.cacheID);
+            admin.DeleteContract(contractID);
 
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);

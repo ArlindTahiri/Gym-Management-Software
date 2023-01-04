@@ -25,7 +25,7 @@ namespace GUI.ContractGUIs
           InitializeComponent();
         }
 
-        private void EditContractButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteContractButton_Click(object sender, RoutedEventArgs e)
         {
             ContractIDCheck iDCheck = new ContractIDCheck();
             NavigationService.Navigate(iDCheck);

@@ -9,7 +9,7 @@
       Title="ContractPage">
 
     <Grid>
-        <Button x:Name="EditContractButton" Content="Vertrag bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="104" Width="249" Click="EditContractButton_Click"/>
+        <Button x:Name="DeleteContractButton" Content="Vertrag löschen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="104" Width="249" Click="DeleteContractButton_Click"/>
         <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,180,0,0"/>
         <Button x:Name="AddContractButton" Content="Vertrag hinzufügen" HorizontalAlignment="Left" Margin="541,10,0,0" VerticalAlignment="Top" Height="104" Width="249" Click="AddContractButton_Click"/>
 

@@ -9,7 +9,7 @@
       Title="ContractIDCheck">
 
     <Grid>
-        <Label Content="Bitte geben Sie die ID des Vertrags ein, den Sie bearbeiten wollen" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Bitte geben Sie die ID des Vertrags ein, den Sie löschen wollen" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353" PreviewKeyDown="IDCheck_PreviewKeyDown" />
 
     </Grid>
