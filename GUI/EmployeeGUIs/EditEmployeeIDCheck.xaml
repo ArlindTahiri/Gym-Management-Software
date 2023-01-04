@@ -9,7 +9,7 @@
     <Grid>
 
         <Label Content="Bitte geben Sie die ID des Mitarbeiters ein, welchen Sie bearbeiten wollen" HorizontalAlignment="Center" Margin="0,41,0,0" VerticalAlignment="Top" Width="414"/>
-        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353"/>
+        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353" KeyDown="IDCheck_KeyDown"/>
 
     </Grid>
 </Page>

@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="DeleteEmployeeIDCheck" Height="250" Width="400">
     <Grid>
-        <Label Content="Bitte geben Sie die ID des Mitarbeiters ein, welchen Sie entfernen wollen" HorizontalAlignment="Center" Margin="0,41,0,0" VerticalAlignment="Top" Width="414"/>
-        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353"/>
+        <Label Content="Bitte geben Sie die ID des Mitarbeiters ein, welchen Sie entfernen wollen" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" Width="414"/>
+        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353" KeyDown="IDCheck_KeyDown"/>
 
     </Grid>
 </Page>

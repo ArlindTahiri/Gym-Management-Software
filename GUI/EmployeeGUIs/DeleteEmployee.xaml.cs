@@ -23,15 +23,17 @@ namespace GUI.EmployeeGUIs
     public partial class DeleteEmployee : Page
     {
         IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        private int employeeID;
 
-        public DeleteEmployee()
+        public DeleteEmployee(int employeeID)
         {
             InitializeComponent();
+            this.employeeID = employeeID;
         }
 
         private void YesButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.DeleteEmployee(EmployeeCache.cacheID);
+            admin.DeleteEmployee(employeeID);
 
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);

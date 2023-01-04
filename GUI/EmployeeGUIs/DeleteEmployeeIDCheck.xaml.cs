@@ -35,13 +35,15 @@ namespace GUI.EmployeeGUIs
             string content = IDCheck.Text;
             if (e.Key == Key.Enter)
             {
-                if (query.SearchEmployee(content) != null)
+                if (query.GetEmployeeDetails(Int32.Parse(content))!=null)
                 {
-                    EmployeeCache.cacheID = Int32.Parse(content);
-                    DeleteEmployee DeleteEmployee = new DeleteEmployee();
+                   
+                    DeleteEmployee DeleteEmployee = new DeleteEmployee(Int32.Parse(content));
                     NavigationService.Navigate(DeleteEmployee);
                 }
             }
         }
+
+    
     }
 }

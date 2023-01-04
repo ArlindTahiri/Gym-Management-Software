@@ -35,13 +35,15 @@ namespace GUI.EmployeeGUIs
 
             if(e.Key == Key.Enter)
             {
-                if(query.SearchEmployee(content) != null)
+                if(query.GetEmployeeDetails(Int32.Parse(content))!=null)
                 {
-                    EmployeeCache.cacheID = Int32.Parse(content);
-                    EditEmployee editEmployee = new EditEmployee();
+                    
+                    EditEmployee editEmployee = new EditEmployee(Int32.Parse(content));
                     NavigationService.Navigate(editEmployee);
                 }
             }
         }
+
+       
     }
 }

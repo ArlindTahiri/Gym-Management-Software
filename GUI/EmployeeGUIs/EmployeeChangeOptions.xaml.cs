@@ -26,19 +26,19 @@ namespace GUI.EmployeeGUIs
             InitializeComponent();
         }
 
-        private void AddMember_Click(object sender, RoutedEventArgs e)
+        private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
             AddEmployee addEmployee = new AddEmployee();
             NavigationService.Navigate(addEmployee);
         }
 
-        private void DeleteMember_Click(object sender, RoutedEventArgs e)
+        private void DeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
             DeleteEmployeeIDCheck deleteEmployeeIDCheck = new DeleteEmployeeIDCheck();
             NavigationService.Navigate(deleteEmployeeIDCheck);
         }
 
-        private void EditMember_Click(object sender, RoutedEventArgs e)
+        private void EditEmployee_Click(object sender, RoutedEventArgs e)
         {
             EditEmployeeIDCheck editEmployeeIDCheck = new EditEmployeeIDCheck();
             NavigationService.Navigate(editEmployeeIDCheck);
