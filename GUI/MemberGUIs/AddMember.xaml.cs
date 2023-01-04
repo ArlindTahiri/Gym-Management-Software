@@ -26,7 +26,7 @@ namespace GUI.MemberGUIs
     {
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        private int price = 0;
+       
        
         
         public AddMember()
@@ -42,9 +42,10 @@ namespace GUI.MemberGUIs
 
             admin.AddMember(Int32.Parse(ContractIDM.Text), NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
                   CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
-          // keine objektreferenz???
+  
             GymHomepage home = new GymHomepage();
            NavigationService.Navigate(home);
+           
         }
 
 

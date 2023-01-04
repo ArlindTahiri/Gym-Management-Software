@@ -1,0 +1,15 @@
+﻿<Page x:Class="GUI.Order_GUIs.DeleteOrderIDCheck"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GUI.Order_GUIs"
+      mc:Ignorable="d" 
+      d:DesignHeight="250" d:DesignWidth="400"
+      Title="DeleteOrderIDCheck">
+
+    <Grid>
+        <Label Content="Bitte geben Sie die ID der Bestellung ein, die Sie löschen wollen" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353" KeyDown="IDCheck_KeyDown"  /> 
+    </Grid>
+</Page>

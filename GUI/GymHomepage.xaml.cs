@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GUI.ArticleGUIs;
 using GUI.EmployeeGUIs;
+using GUI.Order_GUIs;
 
 namespace GUI
 {
@@ -49,6 +50,12 @@ namespace GUI
         {
             GymPasswordPage gymPasswordPage = new GymPasswordPage("Inventar");
             NavigationService.Navigate(gymPasswordPage);
+        }
+
+        private void OrderButton_Click(object sender, RoutedEventArgs e)
+        {
+           OrderOptions orderOptions = new OrderOptions();
+            NavigationService.Navigate(orderOptions);
         }
     }
 }

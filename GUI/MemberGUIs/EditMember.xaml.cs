@@ -38,7 +38,7 @@ namespace GUI.MemberGUIs
             admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
                 ContoE.Text, DateTime.Parse(BirthdayE.Text));
 
-           
+          
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);
         }
