@@ -25,14 +25,17 @@ namespace GUI.MemberGUIs
     {
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        public EditMember()
+        private int memberID;
+        public EditMember(int memberID)
         {
             InitializeComponent();
+
+            this.memberID = memberID;
         }
 
-        private void EditMember1_Click(object sender, RoutedEventArgs e)
+        private void EditMemberButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.UpdateMember(MemberCache.cacheID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
+            admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
                 ContoE.Text, DateTime.Parse(BirthdayE.Text));
 
            

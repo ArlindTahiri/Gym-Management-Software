@@ -12,7 +12,7 @@ using loremipsum.Gym.Persistence;
 namespace loremipsum.Migrations
 {
     [DbContext(typeof(GymContext))]
-    [Migration("20230101140910_Gym")]
+    [Migration("20230104135854_Gym")]
     partial class Gym
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace loremipsum.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "7.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

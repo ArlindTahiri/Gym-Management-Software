@@ -34,13 +34,14 @@ namespace GUI.MemberGUIs
             string content = IDCheck.Text;
             if (e.Key == Key.Enter)
             {
-                if (query.SearchMember(content) != null)
+                if (query.GetMemberDetails(Int32.Parse(content))!=null)
                 {
-                    MemberCache.cacheID = Int32.Parse(content);
-                    EditMember editMember = new EditMember();
+                   
+                    EditMember editMember = new EditMember(Int32.Parse(content));
                     NavigationService.Navigate(editMember);
                 }
             }
         }
+
     }
 }

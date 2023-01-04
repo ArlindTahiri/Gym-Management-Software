@@ -30,5 +30,11 @@ namespace GUI.ContractGUIs
             ContractIDCheck iDCheck = new ContractIDCheck();
             NavigationService.Navigate(iDCheck);
         }
+
+        private void AddContractButton_Click(object sender, RoutedEventArgs e)
+        {
+           AddContract addContract = new AddContract();
+            NavigationService.Navigate(addContract);
+        }
     }
 }

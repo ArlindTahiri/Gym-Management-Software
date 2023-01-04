@@ -23,14 +23,19 @@ namespace GUI.MemberGUIs
     public partial class DeleteMember : Page
     {
         IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        public DeleteMember()
+        private int memberID;
+        public DeleteMember(int memberID)
         {
             InitializeComponent();
+
+            this.memberID = memberID;
+
+           
         }
 
         private void YesButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.DeleteMember(MemberCache.cacheID);
+            admin.DeleteMember(memberID);
 
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);

@@ -5,32 +5,30 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.MemberGUIs"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1200"
+      d:DesignHeight="1000" d:DesignWidth="345"
       Title="EditMember">
 
     <Grid>
-        <TextBox x:Name="NameE" HorizontalAlignment="Left" Margin="0,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <Label Content="Name&#xD;&#xA;" HorizontalAlignment="Left" Margin="4,287,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SurnameE" HorizontalAlignment="Left" Margin="91,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <Label Content="Vorname&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="107,287,0,0" VerticalAlignment="Top"/>
-        <Label Content="Adresse&#xA;" HorizontalAlignment="Left" Margin="197,287,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="672,287,0,0" VerticalAlignment="Top"/>
-        <Label Content="Zahlungskonto&#xA;" HorizontalAlignment="Left" Margin="812,287,0,0" VerticalAlignment="Top"/>
-        <Label Content="Geburtstag&#xA;" HorizontalAlignment="Left" Margin="925,287,0,0" VerticalAlignment="Top"/>
-        <Label Content="Vertragsart&#xA;" HorizontalAlignment="Left" Margin="1039,287,0,0" VerticalAlignment="Top"/>
-        <Label Content="Fällig am&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="1148,287,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="AdressE" HorizontalAlignment="Left" Margin="182,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <TextBox x:Name="ContactAdressE" HorizontalAlignment="Left" Margin="673,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <TextBox x:Name="ContoE" HorizontalAlignment="Left" Margin="790,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <TextBox x:Name="BirthdayE" HorizontalAlignment="Left" Margin="886,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <TextBox x:Name="ContractTypeE" HorizontalAlignment="Left" Margin="1000,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <TextBox x:Name="DeadlineE" HorizontalAlignment="Left" Margin="1099,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="290,287,0,0" VerticalAlignment="Top"/>
-        <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Left" Margin="403,287,0,0" VerticalAlignment="Top"/>
-        <Label Content="Land&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="507,287,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="PostalCodeE" HorizontalAlignment="Left" Margin="280,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <TextBox x:Name="CityE" HorizontalAlignment="Left" Margin="376,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <TextBox x:Name="CountryE" HorizontalAlignment="Left" Margin="496,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Height="106" />
-        <Button x:Name="EditMember1" Content="Mitglied bearbeiten" HorizontalAlignment="Center" Margin="0,179,0,0" VerticalAlignment="Top" Height="82" Width="236" Click="EditMember1_Click"/>
+        <TextBox x:Name="NameE" HorizontalAlignment="Center" Margin="0,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <Label Content="Name&#xD;&#xA;" HorizontalAlignment="Center" Margin="10,17,0,0" VerticalAlignment="Top" Height="30"/>
+        <TextBox x:Name="SurnameE" HorizontalAlignment="Center" Margin="0,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <Label Content="Vorname&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,93,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Adresse&#xA;" HorizontalAlignment="Center" Margin="10,168,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Email&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,463,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Zahlungskonto&#xA;" HorizontalAlignment="Center" Margin="10,538,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Geburtstag&#xA;" HorizontalAlignment="Center" Margin="10,615,0,0" VerticalAlignment="Top" Height="29"/>
+        <TextBox x:Name="AdressE" HorizontalAlignment="Center" Margin="0,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="PostalCodeE" HorizontalAlignment="Center" Margin="0,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="ContactAdressE" HorizontalAlignment="Center" Margin="19,497,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="CityE" HorizontalAlignment="Center" Margin="0,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="CountryE" HorizontalAlignment="Center" Margin="19,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="ContoE" HorizontalAlignment="Center" Margin="0,567,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="43" />
+        <TextBox x:Name="BirthdayE" HorizontalAlignment="Center" Margin="0,644,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,243,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,318,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Land&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,388,0,0" VerticalAlignment="Top" Height="29"/>
+        <Button x:Name="EditMemberButton" Content="Mitgliedsdaten ändern" HorizontalAlignment="Center" Margin="0,720,0,0" VerticalAlignment="Top" Click="EditMemberButton_Click" Height="82" Width="236"/>
+
+
     </Grid>
 </Page>

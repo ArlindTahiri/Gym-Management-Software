@@ -33,18 +33,18 @@ namespace GUI.MemberGUIs
 
         private void IDCheck_KeyDown(object sender, KeyEventArgs e)
         {
-            string content = IDCheck.Text;
             if (e.Key == Key.Enter)
             {
-                if (query.SearchMember(content) != null)
+               if(query.GetMemberDetails(Int32.Parse(IDCheck.Text))!=null)
                 {
-                    MemberCache.cacheID = Int32.Parse(content);
-                    DeleteMember DeleteMember = new DeleteMember();
+                   
+                    DeleteMember DeleteMember = new DeleteMember(Int32.Parse(IDCheck.Text));
                     NavigationService.Navigate(DeleteMember);
                 }
             }
         }
 
-
+       
+        
     }
 }
