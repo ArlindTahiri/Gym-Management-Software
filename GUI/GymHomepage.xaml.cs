@@ -57,5 +57,11 @@ namespace GUI
            OrderOptions orderOptions = new OrderOptions();
             NavigationService.Navigate(orderOptions);
         }
+
+        private void Logins_Click(object sender, RoutedEventArgs e)
+        {
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("login");
+            NavigationService.Navigate(gymPasswordPage);
+        }
     }
 }

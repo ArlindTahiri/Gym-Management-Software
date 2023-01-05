@@ -1,0 +1,17 @@
+﻿<Page x:Class="GUI.LoginGUIs.LoginChangeOptions"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GUI.LoginGUIs"
+      mc:Ignorable="d" 
+      d:DesignHeight="250" d:DesignWidth="400"
+      Title="LoginChangeOptions">
+
+    <Grid>
+
+        <Button x:Name="AddLogin" Content="Login hinzufügen" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="67" Width="380" Click="AddLogin_Click"/>
+        <Button x:Name="EditLogin" Content="Login bearbeiten" HorizontalAlignment="Center" Margin="0,173,0,0" VerticalAlignment="Top" Height="67" Width="380" Click="EditLogin_Click"/>
+        <Button x:Name="DeleteLogin" Content="Login entfernen" HorizontalAlignment="Center" VerticalAlignment="Center" Height="66" Width="380" Click="DeleteLogin_Click"/>
+    </Grid>
+</Page>

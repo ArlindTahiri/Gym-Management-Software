@@ -1,6 +1,7 @@
 ﻿using GUI.ArticleGUIs;
 using GUI.ContractGUIs;
 using GUI.EmployeeGUIs;
+using GUI.LoginGUIs;
 using GUI.MemberGUIs;
 using loremipsum.Gym;
 using System;
@@ -60,6 +61,12 @@ namespace GUI
             {
                 ArticlePage articlePage = new ArticlePage();
                 NavigationService.Navigate(articlePage);
+            }
+
+            if(Destination == "Login")
+            {
+                LoginPage loginPage = new LoginPage();
+                NavigationService.Navigate(loginPage);
             }
         }
     }
