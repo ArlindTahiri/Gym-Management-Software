@@ -1,10 +1,14 @@
-﻿using loremipsum.Gym;
+﻿using log4net;
+using log4net.Config;
+using log4net.Repository;
+using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using loremipsum.Gym.Persistence;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,11 +20,14 @@ namespace UnitTestLoremIpsum
         private IProductAdmin Admin;
         private IProductModule Query;
         private Article a1, a2, a3, a4;
+        private static readonly ILog log = LogManager.GetLogger(typeof(UnitTestArticle));
 
 
         [TestInitialize()]
         public void SetUp()
         {
+           
+
             IGymPersistence persistence = new GymPersistenceEF();
             GymFactory factory = new GymFactory(persistence);
             Admin = factory.GetProductAdmin();
@@ -34,6 +41,12 @@ namespace UnitTestLoremIpsum
             a2 = new Article("Erdbeer-Proteinshake", 399, 15, 15);
             a3 = new Article("Vanille Proteinriegel", 199, 10, 10);
             a4 = new Article("Schoko Proteinriegel", 199, 10, 10);
+
+            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
+            var fileInfo = new FileInfo(@"log4net.config");
+            XmlConfigurator.Configure(repository, fileInfo);
+
+            log.Info("Started article test");
         }
 
             [TestMethod]
@@ -58,6 +71,8 @@ namespace UnitTestLoremIpsum
             //Add also the other articles
             Admin.AddArticle(a3);
             Admin.AddArticle(a4);
+
+            log.Info("Created articles"); 
         }
 
         [TestMethod]
@@ -67,6 +82,7 @@ namespace UnitTestLoremIpsum
             Admin.UpdateArticle(a3.ArticleID,"Vanille-Schoko Proteinriegel", 219, 11, 11);
             Article newArticle = Query.GetArticleDetails(a3.ArticleID);
             Assert.IsTrue(newArticle.Price == 219 && newArticle.ArticleName.Equals("Vanille-Schoko Proteinriegel") && newArticle.ActualStock == 11 && newArticle.TargetStock == 11);
+            log.Info("Updated article");
         }
 
         [TestMethod]
@@ -80,6 +96,9 @@ namespace UnitTestLoremIpsum
             Admin.DeleteArticles();
             Assert.IsNull(Query.GetArticleDetails(a3.ArticleID));
             Assert.IsNull(Query.GetArticleDetails(a4.ArticleID));
+
+            log.Info("Deleted article");
+            log.Info("Article test end");
         }
 
     }
