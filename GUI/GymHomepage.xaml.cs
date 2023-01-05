@@ -79,14 +79,19 @@ namespace GUI
 
         private void OrderButton_Click(object sender, RoutedEventArgs e)
         {
-           OrderOptions orderOptions = new OrderOptions();
+            log.Info("Clicked on orderButton button");
+
+            OrderOptions orderOptions = new OrderOptions();
             NavigationService.Navigate(orderOptions);
         }
 
         private void Logins_Click(object sender, RoutedEventArgs e)
         {
+            log.Info("Clicked on logins button");
+
             GymPasswordPage gymPasswordPage = new GymPasswordPage("login");
             NavigationService.Navigate(gymPasswordPage);
+
         }
     }
 }

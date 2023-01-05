@@ -1,8 +1,13 @@
-﻿using loremipsum.Gym;
+﻿using log4net;
+using log4net.Config;
+using log4net.Repository;
+using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,10 +28,16 @@ namespace GUI.ArticleGUIs
     public partial class DeleteArticleIDCheck : Page
     {
         private IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
         public DeleteArticleIDCheck()
         {
             InitializeComponent();
+
+            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
+            var fileInfo = new FileInfo(@"log4net.config");
+            XmlConfigurator.Configure(repository, fileInfo);
+
+            log.Info("Opened DeleteArticleIDCheck Page");
         }
 
         private void IDCheck_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -37,6 +48,7 @@ namespace GUI.ArticleGUIs
 
                 if (query.GetArticleDetails(Int32.Parse(content))!=null)
                 {
+                    log.Info("Inserted a valid articleID. The ID was: " + content);
                    DeleteArticle deleteArticle = new DeleteArticle(Int32.Parse(content));
                     NavigationService.Navigate(deleteArticle);
                 }

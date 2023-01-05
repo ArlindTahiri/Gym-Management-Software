@@ -1,8 +1,13 @@
-﻿using loremipsum.Gym;
+﻿using log4net;
+using log4net.Config;
+using log4net.Repository;
+using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,11 +27,18 @@ namespace GUI.ArticleGUIs
     /// </summary>
     public partial class AddArticle : Page
     {
-
+        private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public AddArticle()
         {
             InitializeComponent();
+
+
+            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
+            var fileInfo = new FileInfo(@"log4net.config");
+            XmlConfigurator.Configure(repository, fileInfo);
+
+            log.Info("Opened AddArticle Page");
         }
 
         private void AddArticle1_Click(object sender, RoutedEventArgs e)
@@ -36,6 +48,8 @@ namespace GUI.ArticleGUIs
 
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);
+
+            log.Info("Added article: "+ article.ToString()+"... and returned to homepage");
         }
     }
 }
