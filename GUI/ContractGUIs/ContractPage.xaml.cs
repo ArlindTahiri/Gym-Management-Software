@@ -1,4 +1,5 @@
-﻿using System;
+﻿using loremipsum.Gym;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace GUI.ContractGUIs
     /// </summary>
     public partial class ContractPage : Page
     {
+
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public ContractPage()
         {
           InitializeComponent();
@@ -35,6 +38,11 @@ namespace GUI.ContractGUIs
         {
            AddContract addContract = new AddContract();
             NavigationService.Navigate(addContract);
+        }
+
+        private void ContractInventory_Loaded(object sender, RoutedEventArgs e)
+        {
+            ContractInventory.ItemsSource = admin.ListContracts();
         }
     }
 }

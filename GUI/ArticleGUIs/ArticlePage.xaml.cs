@@ -1,22 +1,26 @@
 ﻿using log4net;
 using log4net.Config;
 using log4net.Repository;
+using loremipsum.Gym;
+using loremipsum.Gym.Entities;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlTypes;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.WebRequestMethods;
 
 namespace GUI.ArticleGUIs
 {
@@ -27,6 +31,7 @@ namespace GUI.ArticleGUIs
     {
 
         private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public ArticlePage()
         {
             InitializeComponent();
@@ -37,7 +42,7 @@ namespace GUI.ArticleGUIs
 
             log.Info("Opened Article Page");
         }
-
+      
         private void EditArticle_Click(object sender, RoutedEventArgs e)
         {
             ArticleChangeOptions articleChangeOptions = new ArticleChangeOptions();
@@ -45,5 +50,13 @@ namespace GUI.ArticleGUIs
 
             log.Info("Clicked on the EditArticle button");
         }
+
+
+
+        private void ArticleInventory_Loaded(object sender, RoutedEventArgs e)
+        {
+            ArticleInventory.ItemsSource = admin.ListArticles();
+        }
+      
     }
 }

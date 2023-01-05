@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using loremipsum.Gym;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace GUI.MemberGUIs
     /// </summary>
     public partial class MemberPage : Page
     {
+
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public MemberPage()
         {
             InitializeComponent();
@@ -33,6 +36,12 @@ namespace GUI.MemberGUIs
             MemberChangeOptions changeOptions = new MemberChangeOptions();
             NavigationService.Navigate(changeOptions);
 
+
+        }
+
+        private void MemberData_Loaded(object sender, RoutedEventArgs e)
+        {
+            MemberData.ItemsSource = admin.ListMembers();
 
         }
     }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GUI.ArticleGUIs;
+using loremipsum.Gym;
 
 namespace GUI.EmployeeGUIs
 {
@@ -21,6 +22,7 @@ namespace GUI.EmployeeGUIs
     /// </summary>
     public partial class EmployeePage : Page
     {
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public EmployeePage()
         {
             InitializeComponent();
@@ -32,6 +34,11 @@ namespace GUI.EmployeeGUIs
             EmployeeChangeOptions changeOptions = new EmployeeChangeOptions();
             NavigationService.Navigate(changeOptions);
 
+        }
+
+        private void EmployeeData_Loaded(object sender, RoutedEventArgs e)
+        {
+            EmployeeData.ItemsSource = admin.ListEmployees();
         }
     }
 }

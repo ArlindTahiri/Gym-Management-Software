@@ -10,7 +10,7 @@
 
     <Grid>
         <Button x:Name="EditMember" Content="Mitglieder bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditMember_Click"/>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,181,0,0"/>
+        <DataGrid x:Name="MemberData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,181,0,0" Loaded="MemberData_Loaded"/>
 
     </Grid>
 </Page>
