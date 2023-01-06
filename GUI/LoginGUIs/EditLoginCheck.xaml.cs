@@ -38,6 +38,9 @@ namespace GUI.LoginGUIs
                 {
                     EditLogin editLogin = new EditLogin(loginName);
                     NavigationService.Navigate(editLogin);
+                } else
+                {
+                    WarningText.Text = "Der Login ist falsch. Bitte geben Sie einen gültigen login ein.";
                 }
             }
         }

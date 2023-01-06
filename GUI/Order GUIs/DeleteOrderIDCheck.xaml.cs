@@ -44,6 +44,9 @@ namespace GUI.Order_GUIs
                     DeleteOrder deleteOrder = new DeleteOrder(Int32.Parse(IDCheck.Text));
                     NavigationService.Navigate(deleteOrder);
                        
+                } else
+                {
+                    WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
                 }
             }
         }

@@ -33,6 +33,8 @@ namespace GUI.Order_GUIs
 
         private void DeleteOrderButton_Click(object sender, RoutedEventArgs e)
         {
+            DeleteOrderIDCheck deleteOrderIDCheck = new DeleteOrderIDCheck();
+            NavigationService.Navigate(deleteOrderIDCheck);
             
         }
 

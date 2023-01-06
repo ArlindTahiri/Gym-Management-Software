@@ -89,7 +89,7 @@ namespace GUI
         {
             log.Info("Clicked on logins button");
 
-            GymPasswordPage gymPasswordPage = new GymPasswordPage("login");
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("Login");
             NavigationService.Navigate(gymPasswordPage);
 
         }

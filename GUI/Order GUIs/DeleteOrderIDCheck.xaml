@@ -10,6 +10,7 @@
 
     <Grid>
         <Label Content="Bitte geben Sie die ID der Bestellung ein, die Sie löschen wollen" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353" KeyDown="IDCheck_KeyDown"  /> 
+        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353" KeyDown="IDCheck_KeyDown"  />
+        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" Margin="0,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="53" Width="384" Foreground="#FFD40303"/>
     </Grid>
 </Page>

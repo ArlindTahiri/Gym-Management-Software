@@ -39,6 +39,9 @@ namespace GUI.MemberGUIs
                    
                     EditMember editMember = new EditMember(Int32.Parse(content));
                     NavigationService.Navigate(editMember);
+                } else
+                {
+                    WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
                 }
             }
         }

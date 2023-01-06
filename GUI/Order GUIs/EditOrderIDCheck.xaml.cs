@@ -36,6 +36,9 @@ namespace GUI.Order_GUIs
                 {
                     EditOrder editOrder = new EditOrder(Int32.Parse(IDCheck.Text));
                     NavigationService.Navigate(editOrder);
+                } else
+                {
+                   WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
                 }
             }
         }

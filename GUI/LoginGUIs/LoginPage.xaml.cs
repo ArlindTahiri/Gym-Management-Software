@@ -1,4 +1,5 @@
-﻿using System;
+﻿using loremipsum.Gym;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace GUI.LoginGUIs
     /// </summary>
     public partial class LoginPage : Page
     {
+
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public LoginPage()
         {
             InitializeComponent();
@@ -29,6 +32,11 @@ namespace GUI.LoginGUIs
         {
             LoginChangeOptions loginChangeOptions = new LoginChangeOptions();
             NavigationService.Navigate(loginChangeOptions);
+        }
+
+        private void LoginInventory_Loaded(object sender, RoutedEventArgs e)
+        {
+           LoginInventory.ItemsSource = admin.ListLogIns();
         }
     }
 }

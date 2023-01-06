@@ -10,7 +10,7 @@
 
     <Grid>
         <Button x:Name="EditLogins" Content="Logins Bearbeiten" HorizontalAlignment="Left" Height="100" Margin="20,27,0,0" VerticalAlignment="Top" Width="205" Click="EditLogins_Click"/>
-        <DataGrid HorizontalAlignment="Left" Height="197" Margin="20,235,0,0" VerticalAlignment="Top" Width="754" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <DataGrid x:Name="LoginInventory" HorizontalAlignment="Left" Height="197" Margin="20,235,0,0" VerticalAlignment="Top" Width="754" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="LoginInventory_Loaded"/>
 
     </Grid>
 </Page>

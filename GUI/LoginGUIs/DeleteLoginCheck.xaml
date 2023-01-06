@@ -9,8 +9,9 @@
       Title="DeleteLoginCheck">
 
     <Grid>
-        <Label Content="Geben sie bitte den Login ein, welchen Sie löschen wollen" HorizontalAlignment="Center" Height="34" Margin="0,35,0,0" VerticalAlignment="Top" Width="353"/>
-        <TextBox x:Name="LoginCheck" HorizontalAlignment="Center" Height="32" Margin="0,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="344"/>
-        
+        <Label Content="Geben sie bitte den Login ein, welchen Sie löschen wollen" HorizontalAlignment="Center" Height="34" Margin="0,35,0,0" VerticalAlignment="Top" Width="353" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="LoginCheck" HorizontalAlignment="Center" Height="32" Margin="0,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="344" PreviewKeyDown="LoginCheck_KeyDown"/>
+        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" Margin="0,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="53" Width="372" Foreground="#FFD40303"/>
+
     </Grid>
 </Page>
