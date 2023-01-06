@@ -49,7 +49,7 @@ namespace UnitTestLoremIpsum
             log.Info("Started article test");
         }
 
-            [TestMethod]
+        [TestMethod]
         public void CreateArticle()
         {
             //Add the article a1
@@ -60,13 +60,14 @@ namespace UnitTestLoremIpsum
             Assert.IsTrue(Query.GetArticleDetails(a1.ArticleID).CompareTo(a1) == 0);
 
 
-            //Test if you can upload the same article multiple times:
-            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() =>Admin.AddArticle(a1));
 
 
             //Test if you can upload different article object but same properties.
-            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.AddArticle(a2));
-            
+            //Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.AddArticle(a2));
+            Admin.AddArticle(a2);
+            Console.WriteLine(a1.ArticleID);
+            Console.WriteLine(a2.ArticleID);
+            Assert.IsNull(Query.GetArticleDetails(a2.ArticleID));
 
             //Add also the other articles
             Admin.AddArticle(a3);

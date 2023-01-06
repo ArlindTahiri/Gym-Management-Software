@@ -38,7 +38,7 @@ namespace loremipsum.Gym
 
         void DeleteEmployees();
 
-        void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday, string status);
+        void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday);
 
 
         //Article

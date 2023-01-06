@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Contracts;
 
 namespace loremipsum.Gym.Entities
 {
@@ -32,7 +33,12 @@ namespace loremipsum.Gym.Entities
 
         public int CompareTo(Article other)
         {
-            return ArticleID.CompareTo(other.ArticleID);
+            if (ArticleID.CompareTo(other.ArticleID) == 0) { return 0; }
+            else
+            {
+                if (ArticleName.Equals(other.ArticleName) && Price == other.Price && TargetStock == other.TargetStock && ActualStock == other.ActualStock) { return 0; }
+                else { return -1; }
+            }
         }
 
         public override string ToString()

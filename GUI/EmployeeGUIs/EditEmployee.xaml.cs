@@ -33,7 +33,7 @@ namespace GUI.EmployeeGUIs
 
         private void EditEmployee_Click(object sender, RoutedEventArgs e)
         {
-            admin.UpdateEmployee(employeeID, Forename.Text, Surename.Text, Street.Text, Int32.Parse(PostcalCode.Text), City.Text, Country.Text, EMail.Text, Iban.Text, DateTime.Parse(Birthday.Text), " ");
+            admin.UpdateEmployee(employeeID, Forename.Text, Surename.Text, Street.Text, Int32.Parse(PostcalCode.Text), City.Text, Country.Text, EMail.Text, Iban.Text, DateTime.Parse(Birthday.Text));
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);
         }

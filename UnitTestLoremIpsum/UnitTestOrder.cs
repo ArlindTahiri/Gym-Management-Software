@@ -38,9 +38,9 @@ namespace UnitTestLoremIpsum
             article2 = new Article("Energydrink", 299, 15, 15);
 
             employee1 = new Employee("Anton", "Zunhammer", "Lindenstraﬂe 3", 83374, "Traunwalchen", "Deutschland", 
-                    "Anton.Zunhammer@gmail.com", "DE23423423423423423423", new DateTime(1999, 1, 1), " ");
+                    "Anton.Zunhammer@gmail.com", "DE23423423423423423423", new DateTime(1999, 1, 1));
             employee2 = new Employee("Nina", "Niedl", "Eichenweg 3", 83301, "Traunreut", "Deutschland", 
-                    "Nina.Niedl@gmail.com", "DE11112222333344445555", new DateTime(1987, 2, 23), " ");
+                    "Nina.Niedl@gmail.com", "DE11112222333344445555", new DateTime(1987, 2, 23));
 
         }
 
@@ -145,7 +145,7 @@ namespace UnitTestLoremIpsum
 
             //edit employee
             Admin.UpdateEmployee(employee2.EmployeeID, "Nina", "Niedl", "Eichenweg 7", 83301, "Traunreut", "Deutschland",
-                    "Nina.Niedl@gmail.com", "DE1111111111111111111111111", new DateTime(1987, 2, 23), " ");
+                    "Nina.Niedl@gmail.com", "DE1111111111111111111111111", new DateTime(1987, 2, 23));
             //check if it changed (Adress && IBAN)
 
             //delete employee

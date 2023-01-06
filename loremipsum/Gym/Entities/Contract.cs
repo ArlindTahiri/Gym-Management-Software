@@ -25,7 +25,12 @@ namespace loremipsum.Gym.Entities
 
         public int CompareTo(Contract other)
         {
-            return ContractID.CompareTo(other.ContractID);
+            if (ContractID.CompareTo(other.ContractID) == 0) { return 0; }
+            else
+            {
+                if (ContractType.Equals(other.ContractType) && Price == other.Price) { return 0; }
+                else { return -1; }
+            }
         }
 
         public override string ToString()

@@ -53,7 +53,12 @@ namespace loremipsum.Gym.Entities
 
         public int CompareTo(Member other)
         {
-            return MemberID.CompareTo(other.MemberID);
+            if (MemberID.CompareTo(other.MemberID) == 0) { return 0; }
+            else
+            {
+                if (Forename.Equals(other.Forename) && Surname.Equals(other.Surname) && Street.Equals(other.Street) && PostcalCode == other.PostcalCode && City.Equals(other.City) && Country.Equals(other.Country) && EMail.Equals(other.EMail) && Iban.Equals(other.Iban) && Birthday.Equals(other.Birthday)) { return 0; }
+                else { return -1; }
+            }
         }
 
         public override string ToString() 

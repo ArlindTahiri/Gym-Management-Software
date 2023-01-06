@@ -29,7 +29,13 @@ namespace loremipsum.Gym.Entities
 
         public int CompareTo(Order other)
         {
-            return OrderID.CompareTo(other.OrderID);
+            if(OrderID.CompareTo(other.OrderID) == 0) { return 0; }
+            else
+            {
+                if(MemberID==other.MemberID && ArticleID==other.ArticleID && Amount==other.Amount) { return 0; }
+                else { return -1; }
+            }
+            
         }
     }
 }

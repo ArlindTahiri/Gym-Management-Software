@@ -32,6 +32,10 @@ namespace loremipsum.Gym.Impl
             {
                 persistence.DeleteMember(memberID);//only delete member if the member has 0 orders
             }
+            if(ListAllOrdersFromMember(memberID).Count == 0)
+            {
+                persistence.DeleteMember(memberID);
+            }
         }
 
         public void DeleteMembers()
@@ -138,12 +142,12 @@ namespace loremipsum.Gym.Impl
             return result;
         }
 
-        public void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday, string status)
+        public void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             Employee employee= persistence.FindEmployee(employeeID);
             if(employee != null)
             {
-                persistence.UpdateEmployee(employee, forename, surname, street, postcalCode, city, country, eMail, iban, birthday, status);
+                persistence.UpdateEmployee(employee, forename, surname, street, postcalCode, city, country, eMail, iban, birthday);
             }
         }
 

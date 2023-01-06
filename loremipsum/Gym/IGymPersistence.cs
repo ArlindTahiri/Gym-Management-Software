@@ -47,7 +47,7 @@ namespace loremipsum.Gym
 
         IList<Employee> FindEmployees();
 
-        void UpdateEmployee(Employee employee, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday, string status);
+        void UpdateEmployee(Employee employee, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday);
 
 
 

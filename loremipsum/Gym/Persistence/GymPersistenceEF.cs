@@ -16,6 +16,13 @@ namespace loremipsum.Gym.Persistence
                     .Where(b => b.ContractID == contract.ContractID)
                     .Include(b => b.Members)
                     .FirstOrDefault();
+
+                IList<Member> members = FindMembers();
+                foreach(Member m in members)
+                {
+                    if (m.CompareTo(member) == 0) { return null; }
+                }
+
                 if(c != null)
                 {
                     db.Members.Add(member); //1:n relation
@@ -123,8 +130,18 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-                db.Contracts.Add(contract);
-                db.SaveChanges();
+                bool temp = true;
+                IList<Contract> contracts = FindContracts();
+                foreach (Contract c in contracts)
+                {
+                    if (c.CompareTo(contract) == 0) { temp=false; }
+                }
+                if (temp == true)
+                {
+                    db.Contracts.Add(contract);
+                    db.SaveChanges();
+                }
+                
             }
         }
 
@@ -205,8 +222,17 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-                db.Employees.Add(employee);
-                db.SaveChanges();
+                bool temp = true;
+                IList<Employee> employees = FindEmployees();
+                foreach (Employee e in employees)
+                {
+                    if (e.CompareTo(employee) == 0) { temp = false; }
+                }
+                if (temp == true)
+                {
+                    db.Employees.Add(employee);
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -259,7 +285,7 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
-        public void UpdateEmployee(Employee employee, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday, string status)
+        public void UpdateEmployee(Employee employee, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             using (GymContext db = new GymContext())
             {
@@ -277,7 +303,7 @@ namespace loremipsum.Gym.Persistence
                 e.EMail = eMail;
                 e.Iban= iban;
                 e.Birthday = birthday;
-                e.Status = status;
+                
 
                 db.SaveChanges();
             }
@@ -290,8 +316,18 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-                db.Articles.Add(article);
-                db.SaveChanges();
+                bool temp = true;
+                IList<Article> articles = FindArticles();
+                foreach (Article a in articles)
+                {
+                    if (a.CompareTo(article) == 0) { temp = false; }
+                }
+                if (temp == true)
+                {
+                    db.Articles.Add(article);
+                    db.SaveChanges();
+                }
+                
             }
         }
 

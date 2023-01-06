@@ -31,13 +31,13 @@ namespace UnitTestLoremIpsum
         public void GenerateTestData()
         {
             e1 = new Employee("Anton", "Zunhammer", "Lindenstraße 3", 83374, "Traunwalchen", "Deutschland",
-                    "Anton.Zunhammer@gmail.com", "DE77500105176812849778", new DateTime(1999, 1, 1), " ");
+                    "Anton.Zunhammer@gmail.com", "DE77500105176812849778", new DateTime(1999, 1, 1));
             e2 = new Employee("Anton", "Zunhammer", "Lindenstraße 3", 83374, "Traunwalchen", "Deutschland",
-                    "Anton.Zunhammer@gmail.com", "DE77500105176812849778", new DateTime(1999, 1, 1), " ");
+                    "Anton.Zunhammer@gmail.com", "DE77500105176812849778", new DateTime(1999, 1, 1));
             e3 = new Employee("Nina", "Niedl", "Eichenweg 3", 83301, "Traunreut", "Deutschland",
-                    "Nina.Niedl@gmail.com", "DE65500105176354525673", new DateTime(1987, 2, 23), " ");
+                    "Nina.Niedl@gmail.com", "DE65500105176354525673", new DateTime(1987, 2, 23));
             e4 = new Employee("Peter","Gebauer", "Große Budengasse 8",50667,"Köln","Deutschland",
-                    "Petergebauer@gmail.com", "DE91500105172839528154", new DateTime(1978, 5, 13)," ");
+                    "Petergebauer@gmail.com", "DE91500105172839528154", new DateTime(1978, 5, 13));
         }
 
         [TestMethod]
@@ -69,7 +69,7 @@ namespace UnitTestLoremIpsum
         {
             //Test if you can update Employee Properties
             Admin.UpdateEmployee(e3.EmployeeID, "Tina", "Peters", "Eichenweg 1", 83701, "Stephanskirchen", "Deutschland",
-                    "Tina.Peters@gmail.com", "DE96500105172721576161", new DateTime(1986, 3, 30), " ");
+                    "Tina.Peters@gmail.com", "DE96500105172721576161", new DateTime(1986, 3, 30));
             Employee newEmployee = Query.GetEmployeeDetails(e3.EmployeeID);
             Assert.IsTrue(newEmployee.Iban.Equals("DE96500105172721576161") && newEmployee.Forename.Equals("Tina") && newEmployee.Surname.Equals("Peters") &&
                 newEmployee.Street.Equals("Eichenweg 1") && newEmployee.PostcalCode== 83701 && newEmployee.City.Equals("Stephanskirchen") && newEmployee.Country.Equals("Deutschland") &&
