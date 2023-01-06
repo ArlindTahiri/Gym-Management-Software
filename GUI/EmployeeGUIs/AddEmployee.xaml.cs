@@ -1,8 +1,13 @@
-﻿using loremipsum.Gym;
+﻿using log4net;
+using log4net.Config;
+using log4net.Repository;
+using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,19 +28,28 @@ namespace GUI.EmployeeGUIs
     public partial class AddEmployee : Page
     {
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public AddEmployee()
         {
             InitializeComponent();
+
+            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
+            var fileInfo = new FileInfo(@"log4net.config");
+            XmlConfigurator.Configure(repository, fileInfo);
+
+            log.Info("Opened AddEmployee Page");
         }
 
         private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
+          
             Employee employee = new(Forename.Text, Surename.Text, Street.Text, Int32.Parse(PostcalCode.Text), City.Text, Country.Text, EMail.Text, Iban.Text, DateTime.Parse(Birthday.Text), " ");
 
             admin.AddEmployee(employee);
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);
+            log.Info("Added employee: " + employee.ToString() + "... and returned to homepage");
         }
     }
 }

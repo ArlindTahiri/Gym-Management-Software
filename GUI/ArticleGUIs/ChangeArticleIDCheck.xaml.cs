@@ -27,7 +27,7 @@ namespace GUI.ArticleGUIs
     public partial class ChangeArticleIDCheck : Page
     {
         private IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public ChangeArticleIDCheck()
         {
             InitializeComponent();
@@ -51,6 +51,10 @@ namespace GUI.ArticleGUIs
 
                     ChangeArticle changeArticle = new ChangeArticle(articleID);
                     NavigationService.Navigate(changeArticle);
+                } else
+                {
+                    log.Error("Inserted an invalid articleID. The ID was; " + articleID);
+                    WarningText.Text = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
                 }
             }
         }

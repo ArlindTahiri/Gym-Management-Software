@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,7 +29,7 @@ namespace GUI.ArticleGUIs
     public partial class DeleteArticleIDCheck : Page
     {
         private IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public DeleteArticleIDCheck()
         {
             InitializeComponent();
@@ -51,6 +52,10 @@ namespace GUI.ArticleGUIs
                     log.Info("Inserted a valid articleID. The ID was: " + content);
                    DeleteArticle deleteArticle = new DeleteArticle(Int32.Parse(content));
                     NavigationService.Navigate(deleteArticle);
+                } else
+                {
+                    log.Error("Inserted an invalid articleID. The ID was: "+ content);
+                    WarningText.Text = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
                 }
             }
         }

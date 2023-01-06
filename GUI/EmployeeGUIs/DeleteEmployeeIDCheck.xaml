@@ -9,6 +9,7 @@
     <Grid>
         <Label Content="Bitte geben Sie die ID des Mitarbeiters ein, welchen Sie entfernen wollen" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" Width="414"/>
         <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353" KeyDown="IDCheck_KeyDown"/>
+        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" Margin="0,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="53" Width="384" Foreground="#FFD40303"/>
 
     </Grid>
 </Page>

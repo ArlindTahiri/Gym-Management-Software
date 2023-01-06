@@ -1,8 +1,13 @@
 ﻿using GUI.MemberGUIs;
+using log4net;
+using log4net.Config;
+using log4net.Repository;
 using loremipsum.Gym;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,9 +29,18 @@ namespace GUI.EmployeeGUIs
     public partial class EditEmployeeIDCheck : Page
     {
         private IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+
         public EditEmployeeIDCheck()
         {
             InitializeComponent();
+
+            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
+            var fileInfo = new FileInfo(@"log4net.config");
+            XmlConfigurator.Configure(repository, fileInfo);
+
+            log.Info("Opened EditEmployeeIDCheck Page");
         }
 
         private void IDCheck_KeyDown(object sender, KeyEventArgs e)
@@ -40,6 +54,10 @@ namespace GUI.EmployeeGUIs
                     
                     EditEmployee editEmployee = new EditEmployee(Int32.Parse(content));
                     NavigationService.Navigate(editEmployee);
+                } else
+                {
+                    log.Error("Inserted an invalid employeeID. The ID was: " + content);
+                    WarningText.Text = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
                 }
             }
         }

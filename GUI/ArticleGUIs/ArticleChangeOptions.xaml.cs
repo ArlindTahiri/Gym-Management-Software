@@ -26,7 +26,7 @@ namespace GUI.ArticleGUIs
     public partial class ArticleChangeOptions : Page
     {
 
-        private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public ArticleChangeOptions()
         {
             InitializeComponent();

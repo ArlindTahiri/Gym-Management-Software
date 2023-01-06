@@ -30,7 +30,7 @@ namespace GUI.ArticleGUIs
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private int articleID;
-        private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public ChangeArticle(int articleID)
         {
             InitializeComponent();

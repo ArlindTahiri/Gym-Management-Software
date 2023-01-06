@@ -1,7 +1,12 @@
-﻿using loremipsum.Gym;
+﻿using log4net;
+using log4net.Config;
+using log4net.Repository;
+using loremipsum.Gym;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,20 +28,29 @@ namespace GUI.ContractGUIs
     {
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public ContractPage()
         {
           InitializeComponent();
+
+            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
+            var fileInfo = new FileInfo(@"log4net.config");
+            XmlConfigurator.Configure(repository, fileInfo);
+
+            log.Info("Opened Contract Page");
         }
 
         private void DeleteContractButton_Click(object sender, RoutedEventArgs e)
         {
+            log.Info("Clicked on the DeleteContract button");
             ContractIDCheck iDCheck = new ContractIDCheck();
             NavigationService.Navigate(iDCheck);
         }
 
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
         {
-           AddContract addContract = new AddContract();
+            log.Info("Clicked on the AddContract button");
+            AddContract addContract = new AddContract();
             NavigationService.Navigate(addContract);
         }
 

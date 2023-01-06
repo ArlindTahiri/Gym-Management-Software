@@ -30,7 +30,7 @@ namespace GUI.ArticleGUIs
     public partial class ArticlePage : Page
     {
 
-        private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public ArticlePage()
         {
