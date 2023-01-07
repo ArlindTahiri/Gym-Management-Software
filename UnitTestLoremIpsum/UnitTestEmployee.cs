@@ -83,6 +83,9 @@ namespace UnitTestLoremIpsum
             Admin.DeleteEmployee(e1.EmployeeID);
             Assert.IsNull(Query.GetEmployeeDetails(e1.EmployeeID));
 
+            //Test if you can delete the same employee multiple times
+            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.DeleteEmployee(e1.EmployeeID));
+
             //Test if you can delete all of the rest employees
             Admin.DeleteEmployees();
             Assert.IsNull(Query.GetEmployeeDetails(e3.EmployeeID));

@@ -76,6 +76,9 @@ namespace UnitTestLoremIpsum
             Admin.DeleteContract(c1.ContractID);
             Assert.IsNull(Query.GetContractDetails(c1.ContractID));
 
+            //Test if you can delete the same contract multiple times
+            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.DeleteContract(c1.ContractID));
+
             //Test if you can delete all of the rest contracts
             Admin.DeleteContracts();
             Assert.IsNull(Query.GetContractDetails(c3.ContractID));

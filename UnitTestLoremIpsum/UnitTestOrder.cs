@@ -60,6 +60,9 @@ namespace UnitTestLoremIpsum
             //test if you can upload multiple times the same order
             Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.AddOrder(m1.MemberID, a1.ArticleID, 5));
 
+            //test if you can add an order which ned more articles than there are in stock
+            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.AddOrder(m2.MemberID, a2.ArticleID, 100));
+
             //Add orders o2, o3
             Order o2 = Admin.AddOrder(m2.MemberID, a2.ArticleID, 10);
             Order o3 = Admin.AddOrder(m1.MemberID, a1.ArticleID, 15);
@@ -80,6 +83,9 @@ namespace UnitTestLoremIpsum
             //Test if you can delete o1
             Admin.DeleteOrder(o1.OrderID);
             Assert.IsNull(Query.GetOrderDetails(o1.OrderID));
+
+            //Test if you can delete the same order multiple times
+            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.DeleteOrder(o1.OrderID));
 
             //Test if you can delete all orders
             Admin.DeleteOrders();

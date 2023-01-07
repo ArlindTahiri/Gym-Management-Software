@@ -49,8 +49,13 @@ namespace UnitTestLoremIpsum
 
             //Test if you can upload the same member multiple times
             Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => 
-            Admin.AddMember(c1.ContractID, "Jennifer", "Meier", "Rhinstrasse 96", 80711, "München", "Deutschland",
+                Admin.AddMember(c1.ContractID, "Jennifer", "Meier", "Rhinstrasse 96", 80711, "München", "Deutschland",
                     "jennifer.meier@gmail.com", "DE90500105174767217514", new DateTime(1991, 11, 24)));
+
+            //Test if you can add a member with an invalid iban
+            //Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() =>
+            //    Admin.AddMember(c1.ContractID, "Patrick", "Huber", "Brandenburgische Str 92", 55592, "Desloch", "Deutschland",
+            //    "patrickhuber@rhyta.com", "DE00000000000123456789", new DateTime(1997, 7, 4)));
 
             //Add member m2 and m3
             Member m2 = Admin.AddMember(c1.ContractID, "Stephan", "Mahler", "Kurfuerstendamm 54", 85605, "Aschheim", "Deutschland",
@@ -80,6 +85,9 @@ namespace UnitTestLoremIpsum
             //Test if you can delete m1
             Admin.DeleteMember(m1.MemberID);
             Assert.IsNull(Query.GetMemberDetails(m1.MemberID));
+
+            //Test if you can delete the same member multiple times
+            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.DeleteMember(m1.MemberID));
 
             //Test if you can delete all members
             Admin.DeleteMembers();

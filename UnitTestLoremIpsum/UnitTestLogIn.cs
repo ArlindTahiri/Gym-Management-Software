@@ -76,6 +76,9 @@ namespace UnitTestLoremIpsum
             Admin.DeleteLogIn(l1.LogInName);
             Assert.IsNull(Query.GetLogInDetails(l1.LogInName));
 
+            //Test if you can delete the same LogIn multiple times
+            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.DeleteLogIn(l1.LogInName));
+
             //Test if you can delete all of the rest LogIns
             Admin.DeleteLogIns();
             Assert.IsNull(Query.GetLogInDetails(l3.LogInName));

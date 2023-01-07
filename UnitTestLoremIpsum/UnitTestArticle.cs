@@ -93,6 +93,9 @@ namespace UnitTestLoremIpsum
             Admin.DeleteArticle(a1.ArticleID);
             Assert.IsNull(Query.GetArticleDetails(a1.ArticleID));
 
+            //Test if you can delete the same article multiple times
+            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.DeleteArticle(a1.ArticleID));
+
             //Test if you can delete all of the rest articles
             Admin.DeleteArticles();
             Assert.IsNull(Query.GetArticleDetails(a3.ArticleID));
