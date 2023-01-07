@@ -28,19 +28,16 @@ namespace loremipsum.Gym.Impl
 
         public void DeleteMember(int memberID)
         {
-            if (ListAllOrdersFromMember(memberID) == null)
+            
+            if (ListAllOrdersFromMember(memberID) == null || ListAllOrdersFromMember(memberID).Count == 0)
             {
                 persistence.DeleteMember(memberID);//only delete member if the member has 0 orders
-            }
-            if(ListAllOrdersFromMember(memberID).Count == 0)
-            {
-                persistence.DeleteMember(memberID);
             }
         }
 
         public void DeleteMembers()
         {   
-            if(ListOrders()==null)
+            if(ListOrders()==null || ListOrders().Count == 0)
             {
                 persistence.DeleteMembers();//only delete if there are no orders
             }
@@ -56,11 +53,10 @@ namespace loremipsum.Gym.Impl
         {
             Contract contract = persistence.FindContract(contractID);
             Member member = persistence.FindMember(memberID);
-            if (contract != null)
+            if (member != null)
             {
                 persistence.UpdateContractFromMember(member, contract);//only update if they already exists
             }
-
         }
 
         public void UpdateMember(int memberID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
@@ -82,21 +78,26 @@ namespace loremipsum.Gym.Impl
 
         public void DeleteContract(int contractID)
         {
+            bool temp = true;
             IList<Member> result = persistence.FindMembers();
             foreach(Member c in result)
             {
                 if(c.ContractID == contractID)
                 {
-                    break;//if some member still has the contract dont delete the contract!
+                    temp = false;//if some member still has the contract dont delete the contract!
                 }
             }
-            persistence.DeleteContract(contractID);
+            if(temp == true)
+            {
+                persistence.DeleteContract(contractID);
+            }
+            
         }
 
         public void DeleteContracts()
         {
             IList<Member> result = persistence.FindMembers();
-            if(result == null)
+            if(result == null || result.Count == 0)
             {
                 persistence.DeleteContracts();//only delete contracts if there are no members because members can only exists with contract
             }
@@ -161,21 +162,25 @@ namespace loremipsum.Gym.Impl
 
         public void DeleteArticle(int articleID)
         {
+            bool temp = true;
             IList<Order> result = persistence.FindOrders();
             foreach (Order c in result)
             {
                 if (c.ArticleID == articleID)
                 {
-                    break;//if some article still is in at least one order!
+                    temp = false;//if some article still is in at least one order!
                 }
             }
-            persistence.DeleteArticle(articleID);
+            if(temp == true)
+            {
+                persistence.DeleteArticle(articleID);
+            }
         }
 
         public void DeleteArticles()
         {
             IList<Order> result = persistence.FindOrders();
-            if (result == null)
+            if (result == null || result.Count == 0)
             {
                 persistence.DeleteArticles();//only delete all articles if there are no orders because orders can only exists with article
             }
@@ -204,7 +209,7 @@ namespace loremipsum.Gym.Impl
             //order still exists with the orderID, but never was saved
             Article a1 = persistence.FindArticle(articleID);
             Member m1 = persistence.FindMember(memberID);
-            if (a1 != null & m1 != null)
+            if (a1 != null && m1 != null)
             {
                 if(a1.ActualStock>amount)
                 {
@@ -215,30 +220,13 @@ namespace loremipsum.Gym.Impl
             else { return null;}
         }
 
-        public void DeleteOrder(int orderID)//mistake order--> money back to member
+        public void DeleteOrder(int orderID)//return of articles --> mistake order --> article.actualamount increases
         {
-            Order order = persistence.FindOrder(orderID);
-            Article originalArticle = persistence.FindArticle(order.ArticleID);
-            Member member = persistence.FindMember(order.MemberID);
-            if (originalArticle != null & order != null & member != null)//can only be deleted if article still exists and member still exists
-            {
-                persistence.DeleteOrder(orderID);
-            }
-
+            persistence.DeleteOrder(orderID);
         }
 
-        public void DeleteOrders()//this delete just deletes all orders to have a cleaner database --> no mistake --> no money back for members
+        public void DeleteOrders()//this just deletes all orders after checkout --> no mistake --> article.acutalamount stays same, but member.currentbill goes back to 0
         {
-            /* if the articles need to be returned then:
-            IList<Order> orders = persistence.FindOrders();
-            IList<Article> articles = persistence.FindArticles();
-
-              
-            if(orders.Select(i => i.ArticleID).Intersect(articles.Select(b => b.ArticleID)) == null)
-            {
-                persistence.DeleteOrders();// check if all the articles of the orders still exist in articles table and only then delete
-            }
-            */
             persistence.DeleteOrders();
         }
 
@@ -262,39 +250,27 @@ namespace loremipsum.Gym.Impl
                         result.Add(order);
                     }
                 }
-                //retun all orders of member
+                //retun all orders of member can be none or many orders
                 return result;
             }
             //no member exists
             return null;
         }
 
-        public void UpdateMemberFromOrder(int orderID, int memberID)
+        public void UpdateOrder(int orderID, int memberID, int articleID, int amount)
         {
             Order order = persistence.FindOrder(orderID);
             Member member = persistence.FindMember(memberID);
+            Article article = persistence.FindArticle(articleID);
 
-            if (order != null & member != null) 
-                persistence.UpdateMemberFromOrder(order, member);
-        }
-
-        public void UpdateArticleToOrder(int orderID, int articleID, int amount)
-        {
-            Order order = persistence.FindOrder(orderID);
-            Article newArticle = persistence.FindArticle(articleID);
-            Article originalArticle = persistence.FindArticle(order.ArticleID);//if orginal article doesnt exists anymore dont go on.
-            //no need for comparision if article new and original are the same, because it will handle it right
-            if (order != null & newArticle != null & originalArticle != null)
+            if (order != null && member != null && article != null)
             {
-                if(newArticle.ActualStock>amount)
+                if (article.ActualStock > amount)
                 {
-                    persistence.UpdateOrder(order, newArticle, amount);//only go further if article doesnt
+                    persistence.UpdateOrder(order, member, article, amount);
                 }
-                
             }
-                
         }
-
 
 
         //LogIn
@@ -319,14 +295,14 @@ namespace loremipsum.Gym.Impl
             persistence.DeleteLogIns();
         }
 
-        public void UpdateLogIn(string logInName, string newLogInName, string newlogInPassword, int rank)
+        public void UpdateLogIn(string logInName, string newLogInName, string newLogInPassword, int rank)
         {
             LogIn logIn = persistence.FindLogIn(logInName);
             LogIn logInNew = persistence.FindLogIn(newLogInName);
 
-            if(logInNew!= null)
+            if(logIn != null && logInNew != null)
             {
-                persistence.UpdateLogIn(logIn, newLogInName, newlogInPassword, rank);
+                persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
             }
             
         }
@@ -338,19 +314,6 @@ namespace loremipsum.Gym.Impl
         # region IProductModule
 
         //Member
-        public IDictionary<Member, int> SearchMember(string searchTerm)
-        {
-            IList<Member> members = ListMembers();
-            IDictionary<Member, int> result = new SortedList<Member, int>();
-
-            foreach (Member m in members)
-            {
-                if (m.Surname.IndexOf(searchTerm) != -1)
-                    result.Add(m, m.MemberID);
-            }
-            return result;
-        }
-
         public Member GetMemberDetails(int memberID)
         {
             return persistence.FindMember(memberID);
@@ -359,19 +322,6 @@ namespace loremipsum.Gym.Impl
 
 
         //Employee
-        public IDictionary<Employee, int> SearchEmployee(string searchTerm)
-        {
-            IList<Employee> employees = ListEmployees();
-            IDictionary<Employee, int> result = new SortedList<Employee, int>();
-
-            foreach (Employee e in employees)
-            {
-                if (e.Surname.IndexOf(searchTerm) != -1)
-                    result.Add(e, e.EmployeeID);
-            }
-            return result;
-        }
-
         public Employee GetEmployeeDetails(int employeeID)
         {
             return persistence.FindEmployee(employeeID);
@@ -380,19 +330,6 @@ namespace loremipsum.Gym.Impl
 
 
         //Contract
-        public IDictionary<Contract, int> SearchContract(string searchTerm)
-        {
-            IList<Contract> contracts = ListContracts();
-            IDictionary<Contract, int> result = new SortedList<Contract, int>();
-
-            foreach (Contract c in contracts)
-            {
-                if (c.ContractType.IndexOf(searchTerm) != -1)
-                    result.Add(c, c.ContractID);
-            }
-            return result;
-        }
-
         public Contract GetContractDetails(int contractID)
         {
             return persistence.FindContract(contractID);
@@ -401,54 +338,14 @@ namespace loremipsum.Gym.Impl
 
 
         //Article
-        public IDictionary<Article, int> SearchArticle(string searchTerm)
-        {
-           IList<Article> articles = ListArticles();
-            IDictionary<Article, int> result = new SortedList<Article, int>();
-
-            foreach(Article a in articles)
-            {
-                if (a.ArticleName.IndexOf(searchTerm) != -1)
-                    result.Add(a, GetArticlesTargetStock(a.TargetStock));
-            }
-            return result;
-        }
-
         public Article GetArticleDetails(int articleID)
         {
             return persistence.FindArticle(articleID);
         }
 
-        public int GetArticlesActualStock(int articleID)
-        {
-            Article article = persistence.FindArticle(articleID);
-            if (article == null) { return 0; }
-            else { return article.ActualStock; } 
-        }
-
-        public int GetArticlesTargetStock(int articleID)
-        {
-            Article article = persistence.FindArticle(articleID);
-            if (article == null) { return 0; }
-            else { return article.TargetStock; }
-        }
-
 
 
         //Order
-        public IDictionary<Order, int> SearchOrder(string searchTerm)
-        {
-            IList<Order> orders = ListOrders();
-            IDictionary<Order, int> result = new SortedList<Order, int>();
-
-            foreach (Order o in orders)
-            {
-                if (o.Member.Surname.IndexOf(searchTerm) != -1)
-                    result.Add(o, o.MemberID);
-            }
-            return result;
-        }
-
         public Order GetOrderDetails(int orderID)
         {
            return persistence.FindOrder(orderID);

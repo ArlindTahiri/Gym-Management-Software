@@ -62,9 +62,7 @@ namespace loremipsum.Gym
 
         void DeleteOrders();
 
-        void UpdateMemberFromOrder(int orderID, int memberID);
-
-        void UpdateArticleToOrder(int orderID, int articleID, int amount);
+        void UpdateOrder(int orderID, int memberID, int articleID, int amount);
 
         IList<Order> ListAllOrdersFromMember(int memberID);
 

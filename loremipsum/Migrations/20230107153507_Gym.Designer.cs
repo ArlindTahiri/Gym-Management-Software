@@ -12,7 +12,7 @@ using loremipsum.Gym.Persistence;
 namespace loremipsum.Migrations
 {
     [DbContext(typeof(GymContext))]
-    [Migration("20230106143743_Gym")]
+    [Migration("20230107153507_Gym")]
     partial class Gym
     {
         /// <inheritdoc />
@@ -182,6 +182,9 @@ namespace loremipsum.Migrations
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TimeOfContractChange")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("MemberID");
 

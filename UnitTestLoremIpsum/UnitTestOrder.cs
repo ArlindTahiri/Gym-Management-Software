@@ -70,12 +70,8 @@ namespace UnitTestLoremIpsum
         public void UpdateOrder()
         {
             //Test if you can update an Member from an Order
-            Admin.UpdateMemberFromOrder(o1.OrderID, m2.MemberID);
-            Assert.IsTrue(o1.MemberID== m2.MemberID);
-
-            //Test if you can update an Article from an Order 
-            Admin.UpdateArticleToOrder(o1.OrderID, o1.ArticleID, 10);
-
+            Admin.UpdateOrder(o1.OrderID, m2.MemberID, o1.ArticleID, 10);
+            Assert.IsTrue(o1.MemberID == m2.MemberID);
         }
 
         [TestMethod]

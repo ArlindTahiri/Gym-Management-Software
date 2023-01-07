@@ -33,8 +33,7 @@ namespace GUI.Order_GUIs
 
         private void EditOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.UpdateArticleToOrder(orderID,Int32.Parse(ArticleIDBox.Text), Int32.Parse(AmountBox.Text));
-
+            admin.UpdateOrder(orderID, Int32.Parse(MemberIDBox.Text), Int32.Parse(ArticleIDBox.Text), Int32.Parse(AmountBox.Text));
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);
         }

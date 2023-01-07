@@ -14,5 +14,7 @@
         <Label Content="Artikel ID:" HorizontalAlignment="Center" Margin="10,115,0,0" VerticalAlignment="Top"/>
         <Label Content="Menge" HorizontalAlignment="Left" Margin="381,191,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="AmountBox" HorizontalAlignment="Left" Margin="308,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30"/>
+        <TextBox x:Name="MemberIDBox" HorizontalAlignment="Left" Margin="308,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30"/>
+        <Label Content="Member ID:" HorizontalAlignment="Left" Margin="374,41,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

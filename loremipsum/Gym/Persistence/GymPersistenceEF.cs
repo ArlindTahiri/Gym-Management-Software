@@ -25,6 +25,7 @@ namespace loremipsum.Gym.Persistence
 
                 if(c != null)
                 {
+                    member.TimeOfContractChange = DateTime.Now.Date;
                     db.Members.Add(member); //1:n relation
                     db.SaveChanges();
                     return member;
@@ -37,7 +38,6 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 Member member = db.Members
                     .Where(b => b.MemberID == memberID)
                     .Include(b => b.Orders)
@@ -55,7 +55,6 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 IList<Member> members = FindMembers();
                 db.Members.RemoveRange(members);
                 db.SaveChanges();
@@ -82,6 +81,7 @@ namespace loremipsum.Gym.Persistence
                 IEnumerable<Member> members = db.Members
                     .Include(b => b.Orders)
                     .ToList();
+
                 return (List<Member>)members;
             }
         }
@@ -95,6 +95,11 @@ namespace loremipsum.Gym.Persistence
                     .Include(b => b.Orders)
                     .FirstOrDefault();
 
+                DateTime currentDate = DateTime.Now.Date;
+                int daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
+
+                m.CurrentBill = m.CurrentBill + ((currentDate.Day / daysInMonth) * contract.Price); //add to currentbill the price for "start of month till now" days with old contract price
+                m.TimeOfContractChange = currentDate;
                 m.Contract = contract;
                 db.SaveChanges();
             }
@@ -149,7 +154,6 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 Contract contract = db.Contracts
                     .Where(b => b.ContractID == contractID)
                     .Include(b => b.Members)
@@ -167,7 +171,6 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 IList<Contract> contracts = FindContracts();
                 db.Contracts.RemoveRange(contracts);
                 db.SaveChanges();
@@ -178,11 +181,11 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 Contract contract = db.Contracts
                     .Where(b => b.ContractID == contractID)
                     .Include(b => b.Members)
                     .FirstOrDefault();
+
                 return contract;
             }
         }
@@ -194,6 +197,7 @@ namespace loremipsum.Gym.Persistence
                 IEnumerable<Contract> contracts = db.Contracts
                     .Include(b => b.Members)
                     .ToList();
+
                 return (List<Contract>)contracts;
             }
         }
@@ -240,10 +244,10 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 Employee employee = db.Employees
                     .Where(b => b.EmployeeID == employeeID)
                     .FirstOrDefault();
+
                 if (employee != null)
                 {
                     db.Employees.Remove(employee);
@@ -256,7 +260,6 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 IList<Employee> employees = FindEmployees();
                 db.Employees.RemoveRange(employees);
                 db.SaveChanges();
@@ -267,10 +270,10 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 Employee employee = db.Employees
                     .Where(b => b.EmployeeID == employeeID)
                     .FirstOrDefault();
+
                 return employee;
             }
         }
@@ -281,6 +284,7 @@ namespace loremipsum.Gym.Persistence
             {
                 IEnumerable<Employee> employees = db.Employees
                     .ToList();
+
                 return (List<Employee>)employees;
             }
         }
@@ -289,7 +293,6 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 Employee e = db.Employees
                     .Where(b => b.EmployeeID == employee.EmployeeID)
                     .FirstOrDefault();
@@ -304,7 +307,6 @@ namespace loremipsum.Gym.Persistence
                 e.Iban= iban;
                 e.Birthday = birthday;
                 
-
                 db.SaveChanges();
             }
         }
@@ -335,11 +337,11 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 Article article = db.Articles
                     .Where(b => b.ArticleID == articleID)
                     .Include(b => b.Orders)
                     .FirstOrDefault();
+
                 if (article != null)
                 {
                     db.Articles.Remove(article);
@@ -352,7 +354,6 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 IList<Article> articles = FindArticles();
                 db.Articles.RemoveRange(articles);
                 db.SaveChanges();
@@ -363,11 +364,11 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 Article article = db.Articles
                     .Where(b => b.ArticleID == articleID)
                     .Include(b => b.Orders)
                     .FirstOrDefault();
+
                 return article;
             }
         }
@@ -379,6 +380,7 @@ namespace loremipsum.Gym.Persistence
                 IEnumerable<Article> articles = db.Articles
                     .Include(b => b.Orders)
                     .ToList();
+
                 return (List<Article>)articles;
             }
         }
@@ -420,21 +422,16 @@ namespace loremipsum.Gym.Persistence
                     .Include(b => b.Orders)
                     .FirstOrDefault();
                 
+                db.Orders.Add(order);
+                a.ActualStock = a.ActualStock - amount;
+                m.CurrentBill = m.CurrentBill + amount * a.Price;
+                db.SaveChanges();
 
-                if(m!= null && a != null)
-                {
-                    db.Orders.Add(order);
-                    a.ActualStock = a.ActualStock - amount;
-                    m.CurrentBill = m.CurrentBill + amount * FindArticle(order.ArticleID).Price;
-                    db.SaveChanges();
-                    return order;
-                }
-                else { return null; }
-                
+                return order;
             }
         }
 
-        public void DeleteOrder(int orderID) //mistake order--> money back to member and articles get back
+        public void DeleteOrder(int orderID) //return of articles --> mistake order --> article.actualamount increases
         {
             using (GymContext db = new GymContext())
             {
@@ -442,31 +439,41 @@ namespace loremipsum.Gym.Persistence
                     .Where(b => b.OrderID == orderID)
                     .FirstOrDefault();
 
-                Article article = db.Articles
-                    .Where(b => b.ArticleID == order.ArticleID)
-                    .Include(b => b.Orders)
-                    .FirstOrDefault();
+                if(order != null)
+                {
+                    Article article = db.Articles
+                        .Where(b => b.ArticleID == order.ArticleID)
+                        .Include(b => b.Orders)
+                        .FirstOrDefault();
 
-                article.ActualStock = article.ActualStock - order.Amount;
+                    Member member = db.Members
+                        .Where(b => b.MemberID == order.MemberID)
+                        .Include(b => b.Orders)
+                        .FirstOrDefault();
 
-                Member member = db.Members
-                    .Where(b => b.MemberID == order.MemberID)
-                    .Include(b => b.Orders)
-                    .FirstOrDefault();
+                    article.ActualStock = article.ActualStock + order.Amount;
+                    member.CurrentBill = member.CurrentBill - order.Amount * article.Price;
 
-                member.CurrentBill = member.CurrentBill - order.Amount * FindArticle(order.ArticleID).Price;
-
-                db.Orders.Remove(order);
-                db.SaveChanges();
-                
+                    db.Orders.Remove(order);
+                    db.SaveChanges();
+                }
             }
         }
 
-        public void DeleteOrders()//this delete just deletes all orders to have a cleaner database --> no mistake --> no money back for members
+        public void DeleteOrders()//this just deletes all orders after checkout --> no mistake --> article.acutalamount stays same, but member.currentbill goes back to 0
         {
             using (GymContext db = new GymContext())
             {
                 IList<Order> orders = FindOrders();
+                foreach (Order order in orders)
+                {
+                    Member member = db.Members
+                        .Where(b => b.MemberID == order.MemberID)
+                        .Include(b => b.Orders)
+                        .FirstOrDefault();
+
+                    member.CurrentBill = member.CurrentBill - order.Amount * FindArticle(order.ArticleID).Price;
+                }
                 db.Orders.RemoveRange(orders);
                 db.SaveChanges();
             }
@@ -476,10 +483,10 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 Order order = db.Orders
                     .Where(b => b.OrderID == orderID)
                     .FirstOrDefault();
+
                 return order;
             }
         }
@@ -494,46 +501,48 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
-        public void UpdateOrder(Order order, Article newArticle, int amount)
+        public void UpdateOrder(Order order, Member passedMember, Article passedArticle, int amount)
         {
             using (GymContext db = new GymContext())
             {
-                Article originalArticle = db.Articles
+                Article oldArticle = db.Articles
                     .Where(b => b.ArticleID == order.ArticleID)
                     .Include(b => b.Orders)
                     .FirstOrDefault();
 
-                originalArticle.ActualStock = originalArticle.ActualStock + order.Amount;
+                Article newArticle = db.Articles
+                    .Where(b => b.ArticleID == passedArticle.ArticleID)
+                    .Include(b => b.Orders)
+                    .FirstOrDefault();
+
+                oldArticle.ActualStock = oldArticle.ActualStock + order.Amount;
                 newArticle.ActualStock = newArticle.ActualStock - amount;
 
-                Member member = db.Members
+
+
+                Member oldMember = db.Members
                     .Where(b => b.MemberID == order.MemberID)
                     .Include(b => b.Orders)
                     .FirstOrDefault();
 
-                member.CurrentBill = member.CurrentBill + FindArticle(order.ArticleID).Price * order.Amount - newArticle.Price * amount;
+                Member newMember = db.Members
+                    .Where(b => b.MemberID == passedMember.MemberID)
+                    .Include(b => b.Orders)
+                    .FirstOrDefault();
+
+                oldMember.CurrentBill = oldMember.CurrentBill - oldArticle.Price * order.Amount;
+                newMember.CurrentBill = newMember.CurrentBill + newArticle.Price * amount;
+
+
 
                 Order o = db.Orders
                     .Where(b => b.OrderID == order.OrderID)
                     .FirstOrDefault();
 
                 o.ArticleID=newArticle.ArticleID;
+                o.MemberID=newMember.MemberID;
                 o.Amount=amount;
 
-                db.SaveChanges();
-                
-            }
-        }
-
-        public void UpdateMemberFromOrder(Order order, Member member)
-        {
-            using (GymContext db = new GymContext())
-            {
-                Order o = db.Orders
-                    .Where(b => b.OrderID == order.OrderID)
-                    .FirstOrDefault();
-
-                o.MemberID = member.MemberID;
                 db.SaveChanges();
             }
         }
@@ -572,6 +581,7 @@ namespace loremipsum.Gym.Persistence
             {
                 IEnumerable<LogIn> logIns = db.LogIns
                     .ToList();
+
                 return (List<LogIn>)logIns;
             }
         }
@@ -580,10 +590,10 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 LogIn logIn = db.LogIns
                     .Where(b => b.LogInName == logInName)
                     .FirstOrDefault();
+
                 return logIn;
             }
         }
@@ -592,14 +602,13 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-
                 IList<LogIn> logIns = FindLogIns();
                 db.LogIns.RemoveRange(logIns);
                 db.SaveChanges();
             }
         }
 
-        public void UpdateLogIn(LogIn logIn, string newLogInName, string logInPassword, int rank)
+        public void UpdateLogIn(LogIn logIn, string newLogInName, string newLogInPassword, int rank)
         {
             using (GymContext db = new GymContext())
             {
@@ -607,13 +616,12 @@ namespace loremipsum.Gym.Persistence
                     .Where(b => b.LogInName == logIn.LogInName)
                     .FirstOrDefault();
 
-                l.LogInName=newLogInName;
-                l.LogInPassword=logInPassword;
+                l.LogInName = newLogInName;
+                l.LogInPassword = newLogInPassword;
                 l.Rank = rank;
 
                 db.SaveChanges();
             }
-
         }
 
     }

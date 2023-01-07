@@ -91,6 +91,7 @@ namespace loremipsum.Migrations
                     Iban = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CurrentBill = table.Column<int>(type: "int", nullable: false),
+                    TimeOfContractChange = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ContractID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

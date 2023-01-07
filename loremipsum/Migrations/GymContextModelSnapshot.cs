@@ -180,6 +180,9 @@ namespace loremipsum.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("TimeOfContractChange")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("MemberID");
 
                     b.HasIndex("ContractID");
