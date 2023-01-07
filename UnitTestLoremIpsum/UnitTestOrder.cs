@@ -2,22 +2,19 @@ using loremipsum.Gym.Persistence;
 using loremipsum.Gym;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using loremipsum.Gym.Entities;
-using System.Diagnostics.Contracts;
-using System.Diagnostics.Metrics;
-using Microsoft.EntityFrameworkCore.Update.Internal;
-using Contract = loremipsum.Gym.Entities.Contract;
+using System.Numerics;
 
 namespace UnitTestLoremIpsum
 {
     [TestClass]
-    public class UnitTestOrder
+    public class UnitTestOrders
     {
         private IProductAdmin Admin;
         private IProductModule Query;
-        private Contract contract1, contract2;
-        private Article article1, article2;
-        private Employee employee1, employee2;
-
+        private Order o1, o2, o3;
+        private Contract contract;
+        private Member m1, m2;
+        private Article a1, a2;
 
         [TestInitialize()]
         public void SetUp()
@@ -26,134 +23,72 @@ namespace UnitTestLoremIpsum
             GymFactory factory = new GymFactory(persistence);
             Admin = factory.GetProductAdmin();
             Query = factory.GetProductModule();
-            GenerateTestData();
+
         }
 
         public void GenerateTestData()
         {
-            contract1 = new Contract("Premium Plan", 2999);
-            contract2 = new Contract("Normal Plan", 1999);
+            contract = new Contract("Premium Plan", 2999);
 
-            article1 = new Article("Protein Shake Vanille", 499, 10, 10);
-            article2 = new Article("Energydrink", 299, 15, 15);
+            a1 = new Article("Protein Shake Vanille", 499, 10, 10);
+            a2 = new Article("Energ bar", 199, 40, 40);
 
-            employee1 = new Employee("Anton", "Zunhammer", "Lindenstraﬂe 3", 83374, "Traunwalchen", "Deutschland", 
-                    "Anton.Zunhammer@gmail.com", "DE23423423423423423423", new DateTime(1999, 1, 1));
-            employee2 = new Employee("Nina", "Niedl", "Eichenweg 3", 83301, "Traunreut", "Deutschland", 
-                    "Nina.Niedl@gmail.com", "DE11112222333344445555", new DateTime(1987, 2, 23));
-
-        }
-
-        [TestMethod]
-        public void TestOrder()
-        {
-            Admin.AddContract(contract1);
-            Admin.AddArticle(article1);
-            Member member1 = Admin.AddMember(contract1.ContractID, "Paul", "Peters", "Rosenheimer Straﬂe 32", 83059, "Kolbermoor", "Deutschland", 
+            Member m1 = Admin.AddMember(contract.ContractID, "Paul", "Peters", "Rosenheimer Straﬂe 32", 83059, "Kolbermoor", "Deutschland",
                     "paul.peters@gmail.com", "DE90500105171113716976", new DateTime(2002, 10, 01));
-            Assert.IsTrue(Query.GetContractDetails(contract1.ContractID) != null);
-            Assert.IsTrue(Query.GetArticleDetails(article1.ArticleID) != null);
-            Assert.IsTrue(Query.GetMemberDetails(member1.MemberID) != null);
+            Member m2 = Admin.AddMember(contract.ContractID, "Stephan", "Mahler", "Kurfuerstendamm 54", 85605, "Aschheim", "Deutschland",
+                "stephanmahler@dayrep.com", "DE89500105178259939697", new DateTime(1988, 11, 10));
 
-            //create Order
 
-            Order order1 = Admin.AddOrder(member1.MemberID, article1.ArticleID, 3);                          
-            Assert.IsTrue(Query.GetOrderDetails(order1.OrderID) != null);
-
-            //Edit Order
-            Admin.UpdateArticleToOrder(order1.OrderID, article2.ArticleID, 4);
-            //check if it changed
-
-            //Delete Order
-
-            if (Query.GetOrderDetails(order1.OrderID) != null)
-            {
-                Admin.DeleteOrder(order1.OrderID);
-            }
-            Assert.IsTrue(Query.GetOrderDetails(order1.OrderID) == null);           //check if amount from member is back to "normal"
         }
 
         [TestMethod]
-        public void TestContract()
+        public void CreateOrder()
         {
-            //create Contract
-            Admin.AddContract(contract2);
-            Assert.IsTrue(Query.GetContractDetails(contract2.ContractID) != null);
+            //add contract and article  to create an order
+            Admin.AddContract(contract);
+            Admin.AddArticle(a1);
+            Admin.AddArticle(a2);
 
-            //update contract
-            Admin.UpdateContract(contract2.ContractID, "VIP Plan", 3499);           //check if it isnt the same contract as bevor
+            Assert.IsTrue(Query.GetContractDetails(contract.ContractID) != null);
+            Assert.IsTrue(Query.GetArticleDetails(a1.ArticleID) != null);
+            Assert.IsTrue(Query.GetMemberDetails(m1.MemberID) != null);
 
-            //delete contract
-            if (Query.GetContractDetails(contract2.ContractID) != null);
-            {
-                Admin.DeleteContract(contract2.ContractID);                         //check if member has this contract as well...
-            }
-            Assert.IsTrue(Query.GetContractDetails(contract2.ContractID) == null);
+            //add order && test if order is in database
+            Order o1 = Admin.AddOrder(m1.MemberID, a1.ArticleID, 5);
+            Assert.IsTrue(Query.GetOrderDetails(o1.OrderID).CompareTo(o1) == 0);
+
+            //test if you can upload multiple times the same order
+            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.AddOrder(m1.MemberID, a1.ArticleID, 5));
+
+            //Add orders o2, o3
+            Order o2 = Admin.AddOrder(m2.MemberID, a2.ArticleID, 10);
+            Order o3 = Admin.AddOrder(m1.MemberID, a1.ArticleID, 15);
+
         }
 
         [TestMethod]
-        public void TestMember()
+        public void UpdateOrder()
         {
+            //Test if you can update an Member from an Order
+            Admin.UpdateMemberFromOrder(o1.OrderID, m2.MemberID);
+            Assert.IsTrue(o1.MemberID== m2.MemberID);
 
-            //create Member
-            Member member2 = Admin.AddMember(contract2.ContractID, "Lisa", "Berger", "Bergen 23", 83234, "Bergen", "Deutschland",
-                    "lisa.berger@gmail.com", "DE01234567890123456789", new DateTime(2000, 4, 20));
-            Assert.IsTrue(Query.GetMemberDetails(member2.MemberID) != null);
+            //Test if you can update an Article from an Order 
+            Admin.UpdateArticleToOrder(o1.OrderID, o1.ArticleID, 10);
 
-            //update Memberdata
-            Admin.UpdateMember(member2.MemberID, "Paul", "Peters", "Rosenheimer Straﬂe 32", 83059, "Kolbermoor", "Deutschland",
-                    "paul.peters@gmail.com", "DE90500105171113716976", new DateTime(2002, 10, 01));
-            //check if it really changed
-
-            //update contract from member
-            Admin.UpdateContractFromMember(member2.MemberID, contract1.ContractID);
-            //check if contract changed from member
-
-            //delete member
-            if(Query.GetMemberDetails(member2.MemberID) != null)                    //check if money from member is 0
-            {
-                Admin.DeleteMember(member2.MemberID);
-            }
-            Assert.IsTrue(Query.GetMemberDetails(contract1.ContractID) == null);
         }
 
         [TestMethod]
-        public void TestArticle()
+        public void DeleteOrder()
         {
-            //add article
-            Admin.AddArticle(article2);
-            Assert.IsTrue(Query.GetArticleDetails(article2.ArticleID) != null);
+            //Test if you can delete o1
+            Admin.DeleteOrder(o1.OrderID);
+            Assert.IsNull(Query.GetOrderDetails(o1.OrderID));
 
-            //update article
-            Admin.UpdateArticle(article2.ArticleID, "Energydrink", 399, 20, 20);
-            //check if it changed
-
-            //delete article
-            if(Query.GetArticleDetails(article1.ArticleID) != null)                 //check if there are articles left
-            {
-                Admin.DeleteArticle(article1.ArticleID);
-            }
-            Assert.IsTrue(Query.GetArticleDetails(article1.ArticleID) == null);
-        }
-
-        [TestMethod]
-        public void DeleteEmployee()
-        {
-            //add employee
-            Admin.AddEmployee(employee2);
-            Assert.IsTrue(Query.GetEmployeeDetails(employee2.EmployeeID) != null);
-
-            //edit employee
-            Admin.UpdateEmployee(employee2.EmployeeID, "Nina", "Niedl", "Eichenweg 7", 83301, "Traunreut", "Deutschland",
-                    "Nina.Niedl@gmail.com", "DE1111111111111111111111111", new DateTime(1987, 2, 23));
-            //check if it changed (Adress && IBAN)
-
-            //delete employee
-            if(Query.GetEmployeeDetails(employee1.EmployeeID) != null)
-            {
-                Admin.DeleteEmployee(employee1.EmployeeID);
-            }
-            Assert.IsTrue(Query.GetEmployeeDetails(employee1.EmployeeID) == null);
+            //Test if you can delete all orders
+            Admin.DeleteOrders();
+            Assert.IsNull(Query.GetOrderDetails(o2.OrderID));
+            Assert.IsNull(Query.GetOrderDetails(o3.OrderID));
         }
     }
 }
