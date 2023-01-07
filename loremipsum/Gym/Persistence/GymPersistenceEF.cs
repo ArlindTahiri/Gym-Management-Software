@@ -94,12 +94,8 @@ namespace loremipsum.Gym.Persistence
                     .Where(b => b.MemberID == member.MemberID)
                     .Include(b => b.Orders)
                     .FirstOrDefault();
-
-                DateTime currentDate = DateTime.Now.Date;
-                int daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
-
-                m.CurrentBill = m.CurrentBill + ((currentDate.Day / daysInMonth) * contract.Price); //add to currentbill the price for "start of month till now" days with old contract price
-                m.TimeOfContractChange = currentDate;
+                
+                m.TimeOfContractChange = DateTime.Now.Date;
                 m.Contract = contract;
                 db.SaveChanges();
             }
@@ -465,14 +461,15 @@ namespace loremipsum.Gym.Persistence
             using (GymContext db = new GymContext())
             {
                 IList<Order> orders = FindOrders();
-                foreach (Order order in orders)
+                IList<Member> members = FindMembers();
+                foreach (Member member in members)
                 {
-                    Member member = db.Members
-                        .Where(b => b.MemberID == order.MemberID)
+                    Member memberEF = db.Members
+                        .Where(b => b.MemberID == member.MemberID)
                         .Include(b => b.Orders)
                         .FirstOrDefault();
 
-                    member.CurrentBill = member.CurrentBill - order.Amount * FindArticle(order.ArticleID).Price;
+                    member.CurrentBill = 0;
                 }
                 db.Orders.RemoveRange(orders);
                 db.SaveChanges();

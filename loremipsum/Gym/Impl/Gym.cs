@@ -28,9 +28,10 @@ namespace loremipsum.Gym.Impl
 
         public void DeleteMember(int memberID)
         {
-            
-            if (ListAllOrdersFromMember(memberID) == null || ListAllOrdersFromMember(memberID).Count == 0)
+            Member member= persistence.FindMember(memberID);
+            if (ListAllOrdersFromMember(memberID) == null && member != null  || ListAllOrdersFromMember(memberID).Count == 0 && member != null)
             {
+                CheckoutMemberForChangingContract(member);
                 persistence.DeleteMember(memberID);//only delete member if the member has 0 orders
             }
         }
@@ -55,6 +56,7 @@ namespace loremipsum.Gym.Impl
             Member member = persistence.FindMember(memberID);
             if (member != null)
             {
+                CheckoutMemberForChangingContract(member);
                 persistence.UpdateContractFromMember(member, contract);//only update if they already exists
             }
         }
@@ -305,6 +307,75 @@ namespace loremipsum.Gym.Impl
                 persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
             }
             
+        }
+
+
+        //Checkout
+        public void CheckoutMemberForChangingContract(Member member)
+        {
+            Contract contract = persistence.FindContract(member.ContractID);
+
+            DateTime currentDate = DateTime.Now.Date;
+            int daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
+
+            int price = (int) ((double)currentDate.Day / daysInMonth * contract.Price);
+            string FileUrl = "MemberBills.csv";
+            if (!File.Exists(FileUrl))
+            {
+                using (StreamWriter sw = File.CreateText(FileUrl))
+                {
+                    sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
+                    sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.AppendText(FileUrl))
+                {
+                    sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                }
+            }
+        }
+
+        public void CheckOutMembers()
+        {
+            IList<Member> members = persistence.FindMembers();
+            IList<Order> orders = persistence.FindOrders();
+            DateTime currentDate = DateTime.Now.Date;
+            int daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
+            string FileUrl = "MemberBills.csv";
+            //now write all contracts in csv
+            foreach (Member member in members)
+            {
+                if (!File.Exists(FileUrl))
+                {
+                    using (StreamWriter sw = File.CreateText(FileUrl))
+                    {
+                        sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
+                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + persistence.FindContract(member.ContractID).Price + "," + "Vertrag" + "," + member.Iban + ",");
+                    }
+                }
+                else
+                {
+                    using (StreamWriter sw = File.AppendText(FileUrl))
+                    {
+                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + persistence.FindContract(member.ContractID).Price + "," + "Vertrag" + "," + member.Iban + ",");
+                    }
+                }
+
+                //done with writing all of the contracts in csv
+            }
+            //now write all orders in csv
+            foreach (Order order in orders)
+            {
+                using (StreamWriter sw = File.AppendText(FileUrl))
+                {
+                    sw.WriteLine(currentDate.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + persistence.FindMember(order.MemberID).Iban + "," + order.Amount);
+                }
+            }
+            //done with writing all of the orders in csv
+            //now set CurrentBill to right one --> 0 for every member
+            DeleteOrders();
         }
 
 

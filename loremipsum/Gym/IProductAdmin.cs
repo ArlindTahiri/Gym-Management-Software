@@ -77,5 +77,11 @@ namespace loremipsum.Gym
         void DeleteLogIns();
 
         void UpdateLogIn(string logInName, string newLogInName, string newlogInPassword, int rank);
+
+
+        //Checkout
+        void CheckoutMemberForChangingContract(Member member);
+
+        void CheckOutMembers();
     }
 }
