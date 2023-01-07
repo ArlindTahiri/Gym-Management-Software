@@ -23,7 +23,7 @@ namespace UnitTestLoremIpsum
             GymFactory factory = new GymFactory(persistence);
             Admin = factory.GetProductAdmin();
             Query = factory.GetProductModule();
-
+            GenerateTestData();
         }
 
         public void GenerateTestData()
@@ -33,9 +33,9 @@ namespace UnitTestLoremIpsum
             a1 = new Article("Protein Shake Vanille", 499, 10, 10);
             a2 = new Article("Energ bar", 199, 40, 40);
 
-            Member m1 = Admin.AddMember(contract.ContractID, "Paul", "Peters", "Rosenheimer Straﬂe 32", 83059, "Kolbermoor", "Deutschland",
+            m1 = Admin.AddMember(contract.ContractID, "Paul", "Peters", "Rosenheimer Straﬂe 32", 83059, "Kolbermoor", "Deutschland",
                     "paul.peters@gmail.com", "DE90500105171113716976", new DateTime(2002, 10, 01));
-            Member m2 = Admin.AddMember(contract.ContractID, "Stephan", "Mahler", "Kurfuerstendamm 54", 85605, "Aschheim", "Deutschland",
+            m2 = Admin.AddMember(contract.ContractID, "Stephan", "Mahler", "Kurfuerstendamm 54", 85605, "Aschheim", "Deutschland",
                 "stephanmahler@dayrep.com", "DE89500105178259939697", new DateTime(1988, 11, 10));
 
 

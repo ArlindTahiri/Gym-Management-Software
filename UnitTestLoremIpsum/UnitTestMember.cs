@@ -40,7 +40,7 @@ namespace UnitTestLoremIpsum
         }
 
         [TestMethod]
-        public void createMember()
+        public void CreateMember()
         {
             //Add the member m1 & test if m1 is in the database
             Member m1 = Admin.AddMember(c1.ContractID, "Jennifer", "Meier", "Rhinstrasse 96", 80711, "München", "Deutschland",
@@ -60,7 +60,7 @@ namespace UnitTestLoremIpsum
         }
 
         [TestMethod]
-        public void updateMember()
+        public void UpdateMember()
         {
             //Test if you can update Member properties
             Admin.UpdateMember(m1.MemberID, "Stephan", "Mahler", "Kurfuerstendamm 54", 85605, "Aschheim", "Deutschland",
@@ -75,7 +75,7 @@ namespace UnitTestLoremIpsum
             Assert.IsTrue(m1.ContractID.Equals(c2.ContractID));
         }
 
-        public void deleteMember()
+        public void DeleteMember()
         {
             //Test if you can delete m1
             Admin.DeleteMember(m1.MemberID);
