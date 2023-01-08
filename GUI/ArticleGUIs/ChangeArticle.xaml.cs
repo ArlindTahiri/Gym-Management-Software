@@ -2,6 +2,7 @@
 using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,17 +44,49 @@ namespace GUI.ArticleGUIs
             log.Info("Opened ChangeArticle Page");
         }
 
-        private void ChangeArticle1_Click(object sender, RoutedEventArgs e)
+        private void ChangeArticleButton_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Updated the old article: " + query.GetArticleDetails(articleID).ToString() +
-                " to: " + articleID + " " + Name.Text + " " + Price.Text+"... and returned to GymHomepage");
+            if (!Name.Text.IsNullOrEmpty() && !Price.Text.IsNullOrEmpty() && !TargetStock.Text.IsNullOrEmpty() && !ActualStock.Text.IsNullOrEmpty())
+            {
+                log.Info("Updated the old article: " + query.GetArticleDetails(articleID).ToString() +
+                    " to: " + articleID + " " + Name.Text + " " + Price.Text + "... and returned to GymHomepage");
 
-            admin.UpdateArticle(articleID, Name.Text, Int32.Parse(Price.Text), Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
+                admin.UpdateArticle(articleID, Name.Text, Int32.Parse(Price.Text), Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
 
-            GymHomepage home = new GymHomepage();
-            NavigationService.Navigate(home);
+                GymHomepage home = new GymHomepage();
+                NavigationService.Navigate(home);
+            }
+            else
+            {
+                WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
+            }
 
-            
+
+        }
+
+        private void Price_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
+
+        private void TargetStock_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
+
+        private void ActualStock_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
+
+        private void CheckIsNumeric(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

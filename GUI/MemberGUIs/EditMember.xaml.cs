@@ -36,9 +36,9 @@ namespace GUI.MemberGUIs
 
         private void EditMemberButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!(NameE.Text.IsNullOrEmpty() && SurnameE.Text.IsNullOrEmpty() && AdressE.Text.IsNullOrEmpty()
-                && PostalCodeE.Text.IsNullOrEmpty() && CityE.Text.IsNullOrEmpty() && CountryE.Text.IsNullOrEmpty() && ContactAdressE.Text.IsNullOrEmpty()
-                && ContoE.Text.IsNullOrEmpty() && BirthdayE.Text.IsNullOrEmpty()))
+            if (!NameE.Text.IsNullOrEmpty() && !SurnameE.Text.IsNullOrEmpty() && !AdressE.Text.IsNullOrEmpty()
+                && !PostalCodeE.Text.IsNullOrEmpty() && !CityE.Text.IsNullOrEmpty() && !CountryE.Text.IsNullOrEmpty() && !ContactAdressE.Text.IsNullOrEmpty()
+                && !ContoE.Text.IsNullOrEmpty() && !BirthdayE.Text.IsNullOrEmpty())
             {
 
                 admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,

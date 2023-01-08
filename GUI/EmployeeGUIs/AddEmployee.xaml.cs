@@ -44,8 +44,8 @@ namespace GUI.EmployeeGUIs
 
         private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!ForeName.Text.IsNullOrEmpty() && Surname.Text.IsNullOrEmpty() && Adress.Text.IsNullOrEmpty() && PostalCode.Text.IsNullOrEmpty()
-                && City.Text.IsNullOrEmpty() && Country.Text.IsNullOrEmpty() && Email.Text.IsNullOrEmpty() && Iban.Text.IsNullOrEmpty() && Birthday.Text.IsNullOrEmpty())
+            if (!ForeName.Text.IsNullOrEmpty() && !Surname.Text.IsNullOrEmpty() && !Adress.Text.IsNullOrEmpty() && !PostalCode.Text.IsNullOrEmpty()
+                && !City.Text.IsNullOrEmpty() && !Country.Text.IsNullOrEmpty() && !Email.Text.IsNullOrEmpty() && !Iban.Text.IsNullOrEmpty() && !Birthday.Text.IsNullOrEmpty())
             {
 
                 Employee employee = new(ForeName.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text, Country.Text, Email.Text, Iban.Text, DateTime.Parse(Birthday.Text));

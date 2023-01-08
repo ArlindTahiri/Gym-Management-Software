@@ -51,8 +51,8 @@ namespace GUI.EmployeeGUIs
 
         private void EditEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!ForeName.Text.IsNullOrEmpty() && Surname.Text.IsNullOrEmpty() && Adress.Text.IsNullOrEmpty() && PostalCode.Text.IsNullOrEmpty()
-               && City.Text.IsNullOrEmpty() && Country.Text.IsNullOrEmpty() && Email.Text.IsNullOrEmpty() && Iban.Text.IsNullOrEmpty() && Birthday.Text.IsNullOrEmpty())
+            if (!ForeName.Text.IsNullOrEmpty() && !Surname.Text.IsNullOrEmpty() && !Adress.Text.IsNullOrEmpty() && !PostalCode.Text.IsNullOrEmpty()
+               && !City.Text.IsNullOrEmpty() && !Country.Text.IsNullOrEmpty() && !Email.Text.IsNullOrEmpty() && !Iban.Text.IsNullOrEmpty() && !Birthday.Text.IsNullOrEmpty())
             {
                 log.Info("Updated the old employee: " + query.GetEmployeeDetails(employeeID).ToString() +
                " to: " + employeeID + " " + ForeName.Text + " " + Surname.Text +" "+Adress.Text+" "+PostalCode.Text+" "+City.Text+

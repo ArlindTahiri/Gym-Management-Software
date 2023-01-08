@@ -44,7 +44,7 @@ namespace GUI.ContractGUIs
 
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!(ContractType.Text.IsNullOrEmpty() && Price.Text.IsNullOrEmpty()))
+            if (!ContractType.Text.IsNullOrEmpty() && !Price.Text.IsNullOrEmpty())
             {
                 Contract newContract = new Contract(ContractType.Text, Int32.Parse(Price.Text));
                 admin.AddContract(newContract);

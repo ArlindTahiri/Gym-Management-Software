@@ -5,19 +5,20 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.ArticleGUIs"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="500"
+      d:DesignHeight="450" d:DesignWidth="345"
       Title="ChangeArticle">
 
     <Grid>
-        <Label Content="Name" HorizontalAlignment="Left" Margin="18,286,0,0" VerticalAlignment="Top"/>
-        <Label Content="Preis" HorizontalAlignment="Left" Margin="146,286,0,0" VerticalAlignment="Top"/>
-        <Label Content="Soll-Bestand" HorizontalAlignment="Left" Margin="250,286,0,0" VerticalAlignment="Top"/>
-        <Label Content="Ist-Bestand" HorizontalAlignment="Left" Margin="400,286,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Name" HorizontalAlignment="Left" Margin="10,346,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89" Height="94"/>
-        <TextBox x:Name="Price" HorizontalAlignment="Left" Margin="119,346,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89" Height="94"/>
-        <TextBox x:Name="TargetStock" HorizontalAlignment="Left" Margin="250,346,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89" Height="94"/>
-        <TextBox x:Name="ActualStock" HorizontalAlignment="Left" Margin="390,346,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="89" Height="94"/>
-        <Button x:Name="ChangeArticle1" Content="Artikel ändern" HorizontalAlignment="Left" Margin="109,185,0,0" VerticalAlignment="Top" Height="67" Width="250" Click="ChangeArticle1_Click" />
+        <Label Content="Name" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="0,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30"/>
+        <TextBox x:Name="Price" HorizontalAlignment="Center" Margin="0,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="Price_PreviewTextInput"/>
+        <TextBox x:Name="TargetStock" HorizontalAlignment="Center" Margin="0,197,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="TargetStock_PreviewTextInput"/>
+        <Button x:Name="ChangeArticleButton" Content="Artikel bearbeiten" HorizontalAlignment="Center" Margin="0,351,0,0" VerticalAlignment="Top" Height="67" Width="250" Click="ChangeArticleButton_Click"/>
+        <TextBox x:Name="ActualStock" HorizontalAlignment="Center" Margin="0,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="ActualStock_PreviewTextInput"/>
+        <Label Content="Preis" HorizontalAlignment="Center" Margin="0,95,0,0" VerticalAlignment="Top"/>
+        <Label Content="Soll-Bestand" HorizontalAlignment="Center" Margin="0,166,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ist-Bestand" HorizontalAlignment="Center" Margin="0,231,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="325" HorizontalContentAlignment="Center" Foreground="Red"/>
 
     </Grid>
 </Page>

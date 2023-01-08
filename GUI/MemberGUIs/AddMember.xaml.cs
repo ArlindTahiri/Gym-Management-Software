@@ -39,9 +39,9 @@ namespace GUI.MemberGUIs
          private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!(ContractIDM.Text.IsNullOrEmpty() && NameM.Text.IsNullOrEmpty() && SurnameM.Text.IsNullOrEmpty() && AdressM.Text.IsNullOrEmpty()
-                && PostalCodeM.Text.IsNullOrEmpty() && CityM.Text.IsNullOrEmpty() && CountryM.Text.IsNullOrEmpty() && ContractIDM.Text.IsNullOrEmpty()
-                && ContoM.Text.IsNullOrEmpty() && BirthdayM.Text.IsNullOrEmpty()))
+            if (!ContractIDM.Text.IsNullOrEmpty() && !NameM.Text.IsNullOrEmpty() && !SurnameM.Text.IsNullOrEmpty() && !AdressM.Text.IsNullOrEmpty()
+                && !PostalCodeM.Text.IsNullOrEmpty() && !CityM.Text.IsNullOrEmpty() && !CountryM.Text.IsNullOrEmpty() && !ContractIDM.Text.IsNullOrEmpty()
+                && !ContoM.Text.IsNullOrEmpty() && !BirthdayM.Text.IsNullOrEmpty())
             {
 
                 admin.AddMember(Int32.Parse(ContractIDM.Text), NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,

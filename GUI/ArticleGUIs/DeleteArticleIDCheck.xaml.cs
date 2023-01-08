@@ -3,6 +3,7 @@ using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,6 +31,7 @@ namespace GUI.ArticleGUIs
     {
         private IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public DeleteArticleIDCheck()
         {
             InitializeComponent();
@@ -45,18 +47,44 @@ namespace GUI.ArticleGUIs
         {
             if (e.Key == Key.Enter)
             {
+                if (!IDCheck.Text.IsNullOrEmpty()) { 
                 string content = IDCheck.Text;
 
-                if (query.GetArticleDetails(Int32.Parse(content))!=null)
-                {
-                    log.Info("Inserted a valid articleID. The ID was: " + content);
-                   DeleteArticle deleteArticle = new DeleteArticle(Int32.Parse(content));
-                    NavigationService.Navigate(deleteArticle);
+                    if (query.GetArticleDetails(Int32.Parse(content)) != null)
+                    {
+                        log.Info("Inserted a valid articleID. The ID was: " + content);
+                        DeleteArticle deleteArticle = new DeleteArticle(Int32.Parse(content));
+                        NavigationService.Navigate(deleteArticle);
+                    }else
+                    {
+                        log.Error("Inserted an invalid articleID. The ID was: " + content);
+                        WarningText.Text = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
+                    }
                 } else
                 {
-                    log.Error("Inserted an invalid articleID. The ID was: "+ content);
+                    log.Error("Inserted an invalid articleID. The ID was: "+ IDCheck.Text);
                     WarningText.Text = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
                 }
+            }
+        }
+
+        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            ArticleInventory.ItemsSource = admin.ListArticles();
+        }
+
+        private void IDCheck_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
+
+        private void CheckIsNumeric(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
+            {
+                e.Handled = true;
             }
         }
     }
