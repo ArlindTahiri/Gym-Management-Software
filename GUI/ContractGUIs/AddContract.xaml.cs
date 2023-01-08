@@ -3,6 +3,7 @@ using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,14 +44,35 @@ namespace GUI.ContractGUIs
 
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!(ContractType.Text.IsNullOrEmpty() && Price.Text.IsNullOrEmpty()))
+            {
+                Contract newContract = new Contract(ContractType.Text, Int32.Parse(Price.Text));
+                admin.AddContract(newContract);
 
-            Contract newContract = new Contract(ContractType.Text, Int32.Parse(Price.Text));
-            admin.AddContract(newContract);
+                log.Info("Created the new contract: " + newContract.ToString() + "... and returned to GymHomepage");
 
-            log.Info("Created the new contract: "+ newContract.ToString()+"... and returned to GymHomepage");
+                GymHomepage gymHomepage = new GymHomepage();
+                NavigationService.Navigate(gymHomepage);
+            }
+            else
+            {
+                WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
+            }
+        }
 
-            GymHomepage gymHomepage = new GymHomepage();
-            NavigationService.Navigate(gymHomepage);
+        private void Price_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
+
+        private void CheckIsNumeric(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

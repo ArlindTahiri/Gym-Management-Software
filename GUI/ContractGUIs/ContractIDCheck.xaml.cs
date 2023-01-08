@@ -2,6 +2,7 @@
 using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,6 +30,7 @@ namespace GUI.ContractGUIs
 
         IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public ContractIDCheck()
         {
             InitializeComponent();
@@ -44,16 +46,42 @@ namespace GUI.ContractGUIs
         {
             if(e.Key == Key.Enter)
             {
-               if(query.GetContractDetails(Int32.Parse(IDCheck.Text))!=null)
-                {
-                    log.Info("Inserted a valid contractID. The ID was: "+IDCheck.Text);
-                    DeleteContract deleteContract = new DeleteContract(int.Parse(IDCheck.Text));   
-                    NavigationService.Navigate(deleteContract);
+                if (!IDCheck.Text.IsNullOrEmpty()) {
+                    if (query.GetContractDetails(Int32.Parse(IDCheck.Text)) != null)
+                    {
+                        log.Info("Inserted a valid contractID. The ID was: " + IDCheck.Text);
+                        DeleteContract deleteContract = new DeleteContract(int.Parse(IDCheck.Text));
+                        NavigationService.Navigate(deleteContract);
+                    } else
+                    {
+                        log.Error("Inserted an invalid contractID. The ID was: " + IDCheck.Text);
+                        WarningText.Text = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
+                    }
                 } else
                 {
                     log.Error("Inserted an invalid contractID. The ID was: " + IDCheck.Text);
                     WarningText.Text = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
                 }
+            }
+        }
+
+        private void ContractData_Loaded(object sender, RoutedEventArgs e)
+        {
+            ContractData.ItemsSource = admin.ListContracts();
+        }
+
+        private void IDCheck_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
+
+        private void CheckIsNumeric(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
+            {
+                e.Handled = true;
             }
         }
     }
