@@ -12,9 +12,9 @@ namespace loremipsum.Gym.Impl
             this.persistence = persistence;
         }
 
-        # region IProductAdmin
+        #region IProductAdmin
 
-        //Member
+        #region Member
         public Member AddMember(int contractID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             Contract contract = persistence.FindContract(contractID);
@@ -28,17 +28,25 @@ namespace loremipsum.Gym.Impl
 
         public void DeleteMember(int memberID)
         {
-            Member member= persistence.FindMember(memberID);
-            if (ListAllOrdersFromMember(memberID) == null && member != null  || ListAllOrdersFromMember(memberID).Count == 0 && member != null)
+            Member member = persistence.FindMember(memberID);
+            if(member != null)
             {
-                CheckoutMemberForChangingContract(member);
-                persistence.DeleteMember(memberID);//only delete member if the member has 0 orders
+                CheckoutMemberForOrders(member);
+                if (ListAllOrdersFromMember(memberID) == null || ListAllOrdersFromMember(memberID).Count == 0)
+                {
+                    if (CheckoutMemberForChangingContract(member) == true)
+                    {
+                        persistence.DeleteMember(memberID);//only delete member if the member has 0 orders
+                    }
+                }
             }
+            
         }
 
         public void DeleteMembers()
-        {   
-            if(ListOrders()==null || ListOrders().Count == 0)
+        {
+            CheckOutMembers();
+            if(ListOrders() == null || ListOrders().Count == 0)
             {
                 persistence.DeleteMembers();//only delete if there are no orders
             }
@@ -56,8 +64,10 @@ namespace loremipsum.Gym.Impl
             Member member = persistence.FindMember(memberID);
             if (member != null)
             {
-                CheckoutMemberForChangingContract(member);
-                persistence.UpdateContractFromMember(member, contract);//only update if they already exists
+                if (CheckoutMemberForChangingContract(member) == true)
+                {
+                    persistence.UpdateContractFromMember(member, contract);//only update if they already exists
+                }
             }
         }
 
@@ -69,10 +79,11 @@ namespace loremipsum.Gym.Impl
                 persistence.UpdateMember(member, forename, surname, street, postcalCode, city, country, eMail, iban, birthday);
             }
         }
+        #endregion
 
 
 
-        //Contract
+        #region Contract
         public void AddContract(Contract contract)
         {
             persistence.CreateContract(contract);
@@ -120,10 +131,11 @@ namespace loremipsum.Gym.Impl
                 persistence.UpdateContract(contract, contractType, price);
             }
         }
+        #endregion
 
 
 
-        //Employee
+        #region Employee
         public void AddEmployee(Employee employee)
         {
             persistence.CreateEmployee(employee);
@@ -153,10 +165,11 @@ namespace loremipsum.Gym.Impl
                 persistence.UpdateEmployee(employee, forename, surname, street, postcalCode, city, country, eMail, iban, birthday);
             }
         }
+        #endregion
 
 
 
-        //Article
+        #region Article
         public void AddArticle(Article article)
         {
            persistence.CreateArticle(article);
@@ -202,10 +215,11 @@ namespace loremipsum.Gym.Impl
                 persistence.UpdateArticle(article, articleName, price, actualStock, targetStock);
             }
         }
+        #endregion
 
 
 
-        //Order
+        #region Order
         public Order AddOrder(int memberID, int articleID, int amount)
         {
             //order still exists with the orderID, but never was saved
@@ -273,9 +287,11 @@ namespace loremipsum.Gym.Impl
                 }
             }
         }
+        #endregion
 
 
-        //LogIn
+
+        #region LogIn
         public void AddLogIn(LogIn logIn)
         {
             persistence.CreateLogIn(logIn);
@@ -308,33 +324,43 @@ namespace loremipsum.Gym.Impl
             }
             
         }
+        #endregion
 
 
-        //Checkout
-        public void CheckoutMemberForChangingContract(Member member)
+
+        #region Checkout
+        public bool CheckoutMemberForChangingContract(Member member)
         {
             Contract contract = persistence.FindContract(member.ContractID);
 
             DateTime currentDate = DateTime.Now.Date;
             int daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
 
-            int price = (int) ((double)currentDate.Day / daysInMonth * contract.Price);
-            string FileUrl = "MemberBills.csv";
-            if (!File.Exists(FileUrl))
+            if(currentDate.Month == member.TimeOfContractChange.Month)//only let member change their Contract when we already did checkout.(check if TimeOfContractChange has the same month as todays month.)
             {
-                using (StreamWriter sw = File.CreateText(FileUrl))
+                int price = (int)((double)currentDate.Day / daysInMonth * contract.Price);
+                string FileUrl = "MemberBills.csv";
+                if (!File.Exists(FileUrl))
                 {
-                    sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
-                    sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                    using (StreamWriter sw = File.CreateText(FileUrl))
+                    {
+                        sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
+                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                    }
                 }
-            }
-            else
-            {
-                using (StreamWriter sw = File.AppendText(FileUrl))
+                else
                 {
-                    sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                    using (StreamWriter sw = File.AppendText(FileUrl))
+                    {
+                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                    }
                 }
+
+                //set TimeOfContractChange to today
+                persistence.UpdateMemberTimeOfContractChange(member);
+                return true;
             }
+            else { return false; }
         }
 
         public void CheckOutMembers()
@@ -342,29 +368,34 @@ namespace loremipsum.Gym.Impl
             IList<Member> members = persistence.FindMembers();
             IList<Order> orders = persistence.FindOrders();
             DateTime currentDate = DateTime.Now.Date;
-            int daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
+            DateTime lastMonth = DateTime.Now.Date.AddMonths(-1);
+            int daysInLastMonth = DateTime.DaysInMonth(lastMonth.Year, lastMonth.Month);
             string FileUrl = "MemberBills.csv";
             //now write all contracts in csv
             foreach (Member member in members)
             {
+                int price = (int)((double)(daysInLastMonth-(member.TimeOfContractChange.Day-1)) / daysInLastMonth * persistence.FindContract(member.ContractID).Price);
                 if (!File.Exists(FileUrl))
                 {
                     using (StreamWriter sw = File.CreateText(FileUrl))
                     {
                         sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
-                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + persistence.FindContract(member.ContractID).Price + "," + "Vertrag" + "," + member.Iban + ",");
+                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
                     }
                 }
                 else
                 {
                     using (StreamWriter sw = File.AppendText(FileUrl))
                     {
-                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + persistence.FindContract(member.ContractID).Price + "," + "Vertrag" + "," + member.Iban + ",");
+                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
                     }
                 }
 
                 //done with writing all of the contracts in csv
             }
+            //now set the TimeOfContractChange of each Member of first of month
+            persistence.UpdateMembersTimeOfContractChange();
+
             //now write all orders in csv
             foreach (Order order in orders)
             {
@@ -378,11 +409,39 @@ namespace loremipsum.Gym.Impl
             DeleteOrders();
         }
 
+        public void CheckoutMemberForOrders(Member member)
+        {
+            DateTime currentDate = DateTime.Now.Date;
+            string FileUrl = "MemberBills.csv";
+            IList<Order> ordersFromMember = ListAllOrdersFromMember(member.MemberID);
+
+            //now write all orders in csv
+            foreach (Order order in ordersFromMember)
+            {
+                if (!File.Exists(FileUrl))
+                {
+                    using (StreamWriter sw = File.CreateText(FileUrl))
+                    {
+                        sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
+                        sw.WriteLine(currentDate.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
+                    }
+                }
+                else
+                {
+                    using (StreamWriter sw = File.AppendText(FileUrl))
+                    {
+                        sw.WriteLine(currentDate.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
+                    }
+                }
+
+            }
+        }
+        #endregion
 
         #endregion
 
 
-        # region IProductModule
+        #region IProductModule
 
         //Member
         public Member GetMemberDetails(int memberID)

@@ -6,7 +6,7 @@ namespace loremipsum.Gym.Persistence
     public class GymPersistenceEF : IGymPersistence
     {
 
-        //Member
+        #region Member
         public Member CreateMember(Contract contract, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             using (GymContext db = new GymContext())
@@ -123,10 +123,10 @@ namespace loremipsum.Gym.Persistence
                 db.SaveChanges();
             }
         }
+        #endregion
 
 
-
-        //Contract
+        #region Contract
         public void CreateContract(Contract contract)
         {
             using (GymContext db = new GymContext())
@@ -214,10 +214,10 @@ namespace loremipsum.Gym.Persistence
 
             }
         }
+        #endregion
 
 
-
-        //Employee
+        #region Employee
         public void CreateEmployee(Employee employee)
         {
             using (GymContext db = new GymContext())
@@ -306,10 +306,11 @@ namespace loremipsum.Gym.Persistence
                 db.SaveChanges();
             }
         }
+        #endregion
 
 
 
-        //Article
+        #region Article
         public void CreateArticle(Article article)
         {
             using (GymContext db = new GymContext())
@@ -398,10 +399,11 @@ namespace loremipsum.Gym.Persistence
                 db.SaveChanges();
             }
         }
+        #endregion
 
 
 
-        //Order
+        #region Order
         public Order CreateOrder(Member member, Article article, int amount)
         {
             using (GymContext db = new GymContext())
@@ -427,7 +429,7 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
-        public void DeleteOrder(int orderID) //return of articles --> mistake order --> article.actualamount increases
+        public void DeleteOrder(int orderID) //return of articles --> mistake order --> article.actualamount increases and currentbill of member decreased by amount of order
         {
             using (GymContext db = new GymContext())
             {
@@ -543,10 +545,11 @@ namespace loremipsum.Gym.Persistence
                 db.SaveChanges();
             }
         }
+        #endregion
 
 
 
-        //LogIn
+        #region LogIn
         public void CreateLogIn(LogIn logIn)
         {
             using (GymContext db = new GymContext())
@@ -620,6 +623,50 @@ namespace loremipsum.Gym.Persistence
                 db.SaveChanges();
             }
         }
+        #endregion
+
+
+        #region Checkout
+        public void UpdateMembersTimeOfContractChange()
+        {
+            IList<Member> members = FindMembers();
+            DateTime firstDayOfCurrentMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).Date;
+
+            using (GymContext db = new GymContext())
+            {
+                foreach (Member member in members)
+                {
+                    Member memberEF = db.Members
+                    .Where(b => b.MemberID == member.MemberID)
+                    .Include(b => b.Orders)
+                    .FirstOrDefault();
+
+                    if (memberEF != null)
+                    {
+                        memberEF.TimeOfContractChange = firstDayOfCurrentMonth;
+                        db.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        public void UpdateMemberTimeOfContractChange(Member member)
+        {
+            using (GymContext db = new GymContext())
+            {
+                Member memberEF = db.Members
+                    .Where(b => b.MemberID == member.MemberID)
+                    .Include(b => b.Orders)
+                    .FirstOrDefault();
+
+                if (memberEF != null)
+                {
+                    memberEF.TimeOfContractChange = DateTime.Now.Date;
+                    db.SaveChanges();
+                }
+            }
+        }
+        #endregion
 
     }
 }

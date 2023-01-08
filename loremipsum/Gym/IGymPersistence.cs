@@ -94,5 +94,11 @@ namespace loremipsum.Gym
 
         void UpdateLogIn(LogIn logIn, string newLogInName, string logInPassword, int rank);
 
+
+
+        //Checkout
+        void UpdateMembersTimeOfContractChange();
+
+        void UpdateMemberTimeOfContractChange(Member member);
     }
 }

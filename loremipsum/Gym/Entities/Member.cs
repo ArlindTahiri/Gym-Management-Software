@@ -18,6 +18,7 @@ namespace loremipsum.Gym.Entities
             Iban = iban;
             Birthday = birthday;
             ContractID = contractID;
+            TimeOfContractChange = DateTime.Now.Date;
         }
 
         [Key]

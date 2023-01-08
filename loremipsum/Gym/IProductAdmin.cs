@@ -80,8 +80,10 @@ namespace loremipsum.Gym
 
 
         //Checkout
-        void CheckoutMemberForChangingContract(Member member);
+        bool CheckoutMemberForChangingContract(Member member);
 
         void CheckOutMembers();
+
+        void CheckoutMemberForOrders(Member member);
     }
 }

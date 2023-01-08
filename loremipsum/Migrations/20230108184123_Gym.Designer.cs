@@ -12,7 +12,7 @@ using loremipsum.Gym.Persistence;
 namespace loremipsum.Migrations
 {
     [DbContext(typeof(GymContext))]
-    [Migration("20230108125545_Gym")]
+    [Migration("20230108184123_Gym")]
     partial class Gym
     {
         /// <inheritdoc />
