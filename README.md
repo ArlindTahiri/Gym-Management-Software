@@ -6,8 +6,8 @@ This project is a console application for a gym. On it, the boss and his employe
 
 ### How to Install and Run the Project
 
-If you already have Visual Studio installed (we recommend Visual Studio 2022) you can download the project and open the loremipsum.sln file it with Visual Studio. Or you can directly [clone this repository] (https://inf-git.fh-rosenheim.de/ap-wif-ws22/loremipsum.git) into your Visual Studio.
-Otherwise you can download Visual Studio [HERE] (https://visualstudio.microsoft.com/de/vs/).
+If you already have Visual Studio installed (we recommend Visual Studio 2022) you can download the project and open the loremipsum.sln file it with Visual Studio. Or you can directly [clone this repository](https://inf-git.fh-rosenheim.de/ap-wif-ws22/loremipsum.git) into your Visual Studio.
+Otherwise you can download Visual Studio [HERE](https://visualstudio.microsoft.com/de/vs/).
 
 ### How to Use the Project
 
