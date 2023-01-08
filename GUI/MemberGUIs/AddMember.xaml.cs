@@ -1,6 +1,7 @@
 ﻿using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,18 +39,42 @@ namespace GUI.MemberGUIs
          private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+            if (!(ContractIDM.Text.IsNullOrEmpty() && NameM.Text.IsNullOrEmpty() && SurnameM.Text.IsNullOrEmpty() && AdressM.Text.IsNullOrEmpty()
+                && PostalCodeM.Text.IsNullOrEmpty() && CityM.Text.IsNullOrEmpty() && CountryM.Text.IsNullOrEmpty() && ContractIDM.Text.IsNullOrEmpty()
+                && ContoM.Text.IsNullOrEmpty() && BirthdayM.Text.IsNullOrEmpty()))
+            {
 
+                admin.AddMember(Int32.Parse(ContractIDM.Text), NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
+                      CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
 
-            admin.AddMember(Int32.Parse(ContractIDM.Text), NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
-                  CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
-  
-            GymHomepage home = new GymHomepage();
-           NavigationService.Navigate(home);
+                GymHomepage home = new GymHomepage();
+                NavigationService.Navigate(home);
+            } else
+            {
+                WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
+            }
            
         }
 
+        private void ContractIDM_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
 
+        private void PostalCodeM_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
 
-       
+        private void CheckIsNumeric(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }

@@ -18,16 +18,17 @@
         <Label Content="Zahlungskonto&#xA;" HorizontalAlignment="Center" Margin="10,538,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Geburtstag&#xA;" HorizontalAlignment="Center" Margin="10,615,0,0" VerticalAlignment="Top" Height="29"/>
         <TextBox x:Name="AdressE" HorizontalAlignment="Center" Margin="0,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
-        <TextBox x:Name="PostalCodeE" HorizontalAlignment="Center" Margin="0,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
-        <TextBox x:Name="ContactAdressE" HorizontalAlignment="Center" Margin="19,497,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="PostalCodeE" HorizontalAlignment="Center" Margin="0,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="PostalCodeE_PreviewTextInput" />
+        <TextBox x:Name="ContactAdressE" HorizontalAlignment="Center" Margin="19,497,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="321" Height="36" />
         <TextBox x:Name="CityE" HorizontalAlignment="Center" Margin="0,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
         <TextBox x:Name="CountryE" HorizontalAlignment="Center" Margin="19,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
-        <TextBox x:Name="ContoE" HorizontalAlignment="Center" Margin="0,567,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="43" />
-        <TextBox x:Name="BirthdayE" HorizontalAlignment="Center" Margin="0,644,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="ContoE" HorizontalAlignment="Center" Margin="14,567,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="43" />
+        <TextBox x:Name="BirthdayE" HorizontalAlignment="Center" Margin="0,644,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" Height="36" />
         <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,243,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,318,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Land&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,388,0,0" VerticalAlignment="Top" Height="29"/>
-        <Button x:Name="EditMemberButton" Content="Mitgliedsdaten ändern" HorizontalAlignment="Center" Margin="0,720,0,0" VerticalAlignment="Top" Click="EditMemberButton_Click" Height="82" Width="236"/>
+        <Button x:Name="EditMemberButton" Content="Mitgliedsdaten ändern" HorizontalAlignment="Center" Margin="0,758,0,0" VerticalAlignment="Top" Click="EditMemberButton_Click" Height="82" Width="236"/>
+        <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,710,0,0" VerticalAlignment="Top" Width="325" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
 
 
     </Grid>

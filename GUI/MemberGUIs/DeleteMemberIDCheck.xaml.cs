@@ -1,6 +1,7 @@
 ﻿using GUI.MemberGUIs;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace GUI.MemberGUIs
 
 
         IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public DeleteMemberIDCheck()
         {
             InitializeComponent();
@@ -33,21 +35,47 @@ namespace GUI.MemberGUIs
 
         private void IDCheck_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.Key == Key.Enter)
             {
-               if(query.GetMemberDetails(Int32.Parse(IDCheck.Text))!=null)
+                if (!IDCheck.Text.IsNullOrEmpty())
                 {
-                   
-                    DeleteMember DeleteMember = new DeleteMember(Int32.Parse(IDCheck.Text));
-                    NavigationService.Navigate(DeleteMember);
-                } else
+                    if (query.GetMemberDetails(Int32.Parse(IDCheck.Text)) != null)
+                    {
+
+                        DeleteMember DeleteMember = new DeleteMember(Int32.Parse(IDCheck.Text));
+                        NavigationService.Navigate(DeleteMember);
+                    } else
+                    {
+                        WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
+                    }
+                }
+                else
                 {
+
                     WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
                 }
             }
         }
 
-       
-        
+        private void IDCheck_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
+
+        private void CheckIsNumeric(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void MemberData_Loaded(object sender, RoutedEventArgs e)
+        {
+            MemberData.ItemsSource = admin.ListMembers();
+        }
     }
 }

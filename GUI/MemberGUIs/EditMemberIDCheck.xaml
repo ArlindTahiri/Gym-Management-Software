@@ -5,13 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.MemberGUIs"
       mc:Ignorable="d" 
-      d:DesignHeight="250" d:DesignWidth="400"
+      d:DesignHeight="450" d:DesignWidth="400"
       Title="EditMemberIDCheck">
 
     <Grid>
         <Label Content="Bitte geben Sie die ID des Mitglieds ein, das Sie bearbeiten wollen" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353" PreviewKeyDown="IDCheck_KeyDown" />
-        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" Margin="0,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="53" Width="384" Foreground="#FFD40303"/>
+        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="353" PreviewKeyDown="IDCheck_KeyDown" PreviewTextInput="IDCheck_PreviewTextInput" />
+        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" Margin="0,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="384" Foreground="#FFD40303" TextAlignment="Center"/>
+        <DataGrid x:Name="MemberData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="23,189,24,165" Loaded="MemberData_Loaded"/>
 
     </Grid>
 </Page>

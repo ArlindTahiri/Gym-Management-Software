@@ -1,5 +1,6 @@
 ﻿using GUI.MemberGUIs;
 using loremipsum.Gym;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace GUI.MemberGUIs
     public partial class EditMemberIDCheck : Page
     {
         private IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public EditMemberIDCheck()
         {
             InitializeComponent();
@@ -34,17 +36,47 @@ namespace GUI.MemberGUIs
             string content = IDCheck.Text;
             if (e.Key == Key.Enter)
             {
-                if (query.GetMemberDetails(Int32.Parse(content))!=null)
+                if (!IDCheck.Text.IsNullOrEmpty())
                 {
-                   
-                    EditMember editMember = new EditMember(Int32.Parse(content));
-                    NavigationService.Navigate(editMember);
-                } else
+                    if (query.GetMemberDetails(Int32.Parse(content)) != null)
+                    {
+
+                        EditMember editMember = new EditMember(Int32.Parse(content));
+                        NavigationService.Navigate(editMember);
+                    } else
+                    {
+                        WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
+                    }
+                }
+                else
                 {
                     WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
                 }
             }
         }
 
+        private void IDCheck_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
+
+        private void CheckIsNumeric(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
+            {
+                e.Handled = true;
+            }
+        }
+
+       
+
+        private void MemberData_Loaded(object sender, RoutedEventArgs e)
+        {
+            MemberData.ItemsSource = admin.ListMembers();
+        }
     }
-}
+    }
+    
+

@@ -1,6 +1,7 @@
 ﻿using GUI.MemberGUIs;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,12 +36,35 @@ namespace GUI.MemberGUIs
 
         private void EditMemberButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
-                ContoE.Text, DateTime.Parse(BirthdayE.Text));
+            if (!(NameE.Text.IsNullOrEmpty() && SurnameE.Text.IsNullOrEmpty() && AdressE.Text.IsNullOrEmpty()
+                && PostalCodeE.Text.IsNullOrEmpty() && CityE.Text.IsNullOrEmpty() && CountryE.Text.IsNullOrEmpty() && ContactAdressE.Text.IsNullOrEmpty()
+                && ContoE.Text.IsNullOrEmpty() && BirthdayE.Text.IsNullOrEmpty()))
+            {
 
-          
-            GymHomepage home = new GymHomepage();
-            NavigationService.Navigate(home);
+                admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
+                    ContoE.Text, DateTime.Parse(BirthdayE.Text));
+
+                GymHomepage home = new GymHomepage();
+                NavigationService.Navigate(home);
+            } else
+            {
+                WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
+            }
+        }
+
+        private void PostalCodeE_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
+        }
+
+        private void CheckIsNumeric(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
