@@ -3,6 +3,7 @@ using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,13 +44,36 @@ namespace GUI.EmployeeGUIs
 
         private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
-          
-            Employee employee = new(Forename.Text, Surename.Text, Street.Text, Int32.Parse(PostcalCode.Text), City.Text, Country.Text, EMail.Text, Iban.Text, DateTime.Parse(Birthday.Text));
+            if (!ForeName.Text.IsNullOrEmpty() && Surname.Text.IsNullOrEmpty() && Adress.Text.IsNullOrEmpty() && PostalCode.Text.IsNullOrEmpty()
+                && City.Text.IsNullOrEmpty() && Country.Text.IsNullOrEmpty() && Email.Text.IsNullOrEmpty() && Iban.Text.IsNullOrEmpty() && Birthday.Text.IsNullOrEmpty())
+            {
 
-            admin.AddEmployee(employee);
-            GymHomepage home = new GymHomepage();
-            NavigationService.Navigate(home);
-            log.Info("Added employee: " + employee.ToString() + "... and returned to homepage");
+                Employee employee = new(ForeName.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text, Country.Text, Email.Text, Iban.Text, DateTime.Parse(Birthday.Text));
+
+                admin.AddEmployee(employee);
+                GymHomepage home = new GymHomepage();
+                NavigationService.Navigate(home);
+                log.Info("Added employee: " + employee.ToString() + "... and returned to homepage");
+            }
+            else
+            {
+                WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
+            }
+        }
+
+        private void CheckIsNumeric(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void PostalCode_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            CheckIsNumeric(e);
         }
     }
 }

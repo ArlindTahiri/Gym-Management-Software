@@ -12,7 +12,6 @@
         <Label Content="Wollen Sie das Mitglied wirklich löschen?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="72"/>
         <Button x:Name="YesButton" Content="Ja" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="YesButton_Click"/>
         <Button x:Name="NoButton" Content="Nein" HorizontalAlignment="Left" Margin="145,105,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="NoButton_Click"/>
-        <Label x:Name="TestLabel" Content="" HorizontalAlignment="Left" Margin="45,197,0,0" VerticalAlignment="Top" Width="176"/>
-
+        
     </Grid>
 </Page>

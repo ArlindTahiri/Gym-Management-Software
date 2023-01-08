@@ -15,20 +15,20 @@
         <Label Content="Vorname&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,93,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Adresse&#xA;" HorizontalAlignment="Center" Margin="10,168,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Email&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,530,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Zahlungskonto&#xA;" HorizontalAlignment="Center" Margin="10,600,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Iban&#xA;" HorizontalAlignment="Center" Margin="10,600,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Geburtstag&#xA;" HorizontalAlignment="Center" Margin="10,677,0,0" VerticalAlignment="Top" Height="29"/>
         <TextBox x:Name="AdressM" HorizontalAlignment="Center" Margin="10,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
         <TextBox x:Name="PostalCodeM" HorizontalAlignment="Center" Margin="10,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="PostalCodeM_PreviewTextInput" />
         <TextBox x:Name="CityM" HorizontalAlignment="Center" Margin="10,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
         <TextBox x:Name="CountryM" HorizontalAlignment="Center" Margin="10,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
-        <TextBox x:Name="ContoM" HorizontalAlignment="Center" Margin="0,629,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="43" />
-        <TextBox x:Name="BirthdayM" HorizontalAlignment="Center" Margin="0,711,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="ContractIDM" HorizontalAlignment="Center" Margin="10,489,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="ContractIDM_PreviewTextInput" />
         <TextBox x:Name="ContactAdressM" HorizontalAlignment="Center" Margin="0,559,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
         <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,243,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,318,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Land&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,388,0,0" VerticalAlignment="Top" Height="29"/>
         <Button x:Name="AddMember1" Content="Mitglied hinzufügen" HorizontalAlignment="Center" Margin="0,817,0,0" VerticalAlignment="Top" Click="Button_Click" Height="82" Width="236"/>
-        <TextBox x:Name="ContractIDM" HorizontalAlignment="Center" Margin="10,489,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="ContractIDM_PreviewTextInput" />
+        <TextBox x:Name="ContoM" HorizontalAlignment="Center" Margin="0,629,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="43" />
+        <TextBox x:Name="BirthdayM" HorizontalAlignment="Center" Margin="0,711,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
         <Label Content="ContractID" HorizontalAlignment="Center" Margin="10,463,0,0" VerticalAlignment="Top"/>
         <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,775,0,0" VerticalAlignment="Top" Width="325" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
 

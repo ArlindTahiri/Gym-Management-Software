@@ -5,14 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.EmployeeGUIs"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="250" d:DesignWidth="250"
       Title="DeleteEmployee">
 
     <Grid>
 
-        <Label Content="Wollen sie diesen Mitarbeiter entfernen?" HorizontalAlignment="Center" Margin="0,140,0,0" VerticalAlignment="Top" Height="72"/>
-        <Button x:Name="Yes" Content="Ja" HorizontalAlignment="Left" Margin="251,239,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="YesButton_Click"/>
-        <Button x:Name="No" Content="Nein" HorizontalAlignment="Left" Margin="496,239,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="NoButton_Click"/>
+        <Label Content="Wollen Sie den Mitarbeiter wirklich löschen?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="72"/>
+        <Button x:Name="YesButton" Content="Ja" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="YesButton_Click"/>
+        <Button x:Name="NoButton" Content="Nein" HorizontalAlignment="Left" Margin="145,105,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="NoButton_Click"/>
+        <Label x:Name="TestLabel" Content="" HorizontalAlignment="Left" Margin="45,197,0,0" VerticalAlignment="Top" Width="176"/>
 
     </Grid>
 </Page>
