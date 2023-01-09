@@ -448,6 +448,7 @@ namespace loremipsum.Gym.Impl
             Member member = persistence.FindMember(memberID);
             if (member != null)
             {
+                currentlyTrainingMembers = ListTrainingMembers();
                 currentlyTrainingMembers.Add(member);
                 SaveTrainingMember();
             }
@@ -459,6 +460,7 @@ namespace loremipsum.Gym.Impl
             Member member = persistence.FindMember(memberID);
             if (member != null)
             {
+                currentlyTrainingMembers = ListTrainingMembers();
                 currentlyTrainingMembers.Remove(member);
                 SaveTrainingMember();
             }
