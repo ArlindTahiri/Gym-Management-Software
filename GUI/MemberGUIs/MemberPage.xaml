@@ -11,6 +11,7 @@
     <Grid>
         <Button x:Name="EditMember" Content="Mitglieder bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditMember_Click"/>
         <DataGrid x:Name="MemberData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,181,0,0" Loaded="MemberData_Loaded"/>
+        <Button x:Name="DeleteMembersButton" Content="Alle Mitglieder löschen" HorizontalAlignment="Right" Margin="655,151,0,0" VerticalAlignment="Top" Height="25" Width="135" Click="DeleteMembersButton_Click"/>
 
     </Grid>
 </Page>

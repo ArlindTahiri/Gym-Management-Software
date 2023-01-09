@@ -58,5 +58,11 @@ namespace GUI.ContractGUIs
         {
             ContractInventory.ItemsSource = admin.ListContracts();
         }
+
+        private void DeleteContractsButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeletePage deletePage = new DeletePage("Contract");
+            NavigationService.Navigate(deletePage);
+        }
     }
 }

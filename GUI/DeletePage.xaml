@@ -1,0 +1,16 @@
+﻿<Page x:Class="GUI.DeletePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="250" d:DesignWidth="250"
+      Title="DeletePage">
+
+    <Grid>
+        <Label x:Name="QuestionLabel" Content="" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="72" Width="243" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button x:Name="YesButton" Content="Ja" HorizontalAlignment="Left" Margin="22,105,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="YesButton_Click" Background="#FF8EE47C"/>
+        <Button x:Name="NoButton" Content="Nein" HorizontalAlignment="Left" Margin="145,105,0,0" VerticalAlignment="Top" Height="53" Width="81" Click="NoButton_Click" Background="#FFE86464"/>
+    </Grid>
+</Page>

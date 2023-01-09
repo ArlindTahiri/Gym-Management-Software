@@ -11,6 +11,7 @@
     <Grid>
         <Button x:Name="EditArticle" Content="Artikel bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditArticle_Click" />
         <DataGrid x:Name="ArticleInventory" d:ItemsSource="{d:SampleData ItemCount=5}" Height="290" VerticalAlignment="Top" Margin="0,161,0,0" RowHeight="30" ColumnWidth="100" Loaded="ArticleInventory_Loaded"/>
+        <Button x:Name="DeleteArticlesButton" Content="Alle Artikel löschen" HorizontalAlignment="Right" Margin="0,131,0,0" VerticalAlignment="Top" Height="25" Width="135" Click="DeleteArticlesButton_Click"/>
 
     </Grid>
 </Page>

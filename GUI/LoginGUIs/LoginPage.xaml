@@ -10,7 +10,8 @@
 
     <Grid>
         <Button x:Name="EditLogins" Content="Logins Bearbeiten" HorizontalAlignment="Left" Height="100" Margin="20,27,0,0" VerticalAlignment="Top" Width="205" Click="EditLogins_Click"/>
-        <DataGrid x:Name="LoginInventory" HorizontalAlignment="Left" Height="197" Margin="20,235,0,0" VerticalAlignment="Top" Width="754" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="LoginInventory_Loaded"/>
+        <DataGrid x:Name="LoginInventory" HorizontalAlignment="Center" Height="285" Margin="0,165,0,0" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="LoginInventory_Loaded"/>
+        <Button x:Name="DeleteLoginsButton" Content="Alle Logins löschen" HorizontalAlignment="Left" Margin="655,134,0,0" VerticalAlignment="Top" Height="26" Width="135" Click="DeleteLoginsButton_Click"/>
 
     </Grid>
 </Page>

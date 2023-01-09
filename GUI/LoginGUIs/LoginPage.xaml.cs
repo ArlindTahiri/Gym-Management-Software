@@ -38,5 +38,11 @@ namespace GUI.LoginGUIs
         {
            LoginInventory.ItemsSource = admin.ListLogIns();
         }
+
+        private void DeleteLoginsButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeletePage deletePage = new DeletePage("Login");
+            NavigationService.Navigate(deletePage);
+        }
     }
 }

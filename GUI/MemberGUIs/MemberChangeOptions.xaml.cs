@@ -48,5 +48,11 @@ namespace GUI.MemberGUIs
             EditMemberIDCheck edit = new EditMemberIDCheck();
             NavigationService.Navigate(edit);
         }
+
+        private void ChangeContractButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeContract changeContract = new ChangeContract();
+            NavigationService.Navigate(changeContract);
+        }
     }
 }

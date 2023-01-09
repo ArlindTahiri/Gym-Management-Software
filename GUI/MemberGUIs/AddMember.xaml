@@ -26,9 +26,9 @@
         <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,243,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,318,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Land&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,388,0,0" VerticalAlignment="Top" Height="29"/>
-        <Button x:Name="AddMember1" Content="Mitglied hinzufügen" HorizontalAlignment="Center" Margin="0,817,0,0" VerticalAlignment="Top" Click="Button_Click" Height="82" Width="236"/>
         <TextBox x:Name="ContoM" HorizontalAlignment="Center" Margin="0,629,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="43" />
         <TextBox x:Name="BirthdayM" HorizontalAlignment="Center" Margin="0,711,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <Button x:Name="AddMember1" Content="Mitglied hinzufügen" HorizontalAlignment="Center" Margin="0,817,0,0" VerticalAlignment="Top" Click="Button_Click" Height="82" Width="236"/>
         <Label Content="ContractID" HorizontalAlignment="Center" Margin="10,463,0,0" VerticalAlignment="Top"/>
         <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,775,0,0" VerticalAlignment="Top" Width="325" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
 

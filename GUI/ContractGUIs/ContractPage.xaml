@@ -9,9 +9,10 @@
       Title="ContractPage">
 
     <Grid>
-        <Button x:Name="DeleteContractButton" Content="Vertrag löschen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="104" Width="249" Click="DeleteContractButton_Click"/>
+        <Button x:Name="DeleteContractButton" Content="Vertrag löschen" HorizontalAlignment="Left" Margin="541,10,0,0" VerticalAlignment="Top" Height="104" Width="249" Click="DeleteContractButton_Click"/>
         <DataGrid x:Name="ContractInventory" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,180,0,0" Loaded="ContractInventory_Loaded"/>
-        <Button x:Name="AddContractButton" Content="Vertrag hinzufügen" HorizontalAlignment="Left" Margin="541,10,0,0" VerticalAlignment="Top" Height="104" Width="249" Click="AddContractButton_Click"/>
+        <Button x:Name="AddContractButton" Content="Vertrag hinzufügen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="104" Width="249" Click="AddContractButton_Click"/>
+        <Button x:Name="DeleteContractsButton" Content="Alle Verträge löschen" HorizontalAlignment="Right" Margin="0,150,0,0" VerticalAlignment="Top" Height="25" Width="135" Click="DeleteContractsButton_Click"/>
 
     </Grid>
 </Page>

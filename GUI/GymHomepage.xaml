@@ -5,18 +5,19 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1200" d:DesignWidth="1500"
       Title="GymHomepage">
 
     <Grid>
-        <Button Content="Mitglieder" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="61" Width="122" Click="Member_Click"/>
-        <Button x:Name="EmployeeButton" Content="Mitarbeiter" HorizontalAlignment="Left" Margin="231,10,0,0" VerticalAlignment="Top" Height="61" Width="122" Click="EmployeeButton_Click"/>
-        <Button Content="Nachrichten" HorizontalAlignment="Left" Margin="668,10,0,0" VerticalAlignment="Top" Height="61" Width="122"/>
-        <Button x:Name="ContractButton" Content="Verträge" HorizontalAlignment="Left" Margin="441,10,0,0" VerticalAlignment="Top" Height="61" Width="122" Click="Contract_Click"/>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,203,367,10"/>
-        <Button x:Name="Inventar" Content="Inventar" HorizontalAlignment="Left" Height="72" Margin="668,95,0,0" VerticalAlignment="Top" Width="122" Click="Inventar_Click"/>
-        <Button x:Name="OrderButton" Content="Bestellungen" HorizontalAlignment="Left" Height="72" Margin="441,95,0,0" VerticalAlignment="Top" Width="122" Click="OrderButton_Click"/>
-        <Button x:Name="Logins" Content="Login" HorizontalAlignment="Left" Height="72" Margin="231,95,0,0" VerticalAlignment="Top" Width="122" Click="Logins_Click"/>
+        <Button x:Name="MemberButton" Content="Mitglieder" HorizontalAlignment="Left" Margin="25,29,0,0" VerticalAlignment="Top" Height="150" Width="250" Click="Member_Click" FontSize="30"/>
+        <Button x:Name="EmployeeButton" Content="Mitarbeiter" HorizontalAlignment="Left" Margin="304,29,0,0" VerticalAlignment="Top" Height="150" Width="250" Click="EmployeeButton_Click" FontSize="30"/>
+        <Button x:Name="ContractButton" Content="Verträge" HorizontalAlignment="Left" Margin="908,29,0,0" VerticalAlignment="Top" Height="150" Width="250" Click="Contract_Click" FontSize="30"/>
+        <DataGrid x:Name="TrainingMembers" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,485,535,10"/>
+        <Button x:Name="Inventar" Content="Inventar" HorizontalAlignment="Left" Height="150" Margin="1216,29,0,0" VerticalAlignment="Top" Width="250" Click="Inventar_Click" FontSize="30"/>
+        <Button x:Name="OrderButton" Content="Bestellungen" HorizontalAlignment="Left" Height="150" Margin="604,29,0,0" VerticalAlignment="Top" Width="250" Click="OrderButton_Click" FontSize="30"/>
+        <Button x:Name="Logins" Content="Login" HorizontalAlignment="Left" Height="150" Margin="1216,242,0,0" VerticalAlignment="Top" Width="250" Click="Logins_Click" FontSize="30"/>
+        <Button x:Name="TrainingButton" Content="Trainieren" HorizontalAlignment="Left" Margin="25,242,0,0" VerticalAlignment="Top" Width="250" Height="150" FontSize="30" Click="TrainingButton_Click"/>
+        <Button x:Name="DeleteEverythingButton" Content="Alles löschen" HorizontalAlignment="Left" Margin="1268,441,0,0" VerticalAlignment="Top" Height="39" Width="146" Click="DeleteEverythingButton_Click"/>
 
     </Grid>
 </Page>

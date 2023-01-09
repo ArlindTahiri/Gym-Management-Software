@@ -17,9 +17,11 @@ using System.Windows.Shapes;
 using GUI.ArticleGUIs;
 using GUI.EmployeeGUIs;
 using GUI.Order_GUIs;
+using GUI.TrainingGUIs;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
+using loremipsum.Gym;
 
 namespace GUI
 {
@@ -30,6 +32,7 @@ namespace GUI
     {
 
         private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public GymHomepage()
         {
             InitializeComponent();
@@ -81,8 +84,8 @@ namespace GUI
         {
             log.Info("Clicked on orderButton button");
 
-            OrderOptions orderOptions = new OrderOptions();
-            NavigationService.Navigate(orderOptions);
+            OrderPage orderPage = new OrderPage();
+            NavigationService.Navigate(orderPage);
         }
 
         private void Logins_Click(object sender, RoutedEventArgs e)
@@ -92,6 +95,26 @@ namespace GUI
             GymPasswordPage gymPasswordPage = new GymPasswordPage("Login");
             NavigationService.Navigate(gymPasswordPage);
 
+        }
+
+        private void TrainingButton_Click(object sender, RoutedEventArgs e)
+        {
+            log.Info("Clicked on training button");
+
+            TrainingIDCheck trainingIDCheck = new TrainingIDCheck();
+            NavigationService.Navigate(trainingIDCheck);
+        }
+
+        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+          TrainingMembers.ItemsSource = admin.ListTrainingMembers();
+          
+        }
+
+        private void DeleteEverythingButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeletePage deletePage = new DeletePage("Home");
+            NavigationService.Navigate(deletePage);
         }
     }
 }

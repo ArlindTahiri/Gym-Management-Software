@@ -52,5 +52,11 @@ namespace GUI.EmployeeGUIs
         {
             EmployeeData.ItemsSource = admin.ListEmployees();
         }
+
+        private void DeleteEmployeeButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeletePage deletePage = new DeletePage("Employee");
+            NavigationService.Navigate(deletePage); 
+        }
     }
 }

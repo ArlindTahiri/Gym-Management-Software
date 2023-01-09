@@ -57,6 +57,11 @@ namespace GUI.ArticleGUIs
         {
             ArticleInventory.ItemsSource = admin.ListArticles();
         }
-      
+
+        private void DeleteArticlesButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeletePage deletePage = new DeletePage("Article");
+            NavigationService.Navigate(deletePage);
+        }
     }
 }
