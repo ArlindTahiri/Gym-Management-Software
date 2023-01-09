@@ -55,7 +55,7 @@ namespace GUI.TrainingGUIs
                         int content = Int32.Parse(IDCheck.Text);
                         Member searchMember = query.GetMemberDetails(content);
 
-                        if (admin.ListTrainingMembers().Contains(searchMember))
+                        if (!admin.ListTrainingMembersID().Contains(searchMember.MemberID))
                         {
                             admin.InsertTrainingMember(content);
                         }

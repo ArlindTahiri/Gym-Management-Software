@@ -85,5 +85,14 @@ namespace loremipsum.Gym
         void CheckOutMembers();
 
         void CheckoutMemberForOrders(Member member);
+
+        //CurrentlyTrainingMembers
+        void InsertTrainingMember(int memberID);
+
+        void DeleteTrainingMember(int memberID);
+
+        IList<Member> ListTrainingMembers();
+
+        IList<int> ListTrainingMembersID();
     }
 }

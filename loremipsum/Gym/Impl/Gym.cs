@@ -7,7 +7,7 @@ namespace loremipsum.Gym.Impl
     public class Gym : IProductAdmin, IProductModule
     {
         private readonly IGymPersistence persistence;
-        private IList<Member> currentlyTrainingMembers= new List<Member>();
+        private IList<int> currentlyTrainingMembersID = new List<int>();
 
         public Gym(IGymPersistence persistence)
         {
@@ -31,7 +31,7 @@ namespace loremipsum.Gym.Impl
         public void DeleteMember(int memberID)
         {
             Member member = persistence.FindMember(memberID);
-            if(member != null)
+            if(member != null && !ListTrainingMembersID().Contains(memberID))
             {
                 CheckoutMemberForOrders(member);
                 if (ListAllOrdersFromMember(memberID) == null || ListAllOrdersFromMember(memberID).Count == 0)
@@ -48,7 +48,7 @@ namespace loremipsum.Gym.Impl
         public void DeleteMembers()
         {
             CheckOutMembers();
-            if(ListOrders() == null || ListOrders().Count == 0)
+            if(ListTrainingMembersID().Count==0 && (ListOrders() == null || ListOrders().Count == 0))
             {
                 persistence.DeleteMembers();//only delete if there are no orders
             }
@@ -448,11 +448,10 @@ namespace loremipsum.Gym.Impl
             Member member = persistence.FindMember(memberID);
             if (member != null)
             {
-                currentlyTrainingMembers = ListTrainingMembers();
-                currentlyTrainingMembers.Add(member);
+                currentlyTrainingMembersID = ListTrainingMembersID();
+                currentlyTrainingMembersID.Add(member.MemberID);
                 SaveTrainingMember();
             }
-            
         }
 
         public void DeleteTrainingMember(int memberID)
@@ -460,8 +459,8 @@ namespace loremipsum.Gym.Impl
             Member member = persistence.FindMember(memberID);
             if (member != null)
             {
-                currentlyTrainingMembers = ListTrainingMembers();
-                currentlyTrainingMembers.Remove(member);
+                currentlyTrainingMembersID = ListTrainingMembersID();
+                currentlyTrainingMembersID.Remove(member.MemberID);
                 SaveTrainingMember();
             }
         }
@@ -469,25 +468,49 @@ namespace loremipsum.Gym.Impl
         public void SaveTrainingMember()
         {
             string FileUrl = "CurrentTrainingMembers.xml";
-            XmlSerializer ser = new XmlSerializer(typeof(IList<Member>));
+            XmlSerializer ser = new XmlSerializer(typeof(int[]));
             using (Stream writer = File.Create(FileUrl))
             {
-                ser.Serialize(writer, currentlyTrainingMembers);
+                ser.Serialize(writer, currentlyTrainingMembersID.ToArray());
             }
+        }
+
+        public IList<int> ListTrainingMembersID()
+        {
+            currentlyTrainingMembersID = new List<int>();
+            string FileUrl = "CurrentTrainingMembers.xml";
+            int[] members;
+            if (File.Exists(FileUrl))
+            {
+                XmlSerializer deser = new XmlSerializer(typeof(int[]));
+                using (Stream reader = File.OpenRead(FileUrl))
+                {
+                    members = (int[])deser.Deserialize(reader);
+                }
+                currentlyTrainingMembersID = members.ToList();
+                return currentlyTrainingMembersID;
+            }
+            return new List<int>();
         }
 
         public IList<Member> ListTrainingMembers()
         {
-            currentlyTrainingMembers = new List<Member>();
+            currentlyTrainingMembersID = new List<int>();
             string FileUrl = "CurrentTrainingMembers.xml";
+            int[] members;
             if (File.Exists(FileUrl))
             {
-                XmlSerializer deser = new XmlSerializer(typeof(IList<Member>));
+                XmlSerializer deser = new XmlSerializer(typeof(int[]));
                 using (Stream reader = File.OpenRead(FileUrl))
                 {
-                    currentlyTrainingMembers = (IList<Member>)deser.Deserialize(reader);
+                    members = (int[])deser.Deserialize(reader);
                 }
-                return currentlyTrainingMembers;
+                currentlyTrainingMembersID = members.ToList();
+                IList<Member> result = new List<Member>();
+                foreach(int i in currentlyTrainingMembersID)
+                {
+                    result.Add(persistence.FindMember(i));
+                }
             }
             return new List<Member>();
         }
