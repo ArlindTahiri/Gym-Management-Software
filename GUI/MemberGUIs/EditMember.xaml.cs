@@ -54,17 +54,9 @@ namespace GUI.MemberGUIs
 
         private void PostalCodeE_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            CheckIsNumeric(e);
+            TextValidation.CheckIsNumeric(e);
         }
 
-        private void CheckIsNumeric(TextCompositionEventArgs e)
-        {
-            int result;
-
-            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
-            {
-                e.Handled = true;
-            }
-        }
+       
     }
 }
