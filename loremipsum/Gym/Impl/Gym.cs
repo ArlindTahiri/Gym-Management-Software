@@ -1,11 +1,13 @@
 ﻿using loremipsum.Gym.Entities;
-using System.Diagnostics.Metrics;
+using static System.Reflection.Metadata.BlobBuilder;
+using System.Xml.Serialization;
 
 namespace loremipsum.Gym.Impl
 {
     public class Gym : IProductAdmin, IProductModule
     {
         private readonly IGymPersistence persistence;
+        private IList<Member> currentlyTrainingMembers= new List<Member>();
 
         public Gym(IGymPersistence persistence)
         {
@@ -435,6 +437,57 @@ namespace loremipsum.Gym.Impl
                 }
 
             }
+        }
+        #endregion
+
+
+
+        #region CurrentlyTrainingMembers
+        public void InsertTrainingMember(int memberID)
+        {
+            Member member = persistence.FindMember(memberID);
+            if (member != null)
+            {
+                currentlyTrainingMembers.Add(member);
+                SaveTrainingMember();
+            }
+            
+        }
+
+        public void DeleteTrainingMember(int memberID)
+        {
+            Member member = persistence.FindMember(memberID);
+            if (member != null)
+            {
+                currentlyTrainingMembers.Remove(member);
+                SaveTrainingMember();
+            }
+        }
+
+        public void SaveTrainingMember()
+        {
+            string FileUrl = "CurrentTrainingMembers.xml";
+            XmlSerializer ser = new XmlSerializer(typeof(IList<Member>));
+            using (Stream writer = File.Create(FileUrl))
+            {
+                ser.Serialize(writer, currentlyTrainingMembers);
+            }
+        }
+
+        public IList<Member> ListTrainingMembers()
+        {
+            currentlyTrainingMembers = new List<Member>();
+            string FileUrl = "CurrentTrainingMembers.xml";
+            if (File.Exists(FileUrl))
+            {
+                XmlSerializer deser = new XmlSerializer(typeof(IList<Member>));
+                using (Stream reader = File.OpenRead(FileUrl))
+                {
+                    currentlyTrainingMembers = (IList<Member>)deser.Deserialize(reader);
+                }
+                return currentlyTrainingMembers;
+            }
+            return new List<Member>();
         }
         #endregion
 
