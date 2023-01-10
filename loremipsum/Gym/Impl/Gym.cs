@@ -495,24 +495,13 @@ namespace loremipsum.Gym.Impl
 
         public IList<Member> ListTrainingMembers()
         {
-            currentlyTrainingMembersID = new List<int>();
-            string FileUrl = "CurrentTrainingMembers.xml";
-            int[] members;
-            if (File.Exists(FileUrl))
+            currentlyTrainingMembersID = ListTrainingMembersID();
+            IList<Member> result = new List<Member>();
+            foreach (int i in currentlyTrainingMembersID)
             {
-                XmlSerializer deser = new XmlSerializer(typeof(int[]));
-                using (Stream reader = File.OpenRead(FileUrl))
-                {
-                    members = (int[])deser.Deserialize(reader);
-                }
-                currentlyTrainingMembersID = members.ToList();
-                IList<Member> result = new List<Member>();
-                foreach(int i in currentlyTrainingMembersID)
-                {
-                    result.Add(persistence.FindMember(i));
-                }
+                result.Add(persistence.FindMember(i));
             }
-            return new List<Member>();
+            return result;
         }
         #endregion
 
