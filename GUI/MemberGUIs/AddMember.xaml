@@ -21,7 +21,6 @@
         <TextBox x:Name="PostalCodeM" HorizontalAlignment="Center" Margin="10,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="PostalCodeM_PreviewTextInput" />
         <TextBox x:Name="CityM" HorizontalAlignment="Center" Margin="10,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
         <TextBox x:Name="CountryM" HorizontalAlignment="Center" Margin="10,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
-        <TextBox x:Name="ContractIDM" HorizontalAlignment="Center" Margin="10,489,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="ContractIDM_PreviewTextInput" />
         <TextBox x:Name="ContactAdressM" HorizontalAlignment="Center" Margin="0,559,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
         <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,243,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,318,0,0" VerticalAlignment="Top" Height="29"/>
@@ -31,6 +30,7 @@
         <Button x:Name="AddMember1" Content="Mitglied hinzufügen" HorizontalAlignment="Center" Margin="0,817,0,0" VerticalAlignment="Top" Click="Button_Click" Height="82" Width="236"/>
         <Label Content="ContractID" HorizontalAlignment="Center" Margin="10,463,0,0" VerticalAlignment="Top"/>
         <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,775,0,0" VerticalAlignment="Top" Width="325" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
+        <ComboBox x:Name ="ContractID" HorizontalAlignment="Center" Height="36" Margin="0,489,0,0" VerticalAlignment="Top" Width="326" SelectionChanged="ContractID_SelectionChanged"/>
 
 
     </Grid>

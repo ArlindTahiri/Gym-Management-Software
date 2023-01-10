@@ -58,11 +58,15 @@ namespace GUI.TrainingGUIs
                         if (!admin.ListTrainingMembersID().Contains(searchMember.MemberID))
                         {
                             admin.InsertTrainingMember(content);
+                            log.Info("Insertet the member with the ID: " + searchMember.ToString());
                         }
                         else
                         {
                             admin.DeleteTrainingMember(content);
+                            log.Info("Deletet the member with the ID: " + searchMember.ToString());
                         }
+                        GymHomepage home = new GymHomepage();
+                        NavigationService.Navigate(home);
                     }
                     else
                     {

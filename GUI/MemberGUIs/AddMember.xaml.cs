@@ -39,12 +39,11 @@ namespace GUI.MemberGUIs
          private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!ContractIDM.Text.IsNullOrEmpty() && !NameM.Text.IsNullOrEmpty() && !SurnameM.Text.IsNullOrEmpty() && !AdressM.Text.IsNullOrEmpty()
-                && !PostalCodeM.Text.IsNullOrEmpty() && !CityM.Text.IsNullOrEmpty() && !CountryM.Text.IsNullOrEmpty() && !ContractIDM.Text.IsNullOrEmpty()
-                && !ContoM.Text.IsNullOrEmpty() && !BirthdayM.Text.IsNullOrEmpty())
+            if (!ContractID.Text.IsNullOrEmpty() && !NameM.Text.IsNullOrEmpty() && !SurnameM.Text.IsNullOrEmpty() && !AdressM.Text.IsNullOrEmpty()
+                && !PostalCodeM.Text.IsNullOrEmpty() && !CityM.Text.IsNullOrEmpty() && !CountryM.Text.IsNullOrEmpty() && !ContoM.Text.IsNullOrEmpty() && !BirthdayM.Text.IsNullOrEmpty())
             {
 
-                admin.AddMember(Int32.Parse(ContractIDM.Text), NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
+                admin.AddMember(Int32.Parse(ContractID.Text), NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
                       CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
 
                 GymHomepage home = new GymHomepage();
@@ -66,7 +65,13 @@ namespace GUI.MemberGUIs
             TextValidation.CheckIsNumeric(e);
         }
 
-       
-
+        private void ContractID_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            IList<Contract> contracts = admin.ListContracts();
+            foreach (Contract i in contracts)
+            {
+                ContractID.Items.Add(i.ContractID);
+            }
+        }
     }
 }
