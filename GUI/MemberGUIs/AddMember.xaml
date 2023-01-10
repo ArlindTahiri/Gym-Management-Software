@@ -30,7 +30,7 @@
         <Button x:Name="AddMember1" Content="Mitglied hinzufügen" HorizontalAlignment="Center" Margin="0,817,0,0" VerticalAlignment="Top" Click="Button_Click" Height="82" Width="236"/>
         <Label Content="ContractID" HorizontalAlignment="Center" Margin="10,463,0,0" VerticalAlignment="Top"/>
         <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,775,0,0" VerticalAlignment="Top" Width="325" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
-        <ComboBox x:Name ="ContractID" HorizontalAlignment="Center" Height="36" Margin="0,489,0,0" VerticalAlignment="Top" Width="326" SelectionChanged="ContractID_SelectionChanged"/>
+        <ComboBox x:Name ="ContractCB" HorizontalAlignment="Center" Height="36" Margin="0,489,0,0" VerticalAlignment="Top" Width="326" SelectionChanged="ContractCB_SelectionChanged"/>
 
 
     </Grid>

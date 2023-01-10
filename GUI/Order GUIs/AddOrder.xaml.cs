@@ -1,4 +1,5 @@
 ﻿using loremipsum.Gym;
+using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,10 +30,28 @@ namespace GUI.Order_GUIs
 
         private void AddOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.AddOrder(Int32.Parse(MemberIDBox.Text), Int32.Parse(ArticleIDBox.Text), Int32.Parse(AmountBox.Text));
+            admin.AddOrder(Int32.Parse(MemberCB.Text), Int32.Parse(ArticleCB.Text), Int32.Parse(AmountBox.Text));
             
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);
+        }
+
+        private void MemberCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            IList<Member> members = admin.ListMembers();
+            foreach (Member member in members)
+            {
+                MemberCB.Items.Add(member.MemberID);
+            }
+        }
+
+        private void ArticleCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            IList<Article> articles = admin.ListArticles();
+            foreach (Article article in articles)
+            {
+                ArticleCB.Items.Add(article.ArticleID);
+            }
         }
     }
 }
