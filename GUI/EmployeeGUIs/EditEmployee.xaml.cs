@@ -72,5 +72,27 @@ namespace GUI.EmployeeGUIs
         {
             TextValidation.CheckIsNumeric(e);
         }
+
+        private void ChangeEmployee(object sender, KeyEventArgs e)
+        {
+            if(e.Key== Key.Enter)
+            {
+                if (!ForeName.Text.IsNullOrEmpty() && !Surname.Text.IsNullOrEmpty() && !Adress.Text.IsNullOrEmpty() && !PostalCode.Text.IsNullOrEmpty()
+             && !City.Text.IsNullOrEmpty() && !Country.Text.IsNullOrEmpty() && !Email.Text.IsNullOrEmpty() && !Iban.Text.IsNullOrEmpty() && !Birthday.Text.IsNullOrEmpty())
+                {
+                    log.Info("Updated the old employee: " + query.GetEmployeeDetails(employeeID).ToString() +
+                   " to: " + employeeID + " " + ForeName.Text + " " + Surname.Text + " " + Adress.Text + " " + PostalCode.Text + " " + City.Text +
+                   " " + Country.Text + " " + Email.Text + " " + Iban.Text + " " + Birthday.Text + "... and returned to GymHomepage");
+
+                    admin.UpdateEmployee(employeeID, ForeName.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text, Country.Text, Email.Text, Iban.Text, DateTime.Parse(Birthday.Text));
+                    GymHomepage home = new GymHomepage();
+                    NavigationService.Navigate(home);
+                }
+                else
+                {
+                    WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
+                }
+            }
+        }
     }
 }

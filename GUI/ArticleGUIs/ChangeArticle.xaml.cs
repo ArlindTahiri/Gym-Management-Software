@@ -48,13 +48,30 @@ namespace GUI.ArticleGUIs
         {
             if (!Name.Text.IsNullOrEmpty() && !Price.Text.IsNullOrEmpty() && !TargetStock.Text.IsNullOrEmpty() && !ActualStock.Text.IsNullOrEmpty())
             {
-                log.Info("Updated the old article: " + query.GetArticleDetails(articleID).ToString() +
-                    " to: " + articleID + " " + Name.Text + " " + Price.Text + "... and returned to GymHomepage");
+                if (Price.Text.Contains(".") || Price.Text.Contains(","))
+                {
+                    string[] string_remove = { ".", "," };
+                    string euroPrice = Price.Text;
 
-                admin.UpdateArticle(articleID, Name.Text, Int32.Parse(Price.Text), Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
+                    foreach (string c in string_remove)
+                    {
+                        euroPrice = euroPrice.Replace(c, "");
+                    }
 
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
+                    int centPrice = Int32.Parse(euroPrice);
+
+                    admin.UpdateArticle(articleID, Name.Text, centPrice * 100, Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
+
+                    GymHomepage home = new GymHomepage();
+                    NavigationService.Navigate(home);
+                }
+                else
+                {                 
+                    admin.UpdateArticle(articleID, Name.Text, Int32.Parse(Price.Text), Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
+
+                    GymHomepage home = new GymHomepage();
+                    NavigationService.Navigate(home);
+                }
             }
             else
             {
@@ -66,7 +83,7 @@ namespace GUI.ArticleGUIs
 
         private void Price_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            TextValidation.CheckIsNumeric(e);
+            AllowEuroPrice(e);
         }
 
         private void TargetStock_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -79,6 +96,52 @@ namespace GUI.ArticleGUIs
             TextValidation.CheckIsNumeric(e);
         }
 
-       
+        public static void AllowEuroPrice(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "." || e.Text == ","))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void EditArticle(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (!Name.Text.IsNullOrEmpty() && !Price.Text.IsNullOrEmpty() && !TargetStock.Text.IsNullOrEmpty() && !ActualStock.Text.IsNullOrEmpty())
+                {
+                    if (Price.Text.Contains(".") || Price.Text.Contains(","))
+                    {
+                        string[] string_remove = { ".", "," };
+                        string euroPrice = Price.Text;
+
+                        foreach (string c in string_remove)
+                        {
+                            euroPrice = euroPrice.Replace(c, "");
+                        }
+
+                        int centPrice = Int32.Parse(euroPrice);
+
+                        admin.UpdateArticle(articleID, Name.Text, centPrice * 100, Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
+
+                        GymHomepage home = new GymHomepage();
+                        NavigationService.Navigate(home);
+                    }
+                    else
+                    {
+                        admin.UpdateArticle(articleID, Name.Text, Int32.Parse(Price.Text), Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
+
+                        GymHomepage home = new GymHomepage();
+                        NavigationService.Navigate(home);
+                    }
+                }
+                else
+                {
+                    WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
+                }
+            }
+        }
     }
 }

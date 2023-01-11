@@ -37,5 +37,15 @@ namespace GUI.Order_GUIs
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);
         }
+
+        private void ChangeOrder(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                admin.UpdateOrder(orderID, Int32.Parse(MemberIDBox.Text), Int32.Parse(ArticleIDBox.Text), Int32.Parse(AmountBox.Text));
+                GymHomepage gymHomepage = new GymHomepage();
+                NavigationService.Navigate(gymHomepage);
+            }
+        }
     }
 }

@@ -46,13 +46,32 @@ namespace GUI.ContractGUIs
         {
             if (!ContractType.Text.IsNullOrEmpty() && !Price.Text.IsNullOrEmpty())
             {
-                Contract newContract = new Contract(ContractType.Text, Int32.Parse(Price.Text));
-                admin.AddContract(newContract);
+                if (Price.Text.Contains(".") || Price.Text.Contains(","))
+                {
+                    string[] string_remove = { ".", "," };
+                    string euroPrice = Price.Text;
 
-                log.Info("Created the new contract: " + newContract.ToString() + "... and returned to GymHomepage");
+                    foreach (string c in string_remove)
+                    {
+                        euroPrice = euroPrice.Replace(c, "");
+                    }
 
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                    int centPrice = Int32.Parse(euroPrice);
+
+                    Contract newContract = new Contract(ContractType.Text, centPrice * 100);
+                    admin.AddContract(newContract);
+                }
+                else
+                {
+
+                    Contract newContract = new Contract(ContractType.Text, Int32.Parse(Price.Text));
+                    admin.AddContract(newContract);
+
+                    log.Info("Created the new contract: " + newContract.ToString() + "... and returned to GymHomepage");
+
+                    GymHomepage gymHomepage = new GymHomepage();
+                    NavigationService.Navigate(gymHomepage);
+                }
             }
             else
             {
@@ -62,9 +81,60 @@ namespace GUI.ContractGUIs
 
         private void Price_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            TextValidation.CheckIsNumeric(e);
+            AllowEuroPrice(e);
         }
 
-       
+        public static void AllowEuroPrice(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result) || e.Text == "." || e.Text == ","))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void CreateContract(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (!ContractType.Text.IsNullOrEmpty() && !Price.Text.IsNullOrEmpty())
+                {
+                    if (Price.Text.Contains(".") || Price.Text.Contains(","))
+                    {
+                        string[] string_remove = { ".", "," };
+                        string euroPrice = Price.Text;
+
+                        foreach (string c in string_remove)
+                        {
+                            euroPrice = euroPrice.Replace(c, "");
+                        }
+
+                        int centPrice = Int32.Parse(euroPrice);
+
+                        Contract newContract = new Contract(ContractType.Text, centPrice * 100);
+                        admin.AddContract(newContract);
+
+                        GymHomepage gymHomepage = new GymHomepage();
+                        NavigationService.Navigate(gymHomepage);
+                    }
+                    else
+                    {
+
+                        Contract newContract = new Contract(ContractType.Text, Int32.Parse(Price.Text));
+                        admin.AddContract(newContract);
+
+                        log.Info("Created the new contract: " + newContract.ToString() + "... and returned to GymHomepage");
+
+                        GymHomepage gymHomepage = new GymHomepage();
+                        NavigationService.Navigate(gymHomepage);
+                    }
+                }
+                else
+                {
+                    WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
+                }
+            }
+        }
     }
 }

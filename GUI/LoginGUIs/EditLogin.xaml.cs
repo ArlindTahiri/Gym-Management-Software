@@ -39,5 +39,16 @@ namespace GUI.LoginGUIs
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);
         }
+
+        private void ChangeLogin(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                admin.UpdateLogIn(loginName, newLogInName.Text, newLogInPassword.Text, Int32.Parse(newRank.Text));
+
+                GymHomepage home = new GymHomepage();
+                NavigationService.Navigate(home);
+            }
+        }
     }
 }

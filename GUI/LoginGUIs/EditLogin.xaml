@@ -10,13 +10,13 @@
 
     <Grid>
         <Label Content="login Name" HorizontalAlignment="Left" Height="40" Margin="48,26,0,0" VerticalAlignment="Top" Width="90"/>
-        <TextBox x:Name ="newLogInName" HorizontalAlignment="Left" Height="80" Margin="48,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218"/>
+        <TextBox x:Name ="newLogInName" HorizontalAlignment="Left" Height="80" Margin="48,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" PreviewKeyDown="ChangeLogin"/>
 
         <Label Content="login Password" HorizontalAlignment="Left" Height="40" Margin="310,26,0,0" VerticalAlignment="Top" Width="90"/>
-        <TextBox x:Name ="newLogInPassword" HorizontalAlignment="Center" Height="80" Margin="0,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218"/>
+        <TextBox x:Name ="newLogInPassword" HorizontalAlignment="Center" Height="80" Margin="0,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" PreviewKeyDown="ChangeLogin"/>
 
         <Label Content="Rang" HorizontalAlignment="Left" Height="40" Margin="591,26,0,0" VerticalAlignment="Top" Width="90"/>
-        <TextBox x:Name ="newRank" HorizontalAlignment="Left" Height="80" Margin="572,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218"/>
+        <TextBox x:Name ="newRank" HorizontalAlignment="Left" Height="80" Margin="572,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" PreviewKeyDown="ChangeLogin"/>
         <Button x:Name="editLogin" Content="Login bearbeiten" HorizontalAlignment="Center" Height="106" Margin="0,277,0,0" VerticalAlignment="Top" Width="266" Click="editLogin_Click"/>
     </Grid>
 </Page>

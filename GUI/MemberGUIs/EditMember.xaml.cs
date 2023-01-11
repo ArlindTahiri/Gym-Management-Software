@@ -57,6 +57,26 @@ namespace GUI.MemberGUIs
             TextValidation.CheckIsNumeric(e);
         }
 
-       
+        private void ChangeMember(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (!NameE.Text.IsNullOrEmpty() && !SurnameE.Text.IsNullOrEmpty() && !AdressE.Text.IsNullOrEmpty()
+                               && !PostalCodeE.Text.IsNullOrEmpty() && !CityE.Text.IsNullOrEmpty() && !CountryE.Text.IsNullOrEmpty() && !ContactAdressE.Text.IsNullOrEmpty()
+                               && !ContoE.Text.IsNullOrEmpty() && !BirthdayE.Text.IsNullOrEmpty())
+                {
+
+                    admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
+                        ContoE.Text, DateTime.Parse(BirthdayE.Text));
+
+                    GymHomepage home = new GymHomepage();
+                    NavigationService.Navigate(home);
+                }
+                else
+                {
+                    WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
+                }
+            }
+        }
     }
 }

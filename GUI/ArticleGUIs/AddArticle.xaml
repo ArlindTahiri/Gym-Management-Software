@@ -10,10 +10,10 @@
 
     <Grid>
         <Label Content="Name" HorizontalAlignment="Center" Margin="0,24,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="0,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30"/>
-        <TextBox x:Name="Price" HorizontalAlignment="Center" Margin="0,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="Price_PreviewTextInput"/>
-        <TextBox x:Name="TargetStock" HorizontalAlignment="Center" Margin="0,197,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="TargetStock_PreviewTextInput"/>
-        <TextBox x:Name="ActualStock" HorizontalAlignment="Center" Margin="0,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="ActualStock_PreviewTextInput"/>
+        <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="0,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewKeyDown="CreateArticle"/>
+        <TextBox x:Name="Price" HorizontalAlignment="Center" Margin="0,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="Price_PreviewTextInput" PreviewKeyDown="CreateArticle"/>
+        <TextBox x:Name="TargetStock" HorizontalAlignment="Center" Margin="0,197,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="TargetStock_PreviewTextInput" PreviewKeyDown="CreateArticle"/>
+        <TextBox x:Name="ActualStock" HorizontalAlignment="Center" Margin="0,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="ActualStock_PreviewTextInput" PreviewKeyDown="CreateArticle"/>
         <Label Content="Preis" HorizontalAlignment="Center" Margin="0,95,0,0" VerticalAlignment="Top"/>
         <Label Content="Soll-Bestand" HorizontalAlignment="Center" Margin="0,166,0,0" VerticalAlignment="Top"/>
         <Label Content="Ist-Bestand" HorizontalAlignment="Center" Margin="0,231,0,0" VerticalAlignment="Top"/>

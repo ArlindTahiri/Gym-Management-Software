@@ -12,8 +12,8 @@
         <Button x:Name="AddContractButton" Content="Vertrag hinzufügen" HorizontalAlignment="Center" Margin="0,188,0,0" VerticalAlignment="Top" Click="AddContractButton_Click" Height="52" Width="272"/>
         <Label Content="Vertragsart" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top"/>
         <Label Content="Preis" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ContractType" HorizontalAlignment="Center" Margin="0,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" Height="23"/>
-        <TextBox x:Name="Price" HorizontalAlignment="Center" Margin="0,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" Height="23" PreviewTextInput="Price_PreviewTextInput"/>
+        <TextBox x:Name="ContractType" HorizontalAlignment="Center" Margin="0,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" Height="23" PreviewKeyDown="CreateContract"/>
+        <TextBox x:Name="Price" HorizontalAlignment="Center" Margin="0,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" Height="23" PreviewTextInput="Price_PreviewTextInput" PreviewKeyDown="CreateContract"/>
         <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,149,0,0" VerticalAlignment="Top" Width="380" HorizontalContentAlignment="Center" Foreground="Red"/>
 
     </Grid>

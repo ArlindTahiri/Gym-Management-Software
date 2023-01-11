@@ -52,5 +52,18 @@ namespace GUI.Order_GUIs
             MemberCB.Items.Clear();
             MemberCB.ItemsSource = admin.ListMembers();
         }
+
+        private void AmountBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Member m = (Member)MemberCB.SelectedItem;
+                Article a = (Article)ArticleCB.SelectedItem;
+                admin.AddOrder(m.MemberID, a.ArticleID, Int32.Parse(AmountBox.Text));
+
+                GymHomepage gymHomepage = new GymHomepage();
+                NavigationService.Navigate(gymHomepage);
+            }
+        }
     }
 }

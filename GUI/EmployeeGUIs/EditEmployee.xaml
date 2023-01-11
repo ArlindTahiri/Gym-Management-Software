@@ -10,27 +10,26 @@
 
     <Grid>
 
-        <TextBox x:Name="ForeName" HorizontalAlignment="Center" Margin="10,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="ForeName" HorizontalAlignment="Center" Margin="10,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeEmployee"/>
         <Label Content="Name&#xD;&#xA;" HorizontalAlignment="Center" Margin="10,17,0,0" VerticalAlignment="Top" Height="30"/>
-        <TextBox x:Name="Surname" HorizontalAlignment="Center" Margin="10,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="Surname" HorizontalAlignment="Center" Margin="10,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeEmployee"/>
         <Label Content="Vorname&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,93,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Adresse&#xA;" HorizontalAlignment="Center" Margin="10,168,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Email&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,475,0,0" VerticalAlignment="Top" Height="29" RenderTransformOrigin="-0.605,0.57"/>
         <Label Content="Geburtstag&#xA;" HorizontalAlignment="Center" Margin="0,622,0,0" VerticalAlignment="Top" Height="29"/>
-        <TextBox x:Name="Adress" HorizontalAlignment="Center" Margin="10,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
-        <TextBox x:Name="PostalCode" HorizontalAlignment="Center" Margin="10,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="PostalCode_PreviewTextInput" />
-        <TextBox x:Name="City" HorizontalAlignment="Center" Margin="10,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
-        <TextBox x:Name="Country" HorizontalAlignment="Center" Margin="10,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
-        <TextBox x:Name="Email" HorizontalAlignment="Center" Margin="0,504,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="Adress" HorizontalAlignment="Center" Margin="10,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeEmployee"/>
+        <TextBox x:Name="PostalCode" HorizontalAlignment="Center" Margin="10,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="PostalCode_PreviewTextInput" PreviewKeyDown="ChangeEmployee"/>
+        <TextBox x:Name="City" HorizontalAlignment="Center" Margin="10,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeEmployee"/>
+        <TextBox x:Name="Country" HorizontalAlignment="Center" Margin="10,422,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeEmployee"/>
+        <TextBox x:Name="Email" HorizontalAlignment="Center" Margin="0,504,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeEmployee"/>
         <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,243,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,318,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Land&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,388,0,0" VerticalAlignment="Top" Height="29"/>
-        <Button x:Name="EditEmployeeButton" Content="Mitarbeiter hinzufügen" HorizontalAlignment="Center" Margin="0,762,0,0" VerticalAlignment="Top" Click="EditEmployeeButton_Click" Height="82" Width="236"/>
-        <TextBox x:Name="Iban" HorizontalAlignment="Center" Margin="0,574,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="43" />
-        <TextBox x:Name="Birthday" HorizontalAlignment="Center" Margin="0,656,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" />
+        <TextBox x:Name="Iban" HorizontalAlignment="Center" Margin="0,574,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeEmployee"/>
+        <TextBox x:Name="Birthday" HorizontalAlignment="Center" Margin="0,656,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeEmployee" />
         <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,720,0,0" VerticalAlignment="Top" Width="325" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
         <Label Content="Iban" HorizontalAlignment="Center" Margin="0,540,0,0" VerticalAlignment="Top" Height="29" RenderTransformOrigin="-0.605,0.57"/>
-
+        <Button x:Name="EditEmployeeButton" Content="Mitarbeiter hinzufügen" HorizontalAlignment="Center" Margin="0,762,0,0" VerticalAlignment="Top" Click="EditEmployeeButton_Click" Height="82" Width="236"/>
 
     </Grid>
 </Page>
