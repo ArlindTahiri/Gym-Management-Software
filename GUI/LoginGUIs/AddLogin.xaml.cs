@@ -23,6 +23,7 @@ namespace GUI.LoginGUIs
     public partial class AddLogin : Page
     {
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
 
         public AddLogin()
         {
@@ -31,25 +32,27 @@ namespace GUI.LoginGUIs
 
         private void addLogin_Click(object sender, RoutedEventArgs e)
         {
-            LogIn logIn = new LogIn(logInName.Text, logInPassword.Text, Int32.Parse(Rank.Text));
-            admin.AddLogIn(logIn);
-
-
-            GymHomepage home = new GymHomepage();
-            NavigationService.Navigate(home);
+            InsertLogIn();
         }
 
         private void CreateLogin(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
             {
-                LogIn logIn = new LogIn(logInName.Text, logInPassword.Text, Int32.Parse(Rank.Text));
-                admin.AddLogIn(logIn);
-
-
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
+                InsertLogIn();
             }
+        }
+
+        private void InsertLogIn()
+        {
+            LogIn logIn = new LogIn(logInName.Text, logInPassword.Text, Int32.Parse(Rank.Text));
+            if (query.GetLogInDetails(logInName.Text) == null)
+            {
+                admin.AddLogIn(logIn);
+                LoginPage loginhome = new LoginPage();
+                NavigationService.Navigate(loginhome);
+            }
+            else { WarningText.Text = "Der eingegebene Log In Name exisitert bereits.\n Bitte geben Sie einen noch nicht vorhandenen Log In Namen ein."; }
         }
     }
 }

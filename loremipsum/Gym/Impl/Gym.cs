@@ -296,7 +296,10 @@ namespace loremipsum.Gym.Impl
         #region LogIn
         public void AddLogIn(LogIn logIn)
         {
-            persistence.CreateLogIn(logIn);
+            if (persistence.FindLogIn(logIn.LogInName) == null)
+            {
+                persistence.CreateLogIn(logIn);
+            }
         }
 
         public void DeleteLogIn(string logInName)
@@ -320,7 +323,7 @@ namespace loremipsum.Gym.Impl
             LogIn logIn = persistence.FindLogIn(logInName);
             LogIn logInNew = persistence.FindLogIn(newLogInName);
 
-            if(logIn != null && logInNew != null)
+            if(logIn != null && logInNew == null)
             {
                 persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
             }
