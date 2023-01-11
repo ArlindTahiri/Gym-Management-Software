@@ -26,13 +26,26 @@ namespace GUI.MemberGUIs
     {
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private int memberID;
+        private Member member;
         public EditMember(int memberID)
         {
             InitializeComponent();
 
             this.memberID = memberID;
-        }
+            member = query.GetMemberDetails(memberID);
+            NameE.Text = member.Forename;
+            SurnameE.Text = member.Surname;
+            AdressE.Text = member.Street;
+            PostalCodeE.Text = member.PostcalCode.ToString();
+            CityE.Text = member.City;
+            CountryE.Text = member.Country;
+            ContactAdressE.Text = member.EMail;
+            ContoE.Text = member.Iban;
+            BirthdayE.Text = member.Birthday.ToString();
+
+        } 
 
         private void EditMemberButton_Click(object sender, RoutedEventArgs e)
         {

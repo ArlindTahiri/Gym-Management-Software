@@ -1,4 +1,5 @@
 ﻿using loremipsum.Gym;
+using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +23,18 @@ namespace GUI.Order_GUIs
     public partial class EditOrder : Page
     {
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private readonly IGymPersistence persistence = (IGymPersistence)Application.Current.Properties["IGymPersistence"];
         private int orderID;
+        private Order order;
+
         public EditOrder(int orderID)
         {
             InitializeComponent();
+            order = query.GetOrderDetails(orderID);
+            MemberIDBox.Text = order.MemberID.ToString();
+            ArticleIDBox.Text = order.ArticleID.ToString();
+            AmountBox.Text = order.Amount.ToString();
             this.orderID = orderID;
             
         }

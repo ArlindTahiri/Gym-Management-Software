@@ -2,6 +2,7 @@
 using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
+using loremipsum.Gym.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -30,12 +31,19 @@ namespace GUI.ArticleGUIs
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private Article article;
         private int articleID;
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public ChangeArticle(int articleID)
         {
             InitializeComponent();
             this.articleID = articleID;
+            article = query.GetArticleDetails(articleID);
+            Name.Text = article.ArticleName;
+            Price.Text = ((double)article.Price / 100).ToString();
+            TargetStock.Text = article.TargetStock.ToString();
+            ActualStock.Text = article.ActualStock.ToString();
 
             ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
             var fileInfo = new FileInfo(@"log4net.config");

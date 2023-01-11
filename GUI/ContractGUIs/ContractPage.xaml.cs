@@ -64,5 +64,10 @@ namespace GUI.ContractGUIs
             DeletePage deletePage = new DeletePage("Contract");
             NavigationService.Navigate(deletePage);
         }
+
+        private void ChangeContractButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

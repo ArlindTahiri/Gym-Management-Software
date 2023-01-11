@@ -5,30 +5,30 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.MemberGUIs"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="345"
+      d:DesignHeight="1000" d:DesignWidth="346"
       Title="EditMember">
 
     <Grid>
         <TextBox x:Name="NameE" HorizontalAlignment="Center" Margin="0,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember" />
-        <Label Content="Name&#xD;&#xA;" HorizontalAlignment="Center" Margin="10,17,0,0" VerticalAlignment="Top" Height="30"/>
+        <Label Content="Name&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,17,0,0" VerticalAlignment="Top" Height="30"/>
         <TextBox x:Name="SurnameE" HorizontalAlignment="Center" Margin="0,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
-        <Label Content="Vorname&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,93,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Adresse&#xA;" HorizontalAlignment="Center" Margin="10,168,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Email&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,463,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Iban&#xA;" HorizontalAlignment="Center" Margin="10,538,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Geburtstag&#xA;" HorizontalAlignment="Center" Margin="10,615,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Vorname&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,93,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Adresse&#xA;" HorizontalAlignment="Center" Margin="0,168,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Email&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,463,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Iban&#xA;" HorizontalAlignment="Center" Margin="0,538,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Geburtstag&#xA;" HorizontalAlignment="Center" Margin="0,610,0,0" VerticalAlignment="Top" Height="29" Width="70"/>
         <TextBox x:Name="AdressE" HorizontalAlignment="Center" Margin="0,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
         <TextBox x:Name="PostalCodeE" HorizontalAlignment="Center" Margin="0,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="PostalCodeE_PreviewTextInput" PreviewKeyDown="ChangeMember"/>
         <TextBox x:Name="CityE" HorizontalAlignment="Center" Margin="0,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
-        <TextBox x:Name="CountryE" HorizontalAlignment="Center" Margin="19,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
-        <TextBox x:Name="ContactAdressE" HorizontalAlignment="Center" Margin="19,497,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="321" Height="36" PreviewKeyDown="ChangeMember"/>
-        <TextBox x:Name="ContoE" HorizontalAlignment="Center" Margin="14,567,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
-        <TextBox x:Name="BirthdayE" HorizontalAlignment="Center" Margin="0,644,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="325" Height="36" PreviewKeyDown="ChangeMember" />
-        <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,243,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,318,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Land&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="10,388,0,0" VerticalAlignment="Top" Height="29"/>
+        <TextBox x:Name="CountryE" HorizontalAlignment="Center" Margin="0,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
+        <TextBox x:Name="ContactAdressE" HorizontalAlignment="Center" Margin="0,497,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
+        <TextBox x:Name="ContoE" HorizontalAlignment="Center" Margin="0,567,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
+        <TextBox x:Name="BirthdayE" HorizontalAlignment="Center" Margin="0,644,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember" />
+        <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,243,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,318,0,0" VerticalAlignment="Top" Height="29"/>
+        <Label Content="Land&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,388,0,0" VerticalAlignment="Top" Height="29"/>
         <Button x:Name="EditMemberButton" Content="Mitgliedsdaten ändern" HorizontalAlignment="Center" Margin="0,758,0,0" VerticalAlignment="Top" Click="EditMemberButton_Click" Height="82" Width="236"/>
-        <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,710,0,0" VerticalAlignment="Top" Width="325" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
+        <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,710,0,0" VerticalAlignment="Top" Width="326" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
 
 
     </Grid>

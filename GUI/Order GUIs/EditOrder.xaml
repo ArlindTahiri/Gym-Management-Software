@@ -9,12 +9,12 @@
       Title="EditOrder">
 
     <Grid>
-        <Button x:Name="EditOrderButton" Content="Bestellung hinzufügen" HorizontalAlignment="Left" Margin="273,303,0,0" VerticalAlignment="Top" Height="42" Width="264" Click="EditOrderButton_Click"/>
-        <TextBox x:Name="ArticleIDBox" HorizontalAlignment="Center" Margin="10,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30" PreviewKeyDown="ChangeOrder"/>
-        <Label Content="Artikel ID:" HorizontalAlignment="Center" Margin="10,115,0,0" VerticalAlignment="Top"/>
-        <Label Content="Menge" HorizontalAlignment="Left" Margin="381,191,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="AmountBox" HorizontalAlignment="Left" Margin="308,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30" PreviewKeyDown="ChangeOrder"/>
-        <TextBox x:Name="MemberIDBox" HorizontalAlignment="Left" Margin="308,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30" PreviewKeyDown="ChangeOrder"/>
-        <Label Content="Member ID:" HorizontalAlignment="Left" Margin="374,41,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="EditOrderButton" Content="Bestellung hinzufügen" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Height="42" Width="264" Click="EditOrderButton_Click"/>
+        <TextBox x:Name="ArticleIDBox" HorizontalAlignment="Center" Margin="0,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30" PreviewKeyDown="ChangeOrder"/>
+        <Label Content="Artikel ID:" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top"/>
+        <Label Content="Menge" HorizontalAlignment="Center" Margin="0,194,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="AmountBox" HorizontalAlignment="Center" Margin="0,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30" PreviewKeyDown="ChangeOrder"/>
+        <TextBox x:Name="MemberIDBox" HorizontalAlignment="Center" Margin="0,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30" PreviewKeyDown="ChangeOrder"/>
+        <Label Content="Member ID:" HorizontalAlignment="Center" Margin="0,41,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

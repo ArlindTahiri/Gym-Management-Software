@@ -34,11 +34,23 @@ namespace GUI.EmployeeGUIs
     {
         private readonly IProductAdmin admin = Application.Current.Properties["IProductAdmin"] as IProductAdmin;
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private Employee employee;
         private int employeeID;
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public EditEmployee(int employeeID)
         {
             InitializeComponent();
+            employee = query.GetEmployeeDetails(employeeID);
+            ForeName.Text = employee.Forename;
+            Surname.Text = employee.Surname;
+            Adress.Text = employee.Street;
+            PostalCode.Text = employee.PostcalCode.ToString();
+            City.Text = employee.City;
+            Country.Text = employee.Country;
+            Email.Text = employee.EMail;
+            Iban.Text = employee.Iban;
+            Birthday.Text = employee.Birthday.ToString();
+
             this.employeeID = employeeID;
 
 
