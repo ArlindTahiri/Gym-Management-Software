@@ -3,6 +3,7 @@ using GUI.ContractGUIs;
 using GUI.EmployeeGUIs;
 using GUI.LoginGUIs;
 using GUI.MemberGUIs;
+using GUI.Order_GUIs;
 using loremipsum.Gym;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,12 @@ namespace GUI
             {
                 LoginPage loginPage = new LoginPage();
                 NavigationService.Navigate(loginPage);
+            }
+
+            if(Destination == "Order")
+            {
+                OrderPage orderPage = new OrderPage();
+                NavigationService.Navigate(orderPage);
             }
         }
     }

@@ -36,7 +36,7 @@ namespace GUI.Order_GUIs
 
         private void OrderData_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            OrderData.ItemsSource = admin.ListOrders();
         }
 
         private void DeleteMembersButton_Click(object sender, RoutedEventArgs e)

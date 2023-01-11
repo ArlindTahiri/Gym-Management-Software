@@ -84,8 +84,8 @@ namespace GUI
         {
             log.Info("Clicked on orderButton button");
 
-            OrderPage orderPage = new OrderPage();
-            NavigationService.Navigate(orderPage);
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("Order");
+            NavigationService.Navigate(gymPasswordPage);
         }
 
         private void Logins_Click(object sender, RoutedEventArgs e)

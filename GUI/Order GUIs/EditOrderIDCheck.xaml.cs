@@ -21,7 +21,7 @@ namespace GUI.Order_GUIs
     /// </summary>
     public partial class EditOrderIDCheck : Page
     {
-
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         public EditOrderIDCheck()
         {
@@ -36,11 +36,17 @@ namespace GUI.Order_GUIs
                 {
                     EditOrder editOrder = new EditOrder(Int32.Parse(IDCheck.Text));
                     NavigationService.Navigate(editOrder);
-                } else
+                } 
+                else
                 {
-                   WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
+                    WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
                 }
             }
+        }
+
+        private void OrderData_Loaded(object sender, RoutedEventArgs e)
+        {
+            OrderData.ItemsSource = admin.ListOrders();
         }
     }
 }

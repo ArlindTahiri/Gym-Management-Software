@@ -21,16 +21,11 @@ namespace GUI.Order_GUIs
     /// </summary>
     public partial class DeleteOrderIDCheck : Page
     {
-
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         public DeleteOrderIDCheck()
         {
             InitializeComponent();
-        }
-
-        private void IDCheck_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         private void IDCheck_KeyDown(object sender, KeyEventArgs e)
@@ -44,11 +39,17 @@ namespace GUI.Order_GUIs
                     DeleteOrder deleteOrder = new DeleteOrder(Int32.Parse(IDCheck.Text));
                     NavigationService.Navigate(deleteOrder);
                        
-                } else
+                } 
+                else
                 {
                     WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
                 }
             }
+        }
+
+        private void OrderData_Loaded(object sender, RoutedEventArgs e)
+        {
+            OrderData.ItemsSource = admin.ListOrders();
         }
     }
 }
