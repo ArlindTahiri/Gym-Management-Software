@@ -18,5 +18,15 @@ namespace GUI
                 e.Handled = true;
             }
         }
+
+        public static bool CheckIsMail(string mail)
+        {
+            if(mail.Contains("@") && mail.Contains(".") && !mail.StartsWith("@") && !mail.StartsWith(".") && !mail.EndsWith("@") && !mail.EndsWith(".")){
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -42,12 +42,18 @@ namespace GUI.MemberGUIs
             if (!ContractCB.Text.IsNullOrEmpty() && !NameM.Text.IsNullOrEmpty() && !SurnameM.Text.IsNullOrEmpty() && !AdressM.Text.IsNullOrEmpty()
                 && !PostalCodeM.Text.IsNullOrEmpty() && !CityM.Text.IsNullOrEmpty() && !CountryM.Text.IsNullOrEmpty() && !ContoM.Text.IsNullOrEmpty() && !BirthdayM.Text.IsNullOrEmpty())
             {
-                Contract c = (Contract)ContractCB.SelectedItem;
-                admin.AddMember(c.ContractID, NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
-                      CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
+                if (TextValidation.CheckIsMail(ContactAdressM.Text))
+                {
+                    Contract c = (Contract)ContractCB.SelectedItem;
+                    admin.AddMember(c.ContractID, NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
+                          CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
 
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
+                    GymHomepage home = new GymHomepage();
+                    NavigationService.Navigate(home);
+                } else
+                {
+                    WarningLabel.Content = "Bitte geben Sie eine gültige E-Mail Adresse ein.";
+                }
             } else
             {
                 WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";

@@ -13,12 +13,12 @@
         <TextBox x:Name="Name" HorizontalAlignment="Center" Margin="0,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30"/>
         <TextBox x:Name="Price" HorizontalAlignment="Center" Margin="0,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="Price_PreviewTextInput"/>
         <TextBox x:Name="TargetStock" HorizontalAlignment="Center" Margin="0,197,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="TargetStock_PreviewTextInput"/>
-        <Button x:Name="AddArticle1" Content="Artikel hinzufügen" HorizontalAlignment="Center" Margin="0,351,0,0" VerticalAlignment="Top" Height="67" Width="250" Click="AddArticle1_Click"/>
         <TextBox x:Name="ActualStock" HorizontalAlignment="Center" Margin="0,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="325" Height="30" PreviewTextInput="ActualStock_PreviewTextInput"/>
         <Label Content="Preis" HorizontalAlignment="Center" Margin="0,95,0,0" VerticalAlignment="Top"/>
         <Label Content="Soll-Bestand" HorizontalAlignment="Center" Margin="0,166,0,0" VerticalAlignment="Top"/>
         <Label Content="Ist-Bestand" HorizontalAlignment="Center" Margin="0,231,0,0" VerticalAlignment="Top"/>
         <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="325" HorizontalContentAlignment="Center" Foreground="Red"/>
+        <Button x:Name="AddArticle1" Content="Artikel hinzufügen" HorizontalAlignment="Center" Margin="0,351,0,0" VerticalAlignment="Top" Height="67" Width="250" Click="AddArticle1_Click"/>
 
     </Grid>
 </Page>

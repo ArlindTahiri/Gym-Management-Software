@@ -47,13 +47,19 @@ namespace GUI.EmployeeGUIs
             if (!ForeName.Text.IsNullOrEmpty() && !Surname.Text.IsNullOrEmpty() && !Adress.Text.IsNullOrEmpty() && !PostalCode.Text.IsNullOrEmpty()
                 && !City.Text.IsNullOrEmpty() && !Country.Text.IsNullOrEmpty() && !Email.Text.IsNullOrEmpty() && !Iban.Text.IsNullOrEmpty() && !Birthday.Text.IsNullOrEmpty())
             {
+                if (TextValidation.CheckIsMail(Email.Text))
+                {
 
-                Employee employee = new(ForeName.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text, Country.Text, Email.Text, Iban.Text, DateTime.Parse(Birthday.Text));
+                    Employee employee = new(ForeName.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text, Country.Text, Email.Text, Iban.Text, DateTime.Parse(Birthday.Text));
 
-                admin.AddEmployee(employee);
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
-                log.Info("Added employee: " + employee.ToString() + "... and returned to homepage");
+                    admin.AddEmployee(employee);
+                    GymHomepage home = new GymHomepage();
+                    NavigationService.Navigate(home);
+                    log.Info("Added employee: " + employee.ToString() + "... and returned to homepage");
+                } else
+                {
+                    WarningLabel.Content = "Bitte geben Sie eine gültige E-Mail Adresse ein.";
+                }
             }
             else
             {
