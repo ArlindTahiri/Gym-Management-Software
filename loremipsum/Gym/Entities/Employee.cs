@@ -54,7 +54,7 @@ namespace loremipsum.Gym.Entities
 
         public override string ToString()
         {
-            return Forename + " " + Surname + " | Adresse: " + Street + " " + PostcalCode + " " + City + " " + Country + " | Email: " + EMail + " | Iban: " + Iban + " | Geburtstag: " + Birthday;
+            return EmployeeID+" | "+ Forename + " " + Surname;
         }
     }
 }

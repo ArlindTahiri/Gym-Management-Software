@@ -5,18 +5,18 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.LoginGUIs"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      MinHeight="450" MinWidth="800"
       Title="AddLogin">
 
     <Grid>
-        <Label Content="login Name" HorizontalAlignment="Left" Height="40" Margin="48,26,0,0" VerticalAlignment="Top" Width="90"/>
-        <TextBox x:Name ="logInName" HorizontalAlignment="Left" Height="80" Margin="48,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" PreviewKeyDown="CreateLogin"/>
+        <Label Content="login Name" HorizontalAlignment="Left" Height="40" Margin="74,26,0,0" VerticalAlignment="Top" Width="90"/>
+        <TextBox x:Name ="logInName" HorizontalAlignment="Left" Height="80" Margin="10,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" PreviewKeyDown="CreateLogin"/>
 
-        <Label Content="login Password" HorizontalAlignment="Left" Height="40" Margin="310,26,0,0" VerticalAlignment="Top" Width="90"/>
+        <Label Content="login Password" HorizontalAlignment="Center" Height="40" Margin="0,26,0,0" VerticalAlignment="Top" Width="90"/>
         <TextBox x:Name ="logInPassword" HorizontalAlignment="Center" Height="80" Margin="0,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" PreviewKeyDown="CreateLogin"/>
 
-        <Label Content="Rang" HorizontalAlignment="Left" Height="40" Margin="591,26,0,0" VerticalAlignment="Top" Width="90"/>
-        <TextBox x:Name ="Rank" HorizontalAlignment="Left" Height="80" Margin="572,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" PreviewKeyDown="CreateLogin"/>
+        <Label Content="Rang" HorizontalAlignment="Right" Height="40" Margin="0,26,74,0" VerticalAlignment="Top" Width="90"/>
+        <TextBox x:Name ="Rank" Height="80" Margin="0,66,10,0" TextWrapping="Wrap" VerticalAlignment="Top" PreviewKeyDown="CreateLogin" HorizontalAlignment="Right" Width="218"/>
         <Button x:Name="addLogin" Content="Login hinzufügen" HorizontalAlignment="Center" Height="106" Margin="0,277,0,0" VerticalAlignment="Top" Width="266" Click="addLogin_Click"/>
 
     </Grid>

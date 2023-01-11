@@ -5,13 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.LoginGUIs"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      MinHeight="450" MinWidth="800"
       Title="LoginPage">
 
     <Grid>
-        <Button x:Name="EditLogins" Content="Logins Bearbeiten" HorizontalAlignment="Left" Height="100" Margin="20,27,0,0" VerticalAlignment="Top" Width="205" Click="EditLogins_Click"/>
-        <DataGrid x:Name="LoginInventory" HorizontalAlignment="Center" Height="285" Margin="0,165,0,0" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="LoginInventory_Loaded"/>
-        <Button x:Name="DeleteLoginsButton" Content="Alle Logins löschen" HorizontalAlignment="Left" Margin="655,134,0,0" VerticalAlignment="Top" Height="26" Width="135" Click="DeleteLoginsButton_Click"/>
+        <Button x:Name="EditLogins" Content="Logins Bearbeiten" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="205" Click="EditLogins_Click"/>
+        <DataGrid x:Name="LoginInventory" Margin="10,159,10,10" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="LoginInventory_Loaded"/>
+        <Button x:Name="DeleteLoginsButton" Content="Alle Logins löschen" Margin="0,120,10,0" VerticalAlignment="Top" Height="26" Click="DeleteLoginsButton_Click" HorizontalAlignment="Right" Width="136"/>
 
     </Grid>
 </Page>

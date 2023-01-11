@@ -1,4 +1,5 @@
 ﻿using loremipsum.Gym;
+using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,19 +23,22 @@ namespace GUI.LoginGUIs
     public partial class EditLogin : Page
     {
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        private string loginName;
+        private IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private LogIn logIn;
 
         public EditLogin(string loginName)
         {
             InitializeComponent();
-
-            this.loginName = loginName;
+            logIn = query.GetLogInDetails(loginName);
+            newLogInName.Text = logIn.LogInName;
+            newLogInPassword.Text = logIn.LogInPassword;
+            newRank.Text = logIn.Rank.ToString();
         }
 
         private void editLogin_Click(object sender, RoutedEventArgs e)
         {
 
-            admin.UpdateLogIn(loginName, newLogInName.Text, newLogInPassword.Text, Int32.Parse(newRank.Text));
+            admin.UpdateLogIn(logIn.LogInName, newLogInName.Text, newLogInPassword.Text, Int32.Parse(newRank.Text));
 
             GymHomepage home = new GymHomepage();
             NavigationService.Navigate(home);
@@ -44,7 +48,7 @@ namespace GUI.LoginGUIs
         {
             if(e.Key == Key.Enter)
             {
-                admin.UpdateLogIn(loginName, newLogInName.Text, newLogInPassword.Text, Int32.Parse(newRank.Text));
+                admin.UpdateLogIn(logIn.LogInName, newLogInName.Text, newLogInPassword.Text, Int32.Parse(newRank.Text));
 
                 GymHomepage home = new GymHomepage();
                 NavigationService.Navigate(home);
