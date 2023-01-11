@@ -9,6 +9,13 @@
       Title="ChangeContract">
 
     <Grid>
-        
+        <Label Content="Bitte geben Sie die ID des Mitglieds ein, das Sie bearbeiten wollen" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="350" PreviewTextInput="IDCheck_PreviewTextInput"/>
+        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" Margin="0,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="384" Foreground="#FFD40303" TextAlignment="Center"/>
+        <DataGrid x:Name="MemberData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="24,225,24,129" Loaded="MemberData_Loaded"/>
+        <ComboBox x:Name="ContractCB" HorizontalAlignment="Center" Height="39" Margin="0,89,0,0" VerticalAlignment="Top" Width="350" Loaded="ContractCB_Loaded"/>
+        <Button x:Name="ChangeButton" Content="Vertrag ändern" HorizontalAlignment="Center" Height="50" Margin="0,168,0,0" VerticalAlignment="Top" Width="350" Click="ChangeButton_Click"/>
+
+
     </Grid>
 </Page>
