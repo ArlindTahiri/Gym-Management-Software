@@ -477,7 +477,6 @@ namespace loremipsum.Gym.Impl
 
         public IList<int> ListTrainingMembersID()
         {
-            currentlyTrainingMembersID = new List<int>();
             string FileUrl = "CurrentTrainingMembers.xml";
             int[] members;
             if (File.Exists(FileUrl))
@@ -488,18 +487,18 @@ namespace loremipsum.Gym.Impl
                     members = (int[])deser.Deserialize(reader);
                 }
                 currentlyTrainingMembersID = members.ToList();
-                return currentlyTrainingMembersID;
+                
             }
-            return new List<int>();
+            return currentlyTrainingMembersID;
         }
 
         public IList<Member> ListTrainingMembers()
         {
             currentlyTrainingMembersID = ListTrainingMembersID();
             IList<Member> result = new List<Member>();
-            foreach (int i in currentlyTrainingMembersID)
+            foreach (int memberID in currentlyTrainingMembersID)
             {
-                result.Add(persistence.FindMember(i));
+                result.Add(persistence.FindMember(memberID));
             }
             return result;
         }

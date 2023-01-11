@@ -66,7 +66,7 @@ namespace loremipsum.Gym.Entities
 
         public override string ToString() 
         {
-            return MemberID+" "+Forename+" "+Surname+" "+Street+" "+PostcalCode+" "+City+" "+Country+" "+EMail+" "+Iban+" "+ Birthday;
+            return MemberID+" "+Forename+" "+Surname;
         }
     }
 }

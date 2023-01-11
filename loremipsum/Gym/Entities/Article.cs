@@ -43,7 +43,7 @@ namespace loremipsum.Gym.Entities
 
         public override string ToString()
         {
-            return ArticleID+" "+ArticleName+" "+Price+" "+TargetStock+" "+ActualStock;
+            return ArticleName+" | Preis: "+(double)Price/100+"€ | Derzeitiger Bestand: "+ActualStock;
         }
 
     }
