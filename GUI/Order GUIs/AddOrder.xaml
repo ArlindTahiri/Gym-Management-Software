@@ -14,8 +14,8 @@
         <Label Content="Artikel ID:" HorizontalAlignment="Center" Margin="10,115,0,0" VerticalAlignment="Top"/>
         <Label Content="Menge" HorizontalAlignment="Left" Margin="381,191,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="AmountBox" HorizontalAlignment="Left" Margin="308,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30"/>
-        <ComboBox x:Name="MemberCB" HorizontalAlignment="Left" Height="35" Margin="308,69,0,0" VerticalAlignment="Top" Width="194" SelectionChanged="MemberCB_SelectionChanged"/>
-        <ComboBox x:Name="ArticleCB" HorizontalAlignment="Left" Height="35" Margin="308,151,0,0" VerticalAlignment="Top" Width="194" SelectionChanged="ArticleCB_SelectionChanged"/>
+        <ComboBox x:Name="MemberCB" HorizontalAlignment="Left" Height="35" Margin="308,69,0,0" VerticalAlignment="Top" Width="194" Loaded="MemberCB_Loaded"/>
+        <ComboBox x:Name="ArticleCB" HorizontalAlignment="Left" Height="35" Margin="308,151,0,0" VerticalAlignment="Top" Width="194" Loaded="ArticleCB_Loaded"/>
 
     </Grid>
 </Page>

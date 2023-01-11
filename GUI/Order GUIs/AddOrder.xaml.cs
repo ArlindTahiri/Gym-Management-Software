@@ -2,6 +2,7 @@
 using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,28 +31,26 @@ namespace GUI.Order_GUIs
 
         private void AddOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.AddOrder(Int32.Parse(MemberCB.Text), Int32.Parse(ArticleCB.Text), Int32.Parse(AmountBox.Text));
+            Member m = (Member)MemberCB.SelectedItem;
+            Article a = (Article)ArticleCB.SelectedItem;
+            admin.AddOrder(m.MemberID, a.ArticleID, Int32.Parse(AmountBox.Text));
             
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);
         }
 
-        private void MemberCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ArticleCB_Loaded(object sender, RoutedEventArgs e)
         {
-            IList<Member> members = admin.ListMembers();
-            foreach (Member member in members)
-            {
-                MemberCB.Items.Add(member.MemberID);
-            }
+
+            ArticleCB.Items.Clear();
+            ArticleCB.ItemsSource = admin.ListArticles();
         }
 
-        private void ArticleCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MemberCB_Loaded(object sender, RoutedEventArgs e)
         {
-            IList<Article> articles = admin.ListArticles();
-            foreach (Article article in articles)
-            {
-                ArticleCB.Items.Add(article.ArticleID);
-            }
+
+            MemberCB.Items.Clear();
+            MemberCB.ItemsSource = admin.ListMembers();
         }
     }
 }

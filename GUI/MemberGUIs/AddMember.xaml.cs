@@ -1,5 +1,6 @@
 ﻿using loremipsum.Gym;
 using loremipsum.Gym.Entities;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -32,9 +33,8 @@ namespace GUI.MemberGUIs
         
         public AddMember()
         {
-            InitializeComponent();    
+            InitializeComponent();
         }
-
        
          private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -42,8 +42,8 @@ namespace GUI.MemberGUIs
             if (!ContractCB.Text.IsNullOrEmpty() && !NameM.Text.IsNullOrEmpty() && !SurnameM.Text.IsNullOrEmpty() && !AdressM.Text.IsNullOrEmpty()
                 && !PostalCodeM.Text.IsNullOrEmpty() && !CityM.Text.IsNullOrEmpty() && !CountryM.Text.IsNullOrEmpty() && !ContoM.Text.IsNullOrEmpty() && !BirthdayM.Text.IsNullOrEmpty())
             {
-
-                admin.AddMember(Int32.Parse(ContractCB.Text), NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
+                Contract c = (Contract)ContractCB.SelectedItem;
+                admin.AddMember(c.ContractID, NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
                       CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
 
                 GymHomepage home = new GymHomepage();
@@ -65,13 +65,10 @@ namespace GUI.MemberGUIs
             TextValidation.CheckIsNumeric(e);
         }
 
-        private void ContractCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ContractCB_Loaded(object sender, RoutedEventArgs e)
         {
-            IList<Contract> contracts = admin.ListContracts();
-            foreach (Contract contract in contracts)
-            {
-                ContractCB.Items.Add(contract.ContractID);
-            }
+            ContractCB.Items.Clear();
+            ContractCB.ItemsSource = admin.ListContracts();
         }
     }
 }
