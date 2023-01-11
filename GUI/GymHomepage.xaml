@@ -8,16 +8,17 @@
       d:DesignHeight="1200" d:DesignWidth="1500"
       Title="GymHomepage">
 
-    <Grid>
+    <Grid x:Name="Homepage" Loaded="Homepage_Loaded">
         <Button x:Name="MemberButton" Content="Mitglieder" HorizontalAlignment="Left" Margin="25,29,0,0" VerticalAlignment="Top" Height="150" Width="250" Click="Member_Click" FontSize="30"/>
         <Button x:Name="EmployeeButton" Content="Mitarbeiter" HorizontalAlignment="Left" Margin="304,29,0,0" VerticalAlignment="Top" Height="150" Width="250" Click="EmployeeButton_Click" FontSize="30"/>
         <Button x:Name="ContractButton" Content="Verträge" HorizontalAlignment="Left" Margin="908,29,0,0" VerticalAlignment="Top" Height="150" Width="250" Click="Contract_Click" FontSize="30"/>
-        <DataGrid x:Name="TrainingMembers" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,485,535,10"/>
+        <DataGrid x:Name="TrainingMembers" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,485,535,10" Loaded="TrainingMembers_Loaded"/>
         <Button x:Name="Inventar" Content="Inventar" HorizontalAlignment="Left" Height="150" Margin="1216,29,0,0" VerticalAlignment="Top" Width="250" Click="Inventar_Click" FontSize="30"/>
         <Button x:Name="OrderButton" Content="Bestellungen" HorizontalAlignment="Left" Height="150" Margin="604,29,0,0" VerticalAlignment="Top" Width="250" Click="OrderButton_Click" FontSize="30"/>
         <Button x:Name="Logins" Content="Login" HorizontalAlignment="Left" Height="150" Margin="1216,242,0,0" VerticalAlignment="Top" Width="250" Click="Logins_Click" FontSize="30"/>
         <Button x:Name="TrainingButton" Content="Trainieren" HorizontalAlignment="Left" Margin="25,242,0,0" VerticalAlignment="Top" Width="250" Height="150" FontSize="30" Click="TrainingButton_Click"/>
         <Button x:Name="DeleteEverythingButton" Content="Alles löschen" HorizontalAlignment="Left" Margin="1268,441,0,0" VerticalAlignment="Top" Height="39" Width="146" Click="DeleteEverythingButton_Click"/>
+        <Label x:Name="CurrentlyTraining" Content="" HorizontalAlignment="Left" Margin="10,417,0,0" VerticalAlignment="Top" Height="63" Width="386" FontSize="24" Background="#FF757575" VerticalContentAlignment="Center"/>
 
     </Grid>
 </Page>

@@ -33,6 +33,7 @@ namespace GUI
 
         private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+       
         public GymHomepage()
         {
             InitializeComponent();
@@ -105,16 +106,33 @@ namespace GUI
             NavigationService.Navigate(trainingIDCheck);
         }
 
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-          TrainingMembers.ItemsSource = admin.ListTrainingMembers();
-          
-        }
-
         private void DeleteEverythingButton_Click(object sender, RoutedEventArgs e)
         {
             DeletePage deletePage = new DeletePage("Home");
             NavigationService.Navigate(deletePage);
+        }
+
+        private void TrainingMembers_Loaded(object sender, RoutedEventArgs e)
+        {
+            TrainingMembers.ItemsSource = admin.ListTrainingMembers();
+            CurrentlyTraining.Content = " Aktuell trainierende Mitglieder: "+ admin.ListTrainingMembers().Count;
+            
+        }
+
+        private void Homepage_Loaded(object sender, RoutedEventArgs e)
+        {
+            int memberCount = admin.ListTrainingMembers().Count;
+
+            if (memberCount <= 2)
+            {
+                CurrentlyTraining.Foreground = Brushes.Green;
+            } else if (memberCount <= 3 && memberCount > 2)
+            {
+                CurrentlyTraining.Foreground = Brushes.Yellow;
+            } else
+            {
+                CurrentlyTraining.Foreground = Brushes.Red;
+            }
         }
     }
 }
