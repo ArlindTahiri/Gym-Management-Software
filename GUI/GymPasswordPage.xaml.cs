@@ -5,6 +5,7 @@ using GUI.LoginGUIs;
 using GUI.MemberGUIs;
 using GUI.Order_GUIs;
 using loremipsum.Gym;
+using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,8 @@ namespace GUI
     public partial class GymPasswordPage : Page
     {
         public string Destination;
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         public GymPasswordPage(string destination)
         {
             Destination = destination;
@@ -38,7 +41,17 @@ namespace GUI
         {
             string username = Username.Text;
             string password = Password.Text;
-            IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+            LogIn login = query.GetLogInDetails(Username.Text);
+            if(login != null)
+            {
+                if (login.LogInPassword == Password.Text)
+                {
+                    // paste all the code here.
+                }
+                else { WarningText.Text = "Das eingegebene Log In Passwort ist falsch.\n Bitte geben Sie das richtige Passwort ein."; }
+            }
+            else { WarningText.Text = "Der eingegebene Log In Name exisitert nicht.\n Bitte geben Sie einen vorhandenen Log In Namen ein."; }
+            
 
             if (Destination == "Member")
             {
@@ -66,8 +79,17 @@ namespace GUI
 
             if(Destination == "Login")
             {
-                LoginPage loginPage = new LoginPage();
-                NavigationService.Navigate(loginPage);
+                if (admin.ListLogIns().Count == 0) //if there are no logins you have to go directly to addlogin page and create rank 1 account
+                {
+                    AddLogin addLogin= new AddLogin("First log In");
+                    NavigationService.Navigate(addLogin);
+                }
+                else
+                {
+                    LoginPage loginPage = new LoginPage();
+                    NavigationService.Navigate(loginPage);
+                }
+                
             }
 
             if(Destination == "Order")

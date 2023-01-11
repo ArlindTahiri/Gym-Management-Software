@@ -24,9 +24,16 @@ namespace GUI.LoginGUIs
     {
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private string firstlogin;
 
         public AddLogin()
         {
+            InitializeComponent();
+        }
+
+        public AddLogin(string firstlogin)//auto set value of rank=1;
+        {
+            firstlogin = firstlogin;
             InitializeComponent();
         }
 
