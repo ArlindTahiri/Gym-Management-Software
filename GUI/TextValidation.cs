@@ -13,7 +13,7 @@ namespace GUI
         {
             int result;
 
-            if (!(int.TryParse(e.Text, out result) || e.Text == "."))
+            if (!int.TryParse(e.Text, out result))
             {
                 e.Handled = true;
             }

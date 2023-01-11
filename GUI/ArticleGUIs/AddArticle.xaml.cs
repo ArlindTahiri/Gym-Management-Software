@@ -46,13 +46,35 @@ namespace GUI.ArticleGUIs
         {
             if (!Name.Text.IsNullOrEmpty() && !Price.Text.IsNullOrEmpty() && !TargetStock.Text.IsNullOrEmpty() && !ActualStock.Text.IsNullOrEmpty())
             {
-                Article article = new Article(Name.Text, Int32.Parse(Price.Text), Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
-                admin.AddArticle(article);
+                if (Price.Text.Contains(".") || Price.Text.Contains(","))
+                {
+                    string[] string_remove = { ".", "," };
+                    string euroPrice = Price.Text;
 
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
+                    foreach (string c in string_remove)
+                    {
+                        euroPrice = euroPrice.Replace(c, "");
+                    }
 
-                log.Info("Added article: " + article.ToString() + "... and returned to homepage");
+                    int centPrice = Int32.Parse(euroPrice);
+
+                    Article article = new Article(Name.Text, centPrice * 100, Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
+                    admin.AddArticle(article);
+
+                    GymHomepage home = new GymHomepage();
+                    NavigationService.Navigate(home);
+
+                }
+                else
+                {
+                    Article article = new Article(Name.Text, Int32.Parse(Price.Text), Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
+                    admin.AddArticle(article);
+
+                    GymHomepage home = new GymHomepage();
+                    NavigationService.Navigate(home);
+
+                    log.Info("Added article: " + article.ToString() + "... and returned to homepage");
+                }
             }
             else
             {
@@ -62,7 +84,7 @@ namespace GUI.ArticleGUIs
 
         private void Price_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            TextValidation.CheckIsNumeric(e);
+            AllowEuroPrice(e);
         }
 
         private void TargetStock_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -75,6 +97,15 @@ namespace GUI.ArticleGUIs
             TextValidation.CheckIsNumeric(e);
         }
 
-       
+        public static void AllowEuroPrice(TextCompositionEventArgs e)
+        {
+            int result;
+
+            if (!(int.TryParse(e.Text, out result)|| e.Text=="." || e.Text==","))
+            {
+                e.Handled = true;
+            }
+        }
+
     }
     }
