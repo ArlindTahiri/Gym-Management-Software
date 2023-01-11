@@ -36,8 +36,8 @@ namespace GUI.Order_GUIs
                 if(query.GetOrderDetails(Int32.Parse(IDCheck.Text))!=null ) 
                 { 
                 
-                    DeleteOrder deleteOrder = new DeleteOrder(Int32.Parse(IDCheck.Text));
-                    NavigationService.Navigate(deleteOrder);
+                    DeletePage deletePage = new DeletePage("DeleteOrder", Int32.Parse(IDCheck.Text));
+                    NavigationService.Navigate(deletePage);
                        
                 } 
                 else

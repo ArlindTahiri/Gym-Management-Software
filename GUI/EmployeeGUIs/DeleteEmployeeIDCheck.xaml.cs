@@ -54,8 +54,8 @@ namespace GUI.EmployeeGUIs
                     if (query.GetEmployeeDetails(Int32.Parse(content)) != null)
                     {
 
-                        DeleteEmployee DeleteEmployee = new DeleteEmployee(Int32.Parse(content));
-                        NavigationService.Navigate(DeleteEmployee);
+                       DeletePage deletePage = new DeletePage("DeleteEmployee", Int32.Parse(content));
+                        NavigationService.Navigate(deletePage);
                     } else
                     {
                         log.Error("Inserted an invalid employeeID. The ID was: " + content);

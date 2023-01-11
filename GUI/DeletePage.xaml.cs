@@ -1,9 +1,13 @@
-﻿using log4net;
+﻿using GUI.LoginGUIs;
+using log4net;
 using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
+using loremipsum.Gym.Entities;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -27,9 +31,11 @@ namespace GUI
     public partial class DeletePage : Page
     {
         IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private string destination;
-        private string destinationtrans;
+        private int ID;
+        private string _name;
         public DeletePage(string destination)
         {
             InitializeComponent();
@@ -58,6 +64,8 @@ namespace GUI
                 case "Home": QuestionLabel.Content = "Wollen Sie wirklich ALLES löschen?";
                     break;
             }
+
+         
             
 
             ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
@@ -67,6 +75,55 @@ namespace GUI
             log.Info("Opened DeletePage from destination: "+destination);
         }
 
+        public DeletePage(string destination, string name)
+        {
+            InitializeComponent();
+            this.destination = destination;
+            this._name = name;
+
+            if (destination.Equals("DeleteLogin"))
+            {
+                QuestionLabel.Content = "Wollen Sie wirklich diesen Login löschen?";
+                QuestionBox.Text = query.GetLogInDetails(_name).ToString();
+
+            }
+            
+        }
+
+        public DeletePage(string destination, int ID)
+        {
+            InitializeComponent();
+            this.destination = destination;
+            this.ID = ID;
+
+            switch (destination)
+            {
+                case "DeleteArticle":
+                    QuestionLabel.Content = "Wollen Sie wirklich diesen Artikel löschen?";
+                    QuestionBox.Text = query.GetArticleDetails(ID).ToString();
+                    break;
+
+                case "DeleteContract":
+                    QuestionLabel.Content = "Wollen Sie wirklich diesen Vertrag löschen?";
+                    QuestionBox.Text = query.GetContractDetails(ID).ToString();
+                    break;
+
+                case "DeleteEmployee":
+                    QuestionLabel.Content = "Wollen Sie wirklich diesen Mitarbeiter löschen?";
+                    QuestionBox.Text = query.GetEmployeeDetails(ID).ToString();
+                    break;
+
+                case "DeleteMember":
+                    QuestionLabel.Content = "Wollen Sie wirklich dieses Mitglied löschen?";
+                    QuestionBox.Text = query.GetMemberDetails(ID).ToString();
+                    break;
+
+                case "DeleteOrder":
+                    QuestionLabel.Content = "Wollen Sie wirklich diese Bestellung löschen?";
+                    QuestionBox.Text = query.GetOrderDetails(ID).ToString();
+                    break;
+            }
+        }
       
 
         private void YesButton_Click(object sender, RoutedEventArgs e)
@@ -128,6 +185,53 @@ namespace GUI
                 admin.DeleteMembers();
                 admin.DeleteEmployees();
                 admin.DeleteOrders();
+                GymHomepage gymHomepage = new GymHomepage();
+                NavigationService.Navigate(gymHomepage);
+            }
+
+            if (destination.Equals("DeleteArticle"))
+            {
+                admin.DeleteArticle(ID);
+                GymHomepage gymHomepage = new GymHomepage();
+                NavigationService.Navigate(gymHomepage);
+            }
+
+            if (destination.Equals("DeleteContract"))
+            {
+                admin.DeleteContract(ID);
+
+                GymHomepage gymHomepage = new GymHomepage();
+                NavigationService.Navigate(gymHomepage);
+            }
+
+            if (destination.Equals("DeleteEmployee"))
+            {
+                admin.DeleteEmployee(ID);
+
+                GymHomepage home = new GymHomepage();
+                NavigationService.Navigate(home);
+            }
+
+            if (destination.Equals("DeleteLogin"))
+            {
+                admin.DeleteLogIn(_name);
+
+                GymHomepage home = new GymHomepage();
+                NavigationService.Navigate(home);
+            }
+
+            if (destination.Equals("DeleteMember"))
+            {
+                admin.DeleteMember(ID);
+
+                GymHomepage home = new GymHomepage();
+                NavigationService.Navigate(home);
+            }
+
+            if (destination.Equals("DeleteOrder"))
+            {
+                admin.DeleteOrder(ID);
+
                 GymHomepage gymHomepage = new GymHomepage();
                 NavigationService.Navigate(gymHomepage);
             }

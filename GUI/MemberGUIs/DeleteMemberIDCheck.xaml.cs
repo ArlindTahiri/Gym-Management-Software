@@ -43,8 +43,8 @@ namespace GUI.MemberGUIs
                     if (query.GetMemberDetails(Int32.Parse(IDCheck.Text)) != null)
                     {
 
-                        DeleteMember DeleteMember = new DeleteMember(Int32.Parse(IDCheck.Text));
-                        NavigationService.Navigate(DeleteMember);
+                        DeletePage deletePage = new DeletePage("DeleteMember",Int32.Parse(IDCheck.Text));
+                        NavigationService.Navigate(deletePage);
                     } else
                     {
                         WarningText.Text = "Die eingebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";

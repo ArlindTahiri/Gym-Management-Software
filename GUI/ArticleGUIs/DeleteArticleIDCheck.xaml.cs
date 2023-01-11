@@ -53,8 +53,8 @@ namespace GUI.ArticleGUIs
                     if (query.GetArticleDetails(Int32.Parse(content)) != null)
                     {
                         log.Info("Inserted a valid articleID. The ID was: " + content);
-                        DeleteArticle deleteArticle = new DeleteArticle(Int32.Parse(content));
-                        NavigationService.Navigate(deleteArticle);
+                        DeletePage deletePage = new DeletePage("DeleteArticle",Int32.Parse(content));
+                        NavigationService.Navigate(deletePage);
                     }else
                     {
                         log.Error("Inserted an invalid articleID. The ID was: " + content);

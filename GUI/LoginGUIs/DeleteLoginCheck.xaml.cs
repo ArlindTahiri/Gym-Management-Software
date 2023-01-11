@@ -36,8 +36,8 @@ namespace GUI.LoginGUIs
             {
                 if (query.GetLogInDetails(loginName) != null)
                 {
-                    DeleteLogin deleteLogin = new DeleteLogin(loginName);
-                    NavigationService.Navigate(deleteLogin);
+                    DeletePage deletePage = new DeletePage("DeleteLogin", loginName);
+                    NavigationService.Navigate(deletePage);
                 } else
                 {
                     WarningText.Text = "Der Login ist falsch. Bitte geben Sie einen gültigen login ein.";

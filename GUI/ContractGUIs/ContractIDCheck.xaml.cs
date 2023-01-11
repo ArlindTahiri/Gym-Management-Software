@@ -50,8 +50,8 @@ namespace GUI.ContractGUIs
                     if (query.GetContractDetails(Int32.Parse(IDCheck.Text)) != null)
                     {
                         log.Info("Inserted a valid contractID. The ID was: " + IDCheck.Text);
-                        DeleteContract deleteContract = new DeleteContract(int.Parse(IDCheck.Text));
-                        NavigationService.Navigate(deleteContract);
+                        DeletePage deletePage = new DeletePage("DeleteContract", int.Parse(IDCheck.Text));
+                        NavigationService.Navigate(deletePage);
                     } else
                     {
                         log.Error("Inserted an invalid contractID. The ID was: " + IDCheck.Text);
