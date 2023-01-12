@@ -37,7 +37,6 @@ namespace GUI.MemberGUIs
 
         private void ChangeButton_Click(object sender, RoutedEventArgs e)
         {
-            int t;
             Contract c = (Contract)ContractCB.SelectedItem;
             if (!ContractCB.Text.IsNullOrEmpty())
             {
@@ -86,6 +85,45 @@ namespace GUI.MemberGUIs
         {
             ContractCB.Items.Clear();
             ContractCB.ItemsSource = admin.ListContracts();
+        }
+
+        private void IDCheck_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Contract c = (Contract)ContractCB.SelectedItem;
+                if (!ContractCB.Text.IsNullOrEmpty())
+                {
+                    IList<Member> members = admin.ListMembers();
+                    foreach (Member member in members)
+                    {
+                        if (member.MemberID == Int32.Parse(IDCheck.Text))
+                        {
+                            if (c.ContractID != member.ContractID)
+                            {
+
+                                admin.UpdateContractFromMember(Int32.Parse(IDCheck.Text), c.ContractID);
+
+                                GymHomepage home = new GymHomepage();
+                                NavigationService.Navigate(home);
+                            }
+                            else
+                            {
+                                WarningText.Text = "Dies ist schon der aktuelle Vertrag des Mitgliedes";
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            WarningText.Text = "Dieses Mitglied existiert nicht";
+                        }
+                    }
+                }
+                else
+                {
+                    WarningText.Text = "Bitte geben Sie für alle Daten etwas ein!";
+                }
+            }
         }
     }
 }

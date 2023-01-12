@@ -10,12 +10,13 @@
 
     <Grid>
         <Button x:Name="AddOrderButton" Content="Bestellung hinzufügen" HorizontalAlignment="Left" Margin="273,303,0,0" VerticalAlignment="Top" Click="AddOrderButton_Click" Height="59" Width="264" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Label Content="Mitglieds ID:" HorizontalAlignment="Center" Margin="10,28,0,0" VerticalAlignment="Top"/>
-        <Label Content="Artikel ID:" HorizontalAlignment="Center" Margin="10,115,0,0" VerticalAlignment="Top"/>
+        <Label Content="Mitglieds ID:" HorizontalAlignment="Left" Margin="366,31,0,0" VerticalAlignment="Top"/>
+        <Label Content="Artikel ID:" HorizontalAlignment="Left" Margin="370,117,0,0" VerticalAlignment="Top"/>
         <Label Content="Menge" HorizontalAlignment="Left" Margin="381,191,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="AmountBox" HorizontalAlignment="Left" Margin="308,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30" PreviewKeyDown="AmountBox_PreviewKeyDown"/>
+        <TextBox x:Name="AmountBox" HorizontalAlignment="Left" Margin="308,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30" PreviewKeyDown="AmountBox_PreviewKeyDown" PreviewTextInput="AmountBox_PreviewTextInput"/>
         <ComboBox x:Name="MemberCB" HorizontalAlignment="Left" Height="35" Margin="308,69,0,0" VerticalAlignment="Top" Width="194" Loaded="MemberCB_Loaded"/>
         <ComboBox x:Name="ArticleCB" HorizontalAlignment="Left" Height="35" Margin="308,151,0,0" VerticalAlignment="Top" Width="194" Loaded="ArticleCB_Loaded"/>
+        <TextBlock x:Name ="WarningText" HorizontalAlignment="Left" Height="20" Margin="308,273,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" Foreground="#FFD40303" TextAlignment="Center"/>
 
     </Grid>
 </Page>
