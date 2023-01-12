@@ -10,8 +10,8 @@
 
     <Grid>
         <Label x:Name="QuestionLabel" Content="" Margin="4,10,0,0" VerticalAlignment="Top" Height="39" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="436" />
-        <Button x:Name="YesButton" Content="Ja" Margin="111,105,0,0" VerticalAlignment="Top" Height="53" Click="YesButton_Click" Background="#FF8EE47C" HorizontalAlignment="Left" Width="81"/>
-        <Button x:Name="NoButton" Content="Nein" Margin="246,105,0,0" Click="NoButton_Click" Background="#FFE86464" HorizontalAlignment="Left" Width="81" Height="53" VerticalAlignment="Top"/>
+        <Button x:Name="YesButton" Content="Ja" Margin="111,105,0,0" VerticalAlignment="Top" Height="53" Click="YesButton_Click" Background="#FF8EE47C" HorizontalAlignment="Left" Width="81" Style="{DynamicResource RoundedButtonsStyle}"/>
+        <Button x:Name="NoButton" Content="Nein" Margin="246,105,0,0" Click="NoButton_Click" Background="#FFE86464" HorizontalAlignment="Left" Width="81" Height="53" VerticalAlignment="Top" Style="{DynamicResource RoundedButtonsStyle}"/>
         <TextBlock x:Name="QuestionBox" Margin="4,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="51" TextAlignment="Center" HorizontalAlignment="Left" Width="436"/>
     </Grid>
 </Page>

@@ -27,7 +27,7 @@
         <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,243,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,318,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Land&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,388,0,0" VerticalAlignment="Top" Height="29"/>
-        <Button x:Name="EditMemberButton" Content="Mitgliedsdaten ändern" HorizontalAlignment="Center" Margin="0,758,0,0" VerticalAlignment="Top" Click="EditMemberButton_Click" Height="82" Width="236"/>
+        <Button x:Name="EditMemberButton" Content="Mitgliedsdaten ändern" HorizontalAlignment="Center" Margin="0,758,0,0" VerticalAlignment="Top" Click="EditMemberButton_Click" Height="82" Width="236" Style="{DynamicResource RoundedButtonsStyle}"/>
         <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,710,0,0" VerticalAlignment="Top" Width="326" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
 
 

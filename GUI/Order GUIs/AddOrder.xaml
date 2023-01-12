@@ -9,7 +9,7 @@
       Title="AddOrder">
 
     <Grid>
-        <Button x:Name="AddOrderButton" Content="Bestellung hinzufügen" HorizontalAlignment="Left" Margin="273,303,0,0" VerticalAlignment="Top" Click="AddOrderButton_Click" Height="42" Width="264"/>
+        <Button x:Name="AddOrderButton" Content="Bestellung hinzufügen" HorizontalAlignment="Left" Margin="273,303,0,0" VerticalAlignment="Top" Click="AddOrderButton_Click" Height="59" Width="264" Style="{DynamicResource RoundedButtonsStyle}"/>
         <Label Content="Mitglieds ID:" HorizontalAlignment="Center" Margin="10,28,0,0" VerticalAlignment="Top"/>
         <Label Content="Artikel ID:" HorizontalAlignment="Center" Margin="10,115,0,0" VerticalAlignment="Top"/>
         <Label Content="Menge" HorizontalAlignment="Left" Margin="381,191,0,0" VerticalAlignment="Top"/>

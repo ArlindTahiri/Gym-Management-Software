@@ -9,7 +9,7 @@
       Title="LoginPage">
 
     <Grid>
-        <Button x:Name="EditLogins" Content="Logins Bearbeiten" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="205" Click="EditLogins_Click"/>
+        <Button x:Name="EditLogins" Content="Logins Bearbeiten" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="205" Click="EditLogins_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
         <DataGrid x:Name="LoginInventory" Margin="10,159,10,10" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="LoginInventory_Loaded"/>
         <Button x:Name="DeleteLoginsButton" Content="Alle Logins löschen" Margin="0,120,10,0" VerticalAlignment="Top" Height="26" Click="DeleteLoginsButton_Click" HorizontalAlignment="Right" Width="136"/>
 

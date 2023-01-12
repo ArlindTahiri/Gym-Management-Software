@@ -9,9 +9,9 @@
       Title="EmployeeChangeOptions">
 
     <Grid>
-        <Button x:Name="AddEmployee" Content="Mitarbeiter hinzufügen" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="67" Width="380" Click="AddEmployee_Click"/>
-        <Button x:Name="EditEmployee" Content="Mitarbeiter bearbeiten" HorizontalAlignment="Center" Margin="0,165,0,0" VerticalAlignment="Top" Height="67" Width="380" Click="EditEmployee_Click"/>
-        <Button x:Name="DeleteEmployee" Content="Mitarbeiter entfernen" HorizontalAlignment="Center" VerticalAlignment="Top" Height="66" Width="380" Click="DeleteEmployee_Click" Margin="0,87,0,0"/>
+        <Button x:Name="AddEmployee" Content="Mitarbeiter hinzufügen" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="67" Width="380" Click="AddEmployee_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+        <Button x:Name="EditEmployee" Content="Mitarbeiter bearbeiten" HorizontalAlignment="Center" Margin="0,165,0,0" VerticalAlignment="Top" Height="67" Width="380" Click="EditEmployee_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+        <Button x:Name="DeleteEmployee" Content="Mitarbeiter entfernen" HorizontalAlignment="Center" VerticalAlignment="Top" Height="66" Width="380" Click="DeleteEmployee_Click" Margin="0,87,0,0" Style="{DynamicResource RoundedButtonsStyle}"/>
 
     </Grid>
 </Page>

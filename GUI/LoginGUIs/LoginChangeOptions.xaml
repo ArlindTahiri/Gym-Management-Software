@@ -7,10 +7,11 @@
       MinHeight="250" MinWidth="400"
       Title="LoginChangeOptions">
 
+
     <Grid>
 
-        <Button x:Name="AddLogin" Content="Login hinzufügen" HorizontalAlignment="Stretch" Margin="0,10,0,0" Width="380" Click="AddLogin_Click" Height="67" VerticalAlignment="Top"/>
-        <Button x:Name="EditLogin" Content="Login bearbeiten" HorizontalAlignment="Stretch" Margin="0,0,0,10" Width="380" Click="EditLogin_Click" Height="67" VerticalAlignment="Bottom"/>
-        <Button x:Name="DeleteLogin" Content="Login entfernen" Click="DeleteLogin_Click" Height="66" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="380"/>
+        <Button Style="{DynamicResource RoundedButtonsStyle}" x:Name="AddLogin" Content="Login hinzufügen" HorizontalAlignment="Stretch" Margin="0,10,0,0" Width="380" Click="AddLogin_Click" Height="67" VerticalAlignment="Top"/>
+        <Button Style="{DynamicResource RoundedButtonsStyle}" x:Name="EditLogin" Content="Login bearbeiten" HorizontalAlignment="Stretch" Margin="0,0,0,10" Width="380" Click="EditLogin_Click" Height="67" VerticalAlignment="Bottom"/>
+        <Button Style="{DynamicResource RoundedButtonsStyle}" x:Name="DeleteLogin" Content="Login entfernen" Click="DeleteLogin_Click" Height="66" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="380"/>
     </Grid>
 </Page>

@@ -37,21 +37,28 @@ namespace GUI.LoginGUIs
 
         private void editLogin_Click(object sender, RoutedEventArgs e)
         {
-
-            admin.UpdateLogIn(logIn.LogInName, newLogInName.Text, newLogInPassword.Text, Int32.Parse(newRank.Text));
-
-            GymHomepage home = new GymHomepage();
-            NavigationService.Navigate(home);
+            UpdateLogIn();
         }
 
         private void ChangeLogin(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
             {
-                admin.UpdateLogIn(logIn.LogInName, newLogInName.Text, newLogInPassword.Text, Int32.Parse(newRank.Text));
+                UpdateLogIn();
+            }
+        }
 
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
+        private void UpdateLogIn()
+        {
+            if(query.GetLogInDetails(newLogInName.Text) == null)
+            {
+                admin.UpdateLogIn(logIn.LogInName, newLogInName.Text, newLogInPassword.Text, Int32.Parse(newRank.Text));
+                LoginPage loginPage = new LoginPage();
+                NavigationService.Navigate(loginPage);
+            }
+            else
+            {
+                WarningText.Text = "Der neue Benutzername existiert bereits.\n Bitte geben Sie einen neuen Nutzernamen ein.";
             }
         }
     }

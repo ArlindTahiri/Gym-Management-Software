@@ -33,13 +33,13 @@ namespace GUI.LoginGUIs
 
         private void DeleteLogin_Click(object sender, RoutedEventArgs e)
         {
-            DeleteLoginCheck deleteLoginCheck = new DeleteLoginCheck();
+            LogInCheck deleteLoginCheck = new LogInCheck("Delete");
             NavigationService.Navigate(deleteLoginCheck);
         }
 
         private void EditLogin_Click(object sender, RoutedEventArgs e)
         {
-            EditLoginCheck editLoginCheck = new EditLoginCheck();
+            LogInCheck editLoginCheck = new LogInCheck("Edit");
             NavigationService.Navigate(editLoginCheck);
         }
     }

@@ -9,7 +9,7 @@
       Title="OrderPage">
 
     <Grid>
-        <Button x:Name="EditOrders" Content="Bestellungen bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditOrders_Click"/>
+        <Button x:Name="EditOrders" Content="Bestellungen bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditOrders_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
         <DataGrid x:Name="OrderData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,181,0,0" Loaded="OrderData_Loaded"/>
         <Button x:Name="DeleteOrdersButton" Content="Alle Bestellungen löschen" HorizontalAlignment="Right" Margin="0,151,0,0" VerticalAlignment="Top" Height="25" Width="153" Click="DeleteMembersButton_Click"/>
 

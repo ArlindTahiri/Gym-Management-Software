@@ -9,7 +9,7 @@
       Title="EditOrder">
 
     <Grid>
-        <Button x:Name="EditOrderButton" Content="Bestellung hinzufügen" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Height="42" Width="264" Click="EditOrderButton_Click"/>
+        <Button x:Name="EditOrderButton" Content="Bestellung hinzufügen" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Height="42" Width="264" Click="EditOrderButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
         <TextBox x:Name="ArticleIDBox" HorizontalAlignment="Center" Margin="0,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30" PreviewKeyDown="ChangeOrder"/>
         <Label Content="Artikel ID:" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top"/>
         <Label Content="Menge" HorizontalAlignment="Center" Margin="0,194,0,0" VerticalAlignment="Top"/>

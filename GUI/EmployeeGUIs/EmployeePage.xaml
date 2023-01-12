@@ -9,10 +9,10 @@
       Title="Page1">
 
     <Grid>
-        <Button x:Name="EditEmployee" Content="Mitarbeiter bearbeiten" HorizontalAlignment="Left" Height="86" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="EditEmployee_Click"/>
+        <Button x:Name="EditEmployee" Content="Mitarbeiter bearbeiten" HorizontalAlignment="Left" Height="86" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" Click="EditEmployee_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
         <DataGrid x:Name="EmployeeData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,181,10,0" Loaded="EmployeeData_Loaded"/>
         <Button x:Name="DeleteEmployeeButton" Content="Alle Mitarbeiter löschen" HorizontalAlignment="Right" Margin="0,151,0,0" VerticalAlignment="Top" Height="25" Width="135" Click="DeleteEmployeeButton_Click"/>
-        <Button x:Name="CheckoutButton" Content="Kassensturz" HorizontalAlignment="Left" Height="86" Margin="640,10,0,0" VerticalAlignment="Top" Width="150" Click="CheckoutButton_Click"/>
+        <Button x:Name="CheckoutButton" Content="Kassensturz" HorizontalAlignment="Left" Height="86" Margin="640,10,0,0" VerticalAlignment="Top" Width="150" Click="CheckoutButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
 
     </Grid>
 </Page>
