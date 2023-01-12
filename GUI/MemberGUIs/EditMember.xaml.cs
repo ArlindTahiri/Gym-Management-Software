@@ -43,7 +43,7 @@ namespace GUI.MemberGUIs
             CountryE.Text = member.Country;
             ContactAdressE.Text = member.EMail;
             ContoE.Text = member.Iban;
-            BirthdayE.Text = member.Birthday.ToString();
+            BirthdayE.Text = member.Birthday.ToString("dd.MM.yyyy");
 
         } 
 

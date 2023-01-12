@@ -16,7 +16,7 @@
         <Label Content="Adresse&#xA;" HorizontalAlignment="Center" Margin="0,168,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Email&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,463,0,0" VerticalAlignment="Top" Height="29"/>
         <Label Content="Iban&#xA;" HorizontalAlignment="Center" Margin="0,538,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Geburtstag&#xA;" HorizontalAlignment="Center" Margin="0,610,0,0" VerticalAlignment="Top" Height="29" Width="70"/>
+        <Label Content="Geburtstag (DD.MM.YYYY)" HorizontalAlignment="Center" Margin="0,610,0,0" VerticalAlignment="Top" Height="29" Width="70"/>
         <TextBox x:Name="AdressE" HorizontalAlignment="Center" Margin="0,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
         <TextBox x:Name="PostalCodeE" HorizontalAlignment="Center" Margin="0,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="PostalCodeE_PreviewTextInput" PreviewKeyDown="ChangeMember"/>
         <TextBox x:Name="CityE" HorizontalAlignment="Center" Margin="0,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>

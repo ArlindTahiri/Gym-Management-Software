@@ -49,7 +49,7 @@ namespace GUI.EmployeeGUIs
             Country.Text = employee.Country;
             Email.Text = employee.EMail;
             Iban.Text = employee.Iban;
-            Birthday.Text = employee.Birthday.ToString();
+            Birthday.Text = employee.Birthday.ToString("dd.MM.yyyy");
 
             this.employeeID = employeeID;
 
