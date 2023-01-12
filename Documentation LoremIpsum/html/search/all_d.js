@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nobutton_5fclick_0',['NoButton_Click',['../class_g_u_i_1_1_delete_page.html#a867cc1c29c1168f8f9176e93e9a1b8d7',1,'GUI::DeletePage']]]
+  ['rank_0',['Rank',['../classloremipsum_1_1_gym_1_1_entities_1_1_log_in.html#a12096c6d288227914f84e4a18f32a7c2',1,'loremipsum::Gym::Entities::LogIn']]]
 ];

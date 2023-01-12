@@ -1,25 +1,4 @@
 var searchData=
 [
-  ['editarticle_0',['EditArticle',['../class_g_u_i_1_1_article_g_u_is_1_1_change_article.html#aa54cd09de6a8c133401930d28fe011bd',1,'GUI::ArticleGUIs::ChangeArticle']]],
-  ['editarticle_5fclick_1',['EditArticle_Click',['../class_g_u_i_1_1_article_g_u_is_1_1_article_change_options.html#acc7f6a2ded632fc9c43b75a404b3c674',1,'GUI.ArticleGUIs.ArticleChangeOptions.EditArticle_Click()'],['../class_g_u_i_1_1_article_g_u_is_1_1_article_page.html#a84e5c03b9fff4f9b516372ad07514825',1,'GUI.ArticleGUIs.ArticlePage.EditArticle_Click()']]],
-  ['editemployee_2',['EditEmployee',['../class_g_u_i_1_1_employee_g_u_is_1_1_edit_employee.html#ad7e8c8e398cb69643155965885e2c0ca',1,'GUI::EmployeeGUIs::EditEmployee']]],
-  ['editemployee_5fclick_3',['EditEmployee_Click',['../class_g_u_i_1_1_employee_g_u_is_1_1_employee_change_options.html#a321105c431a9bbfe88d8390ad336aff7',1,'GUI.EmployeeGUIs.EmployeeChangeOptions.EditEmployee_Click()'],['../class_g_u_i_1_1_employee_g_u_is_1_1_employee_page.html#ab114d86389f266137023fcddc59b1567',1,'GUI.EmployeeGUIs.EmployeePage.EditEmployee_Click()']]],
-  ['editemployeebutton_5fclick_4',['EditEmployeeButton_Click',['../class_g_u_i_1_1_employee_g_u_is_1_1_edit_employee.html#ab17a2e3a46c5168b1f25851702f66c30',1,'GUI::EmployeeGUIs::EditEmployee']]],
-  ['editemployeeidcheck_5',['EditEmployeeIDCheck',['../class_g_u_i_1_1_employee_g_u_is_1_1_edit_employee_i_d_check.html#acc2b732f4517842e9d653f964a300263',1,'GUI::EmployeeGUIs::EditEmployeeIDCheck']]],
-  ['editlogin_5fclick_6',['EditLogin_Click',['../class_g_u_i_1_1_login_g_u_is_1_1_login_change_options.html#a5b374769c18aef11f5bdeb3353a66b71',1,'GUI::LoginGUIs::LoginChangeOptions']]],
-  ['editlogins_5fclick_7',['EditLogins_Click',['../class_g_u_i_1_1_login_g_u_is_1_1_login_page.html#a3af277338395592273e5a03b4ef899f8',1,'GUI::LoginGUIs::LoginPage']]],
-  ['editmember_8',['EditMember',['../class_g_u_i_1_1_member_g_u_is_1_1_edit_member.html#ae6a453bba89aea13006a6f19f0c3fdc3',1,'GUI::MemberGUIs::EditMember']]],
-  ['editmember_5fclick_9',['EditMember_Click',['../class_g_u_i_1_1_member_g_u_is_1_1_member_change_options.html#a17375e6fd6725741e952931ead3b4c08',1,'GUI.MemberGUIs.MemberChangeOptions.EditMember_Click()'],['../class_g_u_i_1_1_member_g_u_is_1_1_member_page.html#a92297babe62d4d98d1feeaae317128a2',1,'GUI.MemberGUIs.MemberPage.EditMember_Click()']]],
-  ['editmemberbutton_5fclick_10',['EditMemberButton_Click',['../class_g_u_i_1_1_member_g_u_is_1_1_edit_member.html#ad8c44ccb3b2b5cb921e5bd6266210e6e',1,'GUI::MemberGUIs::EditMember']]],
-  ['editmemberidcheck_11',['EditMemberIDCheck',['../class_g_u_i_1_1_member_g_u_is_1_1_edit_member_i_d_check.html#a81b538341173063d68f165f7d4e64649',1,'GUI::MemberGUIs::EditMemberIDCheck']]],
-  ['editorder_12',['EditOrder',['../class_g_u_i_1_1_order___g_u_is_1_1_edit_order.html#a081ade6de345c5da6198878b5231017a',1,'GUI::Order_GUIs::EditOrder']]],
-  ['editorderbutton_5fclick_13',['EditOrderButton_Click',['../class_g_u_i_1_1_order___g_u_is_1_1_edit_order.html#a36549698d793f5d647b35894d121d0c5',1,'GUI.Order_GUIs.EditOrder.EditOrderButton_Click()'],['../class_g_u_i_1_1_order___g_u_is_1_1_order_options.html#aa55fecb67c7ba2c1203659b79cbbbc80',1,'GUI.Order_GUIs.OrderOptions.EditOrderButton_Click()']]],
-  ['editorderidcheck_14',['EditOrderIDCheck',['../class_g_u_i_1_1_order___g_u_is_1_1_edit_order_i_d_check.html#ac226c808b11a272d004f5ecd5bc468ce',1,'GUI::Order_GUIs::EditOrderIDCheck']]],
-  ['editorders_5fclick_15',['EditOrders_Click',['../class_g_u_i_1_1_order___g_u_is_1_1_order_page.html#af9bd16a66ec20235d50896c2d6ef86d7',1,'GUI::Order_GUIs::OrderPage']]],
-  ['employee_16',['Employee',['../classloremipsum_1_1_gym_1_1_entities_1_1_employee.html#aee08a2ff311ec6c76daf893dc4456176',1,'loremipsum::Gym::Entities::Employee']]],
-  ['employeebutton_5fclick_17',['EmployeeButton_Click',['../class_g_u_i_1_1_gym_homepage.html#a9befa7b5d0152d1234750a8242d8f7bc',1,'GUI::GymHomepage']]],
-  ['employeechangeoptions_18',['EmployeeChangeOptions',['../class_g_u_i_1_1_employee_g_u_is_1_1_employee_change_options.html#a080f150e234dfa51f13aa21a5b34904f',1,'GUI::EmployeeGUIs::EmployeeChangeOptions']]],
-  ['employeedata_5floaded_19',['EmployeeData_Loaded',['../class_g_u_i_1_1_employee_g_u_is_1_1_delete_employee_i_d_check.html#ac0c46bf44bf73ac725ba359cb0b6a3c4',1,'GUI.EmployeeGUIs.DeleteEmployeeIDCheck.EmployeeData_Loaded()'],['../class_g_u_i_1_1_employee_g_u_is_1_1_edit_employee_i_d_check.html#a1579f9251efc329d3baa0a7be6697dbf',1,'GUI.EmployeeGUIs.EditEmployeeIDCheck.EmployeeData_Loaded()'],['../class_g_u_i_1_1_employee_g_u_is_1_1_employee_page.html#a78ed9af3e28b8e77e187975dc07f4958',1,'GUI.EmployeeGUIs.EmployeePage.EmployeeData_Loaded(object sender, RoutedEventArgs e)']]],
-  ['employeepage_20',['EmployeePage',['../class_g_u_i_1_1_employee_g_u_is_1_1_employee_page.html#a788c086192d21fc4bc1c4c4def96ee09',1,'GUI::EmployeeGUIs::EmployeePage']]],
-  ['entermember_21',['EnterMember',['../class_g_u_i_1_1_member_g_u_is_1_1_add_member.html#acbad13f0b2b7eb295c77fb0c3bbe1993',1,'GUI::MemberGUIs::AddMember']]]
+  ['employee_0',['Employee',['../classloremipsum_1_1_gym_1_1_entities_1_1_employee.html#aee08a2ff311ec6c76daf893dc4456176',1,'loremipsum::Gym::Entities::Employee']]]
 ];

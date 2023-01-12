@@ -1,20 +1,6 @@
 var searchData=
 [
-  ['o1_0',['o1',['../class_unit_test_lorem_ipsum_1_1_unit_test_orders.html#a7399dc14218e687f2cf94668ce334d16',1,'UnitTestLoremIpsum::UnitTestOrders']]],
-  ['o2_1',['o2',['../class_unit_test_lorem_ipsum_1_1_unit_test_orders.html#a54c8e75097e3cc37127e2941ab992321',1,'UnitTestLoremIpsum::UnitTestOrders']]],
-  ['o3_2',['o3',['../class_unit_test_lorem_ipsum_1_1_unit_test_orders.html#ab22434a772232b56c28b96f88a6a0d98',1,'UnitTestLoremIpsum::UnitTestOrders']]],
-  ['onconfiguring_3',['OnConfiguring',['../classloremipsum_1_1_gym_1_1_persistence_1_1_gym_context.html#af93852d3948e92912a1c20a7153c89c7',1,'loremipsum::Gym::Persistence::GymContext']]],
-  ['onmodelcreating_4',['OnModelCreating',['../classloremipsum_1_1_gym_1_1_persistence_1_1_gym_context.html#a126e97b0c37439f9abcc0643c5f75139',1,'loremipsum::Gym::Persistence::GymContext']]],
-  ['order_5',['Order',['../classloremipsum_1_1_gym_1_1_entities_1_1_order.html',1,'loremipsum.Gym.Entities.Order'],['../classloremipsum_1_1_gym_1_1_entities_1_1_order.html#a5e944bbdd20839f3a21e5a0fcfe0d028',1,'loremipsum.Gym.Entities.Order.Order()']]],
-  ['order_6',['order',['../class_g_u_i_1_1_order___g_u_is_1_1_edit_order.html#a37ba7ed785341b38b0ed207b88caf01e',1,'GUI::Order_GUIs::EditOrder']]],
-  ['order_2ecs_7',['Order.cs',['../_order_8cs.html',1,'']]],
-  ['orderbutton_5fclick_8',['OrderButton_Click',['../class_g_u_i_1_1_gym_homepage.html#ad6ea125a05a5e076baf0177dc16339c0',1,'GUI::GymHomepage']]],
-  ['orderdata_5floaded_9',['OrderData_Loaded',['../class_g_u_i_1_1_order___g_u_is_1_1_delete_order_i_d_check.html#ac04450b7f04c7f2c959d0025a0e1b3ca',1,'GUI.Order_GUIs.DeleteOrderIDCheck.OrderData_Loaded()'],['../class_g_u_i_1_1_order___g_u_is_1_1_edit_order_i_d_check.html#a9df828afc946a751584e8ed952d5d540',1,'GUI.Order_GUIs.EditOrderIDCheck.OrderData_Loaded()'],['../class_g_u_i_1_1_order___g_u_is_1_1_order_page.html#a075c7754bd60298fe846067256b79df1',1,'GUI.Order_GUIs.OrderPage.OrderData_Loaded()']]],
-  ['orderid_10',['OrderID',['../classloremipsum_1_1_gym_1_1_entities_1_1_order.html#a28b4c2f622a406d30c2a1c3f6ee591d6',1,'loremipsum::Gym::Entities::Order']]],
-  ['orderid_11',['orderID',['../class_g_u_i_1_1_order___g_u_is_1_1_edit_order.html#ac620beca7bbc88fa79d880bf7ca0bbde',1,'GUI::Order_GUIs::EditOrder']]],
-  ['orderoptions_12',['OrderOptions',['../class_g_u_i_1_1_order___g_u_is_1_1_order_options.html',1,'GUI.Order_GUIs.OrderOptions'],['../class_g_u_i_1_1_order___g_u_is_1_1_order_options.html#a95760875047ac5b6a886f5495e4d38f7',1,'GUI.Order_GUIs.OrderOptions.OrderOptions()']]],
-  ['orderoptions_2examl_2ecs_13',['OrderOptions.xaml.cs',['../_order_options_8xaml_8cs.html',1,'']]],
-  ['orderpage_14',['OrderPage',['../class_g_u_i_1_1_order___g_u_is_1_1_order_page.html',1,'GUI.Order_GUIs.OrderPage'],['../class_g_u_i_1_1_order___g_u_is_1_1_order_page.html#a7ab7123d351881c537cf3e2fc74db1dc',1,'GUI.Order_GUIs.OrderPage.OrderPage()']]],
-  ['orderpage_2examl_2ecs_15',['OrderPage.xaml.cs',['../_order_page_8xaml_8cs.html',1,'']]],
-  ['orders_16',['Orders',['../classloremipsum_1_1_gym_1_1_entities_1_1_article.html#a231d690134f705987426948aea30fe4e',1,'loremipsum.Gym.Entities.Article.Orders()'],['../classloremipsum_1_1_gym_1_1_entities_1_1_member.html#ac39b48740e17f1238f35e3977284e81c',1,'loremipsum.Gym.Entities.Member.Orders()'],['../classloremipsum_1_1_gym_1_1_persistence_1_1_gym_context.html#a69a7a1297f3e909e69595c97bfdf5cbc',1,'loremipsum.Gym.Persistence.GymContext.Orders()']]]
+  ['savetrainingmember_0',['SaveTrainingMember',['../classloremipsum_1_1_gym_1_1_impl_1_1_gym.html#aa2b96b102b523dcb941079f7430df235',1,'loremipsum::Gym::Impl::Gym']]],
+  ['street_1',['Street',['../classloremipsum_1_1_gym_1_1_entities_1_1_employee.html#a6e538913960e7c9618844dd9d4cb34d4',1,'loremipsum.Gym.Entities.Employee.Street()'],['../classloremipsum_1_1_gym_1_1_entities_1_1_member.html#a684acf953b98dde5dc48f3584bd8ad3a',1,'loremipsum.Gym.Entities.Member.Street()']]],
+  ['surname_2',['Surname',['../classloremipsum_1_1_gym_1_1_entities_1_1_employee.html#a4a63a50aa4bebeaead85d663fa3f15b3',1,'loremipsum.Gym.Entities.Employee.Surname()'],['../classloremipsum_1_1_gym_1_1_entities_1_1_member.html#a3adf337fdccdee33d4c2b5dda9b91905',1,'loremipsum.Gym.Entities.Member.Surname()']]]
 ];

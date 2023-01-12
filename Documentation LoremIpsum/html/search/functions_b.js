@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nobutton_5fclick_0',['NoButton_Click',['../class_g_u_i_1_1_delete_page.html#a867cc1c29c1168f8f9176e93e9a1b8d7',1,'GUI::DeletePage']]]
+  ['savetrainingmember_0',['SaveTrainingMember',['../classloremipsum_1_1_gym_1_1_impl_1_1_gym.html#aa2b96b102b523dcb941079f7430df235',1,'loremipsum::Gym::Impl::Gym']]]
 ];
