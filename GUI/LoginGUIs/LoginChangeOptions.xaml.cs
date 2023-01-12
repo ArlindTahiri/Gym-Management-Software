@@ -27,7 +27,7 @@ namespace GUI.LoginGUIs
 
         private void AddLogin_Click(object sender, RoutedEventArgs e)
         {
-            AddLogin addLogin = new AddLogin();
+            AddEditLogin addLogin = new AddEditLogin();
             NavigationService.Navigate(addLogin);
         }
 
