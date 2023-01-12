@@ -1,5 +1,6 @@
 ﻿using loremipsum.Gym;
 using loremipsum.Gym.Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -33,10 +34,24 @@ namespace GUI.Order_GUIs
         {
             Member m = (Member)MemberCB.SelectedItem;
             Article a = (Article)ArticleCB.SelectedItem;
-            admin.AddOrder(m.MemberID, a.ArticleID, Int32.Parse(AmountBox.Text));
-            
-            GymHomepage gymHomepage = new GymHomepage();
-            NavigationService.Navigate(gymHomepage);
+            if (!MemberCB.Text.IsNullOrEmpty() && !ArticleCB.Text.IsNullOrEmpty() && !AmountBox.Text.IsNullOrEmpty())
+            {
+                if(Int32.Parse(AmountBox.Text) <= a.ActualStock)
+                {
+                    admin.AddOrder(m.MemberID, a.ArticleID, Int32.Parse(AmountBox.Text));
+
+                    GymHomepage gymHomepage = new GymHomepage();
+                    NavigationService.Navigate(gymHomepage);
+                }
+                else
+                {
+                    WarningText.Text = "So viele Articel haben wir nicht vorrätig";
+                }
+            }
+            else
+            {
+                WarningText.Text = "Bitte geben Sie für alle Daten etwas ein!";
+            }
         }
 
         private void ArticleCB_Loaded(object sender, RoutedEventArgs e)
@@ -59,11 +74,30 @@ namespace GUI.Order_GUIs
             {
                 Member m = (Member)MemberCB.SelectedItem;
                 Article a = (Article)ArticleCB.SelectedItem;
-                admin.AddOrder(m.MemberID, a.ArticleID, Int32.Parse(AmountBox.Text));
+                if (!MemberCB.Text.IsNullOrEmpty() && !ArticleCB.Text.IsNullOrEmpty() && !AmountBox.Text.IsNullOrEmpty())
+                {
+                    if (Int32.Parse(AmountBox.Text) <= a.ActualStock)
+                    {
+                        admin.AddOrder(m.MemberID, a.ArticleID, Int32.Parse(AmountBox.Text));
 
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                        GymHomepage gymHomepage = new GymHomepage();
+                        NavigationService.Navigate(gymHomepage);
+                    }
+                    else
+                    {
+                        WarningText.Text = "So viele Articel haben wir nicht vorrätig";
+                    }
+                }
+                else
+                {
+                    WarningText.Text = "Bitte geben Sie für alle Daten etwas ein!";
+                }
             }
+        }
+
+        private void AmountBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextValidation.CheckIsNumeric(e);
         }
     }
 }
