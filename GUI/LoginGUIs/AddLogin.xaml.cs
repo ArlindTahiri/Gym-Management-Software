@@ -1,7 +1,9 @@
-﻿using loremipsum.Gym;
+﻿using log4net;
+using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using System;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +26,7 @@ namespace GUI.LoginGUIs
     {
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        private string firstlogin;
+        private string Firstlogin;
 
         public AddLogin()
         {
@@ -33,8 +35,11 @@ namespace GUI.LoginGUIs
 
         public AddLogin(string firstlogin)//auto set value of rank=1;
         {
-            firstlogin = firstlogin;
+            Firstlogin = firstlogin;
             InitializeComponent();
+            Rank.Text = 1.ToString();
+            Rank.IsReadOnly= true;
+            WarningText.Text = "Der erste erstellte Benutzer muss Adminrechte haben.\n Der Rang 1 ist somit vorgegeben.";
         }
 
         private void addLogin_Click(object sender, RoutedEventArgs e)
@@ -57,13 +62,18 @@ namespace GUI.LoginGUIs
                 if (logInPassword.Text.Length > 4)
                 {
                     LogIn logIn = new LogIn(logInName.Text, logInPassword.Text, Int32.Parse(Rank.Text));
+ 
                     if (query.GetLogInDetails(logInName.Text) == null)
                     {
                         admin.AddLogIn(logIn);
                         LoginPage loginhome = new LoginPage();
                         NavigationService.Navigate(loginhome);
                     }
-                    else { WarningText.Text = "Der eingegebene Log In Name exisitert bereits.\n Bitte geben Sie einen noch nicht vorhandenen Log In Namen ein."; }
+                    else
+                    { 
+                        WarningText.Text = "Der eingegebene Log In Name exisitert bereits.\n Bitte geben Sie einen noch nicht vorhandenen Log In Namen ein.";
+                    }
+                   
                 } else
                 {
                     WarningText.Text = "Das eingegebene passwort ist zu kurz.";

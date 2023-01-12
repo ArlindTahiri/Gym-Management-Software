@@ -31,5 +31,10 @@ namespace loremipsum.Gym.Entities
             return LogInName.CompareTo(other.LogInName);
         }
 
+        public override string ToString()
+        {
+            return "Benutzer: "+LogInName+" | Rang: "+Rank;
+        }
+
     }
 }

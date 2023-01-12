@@ -81,7 +81,7 @@ namespace GUI
             {
                 if (admin.ListLogIns().Count == 0) //if there are no logins you have to go directly to addlogin page and create rank 1 account
                 {
-                    AddLogin addLogin= new AddLogin("First log In");
+                    AddLogin addLogin= new AddLogin("FirstTime");
                     NavigationService.Navigate(addLogin);
                 }
                 else
