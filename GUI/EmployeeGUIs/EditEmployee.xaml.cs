@@ -66,13 +66,41 @@ namespace GUI.EmployeeGUIs
             if (!ForeName.Text.IsNullOrEmpty() && !Surname.Text.IsNullOrEmpty() && !Adress.Text.IsNullOrEmpty() && !PostalCode.Text.IsNullOrEmpty()
                && !City.Text.IsNullOrEmpty() && !Country.Text.IsNullOrEmpty() && !Email.Text.IsNullOrEmpty() && !Iban.Text.IsNullOrEmpty() && !Birthday.Text.IsNullOrEmpty())
             {
-                log.Info("Updated the old employee: " + query.GetEmployeeDetails(employeeID).ToString() +
-               " to: " + employeeID + " " + ForeName.Text + " " + Surname.Text +" "+Adress.Text+" "+PostalCode.Text+" "+City.Text+
-               " "+ Country.Text+" "+ Email.Text+" "+Iban.Text+" "+Birthday.Text+"... and returned to GymHomepage");
+                if (TextValidation.CheckIsPostalCode(PostalCode.Text))
+                {
+                    if (TextValidation.CheckIsMail(Email.Text))
+                    {
+                        if (TextValidation.CheckIsIban(Iban.Text))
+                        {
+                            if (TextValidation.CheckIsDate(Birthday.Text))
+                            {
+                                log.Info("Updated the old employee: " + query.GetEmployeeDetails(employeeID).ToString() +
+                                    " to: " + employeeID + " " + ForeName.Text + " " + Surname.Text + " " + Adress.Text + " " + PostalCode.Text + " " + City.Text +
+                                    " " + Country.Text + " " + Email.Text + " " + Iban.Text + " " + Birthday.Text + "... and returned to GymHomepage");
 
-                admin.UpdateEmployee(employeeID, ForeName.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text, Country.Text, Email.Text, Iban.Text, DateTime.Parse(Birthday.Text));
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
+                                admin.UpdateEmployee(employeeID, ForeName.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text, Country.Text, Email.Text, Iban.Text, DateTime.Parse(Birthday.Text));
+                                GymHomepage home = new GymHomepage();
+                                NavigationService.Navigate(home);
+                            }
+                            else
+                            {
+                                WarningLabel.Content = "Bitte geben Sie einen gültigen Geburtstag ein";
+                            }
+                        }
+                        else
+                        {
+                            WarningLabel.Content = "Bitte geben Sie eine gültige IBan ein";
+                        }
+                    }
+                    else
+                    {
+                        WarningLabel.Content = "Bitte geben Sie eine gültige E-Mail Adresse ein.";
+                    }
+                }
+                else
+                {
+                    WarningLabel.Content = "Bitte geben Sie eine gültige Postleitzahl ein";
+                }
             } else
             {
                 WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
@@ -90,15 +118,43 @@ namespace GUI.EmployeeGUIs
             if(e.Key== Key.Enter)
             {
                 if (!ForeName.Text.IsNullOrEmpty() && !Surname.Text.IsNullOrEmpty() && !Adress.Text.IsNullOrEmpty() && !PostalCode.Text.IsNullOrEmpty()
-             && !City.Text.IsNullOrEmpty() && !Country.Text.IsNullOrEmpty() && !Email.Text.IsNullOrEmpty() && !Iban.Text.IsNullOrEmpty() && !Birthday.Text.IsNullOrEmpty())
+               && !City.Text.IsNullOrEmpty() && !Country.Text.IsNullOrEmpty() && !Email.Text.IsNullOrEmpty() && !Iban.Text.IsNullOrEmpty() && !Birthday.Text.IsNullOrEmpty())
                 {
-                    log.Info("Updated the old employee: " + query.GetEmployeeDetails(employeeID).ToString() +
-                   " to: " + employeeID + " " + ForeName.Text + " " + Surname.Text + " " + Adress.Text + " " + PostalCode.Text + " " + City.Text +
-                   " " + Country.Text + " " + Email.Text + " " + Iban.Text + " " + Birthday.Text + "... and returned to GymHomepage");
+                    if (TextValidation.CheckIsPostalCode(PostalCode.Text))
+                    {
+                        if (TextValidation.CheckIsMail(Email.Text))
+                        {
+                            if (TextValidation.CheckIsIban(Iban.Text))
+                            {
+                                if (TextValidation.CheckIsDate(Birthday.Text))
+                                {
+                                    log.Info("Updated the old employee: " + query.GetEmployeeDetails(employeeID).ToString() +
+                                        " to: " + employeeID + " " + ForeName.Text + " " + Surname.Text + " " + Adress.Text + " " + PostalCode.Text + " " + City.Text +
+                                        " " + Country.Text + " " + Email.Text + " " + Iban.Text + " " + Birthday.Text + "... and returned to GymHomepage");
 
-                    admin.UpdateEmployee(employeeID, ForeName.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text, Country.Text, Email.Text, Iban.Text, DateTime.Parse(Birthday.Text));
-                    GymHomepage home = new GymHomepage();
-                    NavigationService.Navigate(home);
+                                    admin.UpdateEmployee(employeeID, ForeName.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text, Country.Text, Email.Text, Iban.Text, DateTime.Parse(Birthday.Text));
+                                    GymHomepage home = new GymHomepage();
+                                    NavigationService.Navigate(home);
+                                }
+                                else
+                                {
+                                    WarningLabel.Content = "Bitte geben Sie einen gültigen Geburtstag ein";
+                                }
+                            }
+                            else
+                            {
+                                WarningLabel.Content = "Bitte geben Sie eine gültige IBan ein";
+                            }
+                        }
+                        else
+                        {
+                            WarningLabel.Content = "Bitte geben Sie eine gültige E-Mail Adresse ein.";
+                        }
+                    }
+                    else
+                    {
+                        WarningLabel.Content = "Bitte geben Sie eine gültige Postleitzahl ein";
+                    }
                 }
                 else
                 {

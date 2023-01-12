@@ -53,13 +53,41 @@ namespace GUI.MemberGUIs
                 && !PostalCodeE.Text.IsNullOrEmpty() && !CityE.Text.IsNullOrEmpty() && !CountryE.Text.IsNullOrEmpty() && !ContactAdressE.Text.IsNullOrEmpty()
                 && !ContoE.Text.IsNullOrEmpty() && !BirthdayE.Text.IsNullOrEmpty())
             {
+                if (TextValidation.CheckIsPostalCode(PostalCodeE.Text))
+                {
+                    if (TextValidation.CheckIsMail(ContactAdressE.Text))
+                    {
+                        if (TextValidation.CheckIsIban(ContoE.Text))
+                        {
+                            if (TextValidation.CheckIsDate(BirthdayE.Text))
+                            {
+                                admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
+                                ContoE.Text, DateTime.Parse(BirthdayE.Text));
 
-                admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
-                    ContoE.Text, DateTime.Parse(BirthdayE.Text));
-
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
-            } else
+                                GymHomepage home = new GymHomepage();
+                                NavigationService.Navigate(home);
+                            }
+                            else
+                            {
+                                WarningLabel.Content = "Bitte geben Sie einen gültigen Geburtstag ein";
+                            }
+                        }
+                        else
+                        {
+                            WarningLabel.Content = "Bitte geben Sie eine gültige IBan ein";
+                        }
+                    }
+                    else
+                    {
+                        WarningLabel.Content = "Bitte geben Sie eine gültige E-Mail Adresse ein.";
+                    }
+                }
+                else
+                {
+                    WarningLabel.Content = "Bitte geben Sie eine gültige Postleitzahl ein";
+                }
+            } 
+            else
             {
                 WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
             }
@@ -75,15 +103,42 @@ namespace GUI.MemberGUIs
             if (e.Key == Key.Enter)
             {
                 if (!NameE.Text.IsNullOrEmpty() && !SurnameE.Text.IsNullOrEmpty() && !AdressE.Text.IsNullOrEmpty()
-                               && !PostalCodeE.Text.IsNullOrEmpty() && !CityE.Text.IsNullOrEmpty() && !CountryE.Text.IsNullOrEmpty() && !ContactAdressE.Text.IsNullOrEmpty()
-                               && !ContoE.Text.IsNullOrEmpty() && !BirthdayE.Text.IsNullOrEmpty())
+                && !PostalCodeE.Text.IsNullOrEmpty() && !CityE.Text.IsNullOrEmpty() && !CountryE.Text.IsNullOrEmpty() && !ContactAdressE.Text.IsNullOrEmpty()
+                && !ContoE.Text.IsNullOrEmpty() && !BirthdayE.Text.IsNullOrEmpty())
                 {
+                    if (TextValidation.CheckIsPostalCode(PostalCodeE.Text))
+                    {
+                        if (TextValidation.CheckIsMail(ContactAdressE.Text))
+                        {
+                            if (TextValidation.CheckIsIban(ContoE.Text))
+                            {
+                                if (TextValidation.CheckIsDate(BirthdayE.Text))
+                                {
+                                    admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
+                                    ContoE.Text, DateTime.Parse(BirthdayE.Text));
 
-                    admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
-                        ContoE.Text, DateTime.Parse(BirthdayE.Text));
-
-                    GymHomepage home = new GymHomepage();
-                    NavigationService.Navigate(home);
+                                    GymHomepage home = new GymHomepage();
+                                    NavigationService.Navigate(home);
+                                }
+                                else
+                                {
+                                    WarningLabel.Content = "Bitte geben Sie einen gültigen Geburtstag ein";
+                                }
+                            }
+                            else
+                            {
+                                WarningLabel.Content = "Bitte geben Sie eine gültige IBan ein";
+                            }
+                        }
+                        else
+                        {
+                            WarningLabel.Content = "Bitte geben Sie eine gültige E-Mail Adresse ein.";
+                        }
+                    }
+                    else
+                    {
+                        WarningLabel.Content = "Bitte geben Sie eine gültige Postleitzahl ein";
+                    }
                 }
                 else
                 {
