@@ -22,6 +22,7 @@ using log4net;
 using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
+using loremipsum.Gym.Entities;
 
 namespace GUI
 {
@@ -33,10 +34,12 @@ namespace GUI
 
         private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        public IEnumerable<Member> members;
        
         public GymHomepage()
         {
             InitializeComponent();
+            
 
             ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
             var fileInfo = new FileInfo(@"log4net.config");
@@ -114,9 +117,9 @@ namespace GUI
 
         private void TrainingMembers_Loaded(object sender, RoutedEventArgs e)
         {
+            TrainingMembers.DataContext = admin.ListTrainingMembers();
             TrainingMembers.ItemsSource = admin.ListTrainingMembers();
             CurrentlyTraining.Content = " Aktuell trainierende Mitglieder: "+ admin.ListTrainingMembers().Count;
-            
         }
 
         private void Homepage_Loaded(object sender, RoutedEventArgs e)
