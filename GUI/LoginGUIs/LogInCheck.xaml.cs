@@ -42,7 +42,7 @@ namespace GUI.LoginGUIs
                 {
                     if (Destination == "Edit")
                     {
-                        EditLogin editLogin = new EditLogin(loginName);
+                        AddEditLogin editLogin = new AddEditLogin(loginName);
                         NavigationService.Navigate(editLogin);
                     }
                     if(Destination == "Delete")
