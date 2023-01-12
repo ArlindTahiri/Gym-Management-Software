@@ -229,7 +229,7 @@ namespace loremipsum.Gym.Impl
             Member m1 = persistence.FindMember(memberID);
             if (a1 != null && m1 != null)
             {
-                if(a1.ActualStock>amount)
+                if(a1.ActualStock>=amount)
                 {
                     return persistence.CreateOrder(m1, a1, amount);//only save the order if the article&member exists and the amount is lower than actualstock
                 }

@@ -45,7 +45,7 @@ namespace GUI.Order_GUIs
                 }
                 else
                 {
-                    WarningText.Text = "So viele Articel haben wir nicht vorrätig";
+                    WarningText.Text = "So viele Artikel haben wir nicht vorrätig";
                 }
             }
             else
@@ -85,7 +85,7 @@ namespace GUI.Order_GUIs
                     }
                     else
                     {
-                        WarningText.Text = "So viele Articel haben wir nicht vorrätig";
+                        WarningText.Text = "So viele Artikel haben wir nicht vorrätig";
                     }
                 }
                 else

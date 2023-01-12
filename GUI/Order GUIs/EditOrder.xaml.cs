@@ -1,5 +1,6 @@
 ﻿using loremipsum.Gym;
 using loremipsum.Gym.Entities;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,27 +33,56 @@ namespace GUI.Order_GUIs
         {
             InitializeComponent();
             order = query.GetOrderDetails(orderID);
-            MemberIDBox.Text = order.MemberID.ToString();
-            ArticleIDBox.Text = order.ArticleID.ToString();
             AmountBox.Text = order.Amount.ToString();
             this.orderID = orderID;
             
+            MemberCB.Items.Clear();
+            MemberCB.ItemsSource = admin.ListMembers();
+            MemberCB.Text = order.MemberID.ToString();
+
+            ArticleCB.Items.Clear();
+            ArticleCB.ItemsSource = admin.ListArticles();
+            ArticleCB.Text = order.ArticleID.ToString();
+
+
         }
 
         private void EditOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            admin.UpdateOrder(orderID, Int32.Parse(MemberIDBox.Text), Int32.Parse(ArticleIDBox.Text), Int32.Parse(AmountBox.Text));
-            GymHomepage gymHomepage = new GymHomepage();
-            NavigationService.Navigate(gymHomepage);
+            Member m = (Member)MemberCB.SelectedItem;
+            Article a = (Article)ArticleCB.SelectedItem;
+            int difference = order.Amount - Int32.Parse(AmountBox.Text);
+            if (!AmountBox.Text.IsNullOrEmpty())
+            {
+                admin.UpdateOrder(orderID, m.MemberID, a.ArticleID, Int32.Parse(AmountBox.Text));
+                
+                GymHomepage gymHomepage = new GymHomepage();
+                NavigationService.Navigate(gymHomepage);
+            }
+            else
+            {
+                WarningText.Text = "Bitte geben Sie für alle Daten etwas ein";
+            }
         }
 
         private void ChangeOrder(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
             {
-                admin.UpdateOrder(orderID, Int32.Parse(MemberIDBox.Text), Int32.Parse(ArticleIDBox.Text), Int32.Parse(AmountBox.Text));
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                Member m = (Member)MemberCB.SelectedItem;
+                Article a = (Article)ArticleCB.SelectedItem;
+                int difference = order.Amount - Int32.Parse(AmountBox.Text);
+                if (!AmountBox.Text.IsNullOrEmpty())
+                {
+                    admin.UpdateOrder(orderID, m.MemberID, a.ArticleID, Int32.Parse(AmountBox.Text));
+
+                    GymHomepage gymHomepage = new GymHomepage();
+                    NavigationService.Navigate(gymHomepage);
+                }
+                else
+                {
+                    WarningText.Text = "Bitte geben Sie für alle Daten etwas ein";
+                }
             }
         }
     }

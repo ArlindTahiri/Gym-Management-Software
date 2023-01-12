@@ -31,6 +31,7 @@ namespace GUI
 
         public static bool CheckIsPostalCode (string postalCode)
         {
+            postalCode= postalCode.Replace(" ", String.Empty);
             return (postalCode.Length == 5);
         }
 
