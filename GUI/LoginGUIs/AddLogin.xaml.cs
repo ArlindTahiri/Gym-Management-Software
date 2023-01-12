@@ -52,14 +52,31 @@ namespace GUI.LoginGUIs
 
         private void InsertLogIn()
         {
-            LogIn logIn = new LogIn(logInName.Text, logInPassword.Text, Int32.Parse(Rank.Text));
-            if (query.GetLogInDetails(logInName.Text) == null)
+            if (logInName.Text.Length > 4)
             {
-                admin.AddLogIn(logIn);
-                LoginPage loginhome = new LoginPage();
-                NavigationService.Navigate(loginhome);
+                if (logInPassword.Text.Length > 4)
+                {
+                    LogIn logIn = new LogIn(logInName.Text, logInPassword.Text, Int32.Parse(Rank.Text));
+                    if (query.GetLogInDetails(logInName.Text) == null)
+                    {
+                        admin.AddLogIn(logIn);
+                        LoginPage loginhome = new LoginPage();
+                        NavigationService.Navigate(loginhome);
+                    }
+                    else { WarningText.Text = "Der eingegebene Log In Name exisitert bereits.\n Bitte geben Sie einen noch nicht vorhandenen Log In Namen ein."; }
+                } else
+                {
+                    WarningText.Text = "Das eingegebene passwort ist zu kurz.";
+                }
+            } else
+            {
+                WarningText.Text = "Der eingegebene Name ist zu kurz";
             }
-            else { WarningText.Text = "Der eingegebene Log In Name exisitert bereits.\n Bitte geben Sie einen noch nicht vorhandenen Log In Namen ein."; }
+        }
+
+        private void Rank_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextValidation.CheckIsNumeric(e);
         }
     }
 }

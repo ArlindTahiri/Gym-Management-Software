@@ -16,7 +16,7 @@
         <TextBox x:Name ="logInPassword" HorizontalAlignment="Center" Height="80" Margin="0,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" PreviewKeyDown="CreateLogin"/>
 
         <Label Content="Rang:" HorizontalAlignment="Right" Height="40" Margin="0,21,74,0" VerticalAlignment="Top" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name ="Rank" Height="80" Margin="0,70,10,0" TextWrapping="Wrap" VerticalAlignment="Top" PreviewKeyDown="CreateLogin" HorizontalAlignment="Right" Width="218"/>
+        <TextBox x:Name ="Rank" Height="80" Margin="0,70,10,0" TextWrapping="Wrap" VerticalAlignment="Top" PreviewKeyDown="CreateLogin" HorizontalAlignment="Right" Width="218" PreviewTextInput="Rank_PreviewTextInput"/>
         <Button x:Name="addLogin" Content="Login hinzufügen" HorizontalAlignment="Center" Height="106" Margin="0,277,0,0" VerticalAlignment="Top" Width="266" Click="addLogin_Click"/>
         <TextBlock x:Name="WarningText" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Height="54" Width="384" Foreground="#FFD40303" TextAlignment="Center"/>
 

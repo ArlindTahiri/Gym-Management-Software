@@ -58,5 +58,11 @@ namespace GUI.EmployeeGUIs
             DeletePage deletePage = new DeletePage("Employee");
             NavigationService.Navigate(deletePage); 
         }
+
+        private void CheckoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeletePage deletePage = new DeletePage("CheckoutMembers");
+            NavigationService.Navigate(deletePage);
+        }
     }
 }

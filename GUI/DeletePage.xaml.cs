@@ -63,6 +63,10 @@ namespace GUI
 
                 case "Home": QuestionLabel.Content = "Wollen Sie wirklich ALLES löschen?";
                     break;
+
+                case "CheckoutMembers":
+                    QuestionLabel.Content = "Wollen Sie wirklich bei allen Mitgliedern einen Kassensturz durchführen?";
+                    break;
             }
 
          
@@ -231,6 +235,14 @@ namespace GUI
             if (destination.Equals("DeleteOrder"))
             {
                 admin.DeleteOrder(ID);
+
+                GymHomepage gymHomepage = new GymHomepage();
+                NavigationService.Navigate(gymHomepage);
+            }
+
+            if (destination.Equals("CheckoutMembers"))
+            {
+                admin.CheckOutMembers();
 
                 GymHomepage gymHomepage = new GymHomepage();
                 NavigationService.Navigate(gymHomepage);
