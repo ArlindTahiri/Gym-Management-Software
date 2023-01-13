@@ -73,6 +73,8 @@ namespace loremipsum.Gym
 
         void DeleteOrders();
 
+        void DeleteOrders(IList<Order> ordersOfMember, int memberID);
+
         Order FindOrder(int orderID);
 
         IList<Order> FindOrders();

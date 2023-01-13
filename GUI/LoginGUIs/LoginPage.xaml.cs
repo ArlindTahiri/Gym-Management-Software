@@ -36,7 +36,8 @@ namespace GUI.LoginGUIs
 
         private void LoginInventory_Loaded(object sender, RoutedEventArgs e)
         {
-           LoginInventory.ItemsSource = admin.ListLogIns();
+            LoginInventory.DataContext= admin.ListLogIns();
+            LoginInventory.ItemsSource = admin.ListLogIns();
         }
 
         private void DeleteLoginsButton_Click(object sender, RoutedEventArgs e)
