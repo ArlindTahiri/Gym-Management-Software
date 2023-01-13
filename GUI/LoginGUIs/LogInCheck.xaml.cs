@@ -53,7 +53,7 @@ namespace GUI.LoginGUIs
                 }
                 else
                 {
-                    WarningText.Text = "Der Benutzername exisitert nicht.\n Bitte geben Sie einen gültigen Benutzernamen ein.";
+                    WarningText.Text = "Der Benutzername exisitert nicht.\nBitte geben Sie einen gültigen Benutzernamen ein.";
                 }
             }
         }

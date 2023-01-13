@@ -5,13 +5,34 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.LoginGUIs"
       mc:Ignorable="d" 
-      MinHeight="450" MinWidth="800"
+      d:DesignHeight="900" d:DesignWidth="1600"
       Title="LoginPage">
 
     <Grid>
-        <Button x:Name="EditLogins" Content="Logins Bearbeiten" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="205" Click="EditLogins_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <DataGrid x:Name="LoginInventory" Margin="10,159,10,10" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="LoginInventory_Loaded"/>
-        <Button x:Name="DeleteLoginsButton" Content="Alle Logins löschen" Margin="0,120,10,0" VerticalAlignment="Top" Height="26" Click="DeleteLoginsButton_Click" HorizontalAlignment="Right" Width="136"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="350*" />
+            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="EditLogins" Content="Logins Bearbeiten" Grid.Column="0" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Click="EditLogins_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+        <Button x:Name="DeleteLoginsButton" Content="Alle Logins löschen" Margin="80,30,20,0" Grid.Column="4" Grid.Row="1" Click="DeleteLoginsButton_Click" Style="{DynamicResource RoundedButtonsStyle}" />
+        <DataGrid x:Name="LoginInventory" Margin="20,10,20,20" Grid.Row="2" Grid.ColumnSpan="5" AutoGenerateColumns="False" IsReadOnly="True" FontSize="30" Loaded="LoginInventory_Loaded">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Benutzername" Width="30*" Binding="{Binding LogInName}" />
+                <DataGridTextColumn Header="Passwort" Width="30*" Binding="{Binding LogInPassword}" />
+                <DataGridTextColumn Header="Rang" Width="30*" Binding="{Binding Rank}" />
+            </DataGrid.Columns>
+            
+        </DataGrid>
 
     </Grid>
 </Page>

@@ -33,7 +33,7 @@
         <Label x:Name="CurrentlyTraining" Content="" Grid.Row="2" Grid.ColumnSpan="2" Margin="20,10,30,10"  FontSize="24" Background="#FF757575" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         <Button x:Name="DeleteEverythingButton" Grid.Column="4" Grid.Row="2" Content="Alles löschen" Margin="120,30,20,0" Click="DeleteEverythingButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
 
-        <DataGrid x:Name="TrainingMembers" Grid.Row="3" Grid.ColumnSpan="5" Margin="20,10,20,20" Loaded="TrainingMembers_Loaded" AutoGenerateColumns="False" FontSize="30">
+        <DataGrid x:Name="TrainingMembers" Grid.Row="3" Grid.ColumnSpan="5" Margin="20,10,20,20" Loaded="TrainingMembers_Loaded" AutoGenerateColumns="False" IsReadOnly="True" FontSize="30">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Vorname" Width="30*" Binding="{Binding Forename}" />
                 <DataGridTextColumn Header="Nachname" Width="30*" Binding="{Binding Surname}" />

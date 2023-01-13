@@ -34,7 +34,6 @@ namespace GUI
 
         private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        public IEnumerable<Member> members;
        
         public GymHomepage()
         {
