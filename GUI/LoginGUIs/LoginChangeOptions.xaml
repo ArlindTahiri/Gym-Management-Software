@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:GUI.LoginGUIs"
       mc:Ignorable="d"
       d:DesignHeight="900" d:DesignWidth="1600"
-      Title="LoginChangeOptions">
+      Title="LoginChangeOptions" Background="#FFFFFF">
 
 
     <Grid>
@@ -17,8 +17,8 @@
             
         </Grid.RowDefinitions>
 
-        <Button Style="{DynamicResource RoundedButtonsStyle}" x:Name="AddLogin" Content="Login hinzufügen" Grid.Row="0" Margin="20,20,20,10" Click="AddLogin_Click" FontSize="45"/>
-        <Button Style="{DynamicResource RoundedButtonsStyle}" x:Name="EditLogin" Content="Login bearbeiten" Grid.Row="1" Margin="20,10,20,10"  Click="EditLogin_Click" FontSize="45"/>
-        <Button Style="{DynamicResource RoundedButtonsStyle}" x:Name="DeleteLogin" Content="Login entfernen" Grid.Row="2" Margin="20,10,20,20" Click="DeleteLogin_Click"  FontSize="45"/>
+        <Button Style="{DynamicResource RoundedButtonsStyle}" Foreground="White" Background="#437CD8" x:Name="AddLogin" Content="Login hinzufügen" Grid.Row="0" Margin="20,20,20,10" Click="AddLogin_Click" FontSize="45"/>
+        <Button Style="{DynamicResource RoundedButtonsStyle}" Foreground="White" Background="#437CD8" x:Name="EditLogin" Content="Login bearbeiten" Grid.Row="1" Margin="20,10,20,10"  Click="EditLogin_Click" FontSize="45"/>
+        <Button Style="{DynamicResource RoundedButtonsStyle}" Foreground="White" Background="#437CD8" x:Name="DeleteLogin" Content="Login entfernen" Grid.Row="2" Margin="20,10,20,20" Click="DeleteLogin_Click"  FontSize="45"/>
     </Grid>
 </Page>

@@ -127,13 +127,13 @@ namespace GUI
 
             if (memberCount <= 2)
             {
-                CurrentlyTraining.Foreground = Brushes.Green;
+                CurrentlyTraining.Foreground = Brushes.White;
             } else if (memberCount <= 3 && memberCount > 2)
             {
-                CurrentlyTraining.Foreground = Brushes.Yellow;
+                CurrentlyTraining.Foreground = Brushes.White;
             } else
             {
-                CurrentlyTraining.Foreground = Brushes.Red;
+                CurrentlyTraining.Foreground = Brushes.White;
             }
         }
     }

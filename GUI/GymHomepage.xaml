@@ -8,7 +8,8 @@
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="GymHomepage">
 
-    <Grid x:Name="Homepage" Loaded="Homepage_Loaded" >
+    <Grid x:Name="Homepage" Loaded="Homepage_Loaded" Background="#FFFFFF">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="150*" />
             <RowDefinition Height="150*" />
@@ -23,15 +24,15 @@
             <ColumnDefinition Width="250*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="MemberButton" Content="Mitglieder" Grid.Column="0" Grid.Row="0" Margin="20,20,10,10" Click="Member_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}" />
-        <Button x:Name="EmployeeButton" Content="Mitarbeiter" Grid.Column="1" Grid.Row="0" Margin="10,20,10,10" Click="EmployeeButton_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Button x:Name="OrderButton" Content="Bestellungen" Grid.Column="2" Grid.Row="0" Margin="10,20,10,10" Click="OrderButton_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Button x:Name="ContractButton" Content="Verträge" Grid.Column="3" Grid.Row="0" Margin="10,20,10,10" Click="Contract_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Button x:Name="Inventar" Content="Inventar" Grid.Column="4" Grid.Row="0" Margin="10,20,20,10" Click="Inventar_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Button x:Name="TrainingButton" Content="Trainieren" Grid.Column="0" Grid.Row="1" Margin="20,10,10,20" FontSize="30" Click="TrainingButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Button x:Name="Logins" Content="Login" Grid.Column="4" Grid.Row="1" Margin="10,10,20,20" Click="Logins_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Label x:Name="CurrentlyTraining" Content="" Grid.Row="2" Grid.ColumnSpan="2" Margin="20,10,30,10"  FontSize="24" Background="#FF757575" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
-        <Button x:Name="DeleteEverythingButton" Grid.Column="4" Grid.Row="2" Content="Alles löschen" Margin="120,30,20,0" Click="DeleteEverythingButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+        <Button x:Name="MemberButton" Content="Mitglieder" Grid.Column="0" Grid.Row="0" Background="#437CD8" Margin="20,20,10,10" Click="Member_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}" Foreground="White" />
+        <Button x:Name="EmployeeButton" Content="Mitarbeiter" Grid.Column="1" Grid.Row="0" Margin="10,20,10,10" Background="#437CD8" Click="EmployeeButton_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}" Foreground="White"/>
+        <Button x:Name="OrderButton" Content="Bestellungen" Grid.Column="2" Grid.Row="0" Margin="10,20,10,10" Background="#437CD8" Click="OrderButton_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}" Foreground="White"/>
+        <Button x:Name="ContractButton" Content="Verträge" Grid.Column="3" Grid.Row="0" Margin="10,20,10,10" Background="#437CD8" Click="Contract_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}" Foreground="White"/>
+        <Button x:Name="Inventar" Content="Inventar" Grid.Column="4" Grid.Row="0" Margin="10,20,20,10" Background="#437CD8" Click="Inventar_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}" Foreground="White"/>
+        <Button x:Name="TrainingButton" Content="Trainieren" Grid.Column="0" Grid.Row="1" Margin="20,10,10,20" Background="#437CD8" FontSize="30" Click="TrainingButton_Click" Style="{DynamicResource RoundedButtonsStyle}" Foreground="White"/>
+        <Button x:Name="Logins" Content="Login" Grid.Column="4" Grid.Row="1" Margin="10,10,20,20" Click="Logins_Click" Background="#437CD8" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}" BorderBrush="#FF3278ED" Foreground="White"/>
+        <Label x:Name="CurrentlyTraining" Content="" Grid.Row="2" Grid.ColumnSpan="2" Margin="20,10,30,10"  FontSize="24" Background="#437CD8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Button x:Name="DeleteEverythingButton" Grid.Column="4" Grid.Row="2" Content="Alles löschen" Background="#437CD8" Foreground="White" Margin="120,30,20,0" Click="DeleteEverythingButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
 
         <DataGrid x:Name="TrainingMembers" Grid.Row="3" Grid.ColumnSpan="5" Margin="20,10,20,20" Loaded="TrainingMembers_Loaded" AutoGenerateColumns="False" IsReadOnly="True" FontSize="30">
             <DataGrid.Columns>

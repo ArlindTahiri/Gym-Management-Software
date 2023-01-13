@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:GUI.LoginGUIs"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
-      Title="AddEditLogin">
+      Title="AddEditLogin" Background="#FFFFFF">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -30,7 +30,7 @@
         <Label Content="Rang:" Grid.Column="3" Grid.Row="0" Margin="10,20,20,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
         <TextBox x:Name ="Rank" Grid.Column="2" Grid.Row="1" Margin="10,10,20,10" TextWrapping="Wrap" PreviewKeyDown="CreateLogin" VerticalContentAlignment="Center" PreviewTextInput="Rank_PreviewTextInput" FontSize="30" TextAlignment="Center"/>
 
-        <Button Style="{DynamicResource RoundedButtonsStyle}" x:Name="addLogin" Grid.Column="1" Grid.Row="3" Content="Login hinzufügen" FontSize="30" Margin="10,10,10,20"  Click="addLogin_Click"/>
+        <Button Style="{DynamicResource RoundedButtonsStyle}" Foreground="White" Background="#437CD8" x:Name="addLogin" Grid.Column="1" Grid.Row="3" Content="Login hinzufügen" FontSize="30" Margin="10,10,10,20"  Click="addLogin_Click"/>
         <TextBlock x:Name="WarningText" Grid.Column="1" Margin="10,10,10,10" Grid.Row="2" TextWrapping="Wrap" Foreground="#FFD40303" TextAlignment="Center"/>
 
     </Grid>
