@@ -49,19 +49,18 @@ namespace GUI.ArticleGUIs
 
         private void EditArticle_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on the ChangeArticle button");
-
-            ChangeArticleIDCheck changeArticleIDCheck = new ChangeArticleIDCheck();
-            NavigationService.Navigate(changeArticleIDCheck);
+         
+            IDCheck iDCheck = new IDCheck("EditArticle");
+            NavigationService.Navigate(iDCheck);
 
         }
 
         private void DeleteArticle_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on the DeleteArticle button");
 
-            DeleteArticleIDCheck deleteArticleIDCheck = new DeleteArticleIDCheck();
-            NavigationService.Navigate(deleteArticleIDCheck);
+            IDCheck iDCheck = new IDCheck("DeleteArticle");
+            NavigationService.Navigate(iDCheck);
+
         }
     }
 }

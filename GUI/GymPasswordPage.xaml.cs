@@ -40,11 +40,11 @@ namespace GUI
         private void LogIn_Click(object sender, RoutedEventArgs e)
         {
             string username = Username.Text;
-            string password = Password.Text;
+            string password = PasswordBox.Password.ToString();
             LogIn login = query.GetLogInDetails(Username.Text);
             if(login != null)
             {
-                if (login.LogInPassword == Password.Text)
+                if (login.LogInPassword == PasswordBox.Password.ToString())
                 {
                     // paste all the code here.
                 }
