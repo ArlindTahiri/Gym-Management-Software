@@ -118,7 +118,7 @@ namespace GUI
         {
             TrainingMembers.DataContext = admin.ListTrainingMembers();
             TrainingMembers.ItemsSource = admin.ListTrainingMembers();
-            CurrentlyTraining.Content = " Aktuell trainierende Mitglieder: "+ admin.ListTrainingMembers().Count;
+            CurrentlyTraining.Content = "Aktuell trainierende Mitglieder: "+ admin.ListTrainingMembers().Count;
         }
 
         private void Homepage_Loaded(object sender, RoutedEventArgs e)
