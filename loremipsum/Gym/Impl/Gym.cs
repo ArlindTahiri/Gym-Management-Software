@@ -1,5 +1,4 @@
 ﻿using loremipsum.Gym.Entities;
-using static System.Reflection.Metadata.BlobBuilder;
 using System.Xml.Serialization;
 
 namespace loremipsum.Gym.Impl
@@ -17,6 +16,20 @@ namespace loremipsum.Gym.Impl
         #region IProductAdmin
 
         #region Member
+        /// <summary>
+        /// AddMember checks if a contract with given contractID exists, because of the 1:n relation, if yes it will forward to the persistence. 
+        /// </summary>
+        /// <param name="contractID"></param>
+        /// <param name="forename"></param>
+        /// <param name="surname"></param>
+        /// <param name="street"></param>
+        /// <param name="postcalCode"></param>
+        /// <param name="city"></param>
+        /// <param name="country"></param>
+        /// <param name="eMail"></param>
+        /// <param name="iban"></param>
+        /// <param name="birthday"></param>
+        /// <returns>Either a member will be returned or null.</returns>
         public Member AddMember(int contractID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             Contract contract = persistence.FindContract(contractID);
@@ -28,6 +41,11 @@ namespace loremipsum.Gym.Impl
             
         }
 
+        /// <summary>
+        /// DeleteMember checks if a member with given memberID exisits and if said member isnt training right now, if true it will checkout all the orders of said member because of the 1:n relation.
+        /// After this checkout of orders, this member has 0 orders. Now they will checkout the members contract. And after that the memberID will be forwared to persistence where said member will be deleted.
+        /// </summary>
+        /// <param name="memberID"></param>
         public void DeleteMember(int memberID)
         {
             Member member = persistence.FindMember(memberID);
@@ -45,6 +63,9 @@ namespace loremipsum.Gym.Impl
             
         }
 
+        /// <summary>
+        /// DeleteMembers checkouts all members orders, because of 1:n relation, and contracts. After that it will check if there are any members currently training, if false then it will forward it to persistence to delete all members. 
+        /// </summary>
         public void DeleteMembers()
         {
             CheckOutMembers();
@@ -54,17 +75,26 @@ namespace loremipsum.Gym.Impl
             }
         }
 
+        /// <summary>
+        /// ListMembers Forwards the query to persistence
+        /// </summary>
+        /// <returns>Returns a list of all the members.</returns>
         public IList<Member> ListMembers()
         {
             IList<Member> result = persistence.FindMembers();
             return result;
         }
 
+        /// <summary>
+        /// UpdateContractFromMember updates the contract from a member, which is a relation. It will check if the member and the new contract exist. After that the members contract will be checkouted. And then it will forward to the persitence.
+        /// </summary>
+        /// <param name="memberID"></param>
+        /// <param name="contractID"></param>
         public void UpdateContractFromMember(int memberID, int contractID)
         {
             Contract contract = persistence.FindContract(contractID);
             Member member = persistence.FindMember(memberID);
-            if (member != null)
+            if (member != null && contract != null)
             {
                 if (CheckoutMemberForChangingContract(member) == true)
                 {
@@ -73,6 +103,19 @@ namespace loremipsum.Gym.Impl
             }
         }
 
+        /// <summary>
+        /// UpdateMember updates the attributes, which don't have a relation, of a member. Therefor it just checks if such member exists, if true, it will forward it to persistence.
+        /// </summary>
+        /// <param name="memberID"></param>
+        /// <param name="forename"></param>
+        /// <param name="surname"></param>
+        /// <param name="street"></param>
+        /// <param name="postcalCode"></param>
+        /// <param name="city"></param>
+        /// <param name="country"></param>
+        /// <param name="eMail"></param>
+        /// <param name="iban"></param>
+        /// <param name="birthday"></param>
         public void UpdateMember(int memberID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             Member member = persistence.FindMember(memberID);
@@ -86,11 +129,19 @@ namespace loremipsum.Gym.Impl
 
 
         #region Contract
+        /// <summary>
+        /// AddContract will forward it to persistence to store that contract.
+        /// </summary>
+        /// <param name="contract"></param>
         public void AddContract(Contract contract)
         {
             persistence.CreateContract(contract);
         }
 
+        /// <summary>
+        /// DeleteContract checks if a Member has this contract, because of the 1:n relation, if noone has this contract, it will be forwarded to the persistence to delete this contract.
+        /// </summary>
+        /// <param name="contractID"></param>
         public void DeleteContract(int contractID)
         {
             bool temp = true;
@@ -109,6 +160,9 @@ namespace loremipsum.Gym.Impl
             
         }
 
+        /// <summary>
+        /// DeleteContracts checks if there are any members, because of the 1:n relation, if no member exists it will be forwarded to persistence where all contracts will be deleted.
+        /// </summary>
         public void DeleteContracts()
         {
             IList<Member> result = persistence.FindMembers();
@@ -119,12 +173,22 @@ namespace loremipsum.Gym.Impl
             
         }
 
+        /// <summary>
+        /// ListContracts lists all contracts. Therefore it forward this query to the persistence.
+        /// </summary>
+        /// <returns>Returns a List with all Contracts</returns>
         public IList<Contract> ListContracts()
         {
             IList<Contract> result = persistence.FindContracts();
             return result;
         }
 
+        /// <summary>
+        /// UpdatContract updates the attributes, which don't have a relation, of the contract with given contractID. Therefore it will check if this contract exists, if true it will forward it to persistence to update the attributes.
+        /// </summary>
+        /// <param name="contractID"></param>
+        /// <param name="contractType"></param>
+        /// <param name="price"></param>
         public void UpdateContract(int contractID, string contractType, int price)
         {
             Contract contract = persistence.FindContract(contractID);
@@ -138,27 +202,55 @@ namespace loremipsum.Gym.Impl
 
 
         #region Employee
+        /// <summary>
+        /// AddEmployee will forward it to persistence to store that Employee.
+        /// </summary>
+        /// <param name="employee"></param>
         public void AddEmployee(Employee employee)
         {
             persistence.CreateEmployee(employee);
         }
 
+        /// <summary>
+        /// DeleteEmployee forwards it to the persistence to delete this Employee.
+        /// </summary>
+        /// <param name="employeeID"></param>
         public void DeleteEmployee(int employeeID)
         {
             persistence.DeleteEmployee(employeeID);
         }
 
+        /// <summary>
+        /// DeleteEmployeeds forwards it to the persistence to delete all Employees.
+        /// </summary>
         public void DeleteEmployees()
         {
             persistence.DeleteEmployees();
         }
 
+        /// <summary>
+        /// ListEmployees lists all Employees. Therefore it forward this query to the persistence.
+        /// </summary>
+        /// <returns>Returns a List with all Employees</returns>
         public IList<Employee> ListEmployees()
         {
             IList<Employee> result = persistence.FindEmployees();
             return result;
         }
 
+        /// <summary>
+        /// UpdateEmployee updates the attributes, which don't have a relation, of the Employee with given employeeeID. Therefore it will check if this Employee exists, if true it will forward it to persistence to update the attributes.
+        /// </summary>
+        /// <param name="employeeID"></param>
+        /// <param name="forename"></param>
+        /// <param name="surname"></param>
+        /// <param name="street"></param>
+        /// <param name="postcalCode"></param>
+        /// <param name="city"></param>
+        /// <param name="country"></param>
+        /// <param name="eMail"></param>
+        /// <param name="iban"></param>
+        /// <param name="birthday"></param>
         public void UpdateEmployee(int employeeID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             Employee employee= persistence.FindEmployee(employeeID);
@@ -172,11 +264,19 @@ namespace loremipsum.Gym.Impl
 
 
         #region Article
+        /// <summary>
+        /// AddArticle will forward it to persistence to store that Article.
+        /// </summary>
+        /// <param name="article"></param>
         public void AddArticle(Article article)
         {
            persistence.CreateArticle(article);
         }
 
+        /// <summary>
+        /// DeleteArticle checks if a order with this articleID exists, if false it will forward it to the persistence to delete this Article.
+        /// </summary>
+        /// <param name="articleID"></param>
         public void DeleteArticle(int articleID)
         {
             bool temp = true;
@@ -194,6 +294,9 @@ namespace loremipsum.Gym.Impl
             }
         }
 
+        /// <summary>
+        /// DeleteArticles checks if a order exists, if false it will forward it to the persistence to delete all Articles.
+        /// </summary>
         public void DeleteArticles()
         {
             IList<Order> result = persistence.FindOrders();
@@ -203,12 +306,25 @@ namespace loremipsum.Gym.Impl
             }
         }
 
+        /// <summary>
+        /// ListArticles lists all Articles. Therefore it forward this query to the persistence.
+        /// </summary>
+        /// <returns>Returns a List with all Articles</returns>
         public IList<Article> ListArticles()
         {
             IList<Article> result = persistence.FindArticles();
             return result;
         }
 
+        /// <summary>
+        /// UpdateArticle updates the attributes, which don't have a relation, of the Article with given articleID. Therefore it will check if this Article exists, if true it will forward it to persistence to update the attributes.
+        /// </summary>
+        /// </summary>
+        /// <param name="articleID"></param>
+        /// <param name="articleName"></param>
+        /// <param name="price"></param>
+        /// <param name="actualStock"></param>
+        /// <param name="targetStock"></param>
         public void UpdateArticle(int articleID, string articleName, int price, int actualStock, int targetStock)
         {
             Article article = persistence.FindArticle(articleID);
@@ -222,6 +338,14 @@ namespace loremipsum.Gym.Impl
 
 
         #region Order
+
+        /// <summary>
+        /// AddOrder checks if the given memberID and the given articleID exist, after that it will check if actualamount of this article is higher than the amount this order has. If true, it will be forwarded to persistence to create that order.
+        /// </summary>
+        /// <param name="memberID"></param>
+        /// <param name="articleID"></param>
+        /// <param name="amount"></param>
+        /// <returns>Returns the created Order or null</returns>
         public Order AddOrder(int memberID, int articleID, int amount)
         {
             //order still exists with the orderID, but never was saved
@@ -238,22 +362,38 @@ namespace loremipsum.Gym.Impl
             else { return null;}
         }
 
+        /// <summary>
+        /// DeleteOrder deletes a specific order, where a mistake happened. It will forward it to persistence, where the acutalamount of the article of the order increases by the amount of the order and the member currentbill will be decreased by the price of the order. 
+        /// </summary>
+        /// <param name="orderID"></param>
         public void DeleteOrder(int orderID)//return of articles --> mistake order --> article.actualamount increases
         {
             persistence.DeleteOrder(orderID);
         }
 
+        /// <summary>
+        /// DeleteOrders deletes the all the orders for the checkout. It will forward it to persistence, where actualamount of the article stays the same and the currentbill of the members will be set to 0.
+        /// </summary>
         public void DeleteOrders()//this just deletes all orders after checkout --> no mistake --> article.acutalamount stays same, but member.currentbill goes back to 0
         {
             persistence.DeleteOrders();
         }
 
+        /// <summary>
+        /// ListOrders lists all Orders. Therefore it forward this query to the persistence.
+        /// </summary>
+        /// <returns>Returns a List of all Orders</returns>
         public IList<Order> ListOrders()
         {
             IList<Order> result = persistence.FindOrders();
             return result;
         }
 
+        /// <summary>
+        /// ListOrders lists all Orders of a member. Therefore it will check if this member exists and then get all the orders and then check which orders are from given member.
+        /// </summary>
+        /// <param name="memberID"></param>
+        /// <returns>Returns a List of all the Orders of a Member or null if the member doesnt exists.</returns>
         public IList<Order> ListAllOrdersFromMember(int memberID)
         {
             Member member = persistence.FindMember(memberID);
@@ -275,6 +415,13 @@ namespace loremipsum.Gym.Impl
             return null;
         }
 
+        /// <summary>
+        /// Updates the attributes of Order with given orderID. Checks if orderID, memberID and articleID exists. If true it will check if the actualamount of the new article is smaller then the amount of the updated order.
+        /// </summary>
+        /// <param name="orderID">Order which should be updated</param>
+        /// <param name="memberID">The new MemberID of the updated order</param>
+        /// <param name="articleID">The new ArticleID of the updated order</param>
+        /// <param name="amount">The new Amount of the updated order</param>
         public void UpdateOrder(int orderID, int memberID, int articleID, int amount)
         {
             Order order = persistence.FindOrder(orderID);
@@ -294,6 +441,10 @@ namespace loremipsum.Gym.Impl
 
 
         #region LogIn
+        /// <summary>
+        /// Insert new login. Checks if given Login.LogInName already exists, if false then the LogIn will be forwarded to persistence to store.
+        /// </summary>
+        /// <param name="logIn"></param>
         public void AddLogIn(LogIn logIn)
         {
             if (persistence.FindLogIn(logIn.LogInName) == null)
@@ -302,22 +453,40 @@ namespace loremipsum.Gym.Impl
             }
         }
 
+        /// <summary>
+        /// Deletes LogIn with given logInName by forwarding it to persistence.
+        /// </summary>
+        /// <param name="logInName"></param>
         public void DeleteLogIn(string logInName)
         {
             persistence.DeleteLogIn(logInName);
         }
 
+        /// <summary>
+        /// Forwards this query to persistence.
+        /// </summary>
+        /// <returns>List of all LogIns</returns>
         public IList<LogIn> ListLogIns()
         {
             IList<LogIn> result = persistence.FindLogIns();
             return result;
         }
 
+        /// <summary>
+        /// Deletes all LogIns by forwarding it to persistence.
+        /// </summary>
         public void DeleteLogIns()
         {
             persistence.DeleteLogIns();
         }
 
+        /// <summary>
+        /// Updates the attributs of a LogIn. Checks if the old logInName exists and if the new logInName doesnt exists, if true it will forward it to persistence to update the login.
+        /// </summary>
+        /// <param name="logInName"></param>
+        /// <param name="newLogInName"></param>
+        /// <param name="newLogInPassword"></param>
+        /// <param name="rank"></param>
         public void UpdateLogIn(string logInName, string newLogInName, string newLogInPassword, int rank)
         {
             LogIn logIn = persistence.FindLogIn(logInName);
@@ -334,6 +503,12 @@ namespace loremipsum.Gym.Impl
 
 
         #region Checkout
+        /// <summary>
+        /// Checkouts the current contract of a member and stores it in a MemberBills.csv file for sending it to the bank to make the transactions.
+        /// Therefore it will check if the currentMonth is the same as the stored Month in given member, which stores the last time when the member did the checkout or the last contractChange. If true, it will calculate the exact price which the member has to pay for the contract based on days of the month.
+        /// </summary>
+        /// <param name="member"></param>
+        /// <returns>Returns true if successful otherwise false</returns>
         public bool CheckoutMemberForChangingContract(Member member)
         {
             Contract contract = persistence.FindContract(member.ContractID);
@@ -368,6 +543,11 @@ namespace loremipsum.Gym.Impl
             else { return false; }
         }
 
+        /// <summary>
+        /// Checkouts all the orders and contracts of a member for the last month and saves them in a MemberBills.csv File. Therefor it calculates the right amount the member has to pay for the contract based on the time when the member had the last contractchange,
+        /// started at the gym or the first date of the old month. After this contract checkout the attribut TimeofContractChange of all the members will be set to the first of the current month.
+        /// After that all the orders will be checkouted and stored in the MemberBills.csv File. Then all the orders will be deleted.
+        /// </summary>
         public void CheckOutMembers()
         {
             IList<Member> members = persistence.FindMembers();
@@ -414,6 +594,10 @@ namespace loremipsum.Gym.Impl
             DeleteOrders();
         }
 
+        /// <summary>
+        /// Checkouts all the orders of a Member. Therefor it will get all the orders of this member and then store them in the MemberBills.csv file. After that all the orders of this member will be removed.
+        /// </summary>
+        /// <param name="member"></param>
         public void CheckoutMemberForOrders(Member member)
         {
             DateTime currentDate = DateTime.Now.Date;
@@ -438,14 +622,18 @@ namespace loremipsum.Gym.Impl
                         sw.WriteLine(currentDate.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
                     }
                 }
-
             }
+            persistence.DeleteOrders(ordersFromMember, member.MemberID);
         }
         #endregion
 
 
 
         #region CurrentlyTrainingMembers
+        /// <summary>
+        /// Inserts a MemberID in a CurrentTrainingMembers.xml file. Therefore it will check if the member exists only then it will insert the id.
+        /// </summary>
+        /// <param name="memberID"></param>
         public void InsertTrainingMember(int memberID)
         {
             Member member = persistence.FindMember(memberID);
@@ -457,6 +645,10 @@ namespace loremipsum.Gym.Impl
             }
         }
 
+        /// <summary>
+        /// Deletes a MemberID out of a CurrentTrainingMembers.xml file. Therefore it will check if the member exists only then it will delete the id out of the file.
+        /// </summary>
+        /// <param name="memberID"></param>
         public void DeleteTrainingMember(int memberID)
         {
             Member member = persistence.FindMember(memberID);
@@ -468,6 +660,9 @@ namespace loremipsum.Gym.Impl
             }
         }
 
+        /// <summary>
+        /// Stores all the MemberIDs in the CurrentTrainingMembers.xml file.
+        /// </summary>
         public void SaveTrainingMember()
         {
             string FileUrl = "CurrentTrainingMembers.xml";
@@ -478,6 +673,10 @@ namespace loremipsum.Gym.Impl
             }
         }
 
+        /// <summary>
+        /// Returns a List of all the memberIDs, which are currently training
+        /// </summary>
+        /// <returns>Returns a List of all the memberIDs, which are currently training</returns>
         public IList<int> ListTrainingMembersID()
         {
             string FileUrl = "CurrentTrainingMembers.xml";
@@ -495,6 +694,10 @@ namespace loremipsum.Gym.Impl
             return currentlyTrainingMembersID;
         }
 
+        /// <summary>
+        /// Returns a list of all the members, which are currently training. Therefore it will get all MemberIDs out of the File and then search in persistence for the member.
+        /// </summary>
+        /// <returns>Returns a list of all the members, which are currently training.</returns>
         public IList<Member> ListTrainingMembers()
         {
             currentlyTrainingMembersID = ListTrainingMembersID();
@@ -513,6 +716,11 @@ namespace loremipsum.Gym.Impl
         #region IProductModule
 
         //Member
+        /// <summary>
+        /// Returns a member if the memberID exists or null
+        /// </summary>
+        /// <param name="memberID"></param>
+        /// <returns>Returns a member if the memberID exists or null</returns>
         public Member GetMemberDetails(int memberID)
         {
             return persistence.FindMember(memberID);
@@ -521,6 +729,11 @@ namespace loremipsum.Gym.Impl
 
 
         //Employee
+        /// <summary>
+        /// Returns an Employee if the employeeID exists or null
+        /// </summary>
+        /// <param name="employeeID"></param>
+        /// <returns>Returns an Employee if the employeeID exists or null</returns>
         public Employee GetEmployeeDetails(int employeeID)
         {
             return persistence.FindEmployee(employeeID);
@@ -529,6 +742,11 @@ namespace loremipsum.Gym.Impl
 
 
         //Contract
+        /// <summary>
+        /// Returns an Contract if the contractID exists or null
+        /// </summary>
+        /// <param name="contractID"></param>
+        /// <returns>Returns an Contract if the contractID exists or null</returns>
         public Contract GetContractDetails(int contractID)
         {
             return persistence.FindContract(contractID);
@@ -537,6 +755,11 @@ namespace loremipsum.Gym.Impl
 
 
         //Article
+        /// <summary>
+        /// Returns an Article if the articleID exists or null
+        /// </summary>
+        /// <param name="articleID"></param>
+        /// <returns>Returns an Article if the articleID exists or null</returns>
         public Article GetArticleDetails(int articleID)
         {
             return persistence.FindArticle(articleID);
@@ -545,6 +768,11 @@ namespace loremipsum.Gym.Impl
 
 
         //Order
+        /// <summary>
+        /// Returns an Order if the orderID exists or null
+        /// </summary>
+        /// <param name="orderID"></param>
+        /// <returns>Returns an Order if the orderID exists or null</returns>
         public Order GetOrderDetails(int orderID)
         {
            return persistence.FindOrder(orderID);
@@ -553,6 +781,11 @@ namespace loremipsum.Gym.Impl
 
 
         //LogIn
+        /// <summary>
+        /// Returns an LogIn if the logInName exists or null
+        /// </summary>
+        /// <param name="logInName"></param>
+        /// <returns>Returns an LogIn if the logInName exists or null</returns>
         public LogIn GetLogInDetails(string logInName)
         {
             return persistence.FindLogIn(logInName);

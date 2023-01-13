@@ -1,5 +1,6 @@
 ﻿using loremipsum.Gym.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
 
 namespace loremipsum.Gym.Persistence
 {
@@ -7,6 +8,20 @@ namespace loremipsum.Gym.Persistence
     {
 
         #region Member
+        /// <summary>
+        /// Stores a member if there isn't a member with the same values.
+        /// </summary>
+        /// <param name="contract"></param>
+        /// <param name="forename"></param>
+        /// <param name="surname"></param>
+        /// <param name="street"></param>
+        /// <param name="postcalCode"></param>
+        /// <param name="city"></param>
+        /// <param name="country"></param>
+        /// <param name="eMail"></param>
+        /// <param name="iban"></param>
+        /// <param name="birthday"></param>
+        /// <returns>The created Member or null if there is already a member</returns>
         public Member CreateMember(Contract contract, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             using (GymContext db = new GymContext())
@@ -34,6 +49,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes the member with given memberID, if the member exists.
+        /// </summary>
+        /// <param name="memberID"></param>
         public void DeleteMember(int memberID)
         {
             using (GymContext db = new GymContext())
@@ -51,6 +70,9 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes all the members
+        /// </summary>
         public void DeleteMembers()
         {
             using (GymContext db = new GymContext())
@@ -61,6 +83,11 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Seaches the member.
+        /// </summary>
+        /// <param name="memberID"></param>
+        /// <returns>A Member or null if the database can't find the member</returns>
         public Member FindMember(int memberID)
         {
             using (GymContext db = new GymContext())
@@ -74,6 +101,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Lists all the members.
+        /// </summary>
+        /// <returns>Return a list with all the members. The List can be empty.</returns>
         public IList<Member> FindMembers()
         {
             using (GymContext db = new GymContext())
@@ -86,6 +117,11 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Updates the contract of a Member. And sets the attriubut TimeOfContractChange of this member to today.
+        /// </summary>
+        /// <param name="member"></param>
+        /// <param name="contract"></param>
         public void UpdateContractFromMember(Member member, Contract contract)
         {
             using (GymContext db = new GymContext())
@@ -101,6 +137,19 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Updates the attributes of the member.
+        /// </summary>
+        /// <param name="member"></param>
+        /// <param name="forename"></param>
+        /// <param name="surname"></param>
+        /// <param name="street"></param>
+        /// <param name="postcalCode"></param>
+        /// <param name="city"></param>
+        /// <param name="country"></param>
+        /// <param name="eMail"></param>
+        /// <param name="iban"></param>
+        /// <param name="birthday"></param>
         public void UpdateMember(Member member, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             using (GymContext db = new GymContext())
@@ -126,7 +175,12 @@ namespace loremipsum.Gym.Persistence
         #endregion
 
 
+
         #region Contract
+        /// <summary>
+        /// Creates a contract only if the contract doesn't exist already.
+        /// </summary>
+        /// <param name="contract"></param>
         public void CreateContract(Contract contract)
         {
             using (GymContext db = new GymContext())
@@ -146,6 +200,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes a contract only if the contract with given contractID can be found.
+        /// </summary>
+        /// <param name="contractID"></param>
         public void DeleteContract(int contractID)
         {
             using (GymContext db = new GymContext())
@@ -163,6 +221,9 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes all the Contract.
+        /// </summary>
         public void DeleteContracts()
         {
             using (GymContext db = new GymContext())
@@ -173,6 +234,11 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Returns a contract or null if the contract with given contractID can't be found
+        /// </summary>
+        /// <param name="contractID"></param>
+        /// <returns>Returns a contract or null</returns>
         public Contract FindContract(int contractID)
         {
             using (GymContext db = new GymContext())
@@ -186,6 +252,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Renturns a List of all the Contracts. This list can be empty, if no contracts exists.
+        /// </summary>
+        /// <returns>Renturns a List of all the Contracts. This list can be empty, if no contracts exists.</returns>
         public IList<Contract> FindContracts()
         {
             using (GymContext db = new GymContext())
@@ -198,6 +268,12 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Updates the contracts attributes.
+        /// </summary>
+        /// <param name="contract"></param>
+        /// <param name="contractType"></param>
+        /// <param name="price"></param>
         public void UpdateContract(Contract contract, string contractType, int price)
         {
             using (GymContext db = new GymContext())
@@ -217,7 +293,12 @@ namespace loremipsum.Gym.Persistence
         #endregion
 
 
+
         #region Employee
+        /// <summary>
+        /// Creates an Employee only if there doesnt already exist the same employee.
+        /// </summary>
+        /// <param name="employee"></param>
         public void CreateEmployee(Employee employee)
         {
             using (GymContext db = new GymContext())
@@ -236,6 +317,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes an Employee with given EmployeeID if the employee exist.
+        /// </summary>
+        /// <param name="employeeID"></param>
         public void DeleteEmployee(int employeeID)
         {
             using (GymContext db = new GymContext())
@@ -252,6 +337,9 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes all the Employees.
+        /// </summary>
         public void DeleteEmployees()
         {
             using (GymContext db = new GymContext())
@@ -262,6 +350,11 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Returns an Employeee with given employeeID. Can be null if not found.
+        /// </summary>
+        /// <param name="employeeID"></param>
+        /// <returns>Returns an Employeee or null</returns>
         public Employee FindEmployee(int employeeID)
         {
             using (GymContext db = new GymContext())
@@ -274,6 +367,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Returns a List of all the Employees. This list can be empty.
+        /// </summary>
+        /// <returns>Returns a List of all the Employees. This list can be empty.</returns>
         public IList<Employee> FindEmployees()
         {
             using (GymContext db = new GymContext())
@@ -285,6 +382,19 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Updates the attributes of the employee.
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <param name="forename"></param>
+        /// <param name="surname"></param>
+        /// <param name="street"></param>
+        /// <param name="postcalCode"></param>
+        /// <param name="city"></param>
+        /// <param name="country"></param>
+        /// <param name="eMail"></param>
+        /// <param name="iban"></param>
+        /// <param name="birthday"></param>
         public void UpdateEmployee(Employee employee, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday)
         {
             using (GymContext db = new GymContext())
@@ -311,6 +421,10 @@ namespace loremipsum.Gym.Persistence
 
 
         #region Article
+        /// <summary>
+        /// Creates an Article if there doesn't already exist the article with the same attributes.
+        /// </summary>
+        /// <param name="article"></param>
         public void CreateArticle(Article article)
         {
             using (GymContext db = new GymContext())
@@ -330,6 +444,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes an Article with given articleID, if it exists.
+        /// </summary>
+        /// <param name="articleID"></param>
         public void DeleteArticle(int articleID)
         {
             using (GymContext db = new GymContext())
@@ -347,6 +465,9 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes all the Articles.
+        /// </summary>
         public void DeleteArticles()
         {
             using (GymContext db = new GymContext())
@@ -357,6 +478,11 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Returns an Article with given articleID or null, if there doesn't exist this articleID.
+        /// </summary>
+        /// <param name="articleID"></param>
+        /// <returns>Returns an Article with given articleID or null, if there doesn't exist this articleID.</returns>
         public Article FindArticle(int articleID)
         {
             using (GymContext db = new GymContext())
@@ -370,6 +496,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Returns a List with all the Articles. This list can be empty.
+        /// </summary>
+        /// <returns>Returns a List with all the Articles. This list can be empty.</returns>
         public IList<Article> FindArticles()
         {
             using (GymContext db = new GymContext())
@@ -382,6 +512,14 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Updates the attributes of the article
+        /// </summary>
+        /// <param name="article"></param>
+        /// <param name="articleName"></param>
+        /// <param name="price"></param>
+        /// <param name="actualStock"></param>
+        /// <param name="targetStock"></param>
         public void UpdateArticle(Article article, string articleName, int price, int actualStock, int targetStock)
         {
             using (GymContext db = new GymContext())
@@ -404,6 +542,13 @@ namespace loremipsum.Gym.Persistence
 
 
         #region Order
+        /// <summary>
+        /// Creates an Order with an article and the amount of such article for the member a. Therefor the actualstock of the article decreases by the amount of the order. The currentbill of the member increases by the price of the order.
+        /// </summary>
+        /// <param name="member"></param>
+        /// <param name="article"></param>
+        /// <param name="amount"></param>
+        /// <returns>Returns the created Order</returns>
         public Order CreateOrder(Member member, Article article, int amount)
         {
             using (GymContext db = new GymContext())
@@ -429,6 +574,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes an Order, which a mistake happened. Therefore checks if the order exists, if true the articles of the order are being returned and the bill of the member decreases by the price of the order.
+        /// </summary>
+        /// <param name="orderID"></param>
         public void DeleteOrder(int orderID) //return of articles --> mistake order --> article.actualamount increases and currentbill of member decreased by amount of order
         {
             using (GymContext db = new GymContext())
@@ -458,6 +607,9 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes all the orders for the database. So the currentbill of the members will be set to 0.
+        /// </summary>
         public void DeleteOrders()//this just deletes all orders after checkout --> no mistake --> article.acutalamount stays same, but member.currentbill goes back to 0
         {
             using (GymContext db = new GymContext())
@@ -472,12 +624,38 @@ namespace loremipsum.Gym.Persistence
                         .FirstOrDefault();
 
                     member.CurrentBill = 0;
+                    db.SaveChanges();
                 }
                 db.Orders.RemoveRange(orders);
                 db.SaveChanges();
             }
         }
 
+        /// <summary>
+        /// Deletes all the orders of a member with given memberID. Currentbill will be set to 0;
+        /// </summary>
+        /// <param name="ordersofMember"></param>
+        /// <param name="memberID"></param>
+        public void DeleteOrders(IList<Order> ordersofMember, int memberID)
+        {
+            using (GymContext db = new GymContext())
+            {
+                Member memberEF = db.Members
+                        .Where(b => b.MemberID == memberID)
+                        .Include(b => b.Orders)
+                        .FirstOrDefault();
+                memberEF.CurrentBill = 0;
+
+                db.Orders.RemoveRange(ordersofMember);
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// Returns an order with given orderID or null if it can't be found.
+        /// </summary>
+        /// <param name="orderID"></param>
+        /// <returns>Returns an order with given orderID or null if it can't be found.</returns>
         public Order FindOrder(int orderID)
         {
             using (GymContext db = new GymContext())
@@ -490,6 +668,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Returns a list of all the orders. This list can be empty.
+        /// </summary>
+        /// <returns>Returns a list of all the orders. This list can be empty.</returns>
         public IList<Order> FindOrders()
         {
             using (GymContext db = new GymContext())
@@ -500,6 +682,14 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Updates an order. Therefore the old articles are returned and the currentbill of the old member will corrected by deducting the price of the order and the actualamount of the old article will be increased by the amount of the old order..
+        /// The actualamount of the newarticle is being deducted by the new amount. The currentbill of the new member increases by the price of the new order. 
+        /// </summary>
+        /// <param name="order"></param>
+        /// <param name="passedMember"></param>
+        /// <param name="passedArticle"></param>
+        /// <param name="amount"></param>
         public void UpdateOrder(Order order, Member passedMember, Article passedArticle, int amount)
         {
             using (GymContext db = new GymContext())
@@ -550,6 +740,10 @@ namespace loremipsum.Gym.Persistence
 
 
         #region LogIn
+        /// <summary>
+        /// Creates an LogIn.
+        /// </summary>
+        /// <param name="logIn"></param>
         public void CreateLogIn(LogIn logIn)
         {
             using (GymContext db = new GymContext())
@@ -559,6 +753,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes a login. Therefore checks if the login exists.
+        /// </summary>
+        /// <param name="logInName"></param>
         public void DeleteLogIn(string logInName)
         {
             using (GymContext db = new GymContext())
@@ -575,6 +773,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Returns a List of all the LogIns. This list can by empty.
+        /// </summary>
+        /// <returns>Returns a List of all the LogIns. This list can by empty.</returns>
         public IList<LogIn> FindLogIns()
         {
             using (GymContext db = new GymContext())
@@ -586,6 +788,11 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Returns a LogIn or null, if the loginName doesnt exists.
+        /// </summary>
+        /// <param name="logInName"></param>
+        /// <returns>Returns a LogIn or null, if the loginName doesnt exists.</returns>
         public LogIn FindLogIn(string logInName)
         {
             using (GymContext db = new GymContext())
@@ -598,6 +805,9 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Deletes all the Logins.
+        /// </summary>
         public void DeleteLogIns()
         {
             using (GymContext db = new GymContext())
@@ -608,6 +818,13 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Updates the key(loginName) and password and rank of the login.
+        /// </summary>
+        /// <param name="logIn"></param>
+        /// <param name="newLogInName"></param>
+        /// <param name="newLogInPassword"></param>
+        /// <param name="rank"></param>
         public void UpdateLogIn(LogIn logIn, string newLogInName, string newLogInPassword, int rank)
         {
             using (GymContext db = new GymContext())
@@ -626,7 +843,11 @@ namespace loremipsum.Gym.Persistence
         #endregion
 
 
+
         #region Checkout
+        /// <summary>
+        /// Updates the attribut TimeOfContractChange of every member to the first day of the month.
+        /// </summary>
         public void UpdateMembersTimeOfContractChange()
         {
             IList<Member> members = FindMembers();
@@ -650,6 +871,10 @@ namespace loremipsum.Gym.Persistence
             }
         }
 
+        /// <summary>
+        /// Updates the TimeOfContractChange of a specific member to today. This is being used when changing a contract of a member.
+        /// </summary>
+        /// <param name="member"></param>
         public void UpdateMemberTimeOfContractChange(Member member)
         {
             using (GymContext db = new GymContext())
