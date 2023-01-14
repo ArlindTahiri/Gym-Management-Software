@@ -5,13 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI"
       mc:Ignorable="d" 
-      d:DesignHeight="250" d:DesignWidth="450"
+      d:DesignHeight="900" d:DesignWidth="1600"
       Title="DeletePage">
 
     <Grid>
-        <Label x:Name="QuestionLabel" Content="" Margin="4,10,0,0" VerticalAlignment="Top" Height="39" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="436" />
-        <Button x:Name="YesButton" Content="Ja" Margin="111,105,0,0" VerticalAlignment="Top" Height="53" Click="YesButton_Click" Background="#FF8EE47C" HorizontalAlignment="Left" Width="81" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Button x:Name="NoButton" Content="Nein" Margin="246,105,0,0" Click="NoButton_Click" Background="#FFE86464" HorizontalAlignment="Left" Width="81" Height="53" VerticalAlignment="Top" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <TextBlock x:Name="QuestionBox" Margin="4,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="51" TextAlignment="Center" HorizontalAlignment="Left" Width="436"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="800*"/>
+            <ColumnDefinition Width="800*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="93*"/>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="308*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="QuestionLabel" Content="" Margin="30,0,30,59" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" FontSize="30" Height="87" VerticalAlignment="Bottom" />
+        <Button x:Name="YesButton" Content="Ja" Margin="100,50,100,50" Click="YesButton_Click" Background="#FF8EE47C" Style="{DynamicResource RoundedButtonsStyle}" Grid.Row="2" FontSize="120" FontWeight="Bold" Foreground="White"/>
+        <Button x:Name="NoButton" Content="Nein" Margin="100,50,100,50" Click="NoButton_Click" Background="#FFE86464" Style="{DynamicResource RoundedButtonsStyle}" Grid.Row="2" Grid.Column="1" FontSize="120" FontWeight="Bold" Foreground="White"/>
+        <TextBlock x:Name="QuestionBox" Margin="30,20,30,20" TextWrapping="Wrap" TextAlignment="Center" FontSize="25" Grid.ColumnSpan="2" Grid.Row="1"/>
     </Grid>
 </Page>
