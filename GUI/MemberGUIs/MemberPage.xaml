@@ -13,18 +13,18 @@
         <Button x:Name="DeleteMembersButton" Content="Alle Mitglieder löschen" Foreground="White" Background="#437CD8" HorizontalAlignment="Right" Margin="0,151,10,0" VerticalAlignment="Top" Height="25" Width="135" Click="DeleteMembersButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
         <DataGrid x:Name="MemberData" Margin="10,181,10,10" Loaded="MemberData_Loaded"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="5*" Binding="{Binding MemberID}" />
-                <DataGridTextColumn Header="Vorname" Width="20*" Binding="{Binding Forename}" />
-                <DataGridTextColumn Header="Nachname" Width="20*" Binding="{Binding Surname}" />
-                <DataGridTextColumn Header="Adresse" Width="20*" Binding="{Binding Street}" />
-                <DataGridTextColumn Header="Postleitzahl" Width="10*" Binding="{Binding PostcalCode}" />
-                <DataGridTextColumn Header="Stadt" Width="20*" Binding="{Binding City}" />
-                <DataGridTextColumn Header="Land" Width="20*" Binding="{Binding Country}" />
-                <DataGridTextColumn Header="Email" Width="20*" Binding="{Binding EMail}" />
-                <DataGridTextColumn Header="IBan" Width="20*" Binding="{Binding Iban}" />
-                <DataGridTextColumn Header="Geburtstag" Width="20*" Binding="{Binding Birthday}" />
-                <DataGridTextColumn Header="Kontostand" Width="10*" Binding="{Binding CurrentBill}" />
-                <DataGridTextColumn Header="VertragsID" Width="5*" Binding="{Binding ContractID}" />
+                <DataGridTextColumn Header="ID" Width="10*" MinWidth="45" Binding="{Binding MemberID}" />
+                <DataGridTextColumn Header="Vorname" Width="30*" MinWidth="10" Binding="{Binding Forename}" />
+                <DataGridTextColumn Header="Nachname" Width="30*" MinWidth="10" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="Adresse" Width="40*" MinWidth="10" Binding="{Binding Street}" />
+                <DataGridTextColumn Header="Postleitzahl" Width="20*" MinWidth="95" Binding="{Binding PostcalCode}" />
+                <DataGridTextColumn Header="Stadt" Width="30*" MinWidth="10" Binding="{Binding City}" />
+                <DataGridTextColumn Header="Land" Width="30*" MinWidth="10" Binding="{Binding Country}" />
+                <DataGridTextColumn Header="Email" Width="30*" MinWidth="10" Binding="{Binding EMail}" />
+                <DataGridTextColumn Header="IBan" Width="30*" MinWidth="10" Binding="{Binding Iban}" />
+                <DataGridTextColumn Header="Geburtstag" Width="30*" MinWidth="10" Binding="{Binding Birthday}" />
+                <DataGridTextColumn Header="Kontostand" Width="10*" MinWidth="96" Binding="{Binding CurrentBill}" />
+                <DataGridTextColumn Header="VertragsID" Width="10*" MinWidth="90" Binding="{Binding ContractID}" />
             </DataGrid.Columns>
         </DataGrid>
 
