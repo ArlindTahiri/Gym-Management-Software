@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:GUI.LoginGUIs"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
-      Title="AddEditLogin" Background="#FFFFFF">
+      Title="AddEditLogin" Background="#EFEFEF">
 
     <Grid>
         <Grid.RowDefinitions>

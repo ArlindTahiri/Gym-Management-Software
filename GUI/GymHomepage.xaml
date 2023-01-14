@@ -8,7 +8,7 @@
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="GymHomepage">
 
-    <Grid x:Name="Homepage" Loaded="Homepage_Loaded" Background="#FFFFFF">
+    <Grid x:Name="Homepage" Loaded="Homepage_Loaded" Background="#EFEFEF">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="150*" />
@@ -31,12 +31,20 @@
         <Button x:Name="Inventar" Content="Inventar" Grid.Column="4" Grid.Row="0" Margin="10,20,20,10" Background="#437CD8" Click="Inventar_Click" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}" Foreground="White"/>
         <Button x:Name="TrainingButton" Content="Trainieren" Grid.Column="0" Grid.Row="1" Margin="20,10,10,20" Background="#437CD8" FontSize="30" Click="TrainingButton_Click" Style="{DynamicResource RoundedButtonsStyle}" Foreground="White"/>
         <Button x:Name="Logins" Content="Login" Grid.Column="4" Grid.Row="1" Margin="10,10,20,20" Click="Logins_Click" Background="#437CD8" FontSize="30" Style="{DynamicResource RoundedButtonsStyle}" BorderBrush="#FF3278ED" Foreground="White"/>
-        <Label x:Name="CurrentlyTraining" Content="" Grid.Row="2" Grid.ColumnSpan="2" Margin="20,10,90,0"  FontSize="22" Background="#437CD8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label x:Name="CurrentlyTraining" Content="" Grid.Row="2" Grid.ColumnSpan="2" Margin="20,10,90,0"  FontSize="22" Background="#437CD8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Label.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Label.Resources>
+        </Label>
         <Button x:Name="DeleteEverythingButton" Grid.Column="4" Grid.Row="2" Content="Alles löschen" Background="#437CD8" Foreground="White" Margin="120,30,20,0" Click="DeleteEverythingButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
 
-        <DataGrid x:Name="TrainingMembers" Grid.Row="3" Grid.ColumnSpan="5" Margin="20,10,20,20" Loaded="TrainingMembers_Loaded" AutoGenerateColumns="False" IsReadOnly="True" FontSize="30">
+        <DataGrid Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" x:Name="TrainingMembers" CanUserResizeColumns="False" Grid.Row="3" Grid.ColumnSpan="5" Margin="20,10,20,20" Loaded="TrainingMembers_Loaded" FontSize="30">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Vorname" Width="30*" Binding="{Binding Forename}" />
+                <DataGridTextColumn Header="Vorname" Width="30*" Binding="{Binding Forename}">
+                    
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Nachname" Width="30*" Binding="{Binding Surname}" />
             </DataGrid.Columns>
         </DataGrid>

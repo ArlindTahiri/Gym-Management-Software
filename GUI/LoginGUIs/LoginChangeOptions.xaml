@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:GUI.LoginGUIs"
       mc:Ignorable="d"
       d:DesignHeight="900" d:DesignWidth="1600"
-      Title="LoginChangeOptions" Background="#FFFFFF">
+      Title="LoginChangeOptions" Background="#EFEFEF">
 
 
     <Grid>

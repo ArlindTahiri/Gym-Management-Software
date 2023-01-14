@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Loremipsum Gym" Height="900" Width="1600" MinHeight="720" MinWidth="1280" Source="GymHomepage.xaml" >
+        Title="Gym Managment Software by LoremIpsum" Height="900" Width="1600" MinHeight="720" MinWidth="1280" Source="GymHomepage.xaml" >
     
 </NavigationWindow>

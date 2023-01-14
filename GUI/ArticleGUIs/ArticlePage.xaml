@@ -6,12 +6,22 @@
       xmlns:local="clr-namespace:GUI.ArticleGUIs"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ArticlePage">
+      Title="ArticlePage" Background="#EFEFEF">
 
     <Grid>
-        <Button x:Name="EditArticle" Content="Artikel bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditArticle_Click" Style="{DynamicResource RoundedButtonsStyle}" />
-        <DataGrid x:Name="ArticleInventory" d:ItemsSource="{d:SampleData ItemCount=5}" Height="290" VerticalAlignment="Top" Margin="0,161,0,0" RowHeight="30" ColumnWidth="100" Loaded="ArticleInventory_Loaded"/>
-        <Button x:Name="DeleteArticlesButton" Content="Alle Artikel löschen" HorizontalAlignment="Right" Margin="0,131,0,0" VerticalAlignment="Top" Height="25" Width="135" Click="DeleteArticlesButton_Click"/>
+        <Button x:Name="EditArticle" Foreground="White" Background="#437CD8" Content="Artikel bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditArticle_Click" Style="{DynamicResource RoundedButtonsStyle}" />
+
+        <Button x:Name="DeleteArticlesButton" Foreground="White" Background="#437CD8" Content="Alle Artikel löschen" HorizontalAlignment="Right" Margin="0,131,10,0" VerticalAlignment="Top" Height="25" Width="135" Click="DeleteArticlesButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+
+        <DataGrid x:Name="ArticleInventory" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" VerticalAlignment="Top" Margin="10,161,10,0" Loaded="ArticleInventory_Loaded" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="10*" Binding="{Binding ArticleID}" />
+                <DataGridTextColumn Header="Name" Width="30*" Binding="{Binding ArticleName}" />
+                <DataGridTextColumn Header="Preis" Width="30*" Binding="{Binding Price}" />
+                <DataGridTextColumn Header="Bestand" Width="30*" Binding="{Binding ActualStock}" />
+                <DataGridTextColumn Header="Zielbestand" Width="30*" Binding="{Binding TargetStock}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>

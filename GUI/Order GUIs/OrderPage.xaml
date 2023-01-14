@@ -6,12 +6,21 @@
       xmlns:local="clr-namespace:GUI.Order_GUIs"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="OrderPage">
+      Title="OrderPage" Background="#EFEFEF">
 
     <Grid>
-        <Button x:Name="EditOrders" Content="Bestellungen bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditOrders_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <DataGrid x:Name="OrderData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,181,0,0" Loaded="OrderData_Loaded"/>
-        <Button x:Name="DeleteOrdersButton" Content="Alle Bestellungen löschen" HorizontalAlignment="Right" Margin="0,151,0,0" VerticalAlignment="Top" Height="25" Width="153" Click="DeleteMembersButton_Click"/>
+        <Button x:Name="EditOrders" Foreground="White" Background="#437CD8" Content="Bestellungen bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditOrders_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+
+        <Button x:Name="DeleteOrdersButton" Foreground="White" Background="#437CD8" Content="Alle Bestellungen löschen" HorizontalAlignment="Right" Margin="0,151,10,0" VerticalAlignment="Top" Height="25" Width="153" Click="DeleteMembersButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+
+        <DataGrid x:Name="OrderData" Margin="10,181,10,10" Loaded="OrderData_Loaded" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Bestellungsnummer" Width="30*" Binding="{Binding OrderID}" />
+                <DataGridTextColumn Header="Mitgliedsnummer" Width="30*" Binding="{Binding MemberID}" />
+                <DataGridTextColumn Header="Artikelnummer" Width="30*" Binding="{Binding ArticleID}" />
+                <DataGridTextColumn Header="Anzahl" Width="30*" Binding="{Binding Amount}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>

@@ -6,12 +6,27 @@
       xmlns:local="clr-namespace:GUI.MemberGUIs"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MemberPage">
+      Title="MemberPage" Background="#EFEFEF">
 
     <Grid>
-        <Button x:Name="EditMember" Content="Mitglieder bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditMember_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <DataGrid x:Name="MemberData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,181,0,0" Loaded="MemberData_Loaded"/>
-        <Button x:Name="DeleteMembersButton" Content="Alle Mitglieder löschen" HorizontalAlignment="Right" Margin="655,151,0,0" VerticalAlignment="Top" Height="25" Width="135" Click="DeleteMembersButton_Click"/>
+        <Button x:Name="EditMember" Foreground="White" Background="#437CD8" Content="Mitglieder bearbeiten" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="205" Click="EditMember_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+        <Button x:Name="DeleteMembersButton" Content="Alle Mitglieder löschen" Foreground="White" Background="#437CD8" HorizontalAlignment="Right" Margin="0,151,10,0" VerticalAlignment="Top" Height="25" Width="135" Click="DeleteMembersButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+        <DataGrid x:Name="MemberData" Margin="10,181,10,10" Loaded="MemberData_Loaded"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="5*" Binding="{Binding MemberID}" />
+                <DataGridTextColumn Header="Vorname" Width="20*" Binding="{Binding Forename}" />
+                <DataGridTextColumn Header="Nachname" Width="20*" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="Adresse" Width="20*" Binding="{Binding Street}" />
+                <DataGridTextColumn Header="Postleitzahl" Width="10*" Binding="{Binding PostcalCode}" />
+                <DataGridTextColumn Header="Stadt" Width="20*" Binding="{Binding City}" />
+                <DataGridTextColumn Header="Land" Width="20*" Binding="{Binding Country}" />
+                <DataGridTextColumn Header="Email" Width="20*" Binding="{Binding EMail}" />
+                <DataGridTextColumn Header="IBan" Width="20*" Binding="{Binding Iban}" />
+                <DataGridTextColumn Header="Geburtstag" Width="20*" Binding="{Binding Birthday}" />
+                <DataGridTextColumn Header="Kontostand" Width="10*" Binding="{Binding CurrentBill}" />
+                <DataGridTextColumn Header="VertragsID" Width="5*" Binding="{Binding ContractID}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>
