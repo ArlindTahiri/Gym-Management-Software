@@ -67,7 +67,8 @@ namespace GUI.ContractGUIs
 
         private void ChangeContractButton_Click(object sender, RoutedEventArgs e)
         {
-
+            IDCheck iDCheck = new IDCheck("EditContract");
+            NavigationService.Navigate(iDCheck);
         }
     }
 }

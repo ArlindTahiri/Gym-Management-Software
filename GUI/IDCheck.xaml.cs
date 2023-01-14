@@ -1,4 +1,5 @@
 ﻿using GUI.ArticleGUIs;
+using GUI.ContractGUIs;
 using log4net;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
@@ -45,6 +46,11 @@ namespace GUI
                     QuestionBox.Content = "Bitte geben Sie die ID des Artikels ein, den Sie löschen wollen.";
                     GymData.ItemsSource = admin.ListArticles();
                     break;
+
+                case "EditContract":
+                    QuestionBox.Content = "Bitte geben Sie die ID des Vertrags ein, den Sie bearbeiten wollen.";
+                    GymData.ItemsSource = admin.ListContracts();
+                    break;
             }
         }
 
@@ -66,7 +72,12 @@ namespace GUI
                         DeletePage deletePage = new DeletePage("DeleteArticle", ID);
                         NavigationService.Navigate(deletePage);
                     }
-
+                    
+                    if (destination.Equals("EditContract") && query.GetContractDetails(ID) != null)
+                    {
+                        EditContract editContract = new EditContract(ID);
+                        NavigationService.Navigate(editContract);
+                    }
 
                     else
                     {
