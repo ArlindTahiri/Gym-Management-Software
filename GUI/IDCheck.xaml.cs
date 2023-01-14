@@ -1,5 +1,8 @@
 ﻿using GUI.ArticleGUIs;
 using GUI.ContractGUIs;
+using GUI.EmployeeGUIs;
+using GUI.MemberGUIs;
+using GUI.Order_GUIs;
 using log4net;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
@@ -7,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -51,6 +55,46 @@ namespace GUI
                     QuestionBox.Content = "Bitte geben Sie die ID des Vertrags ein, den Sie bearbeiten wollen.";
                     GymData.ItemsSource = admin.ListContracts();
                     break;
+
+                case "DeleteContract":
+                    QuestionBox.Content = "Bitte geben Sie die ID des Vertrags ein, den Sie löschen wollen.";
+                    GymData.ItemsSource = admin.ListContracts();
+                    break;
+
+                case "EditEmployee":
+                    QuestionBox.Content = "Bitte geben Sie die ID des Mitarbeiters ein, den sie bearbeiten wollen.";
+                    GymData.ItemsSource = admin.ListEmployees();
+                    break;
+
+                case "DeleteEmployee":
+                    QuestionBox.Content = "Bitte geben Sie die ID des Mitarbeiters ein, den Sie löschen wollen.";
+                    GymData.ItemsSource = admin.ListEmployees();
+                    break;
+
+                case "EditMember":
+                    QuestionBox.Content = "Bitte geben Sie die ID des Mitglieds ein, das sie bearbeiten wollen.";
+                    GymData.ItemsSource = admin.ListMembers();
+                    break;
+
+                case "DeleteMember":
+                    QuestionBox.Content = "Bitte geben Sie die ID des Mitglieds ein, das Sie löschen wollen.";
+                    GymData.ItemsSource = admin.ListMembers();
+                    break;
+
+                case "EditOrder":
+                    QuestionBox.Content = "Bitte geben Sie die ID der Bestellung ein, die Sie bearbeiten wollen.";
+                    GymData.ItemsSource = admin.ListOrders();
+                    break;
+
+                case "DeleteOrder":
+                    QuestionBox.Content = "Bitte geben Sie die ID der Bestellung ein, die Sie löschen wollen.";
+                    GymData.ItemsSource = admin.ListOrders();
+                    break;
+
+                case "Training":
+                    QuestionBox.Content = "Bitte geben Sie Ihre Mitglieds ID ein";
+                    GymData.Visibility = Visibility.Hidden;
+                    break;
             }
         }
 
@@ -79,9 +123,66 @@ namespace GUI
                         NavigationService.Navigate(editContract);
                     }
 
+                    if (destination.Equals("DeleteContract") && query.GetContractDetails(ID)!= null)
+                    {
+                        DeletePage deletePage = new DeletePage("DeleteContract", ID);
+                        NavigationService.Navigate(deletePage);
+                    }
+
+                    if (destination.Equals("EditEmployee") && query.GetEmployeeDetails(ID)!= null)
+                    {
+                        EditEmployee editEmployee = new EditEmployee(ID);
+                        NavigationService.Navigate(editEmployee);
+                    }
+
+                    if (destination.Equals("DeleteEmployee") && query.GetEmployeeDetails(ID) != null)
+                    {
+                        DeletePage deletePage = new DeletePage("DeleteEmployee", ID);
+                        NavigationService.Navigate(deletePage);
+                    }
+
+                    if (destination.Equals("EditMember") && query.GetMemberDetails(ID) != null)
+                    {
+                        EditMember editMember = new EditMember(ID);
+                        NavigationService.Navigate(editMember);
+                    }
+
+                    if (destination.Equals("DeleteMember") && query.GetMemberDetails(ID) != null)
+                    {
+                        DeletePage deletePage = new DeletePage("DeleteMember", ID);
+                        NavigationService.Navigate(deletePage);
+                    }
+
+                    if (destination.Equals("EditOrder") && query.GetOrderDetails(ID) != null)
+                    {
+                        EditOrder editOrder = new EditOrder(ID);
+                        NavigationService.Navigate(editOrder);
+                    }
+
+                    if (destination.Equals("DeleteOrder") && query.GetOrderDetails(ID)!= null)
+                    {
+                        DeletePage deletePage = new DeletePage("DeleteOrder", ID);
+                        NavigationService.Navigate(deletePage);
+                    }
+
+                    if (destination.Equals("Training") && query.GetMemberDetails(ID)!= null)
+                    {
+                        Member searchMember = query.GetMemberDetails(ID);
+
+                        if (!admin.ListTrainingMembersID().Contains(searchMember.MemberID))
+                        {
+                            admin.InsertTrainingMember(ID);                           
+                        }
+                        else
+                        {
+                            admin.DeleteTrainingMember(ID);                          
+                        }
+                        GymHomepage home = new GymHomepage();
+                        NavigationService.Navigate(home);
+                    }
+
                     else
                     {
-
                         WarningBox.Content = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
                     }
                 }

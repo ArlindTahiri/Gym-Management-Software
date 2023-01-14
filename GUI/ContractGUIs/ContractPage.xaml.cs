@@ -42,8 +42,7 @@ namespace GUI.ContractGUIs
 
         private void DeleteContractButton_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on the DeleteContract button");
-            ContractIDCheck iDCheck = new ContractIDCheck();
+            IDCheck iDCheck = new IDCheck("DeleteContract");
             NavigationService.Navigate(iDCheck);
         }
 
