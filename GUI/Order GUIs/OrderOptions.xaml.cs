@@ -33,15 +33,15 @@ namespace GUI.Order_GUIs
 
         private void DeleteOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            DeleteOrderIDCheck deleteOrderIDCheck = new DeleteOrderIDCheck();
-            NavigationService.Navigate(deleteOrderIDCheck);
+            IDCheck iDCheck = new IDCheck("DeleteOrder");
+            NavigationService.Navigate(iDCheck);
             
         }
 
         private void EditOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            EditOrderIDCheck editOrderIDCheck   = new EditOrderIDCheck();
-            NavigationService.Navigate(editOrderIDCheck);
+            IDCheck iDCheck = new IDCheck("EditOrder");
+            NavigationService.Navigate(iDCheck);
         }
     }
 }

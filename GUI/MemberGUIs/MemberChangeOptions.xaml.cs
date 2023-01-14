@@ -30,13 +30,6 @@ namespace GUI.MemberGUIs
             InitializeComponent();
         }
 
-        private void DeleteMember_Click(object sender, RoutedEventArgs e)
-        {
-           DeleteMemberIDCheck deleteMemberIDCheck = new DeleteMemberIDCheck();
-            NavigationService.Navigate(deleteMemberIDCheck);
-            
-        }
-
         private void AddMember_Click(object sender, RoutedEventArgs e)
         {
             AddMember addMember = new AddMember();
@@ -45,8 +38,14 @@ namespace GUI.MemberGUIs
 
         private void EditMember_Click(object sender, RoutedEventArgs e)
         {
-            EditMemberIDCheck edit = new EditMemberIDCheck();
-            NavigationService.Navigate(edit);
+            IDCheck iDCheck = new IDCheck("EditMember");
+            NavigationService.Navigate(iDCheck);
+        }
+
+        private void DeleteMember_Click(object sender, RoutedEventArgs e)
+        {
+            IDCheck iDCheck = new IDCheck("DeleteMember");
+            NavigationService.Navigate(iDCheck);
         }
 
         private void ChangeContractButton_Click(object sender, RoutedEventArgs e)

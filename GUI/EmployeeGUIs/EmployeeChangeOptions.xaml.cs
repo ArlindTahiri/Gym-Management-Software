@@ -48,16 +48,14 @@ namespace GUI.EmployeeGUIs
 
         private void DeleteEmployee_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on the DeleteEmployee button");
-            DeleteEmployeeIDCheck deleteEmployeeIDCheck = new DeleteEmployeeIDCheck();
-            NavigationService.Navigate(deleteEmployeeIDCheck);
+            IDCheck iDCheck = new IDCheck("DeleteEmployee");
+            NavigationService.Navigate(iDCheck);
         }
 
         private void EditEmployee_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on the EditEmployee button");
-            EditEmployeeIDCheck editEmployeeIDCheck = new EditEmployeeIDCheck();
-            NavigationService.Navigate(editEmployeeIDCheck);
+            IDCheck iDCheck = new IDCheck("EditEmployee");
+            NavigationService.Navigate(iDCheck);
         }
     }
 }

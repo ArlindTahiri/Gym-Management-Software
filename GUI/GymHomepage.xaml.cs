@@ -17,7 +17,6 @@ using System.Windows.Shapes;
 using GUI.ArticleGUIs;
 using GUI.EmployeeGUIs;
 using GUI.Order_GUIs;
-using GUI.TrainingGUIs;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
@@ -102,10 +101,8 @@ namespace GUI
 
         private void TrainingButton_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on training button");
-
-            TrainingIDCheck trainingIDCheck = new TrainingIDCheck();
-            NavigationService.Navigate(trainingIDCheck);
+            IDCheck iDCheck = new IDCheck("Training");
+            NavigationService.Navigate(iDCheck);
         }
 
         private void DeleteEverythingButton_Click(object sender, RoutedEventArgs e)
