@@ -29,16 +29,7 @@ namespace GUI.MemberGUIs
             InitializeComponent();
 
         }
-
-        private void EditMember_Click(object sender, RoutedEventArgs e)
-        {
-           
-            MemberChangeOptions changeOptions = new MemberChangeOptions();
-            NavigationService.Navigate(changeOptions);
-
-
-        }
-
+      
         private void MemberData_Loaded(object sender, RoutedEventArgs e)
         {
             MemberData.DataContext= admin.ListMembers();
@@ -49,6 +40,30 @@ namespace GUI.MemberGUIs
         {
             DeletePage deletePage = new DeletePage("Member");
             NavigationService.Navigate(deletePage);
+        }
+
+        private void AddMemberButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddMember addMember = new AddMember();
+            NavigationService.Navigate(addMember);
+        }
+
+        private void EditMemberButton_Click(object sender, RoutedEventArgs e)
+        {
+            IDCheck iDCheck = new IDCheck("EditMember");
+            NavigationService.Navigate(iDCheck);
+        }
+
+        private void DeleteMemberButton_Click(object sender, RoutedEventArgs e)
+        {
+            IDCheck iDCheck = new IDCheck("DeleteMember");
+            NavigationService.Navigate(iDCheck);
+        }
+
+        private void ChangeContractButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeContract changeContract = new ChangeContract();
+            NavigationService.Navigate(changeContract);
         }
     }
 }

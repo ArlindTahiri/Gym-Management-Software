@@ -36,59 +36,8 @@ namespace GUI.MemberGUIs
             InitializeComponent();
         }
        
-         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (!ContractCB.Text.IsNullOrEmpty() && !NameM.Text.IsNullOrEmpty() && !SurnameM.Text.IsNullOrEmpty() && !AdressM.Text.IsNullOrEmpty()
-                && !PostalCodeM.Text.IsNullOrEmpty() && !CityM.Text.IsNullOrEmpty() && !CountryM.Text.IsNullOrEmpty() && !ContoM.Text.IsNullOrEmpty() && !BirthdayM.Text.IsNullOrEmpty())
-            {
-                if (TextValidation.CheckIsPostalCode(PostalCodeM.Text))
-                {
-                    if (TextValidation.CheckIsMail(ContactAdressM.Text))
-                    {
-                        if (TextValidation.CheckIsIban(ContoM.Text))
-                        {
-                            if (TextValidation.CheckIsDate(BirthdayM.Text))
-                            {
-                                Contract c = (Contract)ContractCB.SelectedItem;
-                                admin.AddMember(c.ContractID, NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
-                                      CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
-
-                                GymHomepage home = new GymHomepage();
-                                NavigationService.Navigate(home);
-                            }
-                            else
-                            {
-                                WarningLabel.Content = "Bitte geben Sie einen gültigen Geburtstag ein";
-                            }
-                        }
-                        else
-                        {
-                            WarningLabel.Content = "Bitte geben Sie eine gültige IBan ein";
-                        }
-                    }
-                    else
-                    {
-                        WarningLabel.Content = "Bitte geben Sie eine gültige E-Mail Adresse ein.";
-                    }
-                }
-                else
-                {
-                    WarningLabel.Content = "Bitte geben Sie eine gültige Postleitzahl ein";
-                }
-            } else
-            {
-                WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
-            }
-           
-        }
-
-        private void ContractIDM_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            TextValidation.CheckIsNumeric(e);
-        }
-
-        private void PostalCodeM_PreviewTextInput(object sender, TextCompositionEventArgs e)
+       
+        private void PostalCode_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             TextValidation.CheckIsNumeric(e);
         }
@@ -104,20 +53,20 @@ namespace GUI.MemberGUIs
             if (e.Key == Key.Enter)
             {
 
-                if (!ContractCB.Text.IsNullOrEmpty() && !NameM.Text.IsNullOrEmpty() && !SurnameM.Text.IsNullOrEmpty() && !AdressM.Text.IsNullOrEmpty()
-                && !PostalCodeM.Text.IsNullOrEmpty() && !CityM.Text.IsNullOrEmpty() && !CountryM.Text.IsNullOrEmpty() && !ContoM.Text.IsNullOrEmpty() && !BirthdayM.Text.IsNullOrEmpty())
+                if (!ContractCB.Text.IsNullOrEmpty() && !Name.Text.IsNullOrEmpty() && !Surname.Text.IsNullOrEmpty() && !Adress.Text.IsNullOrEmpty()
+                && !PostalCode.Text.IsNullOrEmpty() && !City.Text.IsNullOrEmpty() && !Country.Text.IsNullOrEmpty() && !EMail.Text.IsNullOrEmpty() && !Iban.Text.IsNullOrEmpty() && !Birthday.Text.IsNullOrEmpty())
                 {
-                    if (TextValidation.CheckIsPostalCode(PostalCodeM.Text))
+                    if (TextValidation.CheckIsPostalCode(PostalCode.Text))
                     {
-                        if (TextValidation.CheckIsMail(ContactAdressM.Text))
+                        if (TextValidation.CheckIsMail(EMail.Text))
                         {
-                            if (TextValidation.CheckIsIban(ContoM.Text))
+                            if (TextValidation.CheckIsIban(Iban.Text))
                             {
-                                if (TextValidation.CheckIsDate(BirthdayM.Text))
+                                if (TextValidation.CheckIsDate(Birthday.Text))
                                 {
                                     Contract c = (Contract)ContractCB.SelectedItem;
-                                    admin.AddMember(c.ContractID, NameM.Text, SurnameM.Text, AdressM.Text, Int32.Parse(PostalCodeM.Text), CityM.Text,
-                                          CountryM.Text, ContactAdressM.Text, ContoM.Text, DateTime.Parse(BirthdayM.Text));
+                                    admin.AddMember(c.ContractID, Name.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text,
+                                          Country.Text, EMail.Text, Iban.Text, DateTime.Parse(Birthday.Text));
 
                                     GymHomepage home = new GymHomepage();
                                     NavigationService.Navigate(home);
@@ -148,5 +97,7 @@ namespace GUI.MemberGUIs
                 }
             }
         }
+
+       
     }
 }

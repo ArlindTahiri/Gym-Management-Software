@@ -42,10 +42,8 @@ namespace GUI.EmployeeGUIs
 
         private void EditEmployee_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on the EditEmployee button");
-            EmployeeChangeOptions changeOptions = new EmployeeChangeOptions();
-            NavigationService.Navigate(changeOptions);
-
+            IDCheck iDCheck = new IDCheck("EditEmployee");
+            NavigationService.Navigate(iDCheck);
         }
 
         private void EmployeeData_Loaded(object sender, RoutedEventArgs e)
@@ -64,6 +62,18 @@ namespace GUI.EmployeeGUIs
         {
             DeletePage deletePage = new DeletePage("CheckoutMembers");
             NavigationService.Navigate(deletePage);
+        }
+
+        private void AddEmployeeButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddAndEditEmployee addEmployee = new AddAndEditEmployee();
+            NavigationService.Navigate(addEmployee);
+        }
+
+        private void DeleteEmployeeButton1_Click(object sender, RoutedEventArgs e)
+        {
+            IDCheck iDCheck = new IDCheck("DeleteEmployee");
+            NavigationService.Navigate(iDCheck);
         }
     }
 }

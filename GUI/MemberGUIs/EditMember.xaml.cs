@@ -35,65 +35,19 @@ namespace GUI.MemberGUIs
 
             this.memberID = memberID;
             member = query.GetMemberDetails(memberID);
-            NameE.Text = member.Forename;
-            SurnameE.Text = member.Surname;
-            AdressE.Text = member.Street;
-            PostalCodeE.Text = member.PostcalCode.ToString();
-            CityE.Text = member.City;
-            CountryE.Text = member.Country;
-            ContactAdressE.Text = member.EMail;
-            ContoE.Text = member.Iban;
-            BirthdayE.Text = member.Birthday.ToString("dd.MM.yyyy");
+            Name.Text = member.Forename;
+            Surname.Text = member.Surname;
+            Adress.Text = member.Street;
+            PostalCode.Text = member.PostcalCode.ToString();
+            City.Text = member.City;
+            Country.Text = member.Country;
+            EMail.Text = member.EMail;
+            Iban.Text = member.Iban;
+            Birthday.Text = member.Birthday.ToString("dd.MM.yyyy");
 
         } 
 
-        private void EditMemberButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!NameE.Text.IsNullOrEmpty() && !SurnameE.Text.IsNullOrEmpty() && !AdressE.Text.IsNullOrEmpty()
-                && !PostalCodeE.Text.IsNullOrEmpty() && !CityE.Text.IsNullOrEmpty() && !CountryE.Text.IsNullOrEmpty() && !ContactAdressE.Text.IsNullOrEmpty()
-                && !ContoE.Text.IsNullOrEmpty() && !BirthdayE.Text.IsNullOrEmpty())
-            {
-                if (TextValidation.CheckIsPostalCode(PostalCodeE.Text))
-                {
-                    if (TextValidation.CheckIsMail(ContactAdressE.Text))
-                    {
-                        if (TextValidation.CheckIsIban(ContoE.Text))
-                        {
-                            if (TextValidation.CheckIsDate(BirthdayE.Text))
-                            {
-                                admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
-                                ContoE.Text, DateTime.Parse(BirthdayE.Text));
-
-                                GymHomepage home = new GymHomepage();
-                                NavigationService.Navigate(home);
-                            }
-                            else
-                            {
-                                WarningLabel.Content = "Bitte geben Sie einen gültigen Geburtstag ein";
-                            }
-                        }
-                        else
-                        {
-                            WarningLabel.Content = "Bitte geben Sie eine gültige IBan ein";
-                        }
-                    }
-                    else
-                    {
-                        WarningLabel.Content = "Bitte geben Sie eine gültige E-Mail Adresse ein.";
-                    }
-                }
-                else
-                {
-                    WarningLabel.Content = "Bitte geben Sie eine gültige Postleitzahl ein";
-                }
-            } 
-            else
-            {
-                WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
-            }
-        }
-
-        private void PostalCodeE_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void PostalCode_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             TextValidation.CheckIsNumeric(e);
         }
@@ -102,20 +56,20 @@ namespace GUI.MemberGUIs
         {
             if (e.Key == Key.Enter)
             {
-                if (!NameE.Text.IsNullOrEmpty() && !SurnameE.Text.IsNullOrEmpty() && !AdressE.Text.IsNullOrEmpty()
-                && !PostalCodeE.Text.IsNullOrEmpty() && !CityE.Text.IsNullOrEmpty() && !CountryE.Text.IsNullOrEmpty() && !ContactAdressE.Text.IsNullOrEmpty()
-                && !ContoE.Text.IsNullOrEmpty() && !BirthdayE.Text.IsNullOrEmpty())
+                if (!Name.Text.IsNullOrEmpty() && !Surname.Text.IsNullOrEmpty() && !Adress.Text.IsNullOrEmpty()
+                && !PostalCode.Text.IsNullOrEmpty() && !City.Text.IsNullOrEmpty() && !Country.Text.IsNullOrEmpty() && !EMail.Text.IsNullOrEmpty()
+                && !Iban.Text.IsNullOrEmpty() && !Birthday.Text.IsNullOrEmpty())
                 {
-                    if (TextValidation.CheckIsPostalCode(PostalCodeE.Text))
+                    if (TextValidation.CheckIsPostalCode(PostalCode.Text))
                     {
-                        if (TextValidation.CheckIsMail(ContactAdressE.Text))
+                        if (TextValidation.CheckIsMail(EMail.Text))
                         {
-                            if (TextValidation.CheckIsIban(ContoE.Text))
+                            if (TextValidation.CheckIsIban(Iban.Text))
                             {
-                                if (TextValidation.CheckIsDate(BirthdayE.Text))
+                                if (TextValidation.CheckIsDate(Birthday.Text))
                                 {
-                                    admin.UpdateMember(memberID, NameE.Text, SurnameE.Text, AdressE.Text, Int32.Parse(PostalCodeE.Text), CityE.Text, CountryE.Text, ContactAdressE.Text,
-                                    ContoE.Text, DateTime.Parse(BirthdayE.Text));
+                                    admin.UpdateMember(memberID, Name.Text, Surname.Text, Adress.Text, Int32.Parse(PostalCode.Text), City.Text, Country.Text, EMail.Text,
+                                    Iban.Text, DateTime.Parse(Birthday.Text));
 
                                     GymHomepage home = new GymHomepage();
                                     NavigationService.Navigate(home);

@@ -5,30 +5,47 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.MemberGUIs"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="346"
-      Title="EditMember">
+      d:DesignHeight="900" d:DesignWidth="1600"
+      Title="EditMember" Background="#EFEFEF">
 
     <Grid>
-        <TextBox x:Name="NameE" HorizontalAlignment="Center" Margin="0,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember" />
-        <Label Content="Name&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,17,0,0" VerticalAlignment="Top" Height="30"/>
-        <TextBox x:Name="SurnameE" HorizontalAlignment="Center" Margin="0,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
-        <Label Content="Vorname&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,93,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Adresse&#xA;" HorizontalAlignment="Center" Margin="0,168,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Email&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,463,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Iban&#xA;" HorizontalAlignment="Center" Margin="0,538,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Geburtstag (DD.MM.YYYY)" HorizontalAlignment="Center" Margin="0,610,0,0" VerticalAlignment="Top" Height="29" Width="70"/>
-        <TextBox x:Name="AdressE" HorizontalAlignment="Center" Margin="0,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
-        <TextBox x:Name="PostalCodeE" HorizontalAlignment="Center" Margin="0,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewTextInput="PostalCodeE_PreviewTextInput" PreviewKeyDown="ChangeMember"/>
-        <TextBox x:Name="CityE" HorizontalAlignment="Center" Margin="0,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
-        <TextBox x:Name="CountryE" HorizontalAlignment="Center" Margin="0,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
-        <TextBox x:Name="ContactAdressE" HorizontalAlignment="Center" Margin="0,497,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
-        <TextBox x:Name="ContoE" HorizontalAlignment="Center" Margin="0,567,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember"/>
-        <TextBox x:Name="BirthdayE" HorizontalAlignment="Center" Margin="0,644,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="326" Height="36" PreviewKeyDown="ChangeMember" />
-        <Label Content="Postleitzahl&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,243,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Stadt&#xD;&#xA;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,318,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label Content="Land&#xD;&#xA;&#xA;" HorizontalAlignment="Center" Margin="0,388,0,0" VerticalAlignment="Top" Height="29"/>
-        <Button x:Name="EditMemberButton" Content="Mitgliedsdaten ändern" HorizontalAlignment="Center" Margin="0,758,0,0" VerticalAlignment="Top" Click="EditMemberButton_Click" Height="82" Width="236" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Margin="0,710,0,0" VerticalAlignment="Top" Width="326" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="177*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="231*"/>
+            <ColumnDefinition Width="1369*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Name" Margin="10,0,50,10" TextWrapping="Wrap" PreviewKeyDown="ChangeMember" Grid.Column="1" Height="40" VerticalAlignment="Bottom" />
+        <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Surname" Margin="10,0,50,10" TextWrapping="Wrap" PreviewKeyDown="ChangeMember" Grid.Column="1" Grid.Row="1" Height="40" VerticalAlignment="Bottom" />
+        <Label Content="Name:" Margin="19,0,19,10" RenderTransformOrigin="0.532,0.425" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="53" VerticalAlignment="Bottom"/>
+        <Label x:Name="WarningLabel" Content="" Margin="76,49,116,70" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red" Grid.Column="1" Grid.Row="10" FontSize="25"/>
+        <Label Content="Vorname:" RenderTransformOrigin="0.532,0.425" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" Margin="19,0,19,10" Height="42" VerticalAlignment="Bottom"/>
+        <Label Content="Adresse:" RenderTransformOrigin="0.532,0.425" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Margin="19,0,19,10" Height="43" VerticalAlignment="Bottom"/>
+        <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Adress" Margin="10,0,50,10" TextWrapping="Wrap" PreviewKeyDown="ChangeMember" Grid.Column="1" Grid.Row="2" Height="40" VerticalAlignment="Bottom" />
+        <Label Content="Postleitzahl:" Margin="10,0,10,10" RenderTransformOrigin="0.532,0.425" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="3" Height="43" VerticalAlignment="Bottom"/>
+        <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="PostalCode" Margin="10,0,50,10" TextWrapping="Wrap" PreviewKeyDown="ChangeMember" Grid.Column="1" Grid.Row="3" Height="40" VerticalAlignment="Bottom" PreviewTextInput="PostalCode_PreviewTextInput" />
+        <Label Content="Stadt:" RenderTransformOrigin="0.532,0.425" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="4" Margin="10,0,10,10" Height="39" VerticalAlignment="Bottom"/>
+        <Label Content="Land:" Margin="10,0,10,10" RenderTransformOrigin="0.578,0.015" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="5" Height="40" VerticalAlignment="Bottom"/>
+        <Label Content="E-Mail:" RenderTransformOrigin="0.532,0.425" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="6" Margin="10,0,10,10" Height="40" VerticalAlignment="Bottom"/>
+        <Label Content="IBAN:" RenderTransformOrigin="0.532,0.425" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="7" Margin="10,19,10,10"/>
+        <Label Content="Geburtstag (TT.MM.JJJ):" RenderTransformOrigin="0.532,0.425" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="8" Margin="10,7,10,10"/>
+        <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="City" Margin="10,0,50,10" TextWrapping="Wrap" PreviewKeyDown="ChangeMember" Grid.Column="1" Grid.Row="4" Height="40" VerticalAlignment="Bottom" />
+        <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Country" Margin="10,0,50,10" TextWrapping="Wrap" PreviewKeyDown="ChangeMember" Grid.Column="1" Grid.Row="5" Height="40" VerticalAlignment="Bottom" />
+        <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="EMail" Margin="10,0,50,10" TextWrapping="Wrap" PreviewKeyDown="ChangeMember" Grid.Column="1" Grid.Row="6" Height="40" VerticalAlignment="Bottom" />
+        <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Iban" Margin="10,0,50,10" TextWrapping="Wrap" PreviewKeyDown="ChangeMember" Grid.Column="1" Grid.Row="7" Height="40" VerticalAlignment="Bottom" />
+        <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Birthday" Margin="10,0,50,10" TextWrapping="Wrap" PreviewKeyDown="ChangeMember" Grid.Column="1" Grid.Row="8" Height="40" VerticalAlignment="Bottom" />
+
 
 
     </Grid>

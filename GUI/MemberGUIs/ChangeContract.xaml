@@ -5,16 +5,38 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.MemberGUIs"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="ChangeContract">
+      d:DesignHeight="900" d:DesignWidth="1600"
+      Title="ChangeContract" Background="#EFEFEF">
 
     <Grid>
-        <Label Content="Bitte geben Sie die ID des Mitglieds ein, das Sie bearbeiten wollen" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="IDCheck" HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="350" PreviewTextInput="IDCheck_PreviewTextInput" PreviewKeyDown="IDCheck_PreviewKeyDown"/>
-        <TextBlock x:Name="WarningText" HorizontalAlignment="Center" Margin="0,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="384" Foreground="#FFD40303" TextAlignment="Center"/>
-        <DataGrid x:Name="MemberData" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="24,225,24,129" Loaded="MemberData_Loaded"/>
-        <ComboBox x:Name="ContractCB" HorizontalAlignment="Center" Height="39" Margin="0,89,0,0" VerticalAlignment="Top" Width="350" Loaded="ContractCB_Loaded"/>
-        <Button x:Name="ChangeButton" Content="Vertrag ändern" HorizontalAlignment="Center" Height="50" Margin="0,168,0,0" VerticalAlignment="Top" Width="350" Click="ChangeButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="116*"/>
+            <RowDefinition Height="123*"/>
+            <RowDefinition Height="120*"/>
+            <RowDefinition Height="91*"/>
+            <RowDefinition Height="450*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Bitte geben Sie die ID des Mitglieds ein, das Sie bearbeiten wollen" Margin="366,32,366,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Height="56" VerticalAlignment="Top"/>
+        <TextBox Style="{DynamicResource RoundedTextBox}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="IDCheck" TextWrapping="Wrap" Text="" VerticalAlignment="Center" PreviewTextInput="IDCheck_PreviewTextInput" PreviewKeyDown="IDCheck_PreviewKeyDown" Height="56" Grid.Row="1" Margin="245,0,245,0"/>
+        <TextBlock x:Name="WarningText" TextWrapping="Wrap" Foreground="#FFD40303" TextAlignment="Center" FontSize="30" Grid.Row="3" Margin="444,0,444,10" Height="54" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="ContractCB" HorizontalAlignment="Center" Height="63" Margin="0,26,0,0" VerticalAlignment="Top" Width="674" Loaded="ContractCB_Loaded" Grid.Row="2"/>
+        <Button Foreground="White" Background="#437CD8" x:Name="ChangeButton" Content="Vertrag ändern" Margin="562,30,562,0" Click="ChangeButton_Click" Style="{DynamicResource RoundedButtonsStyle}" FontSize="30" Grid.Row="4" Height="108" VerticalAlignment="Top"/>
+        <DataGrid x:Name="MemberData" Margin="10,157,10,20" Loaded="MemberData_Loaded"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="4">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="10*" MinWidth="45" Binding="{Binding MemberID}" />
+                <DataGridTextColumn Header="Vorname" Width="30*" MinWidth="10" Binding="{Binding Forename}" />
+                <DataGridTextColumn Header="Nachname" Width="30*" MinWidth="10" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="Adresse" Width="40*" MinWidth="10" Binding="{Binding Street}" />
+                <DataGridTextColumn Header="Postleitzahl" Width="20*" MinWidth="95" Binding="{Binding PostcalCode}" />
+                <DataGridTextColumn Header="Stadt" Width="30*" MinWidth="10" Binding="{Binding City}" />
+                <DataGridTextColumn Header="Land" Width="30*" MinWidth="10" Binding="{Binding Country}" />
+                <DataGridTextColumn Header="Email" Width="30*" MinWidth="10" Binding="{Binding EMail}" />
+                <DataGridTextColumn Header="IBan" Width="30*" MinWidth="10" Binding="{Binding Iban}" />
+                <DataGridTextColumn Header="Geburtstag" Width="30*" MinWidth="10" Binding="{Binding Birthday}" />
+                <DataGridTextColumn Header="Kontostand" Width="10*" MinWidth="96" Binding="{Binding CurrentBill}" />
+                <DataGridTextColumn Header="VertragsID" Width="10*" MinWidth="90" Binding="{Binding ContractID}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
 
     </Grid>

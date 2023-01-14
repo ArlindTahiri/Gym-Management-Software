@@ -140,8 +140,8 @@ namespace GUI
 
                     if (destination.Equals("EditEmployee") && query.GetEmployeeDetails(ID)!= null)
                     {
-                        EditEmployee editEmployee = new EditEmployee(ID);
-                        NavigationService.Navigate(editEmployee);
+                        AddAndEditEmployee addEmployee = new AddAndEditEmployee(ID);
+                        NavigationService.Navigate(addEmployee);
                     }
 
                     if (destination.Equals("DeleteEmployee") && query.GetEmployeeDetails(ID) != null)
