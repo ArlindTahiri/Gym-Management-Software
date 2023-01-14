@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:GUI.ArticleGUIs"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
-      Title="ArticleChangeOptions">
+      Title="ArticleChangeOptions" Background="#EFEFEF">
 
     <Grid>
         <Grid.RowDefinitions>

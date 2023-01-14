@@ -38,62 +38,71 @@ namespace GUI
         public IDCheck(string destination)
         {
             InitializeComponent();
-            this.destination = destination;
+            this.destination = destination;           
 
             switch (destination)
             {
                 case "EditArticle": QuestionBox.Content = "Bitte geben Sie die ID des Artikels ein, den Sie ändern wollen.";
-                    GymData.ItemsSource = admin.ListArticles();
+                    ArticleInventory.ItemsSource = admin.ListArticles();    
+                    ArticleInventory.Visibility = Visibility.Visible;
                     break;
 
                 case "DeleteArticle":
                     QuestionBox.Content = "Bitte geben Sie die ID des Artikels ein, den Sie löschen wollen.";
-                    GymData.ItemsSource = admin.ListArticles();
+                    ArticleInventory.ItemsSource = admin.ListArticles();
+                    ArticleInventory.Visibility = Visibility.Visible;
                     break;
 
                 case "EditContract":
                     QuestionBox.Content = "Bitte geben Sie die ID des Vertrags ein, den Sie bearbeiten wollen.";
-                    GymData.ItemsSource = admin.ListContracts();
+                    ContractInventory.ItemsSource = admin.ListContracts();
+                    ContractInventory.Visibility = Visibility.Visible;
                     break;
 
                 case "DeleteContract":
                     QuestionBox.Content = "Bitte geben Sie die ID des Vertrags ein, den Sie löschen wollen.";
-                    GymData.ItemsSource = admin.ListContracts();
+                    ContractInventory.ItemsSource = admin.ListContracts();
+                    ContractInventory.Visibility = Visibility.Visible;
                     break;
 
                 case "EditEmployee":
                     QuestionBox.Content = "Bitte geben Sie die ID des Mitarbeiters ein, den sie bearbeiten wollen.";
-                    GymData.ItemsSource = admin.ListEmployees();
+                    EmployeeData.ItemsSource = admin.ListEmployees();
+                    EmployeeData.Visibility = Visibility.Visible;
                     break;
 
                 case "DeleteEmployee":
                     QuestionBox.Content = "Bitte geben Sie die ID des Mitarbeiters ein, den Sie löschen wollen.";
-                    GymData.ItemsSource = admin.ListEmployees();
+                    EmployeeData.ItemsSource = admin.ListEmployees();
+                    EmployeeData.Visibility = Visibility.Visible;
                     break;
 
                 case "EditMember":
                     QuestionBox.Content = "Bitte geben Sie die ID des Mitglieds ein, das sie bearbeiten wollen.";
-                    GymData.ItemsSource = admin.ListMembers();
+                    MemberData.ItemsSource = admin.ListMembers();
+                    MemberData.Visibility = Visibility.Visible;
                     break;
 
                 case "DeleteMember":
                     QuestionBox.Content = "Bitte geben Sie die ID des Mitglieds ein, das Sie löschen wollen.";
-                    GymData.ItemsSource = admin.ListMembers();
+                    MemberData.ItemsSource = admin.ListMembers();
+                    MemberData.Visibility = Visibility.Visible;
                     break;
 
                 case "EditOrder":
                     QuestionBox.Content = "Bitte geben Sie die ID der Bestellung ein, die Sie bearbeiten wollen.";
-                    GymData.ItemsSource = admin.ListOrders();
+                    OrderData.ItemsSource = admin.ListOrders();
+                    OrderData.Visibility = Visibility.Visible;
                     break;
 
                 case "DeleteOrder":
                     QuestionBox.Content = "Bitte geben Sie die ID der Bestellung ein, die Sie löschen wollen.";
-                    GymData.ItemsSource = admin.ListOrders();
+                    OrderData.ItemsSource = admin.ListOrders();
+                    OrderData.Visibility = Visibility.Visible;
                     break;
 
                 case "Training":
-                    QuestionBox.Content = "Bitte geben Sie Ihre Mitglieds ID ein";
-                    GymData.Visibility = Visibility.Hidden;
+                    QuestionBox.Content = "Bitte geben Sie Ihre Mitglieds ID ein";                   
                     break;
             }
         }
@@ -197,5 +206,7 @@ namespace GUI
         {
             TextValidation.CheckIsNumeric(e);
         }
+
+               
     }
 }

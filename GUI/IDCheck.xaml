@@ -6,18 +6,72 @@
       xmlns:local="clr-namespace:GUI"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
-      Title="IDCheck">
+      Title="IDCheck" Background="#EFEFEF">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="119*"/>
             <RowDefinition Height="183*"/>
-            <RowDefinition Height="598*"/>
+            <RowDefinition Height="141*"/>
+            <RowDefinition Height="457*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="IDCheckBox" HorizontalAlignment="Center" Width="1054" TextAlignment="Center" FontSize="30" Grid.Row="1" PreviewKeyDown="IDCheck1_PreviewKeyDown" Height="46" VerticalAlignment="Center" PreviewTextInput="IDCheckBox_PreviewTextInput" TextWrapping="Wrap"/>
-        <DataGrid x:Name="GymData" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=5}" FontSize="30" Height="476" VerticalAlignment="Top" Margin="0,176,0,0"/>
+        <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="IDCheckBox" HorizontalAlignment="Center" Width="1152" TextAlignment="Center" FontSize="30" Grid.Row="1" PreviewKeyDown="IDCheck1_PreviewKeyDown" Height="60" VerticalAlignment="Center" PreviewTextInput="IDCheckBox_PreviewTextInput" TextWrapping="Wrap"/>
         <Label x:Name="QuestionBox" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Height="73" Width="1580" FontSize="30" HorizontalContentAlignment="Center" Margin="0,36,0,0"/>
-        <Label x:Name="WarningBox" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Height="72" Width="1580" FontSize="30" HorizontalContentAlignment="Center" Margin="0,34,0,0" Grid.Row="2" Foreground="Red"/>
+        <Label x:Name="WarningBox" Content="" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="72" Width="1580" FontSize="30" HorizontalContentAlignment="Center" Grid.Row="2" Foreground="Red" Margin="0,0,0,35"/>
+        <DataGrid Visibility="Collapsed" x:Name="ArticleInventory" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Margin="10,30,10,20" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" RenderTransformOrigin="0.499,0.578" Grid.Row="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="10*" Binding="{Binding ArticleID}" />
+                <DataGridTextColumn Header="Name" Width="30*" Binding="{Binding ArticleName}" />
+                <DataGridTextColumn Header="Preis" Width="30*" Binding="{Binding Price}" />
+                <DataGridTextColumn Header="Bestand" Width="30*" Binding="{Binding ActualStock}" />
+                <DataGridTextColumn Header="Zielbestand" Width="30*" Binding="{Binding TargetStock}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Visibility ="Collapsed" x:Name="ContractInventory" Margin="10,30,10,20" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="30*" Binding="{Binding ContractID}" />
+                <DataGridTextColumn Header="Typ" Width="30*" Binding="{Binding ContractType}" />
+                <DataGridTextColumn Header="Preis" Width="30*" Binding="{Binding Price}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Visibility="Collapsed" x:Name="EmployeeData" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Margin="10,30,10,20" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="10*" MinWidth="45" Binding="{Binding EmployeeID}" />
+                <DataGridTextColumn Header="Vorname" Width="30*" MinWidth="10" Binding="{Binding Forename}" />
+                <DataGridTextColumn Header="Nachname" Width="30*" MinWidth="10" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="Adresse" Width="40*" MinWidth="10" Binding="{Binding Street}" />
+                <DataGridTextColumn Header="Postleitzahl" Width="20*" MinWidth="95" Binding="{Binding PostcalCode}" />
+                <DataGridTextColumn Header="Stadt" Width="30*" MinWidth="10" Binding="{Binding City}" />
+                <DataGridTextColumn Header="Land" Width="30*" MinWidth="10" Binding="{Binding Country}" />
+                <DataGridTextColumn Header="Email" Width="30*" MinWidth="10" Binding="{Binding EMail}" />
+                <DataGridTextColumn Header="IBan" Width="30*" MinWidth="10" Binding="{Binding Iban}" />
+                <DataGridTextColumn Header="Geburtstag" Width="30*" MinWidth="10" Binding="{Binding Birthday}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Visibility="Collapsed" x:Name="MemberData" Margin="10,30,10,20"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="10*" MinWidth="45" Binding="{Binding MemberID}" />
+                <DataGridTextColumn Header="Vorname" Width="30*" MinWidth="10" Binding="{Binding Forename}" />
+                <DataGridTextColumn Header="Nachname" Width="30*" MinWidth="10" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="Adresse" Width="40*" MinWidth="10" Binding="{Binding Street}" />
+                <DataGridTextColumn Header="Postleitzahl" Width="20*" MinWidth="95" Binding="{Binding PostcalCode}" />
+                <DataGridTextColumn Header="Stadt" Width="30*" MinWidth="10" Binding="{Binding City}" />
+                <DataGridTextColumn Header="Land" Width="30*" MinWidth="10" Binding="{Binding Country}" />
+                <DataGridTextColumn Header="Email" Width="30*" MinWidth="10" Binding="{Binding EMail}" />
+                <DataGridTextColumn Header="IBan" Width="30*" MinWidth="10" Binding="{Binding Iban}" />
+                <DataGridTextColumn Header="Geburtstag" Width="30*" MinWidth="10" Binding="{Binding Birthday}" />
+                <DataGridTextColumn Header="Kontostand" Width="10*" MinWidth="96" Binding="{Binding CurrentBill}" />
+                <DataGridTextColumn Header="VertragsID" Width="10*" MinWidth="90" Binding="{Binding ContractID}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Visibility="Collapsed" x:Name="OrderData" Margin="10,30,10,20" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Bestellungsnummer" Width="30*" Binding="{Binding OrderID}" />
+                <DataGridTextColumn Header="Mitgliedsnummer" Width="30*" Binding="{Binding MemberID}" />
+                <DataGridTextColumn Header="Artikelnummer" Width="30*" Binding="{Binding ArticleID}" />
+                <DataGridTextColumn Header="Anzahl" Width="30*" Binding="{Binding Amount}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>
