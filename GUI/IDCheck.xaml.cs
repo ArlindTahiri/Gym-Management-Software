@@ -1,11 +1,13 @@
 ﻿using GUI.ArticleGUIs;
 using GUI.ContractGUIs;
 using GUI.EmployeeGUIs;
+using GUI.LoginGUIs;
 using GUI.MemberGUIs;
 using GUI.Order_GUIs;
 using log4net;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,7 @@ namespace GUI
         private IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private int ID;
+        private string login;
         public IDCheck(string destination)
         {
             InitializeComponent();
@@ -104,6 +107,14 @@ namespace GUI
                 case "Training":
                     QuestionBox.Content = "Bitte geben Sie Ihre Mitglieds ID ein";                   
                     break;
+
+                case "EditLogin":
+                    QuestionBox.Content = "Bitte geben Sie den login ein, den Sie bearbeiten wollen.";
+                    break;
+
+                case "DeleteLogin":
+                    QuestionBox.Content = "Bitte geben Sie den login ein, den Sie löschen wollen.";
+                    break;
             }
         }
 
@@ -113,83 +124,106 @@ namespace GUI
             {
                 if (!IDCheckBox.Text.IsNullOrEmpty())
                 {
-                    ID = Int32.Parse(IDCheckBox.Text);
-                    if (destination.Equals("EditArticle") && query.GetArticleDetails(ID) != null)
-                    {
-                        ChangeArticle changeArticle = new ChangeArticle(ID);
-                        NavigationService.Navigate(changeArticle);
-                    }
+                    if (!(destination.Equals("EditLogin") || destination.Equals("DeleteLogin"))){
 
-                    if (destination.Equals("DeleteArticle") && query.GetArticleDetails(ID) != null)
-                    {
-                        DeletePage deletePage = new DeletePage("DeleteArticle", ID);
-                        NavigationService.Navigate(deletePage);
-                    }
-                    
-                    if (destination.Equals("EditContract") && query.GetContractDetails(ID) != null)
-                    {
-                        EditContract editContract = new EditContract(ID);
-                        NavigationService.Navigate(editContract);
-                    }
-
-                    if (destination.Equals("DeleteContract") && query.GetContractDetails(ID)!= null)
-                    {
-                        DeletePage deletePage = new DeletePage("DeleteContract", ID);
-                        NavigationService.Navigate(deletePage);
-                    }
-
-                    if (destination.Equals("EditEmployee") && query.GetEmployeeDetails(ID)!= null)
-                    {
-                        AddAndEditEmployee addEmployee = new AddAndEditEmployee(ID);
-                        NavigationService.Navigate(addEmployee);
-                    }
-
-                    if (destination.Equals("DeleteEmployee") && query.GetEmployeeDetails(ID) != null)
-                    {
-                        DeletePage deletePage = new DeletePage("DeleteEmployee", ID);
-                        NavigationService.Navigate(deletePage);
-                    }
-
-                    if (destination.Equals("EditMember") && query.GetMemberDetails(ID) != null)
-                    {
-                        EditMember editMember = new EditMember(ID);
-                        NavigationService.Navigate(editMember);
-                    }
-
-                    if (destination.Equals("DeleteMember") && query.GetMemberDetails(ID) != null)
-                    {
-                        DeletePage deletePage = new DeletePage("DeleteMember", ID);
-                        NavigationService.Navigate(deletePage);
-                    }
-
-                    if (destination.Equals("EditOrder") && query.GetOrderDetails(ID) != null)
-                    {
-                        EditOrder editOrder = new EditOrder(ID);
-                        NavigationService.Navigate(editOrder);
-                    }
-
-                    if (destination.Equals("DeleteOrder") && query.GetOrderDetails(ID)!= null)
-                    {
-                        DeletePage deletePage = new DeletePage("DeleteOrder", ID);
-                        NavigationService.Navigate(deletePage);
-                    }
-
-                    if (destination.Equals("Training") && query.GetMemberDetails(ID)!= null)
-                    {
-                        Member searchMember = query.GetMemberDetails(ID);
-
-                        if (!admin.ListTrainingMembersID().Contains(searchMember.MemberID))
+                        ID = Int32.Parse(IDCheckBox.Text);
+                        if (destination.Equals("EditArticle") && query.GetArticleDetails(ID) != null)
                         {
-                            admin.InsertTrainingMember(ID);                           
+                            ChangeArticle changeArticle = new ChangeArticle(ID);
+                            NavigationService.Navigate(changeArticle);
                         }
-                        else
+
+                        if (destination.Equals("DeleteArticle") && query.GetArticleDetails(ID) != null)
                         {
-                            admin.DeleteTrainingMember(ID);                          
+                            DeletePage deletePage = new DeletePage("DeleteArticle", ID);
+                            NavigationService.Navigate(deletePage);
                         }
-                        GymHomepage home = new GymHomepage();
-                        NavigationService.Navigate(home);
+
+                        if (destination.Equals("EditContract") && query.GetContractDetails(ID) != null)
+                        {
+                            EditContract editContract = new EditContract(ID);
+                            NavigationService.Navigate(editContract);
+                        }
+
+                        if (destination.Equals("DeleteContract") && query.GetContractDetails(ID) != null)
+                        {
+                            DeletePage deletePage = new DeletePage("DeleteContract", ID);
+                            NavigationService.Navigate(deletePage);
+                        }
+
+                        if (destination.Equals("EditEmployee") && query.GetEmployeeDetails(ID) != null)
+                        {
+                            AddAndEditEmployee addEmployee = new AddAndEditEmployee(ID);
+                            NavigationService.Navigate(addEmployee);
+                        }
+
+                        if (destination.Equals("DeleteEmployee") && query.GetEmployeeDetails(ID) != null)
+                        {
+                            DeletePage deletePage = new DeletePage("DeleteEmployee", ID);
+                            NavigationService.Navigate(deletePage);
+                        }
+
+                        if (destination.Equals("EditMember") && query.GetMemberDetails(ID) != null)
+                        {
+                            EditMember editMember = new EditMember(ID);
+                            NavigationService.Navigate(editMember);
+                        }
+
+                        if (destination.Equals("DeleteMember") && query.GetMemberDetails(ID) != null)
+                        {
+                            DeletePage deletePage = new DeletePage("DeleteMember", ID);
+                            NavigationService.Navigate(deletePage);
+                        }
+
+                        if (destination.Equals("EditOrder") && query.GetOrderDetails(ID) != null)
+                        {
+                            EditOrder editOrder = new EditOrder(ID);
+                            NavigationService.Navigate(editOrder);
+                        }
+
+                        if (destination.Equals("DeleteOrder") && query.GetOrderDetails(ID) != null)
+                        {
+                            DeletePage deletePage = new DeletePage("DeleteOrder", ID);
+                            NavigationService.Navigate(deletePage);
+                        }
+
+                        if (destination.Equals("Training") && query.GetMemberDetails(ID) != null)
+                        {
+                            Member searchMember = query.GetMemberDetails(ID);
+
+                            if (!admin.ListTrainingMembersID().Contains(searchMember.MemberID))
+                            {
+                                admin.InsertTrainingMember(ID);
+                            }
+                            else
+                            {
+                                admin.DeleteTrainingMember(ID);
+                            }
+                            GymHomepage home = new GymHomepage();
+                            NavigationService.Navigate(home);
+                        }
+                    } 
+                    else
+                    {
+                        WarningBox.Content = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
                     }
 
+                    if (destination.Equals("DeleteLogin") || destination.Equals("EditLogin")){
+
+                        this.login = IDCheckBox.Text;
+
+                        if (destination.Equals("EditLogin") && query.GetLogInDetails(login) != null) 
+                        {
+                            AddEditLogin loginPage = new AddEditLogin(login);
+                            NavigationService.Navigate(loginPage);
+                        }
+
+                        if (destination.Equals("DeleteLogin") && query.GetLogInDetails(login) != null)
+                        {
+                            DeletePage deletePage = new DeletePage("DeleteLogin", login);
+                            NavigationService.Navigate(deletePage);
+                        }
+                    }
                     else
                     {
                         WarningBox.Content = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
@@ -204,7 +238,10 @@ namespace GUI
 
         private void IDCheckBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            TextValidation.CheckIsNumeric(e);
+            if (!(destination.Equals("EditLogin") || destination.Equals("DeleteLogin")))
+            {
+                TextValidation.CheckIsNumeric(e);
+            }
         }
 
                

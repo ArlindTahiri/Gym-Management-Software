@@ -13,7 +13,7 @@
             <RowDefinition Height="130*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="350*" />
-            
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250*" />
@@ -23,16 +23,18 @@
             <ColumnDefinition Width="250*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="EditLogins" Foreground="White" Background="#437CD8" Content="Logins Bearbeiten" Grid.Column="0" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Click="EditLogins_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Button x:Name="DeleteLoginsButton" Foreground="White" Background="#437CD8" Content="Alle Logins löschen" Margin="80,30,20,0" Grid.Column="4" Grid.Row="1" Click="DeleteLoginsButton_Click" Style="{DynamicResource RoundedButtonsStyle}" />
+        <Button x:Name="AddLogins" Foreground="White" Background="#437CD8" Content="Logins hinzufügen" Grid.Column="0" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="AddLogins_Click"/>
+        <Button x:Name="DeleteLoginsButton" Foreground="White" Background="#437CD8" Content="Alle Logins löschen" Margin="80,15,20,15" Grid.Column="4" Grid.Row="1" Click="DeleteLoginsButton_Click" Style="{DynamicResource RoundedButtonsStyle}" />
         <DataGrid x:Name="LoginInventory" Margin="20,10,20,20" Grid.Row="2" Grid.ColumnSpan="5" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" FontSize="30" Loaded="LoginInventory_Loaded" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Benutzername" Width="30*" Binding="{Binding LogInName}" />
                 <DataGridTextColumn Header="Passwort" Width="30*" Binding="{Binding LogInPassword}" />
                 <DataGridTextColumn Header="Rang" Width="30*" Binding="{Binding Rank}" />
             </DataGrid.Columns>
-            
+
         </DataGrid>
+        <Button x:Name="EditLogins" Foreground="White" Background="#437CD8" Content="Login bearbeiten" Grid.Column="1" Grid.Row="0" Margin="15,15,15,15" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="EditLogins_Click"/>
+        <Button x:Name="DeleteLogins" Foreground="White" Background="#437CD8" Content="Login löschen" Grid.Column="2" Grid.Row="0" Margin="15,15,15,15" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="DeleteLogins_Click"/>
 
     </Grid>
 </Page>

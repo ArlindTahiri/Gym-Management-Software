@@ -26,13 +26,7 @@ namespace GUI.LoginGUIs
         public LoginPage()
         {
             InitializeComponent();
-        }
-
-        private void EditLogins_Click(object sender, RoutedEventArgs e)
-        {
-            LoginChangeOptions loginChangeOptions = new LoginChangeOptions();
-            NavigationService.Navigate(loginChangeOptions);
-        }
+        }      
 
         private void LoginInventory_Loaded(object sender, RoutedEventArgs e)
         {
@@ -44,6 +38,24 @@ namespace GUI.LoginGUIs
         {
             DeletePage deletePage = new DeletePage("Login");
             NavigationService.Navigate(deletePage);
+        }
+
+        private void AddLogins_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditLogin addEditLogin = new AddEditLogin();
+            NavigationService.Navigate(addEditLogin);
+        }
+
+        private void EditLogins_Click(object sender, RoutedEventArgs e)
+        {
+            IDCheck iDCheck = new IDCheck("EditLogin");
+            NavigationService.Navigate(iDCheck);
+        }
+
+        private void DeleteLogins_Click(object sender, RoutedEventArgs e)
+        {
+            IDCheck iDCheck = new IDCheck("DeleteLogin");
+            NavigationService.Navigate(iDCheck);
         }
     }
 }
