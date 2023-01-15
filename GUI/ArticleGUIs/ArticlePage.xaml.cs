@@ -43,16 +43,6 @@ namespace GUI.ArticleGUIs
 
             log.Info("Opened Article Page");
         }
-      
-        private void EditArticle_Click(object sender, RoutedEventArgs e)
-        {
-            ArticleChangeOptions articleChangeOptions = new ArticleChangeOptions();
-            NavigationService.Navigate(articleChangeOptions);
-
-            log.Info("Clicked on the EditArticle button");
-        }
-
-
 
         private void ArticleInventory_Loaded(object sender, RoutedEventArgs e)
         {
