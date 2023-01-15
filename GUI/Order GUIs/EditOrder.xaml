@@ -5,18 +5,35 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI.Order_GUIs"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900" d:DesignWidth="1600"
       Title="EditOrder">
 
     <Grid>
-        <Button x:Name="EditOrderButton" Content="Bestellung hinzufügen" HorizontalAlignment="Center" Margin="0,303,0,0" VerticalAlignment="Top" Height="42" Width="264" Click="EditOrderButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
-        <Label Content="Artikel ID:" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top"/>
-        <Label Content="Menge" HorizontalAlignment="Center" Margin="0,194,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="AmountBox" HorizontalAlignment="Center" Margin="0,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194" Height="30" PreviewKeyDown="ChangeOrder"/>
-        <ComboBox x:Name="MemberCB" HorizontalAlignment="Left" Height="35" Margin="308,69,0,0" VerticalAlignment="Top" Width="194"/>
-        <ComboBox x:Name="ArticleCB" HorizontalAlignment="Left" Height="35" Margin="308,151,0,0" VerticalAlignment="Top" Width="194"/>
-        <TextBlock x:Name ="WarningText" HorizontalAlignment="Left" Height="20" Margin="308,273,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" Foreground="#FFD40303" TextAlignment="Center"/>
 
-        <Label Content="Member ID:" HorizontalAlignment="Center" Margin="0,41,0,0" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120*" />
+            <RowDefinition Height="150*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="350*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Mitglieds ID:" Grid.Column="0" Grid.Row="0" Margin="20,20,10,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <ComboBox x:Name="MemberCB" Grid.Column="0" Grid.Row="1" Margin="20,20,10,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Loaded="MemberCB_Loaded"/>
+
+        <Label Content="Artikel ID:" Grid.Column="1" Grid.Row="0" Margin="20,20,10,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <ComboBox x:Name="ArticleCB" Grid.Column="1" Grid.Row="1" Margin="20,20,10,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Loaded="ArticleCB_Loaded" />
+
+        <Label Content="Menge" Grid.Column="2" Grid.Row="0" Margin="20,20,10,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"/>
+        <TextBox x:Name="AmountBox" Grid.Column="2" Grid.Row="1" Margin="20,20,10,10" TextWrapping="Wrap" TextAlignment="Center" VerticalContentAlignment="Center"  FontSize="30" Style="{DynamicResource RoundedTextBox}" PreviewKeyDown="ChangeOrder" PreviewTextInput="AmountBox_PreviewTextInput"/>
+
+        <TextBlock x:Name ="WarningText" Text="" Grid.Column="1" Grid.Row="2" Margin="20,20,10,10" TextWrapping="Wrap" Foreground="#FFD40303" TextAlignment="Center"/>
+
+        <Button x:Name="EditOrderButton" Foreground="White" Background="#437CD8" Content="Bestellung hinzufügen" Grid.Column="1" Grid.Row="3" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="EditOrderButton_Click"/>
+
     </Grid>
 </Page>

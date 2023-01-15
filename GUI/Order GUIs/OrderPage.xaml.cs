@@ -28,12 +28,6 @@ namespace GUI.Order_GUIs
             InitializeComponent();
         }
 
-        private void EditOrders_Click(object sender, RoutedEventArgs e)
-        {
-            OrderOptions orderOptions = new OrderOptions();
-            NavigationService.Navigate(orderOptions);
-        }
-
         private void OrderData_Loaded(object sender, RoutedEventArgs e)
         {
             OrderData.DataContext = admin.ListOrders();
@@ -44,6 +38,24 @@ namespace GUI.Order_GUIs
         {
             DeletePage deletePage = new DeletePage("Order");
             NavigationService.Navigate(deletePage);
+        }
+
+        private void AddOrder_Click(object sender, RoutedEventArgs e)
+        {
+            AddOrder addOrder = new AddOrder();
+            NavigationService.Navigate(addOrder);
+        }
+
+        private void EditOrder_Click(object sender, RoutedEventArgs e)
+        {
+            IDCheck iDCheck = new IDCheck("EditOrder");
+            NavigationService.Navigate(iDCheck);
+        }
+
+        private void DeleteOrder_Click(object sender, RoutedEventArgs e)
+        {
+            IDCheck iDCheck = new IDCheck("DeleteOrder");
+            NavigationService.Navigate(iDCheck);
         }
     }
 }

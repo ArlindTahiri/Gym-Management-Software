@@ -36,15 +36,6 @@ namespace GUI.Order_GUIs
             AmountBox.Text = order.Amount.ToString();
             this.orderID = orderID;
             
-            MemberCB.Items.Clear();
-            MemberCB.ItemsSource = admin.ListMembers();
-            MemberCB.Text = order.MemberID.ToString();
-
-            ArticleCB.Items.Clear();
-            ArticleCB.ItemsSource = admin.ListArticles();
-            ArticleCB.Text = order.ArticleID.ToString();
-
-
         }
 
         private void EditOrderButton_Click(object sender, RoutedEventArgs e)
@@ -84,6 +75,25 @@ namespace GUI.Order_GUIs
                     WarningText.Text = "Bitte geben Sie für alle Daten etwas ein";
                 }
             }
+        }
+
+        private void AmountBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextValidation.CheckIsNumeric(e);
+        }
+
+        private void MemberCB_Loaded(object sender, RoutedEventArgs e)
+        {
+            MemberCB.Items.Clear();
+            MemberCB.ItemsSource = admin.ListMembers();
+            MemberCB.Text = order.MemberID.ToString();
+        }
+
+        private void ArticleCB_Loaded(object sender, RoutedEventArgs e)
+        {
+            ArticleCB.Items.Clear();
+            ArticleCB.ItemsSource = admin.ListArticles();
+            ArticleCB.Text = order.ArticleID.ToString();
         }
     }
 }
