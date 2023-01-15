@@ -88,16 +88,9 @@ namespace GUI.LoginGUIs
                     }
                     else// edit or update login
                     {
-                        if (query.GetLogInDetails(LogInName.Text) == null)
-                        {
-                            admin.UpdateLogIn(logIn.LogInName, LogInName.Text, LogInPassword.Text, Int32.Parse(Rank.Text));
-                            LoginPage loginPage = new LoginPage();
-                            NavigationService.Navigate(loginPage);
-                        }
-                        else
-                        {
-                            WarningText.Text = "Der neue Benutzername existiert bereits.\n Bitte geben Sie einen neuen Nutzernamen ein.";
-                        }
+                        admin.UpdateLogIn(logIn.LogInName, LogInName.Text, LogInPassword.Text, Int32.Parse(Rank.Text));
+                        LoginPage loginPage = new LoginPage();
+                        NavigationService.Navigate(loginPage);
                     }
 
                 }

@@ -829,14 +829,15 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-                LogIn l = db.LogIns
+                LogIn oldLogIn = db.LogIns
                     .Where(b => b.LogInName == logIn.LogInName)
                     .FirstOrDefault();
 
-                l.LogInName = newLogInName;
-                l.LogInPassword = newLogInPassword;
-                l.Rank = rank;
+                db.LogIns.Remove(oldLogIn);
+                db.SaveChanges();
 
+                LogIn newLogIn = new LogIn(newLogInName, newLogInPassword, rank);
+                db.LogIns.Add(newLogIn);
                 db.SaveChanges();
             }
         }

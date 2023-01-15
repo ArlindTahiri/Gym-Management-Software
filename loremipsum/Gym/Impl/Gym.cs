@@ -1,4 +1,5 @@
 ﻿using loremipsum.Gym.Entities;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace loremipsum.Gym.Impl
@@ -459,7 +460,26 @@ namespace loremipsum.Gym.Impl
         /// <param name="logInName"></param>
         public void DeleteLogIn(string logInName)
         {
-            persistence.DeleteLogIn(logInName);
+            if(GetLogInDetails(logInName) != null)
+            {
+                IList<LogIn> logIns = persistence.FindLogIns();
+                IList<LogIn> result = new List<LogIn>();
+                foreach (LogIn login in logIns)
+                {
+                    if (login.Rank == 1) { result.Add(login); }
+                }
+                if (result.Count > 1)
+                {
+                    persistence.DeleteLogIn(logInName);
+                }
+                else
+                {
+                    if (!result.Contains(persistence.FindLogIn(logInName)))
+                    {
+                        persistence.DeleteLogIn(logInName);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -491,11 +511,29 @@ namespace loremipsum.Gym.Impl
         {
             LogIn logIn = persistence.FindLogIn(logInName);
             LogIn logInNew = persistence.FindLogIn(newLogInName);
-
-            if(logIn != null && logInNew == null)
+            IList<LogIn> logIns = persistence.FindLogIns();
+            IList<LogIn> result= new List<LogIn>();
+            foreach(LogIn login in logIns)
             {
-                persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
+                if (login.Rank == 1) { result.Add(login); }
             }
+
+            if (result.Count > 1)
+            {
+                if (logIn != null && logInNew == null || logIn != null && logIn.LogInName == logInNew.LogInName)
+                {
+                    persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
+                }
+            }
+            else
+            {
+                if (logIn != null && logInNew == null && rank == 1 || logIn != null && logIn.LogInName == logInNew.LogInName && rank == 1)
+                {
+                    persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
+                }
+            }
+
+            
             
         }
         #endregion
