@@ -105,7 +105,7 @@ namespace GUI.LoginGUIs
                 }
                 else
                 {
-                    WarningText.Text = "Das eingegebene passwort ist zu kurz.";
+                    WarningText.Text = "Das eingegebene Passwort ist zu kurz.";
                 }
             }
             else

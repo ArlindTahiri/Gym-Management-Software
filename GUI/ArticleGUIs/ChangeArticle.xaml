@@ -22,7 +22,7 @@
             <RowDefinition Height="120*"/>
         </Grid.RowDefinitions>
         <Label Content="Name" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Margin="537,0,537,10" Height="57" VerticalAlignment="Bottom"/>
-        <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Name" Margin="172,10,200,10" TextWrapping="Wrap" Text="" PreviewKeyDown="EditArticle" Grid.Row="1" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
+        <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Name" Margin="200,10,200,10" TextWrapping="Wrap" Text="" PreviewKeyDown="EditArticle" Grid.Row="1" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
         <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="Price" Margin="200,10,200,10" TextWrapping="Wrap" Text="" PreviewTextInput="Price_PreviewTextInput" PreviewKeyDown="EditArticle" Grid.Row="3" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
         <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="TargetStock" Margin="200,10,200,10" TextWrapping="Wrap" Text="" PreviewTextInput="TargetStock_PreviewTextInput" PreviewKeyDown="EditArticle" Grid.Row="5" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="25"/>
         <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="ActualStock" Margin="200,10,200,10" TextWrapping="Wrap" Text="" PreviewTextInput="ActualStock_PreviewTextInput" PreviewKeyDown="EditArticle" Grid.Row="7" FontSize="25" TextAlignment="Center" VerticalContentAlignment="Center"/>

@@ -60,9 +60,9 @@ namespace GUI
                 {
                     // paste all the code here.
                 }
-                else { WarningText.Text = "Das eingegebene Log In Passwort ist falsch.\n Bitte geben Sie das richtige Passwort ein."; }
+                else { WarningText.Content = "Das eingegebene Log In Passwort ist falsch.\n Bitte geben Sie das richtige Passwort ein."; }
             }
-            else { WarningText.Text = "Der eingegebene Log In Name exisitert nicht.\n Bitte geben Sie einen vorhandenen Log In Namen ein."; }
+            else { WarningText.Content = "Der eingegebene Log In Name exisitert nicht.\n Bitte geben Sie einen vorhandenen Log In Namen ein."; }
             
 
             if (Destination == "Member")
