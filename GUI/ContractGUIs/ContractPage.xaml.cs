@@ -70,7 +70,7 @@ namespace GUI.ContractGUIs
             NavigationService.Navigate(iDCheck);
         }
 
-        private void HomePage_Click(object sender, RoutedEventArgs e)
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);

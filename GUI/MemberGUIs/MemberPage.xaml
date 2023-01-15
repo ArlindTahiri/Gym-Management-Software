@@ -23,9 +23,11 @@
             <ColumnDefinition Width="250*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="AddMemberButton" Foreground="White" Background="#437CD8" Content="Mitglied hinzufügen" Margin="30,20,30,20" Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Click="AddMemberButton_Click"/>
+        <Button x:Name="AddMemberButton" Foreground="White" Background="#437CD8"  Margin="20,20,10,10" Style="{DynamicResource RoundedButtonsStyle}" FontSize="28" Click="AddMemberButton_Click">
+            <TextBlock Text="Mitglied&#x0a;hinzufügen" TextAlignment="Center"/>
+        </Button>
         <Button x:Name="DeleteMembersButton" Content="Alle Mitglieder löschen" Foreground="White" Background="#437CD8" Click="DeleteMembersButton_Click" Style="{DynamicResource RoundedButtonsStyle}" Grid.Column="4" Grid.Row="1" Margin="80,15,20,15"/>
-        <DataGrid x:Name="MemberData" Margin="10,10,10,20" Loaded="MemberData_Loaded"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="2" Grid.ColumnSpan="5">
+        <DataGrid x:Name="MemberData" Margin="20,10,20,20" Loaded="MemberData_Loaded"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="2" Grid.ColumnSpan="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="10*" MinWidth="45" Binding="{Binding MemberID}" />
                 <DataGridTextColumn Header="Vorname" Width="30*" MinWidth="10" Binding="{Binding Forename}" />
@@ -41,12 +43,19 @@
                 <DataGridTextColumn Header="VertragsID" Width="10*" MinWidth="90" Binding="{Binding ContractID}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="EditMemberButton" Foreground="White" Background="#437CD8" Content="Mitglied bearbeiten" Margin="30,20,30,20"  Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Grid.Column="1" Click="EditMemberButton_Click"/>
-        <Button x:Name="DeleteMemberButton" Foreground="White" Background="#437CD8" Content="Mitglied entfernen" Margin="30,20,30,20"  Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Grid.Column="2" Click="DeleteMemberButton_Click"/>
-        <Button x:Name="ChangeContractButton" Foreground="White" Background="#437CD8" Content="Vertrag wechseln" Margin="30,20,30,20" Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Grid.Column="3" Click="ChangeContractButton_Click"/>
-
-        <Button x:Name="HomePage" Margin="60,40,60,40" Grid.Column="4" Background="Transparent" BorderThickness="0" Click="HomePage_Click">
-            <Image Source="/interface-home-3.png"  Stretch="Fill" OpacityMask="Black"/>
+        <Button x:Name="EditMemberButton" Foreground="White" Background="#437CD8"  Margin="10,20,10,10"  Style="{DynamicResource RoundedButtonsStyle}" FontSize="28" Grid.Column="1" Click="EditMemberButton_Click">
+            <TextBlock Text="Mitglied&#x0a;bearbeiten" TextAlignment="Center"/>
         </Button>
+
+        <Button x:Name="DeleteMemberButton" Foreground="White" Background="#437CD8" Margin="10,20,10,10"  Style="{DynamicResource RoundedButtonsStyle}" FontSize="28" Grid.Column="2" Click="DeleteMemberButton_Click">
+            <TextBlock Text="Mitglied&#x0a;entfernen" TextAlignment="Center"/>
+        </Button>
+
+        <Button x:Name="ChangeContractButton" Foreground="White" Background="#437CD8" Margin="10,20,10,10" Style="{DynamicResource RoundedButtonsStyle}" FontSize="28" Grid.Column="3" Click="ChangeContractButton_Click">
+            <TextBlock Text="Vertrag&#x0a;wechseln" TextAlignment="Center"/>
+        </Button>
+
+        <Image Grid.Column="4" Grid.Row="0" Width="50" Height="50" MouseDown="Image_MouseDown" Source="/interface-home-3.png" OpacityMask="Black" Margin="0,20,20,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        
     </Grid>
 </Page>

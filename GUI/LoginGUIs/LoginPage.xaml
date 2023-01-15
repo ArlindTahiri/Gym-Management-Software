@@ -23,7 +23,9 @@
             <ColumnDefinition Width="250*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="AddLogins" Foreground="White" Background="#437CD8" Content="Logins hinzufügen" Grid.Column="0" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="AddLogins_Click"/>
+        <Button x:Name="AddLogins" Foreground="White" Background="#437CD8"  Grid.Column="0" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="AddLogins_Click">
+            <TextBlock Text="Logins&#x0a;hinzufügen" TextAlignment="Center"/>
+        </Button>
         <Button x:Name="DeleteLoginsButton" Foreground="White" Background="#437CD8" Content="Alle Logins löschen" Margin="80,15,20,15" Grid.Column="4" Grid.Row="1" Click="DeleteLoginsButton_Click" Style="{DynamicResource RoundedButtonsStyle}" />
         <DataGrid x:Name="LoginInventory" Margin="20,10,20,20" Grid.Row="2" Grid.ColumnSpan="5" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" FontSize="30" Loaded="LoginInventory_Loaded" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
             <DataGrid.Columns>
@@ -33,12 +35,17 @@
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button x:Name="EditLogins" Foreground="White" Background="#437CD8" Content="Login bearbeiten" Grid.Column="1" Grid.Row="0" Margin="10,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="EditLogins_Click"/>
-        <Button x:Name="DeleteLogins" Foreground="White" Background="#437CD8" Content="Login löschen" Grid.Column="2" Grid.Row="0" Margin="10,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="DeleteLogins_Click"/>
-
-        <Button x:Name="HomePage" Margin="60,40,60,40" Grid.Column="4" Background="Transparent" BorderThickness="0" Click="HomePage_Click">
-            <Image Source="/interface-home-3.png"  Stretch="Fill" OpacityMask="Black"/>
-        </Button>
         
+        <Button x:Name="EditLogins" Foreground="White" Background="#437CD8" Grid.Column="1" Grid.Row="0" Margin="10,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="EditLogins_Click">
+            <TextBlock Text="Login&#x0a;bearbeiten" TextAlignment="Center"/>
+        </Button>
+
+        <Button x:Name="DeleteLogins" Foreground="White" Background="#437CD8" Grid.Column="2" Grid.Row="0" Margin="10,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="DeleteLogins_Click">
+            <TextBlock Text="Login&#x0a;löschen" TextAlignment="Center"/>
+        </Button>
+
+
+        <Image Grid.Column="4" Grid.Row="0" Width="50" Height="50" MouseDown="Image_MouseDown" Source="/interface-home-3.png" OpacityMask="Black" Margin="0,20,20,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+
     </Grid>
 </Page>

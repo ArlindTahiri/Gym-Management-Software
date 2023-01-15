@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static System.Net.WebRequestMethods;
@@ -82,7 +83,7 @@ namespace GUI.ArticleGUIs
             NavigationService.Navigate(iDCheck);
         }
 
-        private void HomePage_Click(object sender, RoutedEventArgs e)
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             GymHomepage gymHomepage = new GymHomepage();
             NavigationService.Navigate(gymHomepage);
