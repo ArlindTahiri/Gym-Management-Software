@@ -460,24 +460,18 @@ namespace loremipsum.Gym.Impl
         /// <param name="logInName"></param>
         public void DeleteLogIn(string logInName)
         {
-            if(GetLogInDetails(logInName) != null)
+            LogIn temp = persistence.FindLogIn(logInName);
+            if(temp != null)
             {
                 IList<LogIn> logIns = persistence.FindLogIns();
-                IList<LogIn> result = new List<LogIn>();
+                IList<string> result = new List<string>();
                 foreach (LogIn login in logIns)
                 {
-                    if (login.Rank == 1) { result.Add(login); }
+                    if (login.Rank == 1) {result.Add(login.LogInName);}
                 }
                 if (result.Count > 1)
                 {
                     persistence.DeleteLogIn(logInName);
-                }
-                else
-                {
-                    if (!result.Contains(persistence.FindLogIn(logInName)))
-                    {
-                        persistence.DeleteLogIn(logInName);
-                    }
                 }
             }
         }
