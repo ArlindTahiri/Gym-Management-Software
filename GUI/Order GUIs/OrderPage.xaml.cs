@@ -56,5 +56,11 @@ namespace GUI.Order_GUIs
             IDCheck iDCheck = new IDCheck("DeleteOrder");
             NavigationService.Navigate(iDCheck);
         }
+
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+            GymHomepage gymHomepage = new GymHomepage();
+            NavigationService.Navigate(gymHomepage);
+        }
     }
 }

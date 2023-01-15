@@ -39,5 +39,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <Button x:Name="HomePage" Margin="60,40,60,40" Grid.Column="4" Background="Transparent" BorderThickness="0" Click="HomePage_Click">
+            <Image Source="/interface-home-3.png"  Stretch="Fill" OpacityMask="Black"/>
+        </Button>
     </Grid>
 </Page>

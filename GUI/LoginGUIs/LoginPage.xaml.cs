@@ -56,5 +56,11 @@ namespace GUI.LoginGUIs
             IDCheck iDCheck = new IDCheck("DeleteLogin");
             NavigationService.Navigate(iDCheck);
         }
+
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+            GymHomepage gymHomepage = new GymHomepage();
+            NavigationService.Navigate(gymHomepage);
+        }
     }
 }

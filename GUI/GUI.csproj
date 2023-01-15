@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="EmployeeGUIs\interface-home-3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.1">
       <PrivateAssets>all</PrivateAssets>
@@ -22,6 +26,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\loremipsum\loremipsum.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="interface-home-3.png" />
   </ItemGroup>
 
 </Project>

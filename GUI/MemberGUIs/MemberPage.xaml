@@ -9,22 +9,23 @@
       Title="MemberPage" Background="#EFEFEF">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200*"/>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="150*"/>
-            <RowDefinition Height="457*"/>
+            <RowDefinition Height="130*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="350*" />
+
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+        </Grid.ColumnDefinitions>
 
         <Button x:Name="AddMemberButton" Foreground="White" Background="#437CD8" Content="Mitglied hinzufügen" Margin="30,20,30,20" Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Click="AddMemberButton_Click"/>
-        <Button x:Name="DeleteMembersButton" Content="Alle Mitglieder löschen" Foreground="White" Background="#437CD8" Click="DeleteMembersButton_Click" Style="{DynamicResource RoundedButtonsStyle}" Grid.Column="3" Grid.Row="2" Margin="27,24,26,24" FontSize="18"/>
-        <DataGrid x:Name="MemberData" Margin="10,10,10,20" Loaded="MemberData_Loaded"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="3" Grid.ColumnSpan="4">
+        <Button x:Name="DeleteMembersButton" Content="Alle Mitglieder löschen" Foreground="White" Background="#437CD8" Click="DeleteMembersButton_Click" Style="{DynamicResource RoundedButtonsStyle}" Grid.Column="4" Grid.Row="1" Margin="80,15,20,15"/>
+        <DataGrid x:Name="MemberData" Margin="10,10,10,20" Loaded="MemberData_Loaded"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="2" Grid.ColumnSpan="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="10*" MinWidth="45" Binding="{Binding MemberID}" />
                 <DataGridTextColumn Header="Vorname" Width="30*" MinWidth="10" Binding="{Binding Forename}" />
@@ -44,5 +45,8 @@
         <Button x:Name="DeleteMemberButton" Foreground="White" Background="#437CD8" Content="Mitglied entfernen" Margin="30,20,30,20"  Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Grid.Column="2" Click="DeleteMemberButton_Click"/>
         <Button x:Name="ChangeContractButton" Foreground="White" Background="#437CD8" Content="Vertrag wechseln" Margin="30,20,30,20" Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Grid.Column="3" Click="ChangeContractButton_Click"/>
 
+        <Button x:Name="HomePage" Margin="60,40,60,40" Grid.Column="4" Background="Transparent" BorderThickness="0" Click="HomePage_Click">
+            <Image Source="/interface-home-3.png"  Stretch="Fill" OpacityMask="Black"/>
+        </Button>
     </Grid>
 </Page>

@@ -74,5 +74,11 @@ namespace GUI.EmployeeGUIs
             IDCheck iDCheck = new IDCheck("DeleteEmployee");
             NavigationService.Navigate(iDCheck);
         }
+
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+            GymHomepage gymHomepage = new GymHomepage();
+            NavigationService.Navigate(gymHomepage);
+        }
     }
 }

@@ -63,5 +63,29 @@ namespace GUI.ArticleGUIs
             DeletePage deletePage = new DeletePage("Article");
             NavigationService.Navigate(deletePage);
         }
+
+        private void AddArticle_Click(object sender, RoutedEventArgs e)
+        {
+            AddArticle addArticle = new AddArticle();
+            NavigationService.Navigate(addArticle);
+        }
+
+        private void EditArticle_Click_1(object sender, RoutedEventArgs e)
+        {
+            IDCheck iDCheck = new IDCheck("EditArticle");
+            NavigationService.Navigate(iDCheck);
+        }
+
+        private void DeleteArticle_Click(object sender, RoutedEventArgs e)
+        {
+            IDCheck iDCheck = new IDCheck("DeleteArticle");
+            NavigationService.Navigate(iDCheck);
+        }
+
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+            GymHomepage gymHomepage = new GymHomepage();
+            NavigationService.Navigate(gymHomepage);
+        }
     }
 }

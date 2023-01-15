@@ -84,14 +84,12 @@ namespace GUI.Order_GUIs
 
         private void MemberCB_Loaded(object sender, RoutedEventArgs e)
         {
-            MemberCB.Items.Clear();
             MemberCB.ItemsSource = admin.ListMembers();
             MemberCB.Text = order.MemberID.ToString();
         }
 
         private void ArticleCB_Loaded(object sender, RoutedEventArgs e)
         {
-            ArticleCB.Items.Clear();
             ArticleCB.ItemsSource = admin.ListArticles();
             ArticleCB.Text = order.ArticleID.ToString();
         }

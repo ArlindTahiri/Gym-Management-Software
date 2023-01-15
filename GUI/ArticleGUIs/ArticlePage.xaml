@@ -10,23 +10,28 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200*"/>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="150*"/>
-            <RowDefinition Height="522*"/>
+            <RowDefinition Height="130*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="350*" />
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="450*"/>
-            <ColumnDefinition Width="800*"/>
-            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
         </Grid.ColumnDefinitions>
-        <Button x:Name="EditArticle" Foreground="White" Background="#437CD8" Content="Artikel bearbeiten" Margin="20,20,10,10" Click="EditArticle_Click" Style="{DynamicResource RoundedButtonsStyle}" FontSize="24" />
 
-        <Button x:Name="DeleteArticlesButton" Foreground="White" Background="#437CD8" Content="Alle Artikel löschen" Margin="27,24,26,24" Click="DeleteArticlesButton_Click" Style="{DynamicResource RoundedButtonsStyle}" FontSize="18" Grid.Column="2" Grid.Row="2"/>
+        <Button x:Name="AddArticle" Foreground="White" Background="#437CD8" Content="Artikel hinzufügen" Grid.Column="0" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="AddArticle_Click" />
+        <Button x:Name="EditArticle" Foreground="White" Background="#437CD8" Content="Artikel bearbeiten" Grid.Column="1" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="EditArticle_Click_1" />
+        <Button x:Name="DeleteArticle" Foreground="White" Background="#437CD8" Content="Artikel löschen" Grid.Column="2" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="DeleteArticle_Click" />
 
-        <DataGrid x:Name="ArticleInventory" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Margin="10,10,10,20" Loaded="ArticleInventory_Loaded" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" RenderTransformOrigin="0.499,0.578" Grid.ColumnSpan="3" Grid.Row="3">
+        <Button x:Name="DeleteArticlesButton" Foreground="White" Background="#437CD8" Content="Alle Artikel löschen" Margin="80,15,20,15" Click="DeleteArticlesButton_Click" Style="{DynamicResource RoundedButtonsStyle}" FontSize="18" Grid.Column="4" Grid.Row="1"/>
+
+        <DataGrid x:Name="ArticleInventory" Margin="20,10,10,20" Grid.Row="2" Grid.ColumnSpan="5" Loaded="ArticleInventory_Loaded" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" FontSize="30" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="10*" Binding="{Binding ArticleID}" />
+                <DataGridTextColumn Header="ID" Width="30*" Binding="{Binding ArticleID}" />
                 <DataGridTextColumn Header="Name" Width="30*" Binding="{Binding ArticleName}" />
                 <DataGridTextColumn Header="Preis" Width="30*" Binding="{Binding Price}" />
                 <DataGridTextColumn Header="Bestand" Width="30*" Binding="{Binding ActualStock}" />
@@ -34,5 +39,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <Button x:Name="HomePage" Margin="60,40,60,40" Grid.Column="4" Background="Transparent" BorderThickness="0" Click="HomePage_Click">
+            <Image Source="/interface-home-3.png"  Stretch="Fill" OpacityMask="Black"/>
+        </Button>
+        
     </Grid>
 </Page>

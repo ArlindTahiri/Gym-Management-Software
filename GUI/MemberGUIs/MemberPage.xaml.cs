@@ -64,5 +64,11 @@ namespace GUI.MemberGUIs
             ChangeContract changeContract = new ChangeContract();
             NavigationService.Navigate(changeContract);
         }
+
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+            GymHomepage gymHomepage = new GymHomepage();
+            NavigationService.Navigate(gymHomepage);
+        }
     }
 }

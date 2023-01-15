@@ -69,5 +69,11 @@ namespace GUI.ContractGUIs
             IDCheck iDCheck = new IDCheck("EditContract");
             NavigationService.Navigate(iDCheck);
         }
+
+        private void HomePage_Click(object sender, RoutedEventArgs e)
+        {
+            GymHomepage gymHomepage = new GymHomepage();
+            NavigationService.Navigate(gymHomepage);
+        }
     }
 }

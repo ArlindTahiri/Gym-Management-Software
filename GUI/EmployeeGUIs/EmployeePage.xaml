@@ -10,23 +10,25 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200*"/>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="150*"/>
-            <RowDefinition Height="330*"/>
+            <RowDefinition Height="130*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="350*" />
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
+            <ColumnDefinition Width="250*" />
         </Grid.ColumnDefinitions>
+
         <Button x:Name="EditEmployeeButton" Foreground="White" Background="#437CD8" Content="Mitarbeiter bearbeiten" Margin="30,20,30,20" Click="EditEmployee_Click" Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Grid.Column="1"/>
 
-        <Button x:Name="DeleteEmployeeButton" Foreground="White" Background="#437CD8" Content="Alle Mitarbeiter löschen" Margin="27,26,27,26" Click="DeleteEmployeeButton_Click" Style="{DynamicResource RoundedButtonsStyle}" Grid.Column="3" Grid.Row="2" FontSize="18"/>
+        <Button x:Name="DeleteEmployeeButton" Foreground="White" Background="#437CD8" Content="Alle Mitarbeiter löschen" Margin="80,15,20,15" Grid.Column="4" Grid.Row="1" Click="DeleteEmployeeButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
         <Button x:Name="CheckoutButton" Foreground="White" Background="#437CD8" Content="Kassensturz" Margin="30,20,30,20" Click="CheckoutButton_Click" Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Grid.Column="3"/>
 
-        <DataGrid x:Name="EmployeeData" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Margin="10,10,10,10" Loaded="EmployeeData_Loaded" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.ColumnSpan="4" Grid.Row="3">
+        <DataGrid x:Name="EmployeeData" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Margin="10,10,10,10" Loaded="EmployeeData_Loaded" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.ColumnSpan="5" Grid.Row="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="10*" MinWidth="45" Binding="{Binding EmployeeID}" />
                 <DataGridTextColumn Header="Vorname" Width="30*" MinWidth="10" Binding="{Binding Forename}" />
@@ -42,6 +44,10 @@
         </DataGrid>
         <Button x:Name="AddEmployeeButton" Foreground="White" Background="#437CD8" Content="Mitarbeiter hinzufügen" Margin="30,20,30,20"  Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Click="AddEmployeeButton_Click"/>
         <Button x:Name="DeleteEmployeeButton1" Foreground="White" Background="#437CD8" Content="Mitarbeiter entfernen" Margin="30,20,30,20"  Style="{DynamicResource RoundedButtonsStyle}" FontSize="25" Grid.Column="2" Click="DeleteEmployeeButton1_Click"/>
+
+        <Button x:Name="HomePage" Margin="60,40,60,40" Grid.Column="4" Click="HomePage_Click" Background="Transparent" BorderThickness="0">
+            <Image Source="/interface-home-3.png"  Stretch="Fill" OpacityMask="Black"/>
+        </Button>
 
     </Grid>
 </Page>

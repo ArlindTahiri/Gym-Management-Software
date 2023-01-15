@@ -37,5 +37,8 @@
         <Button x:Name="EditOrder" Foreground="White" Background="#437CD8" Content="Bestellung bearbeiten" Grid.Column="1" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="EditOrder_Click" />
         <Button x:Name="DeleteOrder" Foreground="White" Background="#437CD8" Content="Bestellung löschen" Grid.Column="2" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="DeleteOrder_Click" />
 
+        <Button x:Name="HomePage" Margin="60,40,60,40" Grid.Column="4" Background="Transparent" BorderThickness="0" Click="HomePage_Click">
+            <Image Source="/interface-home-3.png"  Stretch="Fill" OpacityMask="Black"/>
+        </Button>
     </Grid>
 </Page>

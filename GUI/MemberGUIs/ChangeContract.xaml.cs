@@ -83,7 +83,6 @@ namespace GUI.MemberGUIs
 
         private void ContractCB_Loaded(object sender, RoutedEventArgs e)
         {
-            ContractCB.Items.Clear();
             ContractCB.ItemsSource = admin.ListContracts();
         }
 
