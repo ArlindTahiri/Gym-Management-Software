@@ -49,7 +49,7 @@ namespace GUI.ContractGUIs
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
         {
             log.Info("Clicked on the AddContract button");
-            AddContract addContract = new AddContract();
+            AddEditContract addContract = new AddEditContract();
             NavigationService.Navigate(addContract);
         }
 

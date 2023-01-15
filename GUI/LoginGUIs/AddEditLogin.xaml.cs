@@ -48,6 +48,7 @@ namespace GUI.LoginGUIs
                 LogInName.Text = logIn.LogInName;
                 LogInPassword.Text = logIn.LogInPassword;
                 Rank.Text = logIn.Rank.ToString();
+                addLogin.Content = "Login bearbeiten";
             }
             
         }

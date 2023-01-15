@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:GUI.Order_GUIs"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
-      Title="AddOrder">
+      Title="AddOrder" Background="#EFEFEF">
 
     <Grid>
         
@@ -33,7 +33,7 @@
 
         <TextBlock x:Name ="WarningText" Text="" Grid.Column="1" Grid.Row="2" Margin="20,20,10,10" TextWrapping="Wrap" Foreground="#FFD40303" TextAlignment="Center"/>
 
-        <Button x:Name="AddOrderButton" Foreground="White" Background="#437CD8" Content="Bestellung hinzufügen" Grid.Column="1" Grid.Row="3" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="AddOrderButton_Click"/>
+        <Button x:Name="AddOrderButton" Foreground="White" Background="#437CD8" Content="Bestellung hinzufügen" Grid.Column="1" Grid.Row="3" Margin="20,100,20,100" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="AddOrderButton_Click"/>
 
     </Grid>
 </Page>

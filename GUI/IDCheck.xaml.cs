@@ -141,7 +141,7 @@ namespace GUI
 
                         if (destination.Equals("EditContract") && query.GetContractDetails(ID) != null)
                         {
-                            EditContract editContract = new EditContract(ID);
+                            AddEditContract editContract = new AddEditContract(ID);
                             NavigationService.Navigate(editContract);
                         }
 

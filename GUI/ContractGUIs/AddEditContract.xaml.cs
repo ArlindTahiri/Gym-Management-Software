@@ -26,12 +26,14 @@ namespace GUI.ContractGUIs
     /// <summary>
     /// Interaktionslogik für AddContract.xaml
     /// </summary>
-    public partial class AddContract : Page
+    public partial class AddEditContract : Page
     {
-
+        Contract Contract;
+        int Id;
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        public AddContract()
+        public AddEditContract()
         {
             InitializeComponent();
 
@@ -40,6 +42,16 @@ namespace GUI.ContractGUIs
             XmlConfigurator.Configure(repository, fileInfo);
 
             log.Info("Opened AddContract page");
+        }
+
+        public AddEditContract(int contractID)
+        {
+            InitializeComponent();
+            Contract = query.GetContractDetails(contractID);
+            Id = contractID;
+            ContractType.Text = Contract.ContractType;
+            Price.Text = Contract.Price.ToString();
+            AddContractButton.Content = "Vertrag bearbeiten";
         }
 
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
@@ -58,19 +70,37 @@ namespace GUI.ContractGUIs
 
                     int centPrice = Int32.Parse(euroPrice);
 
-                    Contract newContract = new Contract(ContractType.Text, centPrice * 100);
-                    admin.AddContract(newContract);
+                    if (Contract == null)//new contract
+                    {
+                        Contract newContract = new Contract(ContractType.Text, centPrice);
+                        admin.AddContract(newContract);
+                    }
+                    else//edit contract
+                    {
+                        admin.UpdateContract(Id, ContractType.Text, centPrice);
+                    }
+                    ContractPage contractPage = new ContractPage();
+                    NavigationService.Navigate(contractPage);
                 }
                 else
                 {
+                    if (Contract == null)
+                    {
+                        Contract newContract = new Contract(ContractType.Text, Int32.Parse(Price.Text));
+                        admin.AddContract(newContract);
 
-                    Contract newContract = new Contract(ContractType.Text, Int32.Parse(Price.Text));
-                    admin.AddContract(newContract);
+                        log.Info("Created the new contract: " + newContract.ToString() + "... and returned to GymHomepage");
 
-                    log.Info("Created the new contract: " + newContract.ToString() + "... and returned to GymHomepage");
-
-                    GymHomepage gymHomepage = new GymHomepage();
-                    NavigationService.Navigate(gymHomepage);
+                        ContractPage contractPage = new ContractPage();
+                        NavigationService.Navigate(contractPage);
+                    }
+                    else
+                    {
+                        admin.UpdateContract(Id, ContractType.Text, Int32.Parse(Price.Text));
+                        ContractPage contractPage = new ContractPage();
+                        NavigationService.Navigate(contractPage);
+                    }
+                    
                 }
             }
             else
