@@ -55,7 +55,6 @@ namespace GUI.ContractGUIs
 
         private void ContractInventory_Loaded(object sender, RoutedEventArgs e)
         {
-            ContractInventory.DataContext = admin.ListContracts();
             ContractInventory.ItemsSource = admin.ListContracts();
         }
 

@@ -105,15 +105,21 @@ namespace GUI
                     break;
 
                 case "Training":
-                    QuestionBox.Content = "Bitte geben Sie Ihre Mitglieds ID ein";                   
+                    QuestionBox.Content = "Bitte geben Sie Ihre Mitglieds ID ein";
+                    TrainingMembersData.ItemsSource = admin.ListTrainingMembers();
+                    TrainingMembersData.Visibility = Visibility.Visible;
                     break;
 
                 case "EditLogin":
                     QuestionBox.Content = "Bitte geben Sie den login ein, den Sie bearbeiten wollen.";
+                    LoginData.ItemsSource = admin.ListLogIns();
+                    LoginData.Visibility = Visibility.Visible;
                     break;
 
                 case "DeleteLogin":
                     QuestionBox.Content = "Bitte geben Sie den login ein, den Sie löschen wollen.";
+                    LoginData.ItemsSource = admin.ListLogIns();
+                    LoginData.Visibility = Visibility.Visible;
                     break;
             }
         }

@@ -55,7 +55,6 @@ namespace GUI.ArticleGUIs
 
         private void ArticleInventory_Loaded(object sender, RoutedEventArgs e)
         {
-            ArticleInventory.DataContext = admin.ListArticles();
             ArticleInventory.ItemsSource = admin.ListArticles();
         }
 

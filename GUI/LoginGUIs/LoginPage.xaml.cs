@@ -30,7 +30,6 @@ namespace GUI.LoginGUIs
 
         private void LoginInventory_Loaded(object sender, RoutedEventArgs e)
         {
-            LoginInventory.DataContext= admin.ListLogIns();
             LoginInventory.ItemsSource = admin.ListLogIns();
         }
 

@@ -32,7 +32,6 @@ namespace GUI.MemberGUIs
       
         private void MemberData_Loaded(object sender, RoutedEventArgs e)
         {
-            MemberData.DataContext= admin.ListMembers();
             MemberData.ItemsSource = admin.ListMembers();
         }
 

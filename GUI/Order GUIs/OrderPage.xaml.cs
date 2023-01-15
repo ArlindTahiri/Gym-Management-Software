@@ -30,7 +30,6 @@ namespace GUI.Order_GUIs
 
         private void OrderData_Loaded(object sender, RoutedEventArgs e)
         {
-            OrderData.DataContext = admin.ListOrders();
             OrderData.ItemsSource = admin.ListOrders();
         }
 

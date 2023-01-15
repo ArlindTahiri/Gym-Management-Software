@@ -72,6 +72,22 @@
                 <DataGridTextColumn Header="Anzahl" Width="30*" Binding="{Binding Amount}" />
             </DataGrid.Columns>
         </DataGrid>
+        <DataGrid Visibility="Collapsed" x:Name="LoginData" Margin="10,30,10,20" Grid.Row="3" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" FontSize="30" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Benutzername" Width="30*" Binding="{Binding LogInName}" />
+                <DataGridTextColumn Header="Passwort" Width="30*" Binding="{Binding LogInPassword}" />
+                <DataGridTextColumn Header="Rang" Width="30*" Binding="{Binding Rank}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Visibility="Collapsed" x:Name="TrainingMembersData" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" FontSize="30" Margin="10,30,10,20" Grid.Row="3" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Vorname" Width="30*" Binding="{Binding Forename}">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Nachname" Width="30*" Binding="{Binding Surname}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>

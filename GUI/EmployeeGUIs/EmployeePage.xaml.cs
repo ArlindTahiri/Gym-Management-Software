@@ -48,7 +48,6 @@ namespace GUI.EmployeeGUIs
 
         private void EmployeeData_Loaded(object sender, RoutedEventArgs e)
         {
-            EmployeeData.DataContext = admin.ListEmployees();
             EmployeeData.ItemsSource = admin.ListEmployees();
         }
 
