@@ -36,6 +36,18 @@ namespace GUI
             Destination = destination;
             InitializeComponent();
         }
+        public GymPasswordPage()
+        {
+            InitializeComponent();
+            if (admin.ListLogIns().Count == 0)
+            {
+                Destination = "AddLogIn";
+            }
+            else
+            {
+                Destination = "Homepage";
+            }
+        }
 
         private void LogIn_Click(object sender, RoutedEventArgs e)
         {
@@ -81,7 +93,7 @@ namespace GUI
             {
                 if (admin.ListLogIns().Count == 0) //if there are no logins you have to go directly to addlogin page and create rank 1 account
                 {
-                    AddEditLogin addLogin= new AddEditLogin("FirstTime");
+                    AddEditLogin addLogin = new AddEditLogin("FirstTime");
                     NavigationService.Navigate(addLogin);
                 }
                 else
@@ -89,13 +101,23 @@ namespace GUI
                     LoginPage loginPage = new LoginPage();
                     NavigationService.Navigate(loginPage);
                 }
-                
+            }
+            if(Destination == "AddLogIn")
+            {
+                AddEditLogin addEditLogin = new AddEditLogin("FirstTime");
+                NavigationService.Navigate(addEditLogin);
             }
 
             if(Destination == "Order")
             {
                 OrderPage orderPage = new OrderPage();
                 NavigationService.Navigate(orderPage);
+            }
+
+            if(Destination == "Homepage")
+            {
+                GymHomepage homepage= new GymHomepage();
+                NavigationService.Navigate(homepage);
             }
         }
     }

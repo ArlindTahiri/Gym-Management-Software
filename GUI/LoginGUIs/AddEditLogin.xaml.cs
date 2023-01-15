@@ -40,7 +40,7 @@ namespace GUI.LoginGUIs
             {
                 Rank.Text = 1.ToString();
                 Rank.IsReadOnly = true;
-                WarningText.Text = "Der erste erstellte Benutzer muss Adminrechte haben.\n Der Rang 1 ist somit vorgegeben.";
+                WarningText.Text = "Der erste erstellte Benutzer muss Adminrechte haben.\nDer Rang 1 ist somit vorgegeben.";
             }
             else
             {
@@ -78,8 +78,16 @@ namespace GUI.LoginGUIs
                         if (query.GetLogInDetails(LogInName.Text) == null)
                         {
                             admin.AddLogIn(logInNew);
-                            LoginPage loginhome = new LoginPage();
-                            NavigationService.Navigate(loginhome);
+                            if (Firstlogin == "FirstTime")
+                            {
+                                GymHomepage homepage = new GymHomepage();
+                                NavigationService.Navigate(homepage);
+                            }
+                            else
+                            {
+                                LoginPage loginhome = new LoginPage();
+                                NavigationService.Navigate(loginhome);
+                            }
                         }
                         else
                         {
