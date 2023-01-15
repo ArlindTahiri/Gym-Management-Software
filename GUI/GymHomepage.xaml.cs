@@ -31,69 +31,46 @@ namespace GUI
     public partial class GymHomepage : Page
     {
 
-        private static readonly ILog log = LogManager.GetLogger(typeof(GymHomepage));
+        
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
        
         public GymHomepage()
         {
-            InitializeComponent();
-            
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
-
-            log.Info("Opened gym homepage");
+            InitializeComponent();         
         }
 
         private void Member_Click(object sender, RoutedEventArgs e)
         {
-
-            log.Info("Clicked on member button");
-
             GymPasswordPage gymPasswordPage = new GymPasswordPage("Member");
             NavigationService.Navigate(gymPasswordPage);
         }
 
         private void Contract_Click(object sender, RoutedEventArgs e)
-        {
-          
-            log.Info("Clicked on contract button");
-
+        {         
             GymPasswordPage gymPasswordPage = new GymPasswordPage("Contract");
             NavigationService.Navigate(gymPasswordPage);
         }
 
         private void EmployeeButton_Click(object sender, RoutedEventArgs e)
-        {
-           
-
-            log.Info("Clicked on employee button");
-
+        {           
             GymPasswordPage gymPasswordPage = new GymPasswordPage("Employee");
             NavigationService.Navigate(gymPasswordPage);
         }
 
         private void Inventar_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on inventory button");
-
             GymPasswordPage gymPasswordPage = new GymPasswordPage("Inventar");
             NavigationService.Navigate(gymPasswordPage);
         }
 
         private void OrderButton_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on orderButton button");
-
             GymPasswordPage gymPasswordPage = new GymPasswordPage("Order");
             NavigationService.Navigate(gymPasswordPage);
         }
 
         private void Logins_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on logins button");
-
             GymPasswordPage gymPasswordPage = new GymPasswordPage("Login");
             NavigationService.Navigate(gymPasswordPage);
 

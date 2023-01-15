@@ -1,4 +1,9 @@
-﻿using GUI.LoginGUIs;
+﻿using GUI.ArticleGUIs;
+using GUI.ContractGUIs;
+using GUI.EmployeeGUIs;
+using GUI.LoginGUIs;
+using GUI.MemberGUIs;
+using GUI.Order_GUIs;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
@@ -31,8 +36,7 @@ namespace GUI
     public partial class DeletePage : Page
     {
         IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];     
         private string destination;
         private int ID;
         private string _name;
@@ -64,19 +68,9 @@ namespace GUI
                 case "Home": QuestionLabel.Content = "Wollen Sie wirklich ALLES löschen?";
                     break;
 
-                case "CheckoutMembers":
-                    QuestionLabel.Content = "Wollen Sie wirklich bei allen Mitgliedern einen Kassensturz durchführen?";
+                case "CheckoutMembers": QuestionLabel.Content = "Wollen Sie wirklich bei allen Mitgliedern einen Kassensturz durchführen?";
                     break;
-            }
-
-         
-            
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
-
-            log.Info("Opened DeletePage from destination: "+destination);
+            }                  
         }
 
         public DeletePage(string destination, string name)
@@ -89,9 +83,7 @@ namespace GUI
             {
                 QuestionLabel.Content = "Wollen Sie wirklich diesen Login löschen?";
                 QuestionBox.Text = query.GetLogInDetails(_name).ToString();
-
-            }
-            
+            }            
         }
 
         public DeletePage(string destination, int ID)
@@ -134,55 +126,48 @@ namespace GUI
         {
             if(destination.Equals("Member"))
             {
-                log.Info("Deleted all members and returned to GymHomepage");
                 admin.DeleteMembers();
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                MemberPage memberPage = new MemberPage();
+                NavigationService.Navigate(memberPage);
             }
 
             if (destination.Equals("Employee"))
             {
-                log.Info("Deleted all employees and returned to GymHomepage");
                 admin.DeleteEmployees();
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                EmployeePage employeePage= new EmployeePage();
+                NavigationService.Navigate(employeePage);
             }
 
             if (destination.Equals("Article"))
             {
-                log.Info("Deleted all articles and returned to GymHomepage");
                 admin.DeleteArticles();
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                ArticlePage articlePage =new ArticlePage();
+                NavigationService.Navigate(articlePage);
             }
 
             if (destination.Equals("Contract"))
             {
-                log.Info("Deleted all contracts and returned to GymHomepage");
                 admin.DeleteContracts();
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                ContractPage contractPage =new ContractPage();
+                NavigationService.Navigate(contractPage);
             }
 
             if (destination.Equals("Login"))
             {
-                log.Info("Deleted all logins and returned to GymHomepage");
                 admin.DeleteLogIns();
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                LoginPage loginPage = new LoginPage();
+                NavigationService.Navigate(loginPage);
             }
 
             if (destination.Equals("Order"))
             {
-                log.Info("Deleted all orders and returned to GymHomepage");
                 admin.DeleteOrders();
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                OrderPage orderPage = new OrderPage();
+                NavigationService.Navigate(orderPage);
             }
 
             if (destination.Equals("Home"))
             {
-                log.Info("Deleted everything and returned to GymHomepage");
                 admin.DeleteArticles();
                 admin.DeleteContracts();
                 admin.DeleteLogIns();
@@ -196,64 +181,136 @@ namespace GUI
             if (destination.Equals("DeleteArticle"))
             {
                 admin.DeleteArticle(ID);
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                ArticlePage articlePage =new ArticlePage();
+                NavigationService.Navigate(articlePage);
             }
 
             if (destination.Equals("DeleteContract"))
             {
                 admin.DeleteContract(ID);
-
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                ContractPage contractPage = new ContractPage();
+                NavigationService.Navigate(contractPage);
             }
 
             if (destination.Equals("DeleteEmployee"))
             {
                 admin.DeleteEmployee(ID);
-
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
+                EmployeePage employeePage = new EmployeePage();
+                NavigationService.Navigate(employeePage);
             }
 
             if (destination.Equals("DeleteLogin"))
             {
                 admin.DeleteLogIn(_name);
-
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
+                LoginPage loginPage = new LoginPage();
+                NavigationService.Navigate(loginPage);
             }
 
             if (destination.Equals("DeleteMember"))
             {
                 admin.DeleteMember(ID);
-
-                GymHomepage home = new GymHomepage();
-                NavigationService.Navigate(home);
+                MemberPage memberPage = new MemberPage();
+                NavigationService.Navigate(memberPage);
             }
 
             if (destination.Equals("DeleteOrder"))
             {
                 admin.DeleteOrder(ID);
-
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                OrderPage orderPage = new OrderPage();
+                NavigationService.Navigate(orderPage);
             }
 
             if (destination.Equals("CheckoutMembers"))
             {
                 admin.CheckOutMembers();
-
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                EmployeePage employeePage= new EmployeePage();
             }
         }
 
         private void NoButton_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Aborted the option and retunred back to GymHomepage");
-            GymHomepage gymHomepage = new GymHomepage();
-            NavigationService.Navigate(gymHomepage);
+            if (destination.Equals("Member"))
+            {              
+                MemberPage memberPage = new MemberPage();
+                NavigationService.Navigate(memberPage);
+            }
+
+            if (destination.Equals("Employee"))
+            {             
+                EmployeePage employeePage = new EmployeePage();
+                NavigationService.Navigate(employeePage);
+            }
+
+            if (destination.Equals("Article"))
+            {            
+                ArticlePage articlePage = new ArticlePage();
+                NavigationService.Navigate(articlePage);
+            }
+
+            if (destination.Equals("Contract"))
+            {              
+                ContractPage contractPage = new ContractPage();
+                NavigationService.Navigate(contractPage);
+            }
+
+            if (destination.Equals("Login"))
+            {              
+                LoginPage loginPage = new LoginPage();
+                NavigationService.Navigate(loginPage);
+            }
+
+            if (destination.Equals("Order"))
+            {              
+                OrderPage orderPage = new OrderPage();
+                NavigationService.Navigate(orderPage);
+            }
+
+            if (destination.Equals("Home"))
+            {             
+                GymHomepage gymHomepage = new GymHomepage();
+                NavigationService.Navigate(gymHomepage);
+            }
+
+            if (destination.Equals("DeleteArticle"))
+            {            
+                ArticlePage articlePage = new ArticlePage();
+                NavigationService.Navigate(articlePage);
+            }
+
+            if (destination.Equals("DeleteContract"))
+            {             
+                ContractPage contractPage = new ContractPage();
+                NavigationService.Navigate(contractPage);
+            }
+
+            if (destination.Equals("DeleteEmployee"))
+            {              
+                EmployeePage employeePage = new EmployeePage();
+                NavigationService.Navigate(employeePage);
+            }
+
+            if (destination.Equals("DeleteLogin"))
+            {               
+                LoginPage loginPage = new LoginPage();
+                NavigationService.Navigate(loginPage);
+            }
+
+            if (destination.Equals("DeleteMember"))
+            {             
+                MemberPage memberPage = new MemberPage();
+                NavigationService.Navigate(memberPage);
+            }
+
+            if (destination.Equals("DeleteOrder"))
+            {            
+                OrderPage orderPage = new OrderPage();
+                NavigationService.Navigate(orderPage);
+            }
+
+            if (destination.Equals("CheckoutMembers"))
+            {            
+                EmployeePage employeePage = new EmployeePage();
+            }
         }
     }
 }
