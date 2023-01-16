@@ -85,13 +85,33 @@ namespace GUI.Order_GUIs
         private void MemberCB_Loaded(object sender, RoutedEventArgs e)
         {
             MemberCB.ItemsSource = admin.ListMembers();
-            MemberCB.Text = order.MemberID.ToString();
+
+            int i = 0;
+            IList<Member> members = admin.ListMembers();
+            foreach (Member m in members)
+            {
+                if (m.MemberID == order.MemberID)
+                {
+                    MemberCB.SelectedIndex = i;
+                }
+                else i++;
+            }
         }
 
         private void ArticleCB_Loaded(object sender, RoutedEventArgs e)
         {
             ArticleCB.ItemsSource = admin.ListArticles();
-            ArticleCB.Text = order.ArticleID.ToString();
+            
+            int i = 0;
+            IList<Article> articles = admin.ListArticles();
+            foreach (Article article in articles)
+            {
+                if (article.ArticleID == order.ArticleID)
+                {
+                    ArticleCB.SelectedIndex = i;
+                }
+                else i++;
+            }
         }
     }
 }
