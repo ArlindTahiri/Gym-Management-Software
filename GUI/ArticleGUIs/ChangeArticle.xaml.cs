@@ -68,7 +68,7 @@ namespace GUI.ArticleGUIs
 
                     int centPrice = Int32.Parse(euroPrice);
 
-                    admin.UpdateArticle(articleID, Name.Text, centPrice * 100, Int32.Parse(ActualStock.Text), Int32.Parse(TargetStock.Text));
+                    admin.UpdateArticle(articleID, Name.Text, centPrice, Int32.Parse(ActualStock.Text), Int32.Parse(TargetStock.Text));
 
                     GymHomepage home = new GymHomepage();
                     NavigationService.Navigate(home);
@@ -132,7 +132,7 @@ namespace GUI.ArticleGUIs
 
                         int centPrice = Int32.Parse(euroPrice);
 
-                        admin.UpdateArticle(articleID, Name.Text, centPrice * 100, Int32.Parse(ActualStock.Text), Int32.Parse(TargetStock.Text));
+                        admin.UpdateArticle(articleID, Name.Text, centPrice, Int32.Parse(ActualStock.Text), Int32.Parse(TargetStock.Text));
 
                         GymHomepage home = new GymHomepage();
                         NavigationService.Navigate(home);
