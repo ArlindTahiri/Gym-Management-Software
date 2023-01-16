@@ -431,10 +431,21 @@ namespace loremipsum.Gym.Impl
 
             if (order != null && member != null && article != null)
             {
-                if (article.ActualStock > amount)
+                if(order.ArticleID == articleID)
                 {
-                    persistence.UpdateOrder(order, member, article, amount);
+                    if(article.ActualStock+order.Amount>= amount)
+                    {
+                        persistence.UpdateOrder(order, member, article, amount);
+                    }
                 }
+                else
+                {
+                    if (article.ActualStock >= amount)
+                    {
+                        persistence.UpdateOrder(order, member, article, amount);
+                    }
+                }
+                
             }
         }
         #endregion

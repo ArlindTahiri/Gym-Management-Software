@@ -705,6 +705,7 @@ namespace loremipsum.Gym.Persistence
                     .FirstOrDefault();
 
                 oldArticle.ActualStock = oldArticle.ActualStock + order.Amount;
+                db.SaveChanges();
                 newArticle.ActualStock = newArticle.ActualStock - amount;
 
 
@@ -720,6 +721,7 @@ namespace loremipsum.Gym.Persistence
                     .FirstOrDefault();
 
                 oldMember.CurrentBill = oldMember.CurrentBill - oldArticle.Price * order.Amount;
+                db.SaveChanges();
                 newMember.CurrentBill = newMember.CurrentBill + newArticle.Price * amount;
 
 
