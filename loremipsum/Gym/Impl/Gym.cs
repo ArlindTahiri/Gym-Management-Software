@@ -271,7 +271,10 @@ namespace loremipsum.Gym.Impl
         /// <param name="article"></param>
         public void AddArticle(Article article)
         {
-           persistence.CreateArticle(article);
+            if(article.ActualStock>=0 && article.TargetStock > 0)
+            {
+                persistence.CreateArticle(article);
+            }
         }
 
         /// <summary>
@@ -329,7 +332,7 @@ namespace loremipsum.Gym.Impl
         public void UpdateArticle(int articleID, string articleName, int price, int actualStock, int targetStock)
         {
             Article article = persistence.FindArticle(articleID);
-            if(article != null)
+            if(article != null && actualStock>=0 && targetStock>0)
             {
                 persistence.UpdateArticle(article, articleName, price, actualStock, targetStock);
             }
@@ -574,14 +577,14 @@ namespace loremipsum.Gym.Impl
                     using (StreamWriter sw = File.CreateText(FileUrl))
                     {
                         sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
-                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                        sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
                     }
                 }
                 else
                 {
                     using (StreamWriter sw = File.AppendText(FileUrl))
                     {
-                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                        sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
                     }
                 }
 
@@ -608,22 +611,26 @@ namespace loremipsum.Gym.Impl
             //now write all contracts in csv
             foreach (Member member in members)
             {
-                int price = (int)((double)(daysInLastMonth-(member.TimeOfContractChange.Day-1)) / daysInLastMonth * persistence.FindContract(member.ContractID).Price);
-                if (!File.Exists(FileUrl))
+                if(member.TimeOfContractChange.Month == lastMonth.Month)
                 {
-                    using (StreamWriter sw = File.CreateText(FileUrl))
+                    int price = (int)((double)(daysInLastMonth - (member.TimeOfContractChange.Day - 1)) / daysInLastMonth * persistence.FindContract(member.ContractID).Price);
+                    if (!File.Exists(FileUrl))
                     {
-                        sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
-                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                        using (StreamWriter sw = File.CreateText(FileUrl))
+                        {
+                            sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
+                            sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + price + "," + "Vertrag" + "," + member.Iban + ",");
+                        }
+                    }
+                    else
+                    {
+                        using (StreamWriter sw = File.AppendText(FileUrl))
+                        {
+                            sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + price + "," + "Vertrag" + "," + member.Iban + ",");
+                        }
                     }
                 }
-                else
-                {
-                    using (StreamWriter sw = File.AppendText(FileUrl))
-                    {
-                        sw.WriteLine(currentDate.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
-                    }
-                }
+                
 
                 //done with writing all of the contracts in csv
             }
@@ -635,7 +642,7 @@ namespace loremipsum.Gym.Impl
             {
                 using (StreamWriter sw = File.AppendText(FileUrl))
                 {
-                    sw.WriteLine(currentDate.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + persistence.FindMember(order.MemberID).Iban + "," + order.Amount);
+                    sw.WriteLine(DateTime.Now.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + persistence.FindMember(order.MemberID).Iban + "," + order.Amount);
                 }
             }
             //done with writing all of the orders in csv
@@ -661,14 +668,14 @@ namespace loremipsum.Gym.Impl
                     using (StreamWriter sw = File.CreateText(FileUrl))
                     {
                         sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
-                        sw.WriteLine(currentDate.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
+                        sw.WriteLine(DateTime.Now.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
                     }
                 }
                 else
                 {
                     using (StreamWriter sw = File.AppendText(FileUrl))
                     {
-                        sw.WriteLine(currentDate.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
+                        sw.WriteLine(DateTime.Now.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
                     }
                 }
             }

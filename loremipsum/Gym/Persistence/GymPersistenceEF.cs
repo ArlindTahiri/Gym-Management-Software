@@ -601,10 +601,23 @@ namespace loremipsum.Gym.Persistence
                     article.ActualStock = article.ActualStock + order.Amount;
                     member.CurrentBill = member.CurrentBill - order.Amount * article.Price;
 
+                    db.SaveChanges();
+                }
+            }
+
+            using (GymContext db = new GymContext())
+            {
+                Order order = db.Orders
+                    .Where(b => b.OrderID == orderID)
+                    .FirstOrDefault();
+
+                if(order != null)
+                {
                     db.Orders.Remove(order);
                     db.SaveChanges();
                 }
             }
+
         }
 
         /// <summary>
@@ -614,7 +627,6 @@ namespace loremipsum.Gym.Persistence
         {
             using (GymContext db = new GymContext())
             {
-                IList<Order> orders = FindOrders();
                 IList<Member> members = FindMembers();
                 foreach (Member member in members)
                 {
@@ -626,9 +638,15 @@ namespace loremipsum.Gym.Persistence
                     member.CurrentBill = 0;
                     db.SaveChanges();
                 }
+            }
+
+            using (GymContext db = new GymContext())
+            {
+                IList<Order> orders = FindOrders();
                 db.Orders.RemoveRange(orders);
                 db.SaveChanges();
             }
+
         }
 
         /// <summary>
@@ -644,8 +662,13 @@ namespace loremipsum.Gym.Persistence
                         .Where(b => b.MemberID == memberID)
                         .Include(b => b.Orders)
                         .FirstOrDefault();
-                memberEF.CurrentBill = 0;
 
+                memberEF.CurrentBill = 0;
+                db.SaveChanges();
+            }
+
+            using (GymContext db = new GymContext())
+            {
                 db.Orders.RemoveRange(ordersofMember);
                 db.SaveChanges();
             }
