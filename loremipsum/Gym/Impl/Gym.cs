@@ -352,15 +352,19 @@ namespace loremipsum.Gym.Impl
             //order still exists with the orderID, but never was saved
             Article a1 = persistence.FindArticle(articleID);
             Member m1 = persistence.FindMember(memberID);
-            if (a1 != null && m1 != null)
+            if(amount>0)
             {
-                if(a1.ActualStock>=amount)
+                if (a1 != null && m1 != null)
                 {
-                    return persistence.CreateOrder(m1, a1, amount);//only save the order if the article&member exists and the amount is lower than actualstock
+                    if (a1.ActualStock >= amount)
+                    {
+                        return persistence.CreateOrder(m1, a1, amount);//only save the order if the article&member exists and the amount is lower than actualstock
+                    }
+                    else { return null; }
                 }
-                else { return null;}
+                else { return null; }
             }
-            else { return null;}
+            else { return null; }
         }
 
         /// <summary>
@@ -428,24 +432,26 @@ namespace loremipsum.Gym.Impl
             Order order = persistence.FindOrder(orderID);
             Member member = persistence.FindMember(memberID);
             Article article = persistence.FindArticle(articleID);
-
-            if (order != null && member != null && article != null)
+            if(amount>0)
             {
-                if(order.ArticleID == articleID)
+                if (order != null && member != null && article != null)
                 {
-                    if(article.ActualStock+order.Amount>= amount)
+                    if (order.ArticleID == articleID)
                     {
-                        persistence.UpdateOrder(order, member, article, amount);
+                        if (article.ActualStock + order.Amount >= amount)
+                        {
+                            persistence.UpdateOrder(order, member, article, amount);
+                        }
                     }
-                }
-                else
-                {
-                    if (article.ActualStock >= amount)
+                    else
                     {
-                        persistence.UpdateOrder(order, member, article, amount);
+                        if (article.ActualStock >= amount)
+                        {
+                            persistence.UpdateOrder(order, member, article, amount);
+                        }
                     }
+
                 }
-                
             }
         }
         #endregion
