@@ -99,7 +99,7 @@ namespace loremipsum.Gym
 
 
         //Checkout
-        void UpdateMembersTimeOfContractChange();
+        void UpdateMembersTimeOfContractChange(IList<Member> membersChangeTimeOfContractChange);
 
         void UpdateMemberTimeOfContractChange(Member member);
     }
