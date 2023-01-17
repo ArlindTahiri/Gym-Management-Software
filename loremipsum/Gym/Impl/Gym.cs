@@ -47,33 +47,45 @@ namespace loremipsum.Gym.Impl
         /// After this checkout of orders, this member has 0 orders. Now they will checkout the members contract. And after that the memberID will be forwared to persistence where said member will be deleted.
         /// </summary>
         /// <param name="memberID"></param>
-        public void DeleteMember(int memberID)
+        public bool DeleteMember(int memberID)
         {
             Member member = persistence.FindMember(memberID);
+            bool temp = false;
             if(member != null && !ListTrainingMembersID().Contains(memberID))
             {
-                CheckoutMemberForOrders(member);
-                if (ListAllOrdersFromMember(memberID) == null || ListAllOrdersFromMember(memberID).Count == 0)
+                
+                if(CheckoutMemberForOrders(member) == true)
                 {
-                    if (CheckoutMemberForChangingContract(member) == true)
+                    if (ListAllOrdersFromMember(memberID) == null || ListAllOrdersFromMember(memberID).Count == 0)
                     {
-                        persistence.DeleteMember(memberID);//only delete member if the member has 0 orders
-                    }
+                        if (CheckoutMemberForChangingContract(member) == true)
+                        {
+                            persistence.DeleteMember(memberID);//only delete member if the member has 0 orders
+                            temp = true;
+                        }
+                    }  
                 }
             }
+            return temp;
             
         }
 
         /// <summary>
         /// DeleteMembers checkouts all members orders, because of 1:n relation, and contracts. After that it will check if there are any members currently training, if false then it will forward it to persistence to delete all members. 
         /// </summary>
-        public void DeleteMembers()
+        public bool DeleteMembers()
         {
-            CheckOutMembers();
-            if(ListTrainingMembersID().Count==0 && (ListOrders() == null || ListOrders().Count == 0))
+            bool temp= false;
+            if (CheckOutMembers() == true)
             {
-                persistence.DeleteMembers();//only delete if there are no orders
+                if (ListTrainingMembersID().Count == 0 && (ListOrders() == null || ListOrders().Count == 0))
+                {
+                    persistence.DeleteMembers();//only delete if there are no orders
+                    temp = true;
+                }
             }
+            return temp;
+            
         }
 
         /// <summary>
@@ -91,17 +103,20 @@ namespace loremipsum.Gym.Impl
         /// </summary>
         /// <param name="memberID"></param>
         /// <param name="contractID"></param>
-        public void UpdateContractFromMember(int memberID, int contractID)
+        public bool UpdateContractFromMember(int memberID, int contractID)
         {
             Contract contract = persistence.FindContract(contractID);
             Member member = persistence.FindMember(memberID);
+            bool temp = false;
             if (member != null && contract != null)
             {
                 if (CheckoutMemberForChangingContract(member) == true)
                 {
                     persistence.UpdateContractFromMember(member, contract);//only update if they already exists
+                    temp = true;
                 }
             }
+            return temp;
         }
 
         /// <summary>
@@ -567,32 +582,36 @@ namespace loremipsum.Gym.Impl
 
             DateTime currentDate = DateTime.Now.Date;
             int daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
-
-            if(currentDate.Month == member.TimeOfContractChange.Month)//only let member change their Contract when we already did checkout.(check if TimeOfContractChange has the same month as todays month.)
+            try
             {
-                int price = (int)((double)currentDate.Day / daysInMonth * contract.Price);
-                string FileUrl = "MemberBills.csv";
-                if (!File.Exists(FileUrl))
+                if (currentDate.Month == member.TimeOfContractChange.Month)//only let member change their Contract when we already did checkout.(check if TimeOfContractChange has the same month as todays month.)
                 {
-                    using (StreamWriter sw = File.CreateText(FileUrl))
+                    int price = (int)((double)currentDate.Day / daysInMonth * contract.Price);
+                    string FileUrl = "MemberBills.csv";
+                    if (!File.Exists(FileUrl))
                     {
-                        sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
-                        sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                        using (StreamWriter sw = File.CreateText(FileUrl))
+                        {
+                            sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
+                            sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                        }
                     }
-                }
-                else
-                {
-                    using (StreamWriter sw = File.AppendText(FileUrl))
+                    else
                     {
-                        sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                        using (StreamWriter sw = File.AppendText(FileUrl))
+                        {
+                            sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                        }
                     }
-                }
 
-                //set TimeOfContractChange to today
-                persistence.UpdateMemberTimeOfContractChange(member);
-                return true;
+                    //set TimeOfContractChange to today
+                    persistence.UpdateMemberTimeOfContractChange(member);
+                    return true;
+                }
+                else { return false; }
             }
-            else { return false; }
+            catch (IOException) { return false; }
+            
         }
 
         /// <summary>
@@ -600,7 +619,7 @@ namespace loremipsum.Gym.Impl
         /// started at the gym or the first date of the old month. After this contract checkout the attribut TimeofContractChange of all the members will be set to the first of the current month.
         /// After that all the orders will be checkouted and stored in the MemberBills.csv File. Then all the orders will be deleted.
         /// </summary>
-        public void CheckOutMembers()
+        public bool CheckOutMembers()
         {
             IList<Member> members = persistence.FindMembers();
             IList<Order> orders = persistence.FindOrders();
@@ -608,78 +627,92 @@ namespace loremipsum.Gym.Impl
             DateTime lastMonth = DateTime.Now.Date.AddMonths(-1);
             int daysInLastMonth = DateTime.DaysInMonth(lastMonth.Year, lastMonth.Month);
             string FileUrl = "MemberBills.csv";
+            IList<Member> membersChangeTimeOfContractChange = new List<Member>();
             //now write all contracts in csv
-            foreach (Member member in members)
+            try
             {
-                if(member.TimeOfContractChange.Month == lastMonth.Month)
+                foreach (Member member in members)
                 {
-                    int price = (int)((double)(daysInLastMonth - (member.TimeOfContractChange.Day - 1)) / daysInLastMonth * persistence.FindContract(member.ContractID).Price);
-                    if (!File.Exists(FileUrl))
+                    if (member.TimeOfContractChange.Month == lastMonth.Month)
                     {
-                        using (StreamWriter sw = File.CreateText(FileUrl))
+                        int price = (int)((double)(daysInLastMonth - (member.TimeOfContractChange.Day - 1)) / daysInLastMonth * persistence.FindContract(member.ContractID).Price);
+                        if (!File.Exists(FileUrl))
                         {
-                            sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
-                            sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + price + "," + "Vertrag" + "," + member.Iban + ",");
+                            using (StreamWriter sw = File.CreateText(FileUrl))
+                            {
+                                sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
+                                sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + price + "," + "Vertrag" + "," + member.Iban + ",");
+                            }
                         }
+                        else
+                        {
+                            using (StreamWriter sw = File.AppendText(FileUrl))
+                            {
+                                sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + price + "," + "Vertrag" + "," + member.Iban + ",");
+                            }
+                        }
+                        membersChangeTimeOfContractChange.Add(member);
                     }
-                    else
+
+
+                    //done with writing all of the contracts in csv
+                }
+                //now set the TimeOfContractChange of each Member, which got checkouted to the first of the month
+                persistence.UpdateMembersTimeOfContractChange(membersChangeTimeOfContractChange);
+
+                //now write all orders in csv
+                foreach (Order order in orders)
+                {
+                    using (StreamWriter sw = File.AppendText(FileUrl))
                     {
-                        using (StreamWriter sw = File.AppendText(FileUrl))
-                        {
-                            sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + price + "," + "Vertrag" + "," + member.Iban + ",");
-                        }
+                        sw.WriteLine(DateTime.Now.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + persistence.FindMember(order.MemberID).Iban + "," + order.Amount);
                     }
                 }
-                
-
-                //done with writing all of the contracts in csv
+                //done with writing all of the orders in csv
+                //now set CurrentBill to right one --> 0 for every member
+                DeleteOrders();
+                return true;
             }
-            //now set the TimeOfContractChange of each Member of first of month
-            persistence.UpdateMembersTimeOfContractChange();
-
-            //now write all orders in csv
-            foreach (Order order in orders)
-            {
-                using (StreamWriter sw = File.AppendText(FileUrl))
-                {
-                    sw.WriteLine(DateTime.Now.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + persistence.FindMember(order.MemberID).Iban + "," + order.Amount);
-                }
-            }
-            //done with writing all of the orders in csv
-            //now set CurrentBill to right one --> 0 for every member
-            DeleteOrders();
+            catch (IOException) { return false; }
+            
         }
 
         /// <summary>
         /// Checkouts all the orders of a Member. Therefor it will get all the orders of this member and then store them in the MemberBills.csv file. After that all the orders of this member will be removed.
         /// </summary>
         /// <param name="member"></param>
-        public void CheckoutMemberForOrders(Member member)
+        public bool CheckoutMemberForOrders(Member member)
         {
             DateTime currentDate = DateTime.Now.Date;
             string FileUrl = "MemberBills.csv";
             IList<Order> ordersFromMember = ListAllOrdersFromMember(member.MemberID);
 
-            //now write all orders in csv
-            foreach (Order order in ordersFromMember)
+            try
             {
-                if (!File.Exists(FileUrl))
+                //now write all orders in csv
+                foreach (Order order in ordersFromMember)
                 {
-                    using (StreamWriter sw = File.CreateText(FileUrl))
+                    if (!File.Exists(FileUrl))
                     {
-                        sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
-                        sw.WriteLine(DateTime.Now.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
+                        using (StreamWriter sw = File.CreateText(FileUrl))
+                        {
+                            sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
+                            sw.WriteLine(DateTime.Now.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
+                        }
+                    }
+                    else
+                    {
+                        using (StreamWriter sw = File.AppendText(FileUrl))
+                        {
+                            sw.WriteLine(DateTime.Now.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
+                        }
                     }
                 }
-                else
-                {
-                    using (StreamWriter sw = File.AppendText(FileUrl))
-                    {
-                        sw.WriteLine(DateTime.Now.ToString() + "," + order.MemberID + "," + order.OrderID + "," + persistence.FindArticle(order.ArticleID).Price * order.Amount + "," + "Bestellung" + "," + member.Iban + "," + order.Amount);
-                    }
-                }
+                persistence.DeleteOrders(ordersFromMember, member.MemberID);
+                return true;
             }
-            persistence.DeleteOrders(ordersFromMember, member.MemberID);
+            catch (IOException) { return false; }
+            
         }
         #endregion
 

@@ -872,16 +872,15 @@ namespace loremipsum.Gym.Persistence
 
         #region Checkout
         /// <summary>
-        /// Updates the attribut TimeOfContractChange of every member to the first day of the month.
+        /// Updates the attribut TimeOfContractChange of every member, which got checkouted to the first day of the month.
         /// </summary>
-        public void UpdateMembersTimeOfContractChange()
+        public void UpdateMembersTimeOfContractChange(IList<Member> membersChangeTimeOfContractChange)
         {
-            IList<Member> members = FindMembers();
             DateTime firstDayOfCurrentMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).Date;
 
             using (GymContext db = new GymContext())
             {
-                foreach (Member member in members)
+                foreach (Member member in membersChangeTimeOfContractChange)
                 {
                     Member memberEF = db.Members
                     .Where(b => b.MemberID == member.MemberID)

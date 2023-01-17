@@ -7,15 +7,15 @@ namespace loremipsum.Gym
         //Member
         Member AddMember(int contractID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday);
 
-        void DeleteMember(int memberID);
+        bool DeleteMember(int memberID);
 
         IList<Member> ListMembers();
 
-        void DeleteMembers();
+        bool DeleteMembers();
 
         void UpdateMember(int memberID, string forename, string surname, string street, int postcalCode, string city, string country, string eMail, string iban, DateTime birthday);
 
-        void UpdateContractFromMember(int memberID, int contractID);
+        bool UpdateContractFromMember(int memberID, int contractID);
 
         //Contract
         void AddContract(Contract contract);
@@ -82,9 +82,9 @@ namespace loremipsum.Gym
         //Checkout
         bool CheckoutMemberForChangingContract(Member member);
 
-        void CheckOutMembers();
+        bool CheckOutMembers();
 
-        void CheckoutMemberForOrders(Member member);
+        bool CheckoutMemberForOrders(Member member);
 
         //CurrentlyTrainingMembers
         void InsertTrainingMember(int memberID);
