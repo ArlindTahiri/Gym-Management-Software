@@ -16,6 +16,7 @@ namespace UnitTestLoremIpsum
         private IProductAdmin Admin;
         private IProductModule Query;
         private Contract c1, c2, c3, c4;
+        private Member m1;
 
 
         [TestInitialize()]
@@ -30,6 +31,8 @@ namespace UnitTestLoremIpsum
 
         public void GenerateTestData()
         {
+            Admin.DeleteMembers();
+            Admin.DeleteContracts();
             c1 = new Contract("Normal Plan", 1999);
             c2 = new Contract("Normal Plan", 1999);
             c3 = new Contract("Premium Plan", 2999);
@@ -42,27 +45,28 @@ namespace UnitTestLoremIpsum
             //Add the contract c1
             Admin.AddContract(c1);
 
-
             //Test if the contract is in the database
             Assert.IsTrue(Query.GetContractDetails(c1.ContractID).CompareTo(c1) == 0);
+        }
 
+        [TestMethod]
+        public void ListContracts()
+        {
+            //add an contract and than check if there are contracts
+            Admin.AddContract(c1);
+            IList<Contract> contracts = Admin.ListContracts();
+            Assert.IsTrue(contracts.Count > 0);
 
-            //Test if you can upload the same contract multiple times:
-            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.AddContract(c1));
-
-
-            //Test if you can upload different contract object but same properties.
-            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.AddContract(c2));
-
-
-            //Add also the other contracts
-            Admin.AddContract(c3);
-            Admin.AddContract(c4);
+            //now delete them and check again
+            Admin.DeleteContracts();
+            contracts = Admin.ListContracts();
+            Assert.IsTrue(contracts.Count == 0);
         }
 
         [TestMethod]
         public void UpdateContract()
         {
+            Admin.AddContract(c3);
             //Test if you can update Contract Properties
             Admin.UpdateContract(c3.ContractID,"Premium Pro Plan", 3499);
             Contract newContract = Query.GetContractDetails(c3.ContractID);
@@ -72,18 +76,42 @@ namespace UnitTestLoremIpsum
         [TestMethod]
         public void DeleteContract()
         {
-            //Test if you can delete one of the contracts
+            //add an contract and than check if you can delete it
+            Admin.AddContract(c1);
+            Assert.IsNotNull(Query.GetContractDetails(c1.ContractID));
             Admin.DeleteContract(c1.ContractID);
-            Assert.IsNull(Query.GetContractDetails(c1.ContractID));
+            Assert.IsNull(Query.GetArticleDetails(c1.ContractID));
 
-            //Test if you can delete the same contract multiple times
-            Assert.ThrowsException<Microsoft.EntityFrameworkCore.DbUpdateException>(() => Admin.DeleteContract(c1.ContractID));
+            //add an member who has the contract c2 and than try to delete c2
+            Admin.AddContract(c2);
+            m1 = Admin.AddMember(c2.ContractID, "Martin", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
+                    "martinmeyer@gmail.com", "DE94500105172327561324", new DateTime(1990, 11, 24));
+            Admin.DeleteContract(c2.ContractID);
+            Assert.IsNotNull(Query.GetContractDetails(c2.ContractID));
 
-            //Test if you can delete all of the rest contracts
-            Admin.DeleteContracts();
-            Assert.IsNull(Query.GetContractDetails(c3.ContractID));
-            Assert.IsNull(Query.GetContractDetails(c4.ContractID));
+            Admin.DeleteMember(m1.MemberID);
+            Admin.DeleteContract(c2.ContractID);
         }
 
+        [TestMethod]
+        public void deleteContracts()
+        {
+            //add contracts and members
+            Admin.AddContract(c1);
+            Admin.AddContract(c2);
+            m1 = Admin.AddMember(c2.ContractID, "Martin", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
+                    "martinmeyer@gmail.com", "DE94500105172327561324", new DateTime(1990, 11, 24));
+            
+            //check if you can delete all contracts even if members exists
+            Admin.DeleteContracts();
+            IList<Contract> contracts = Admin.ListContracts();
+            Assert.IsTrue(contracts.Count > 0);
+
+            //delete all members and try again
+            Admin.DeleteMembers();
+            Admin.DeleteContracts();
+            contracts = Admin.ListContracts();
+            Assert.IsTrue(contracts.Count == 0);
+        }
     }
 }
