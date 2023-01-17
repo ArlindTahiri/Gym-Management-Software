@@ -31,7 +31,6 @@ namespace GUI.EmployeeGUIs
     public partial class AddAndEditEmployee : Page
     {
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private Employee employee;
         private int ID;
@@ -85,8 +84,7 @@ namespace GUI.EmployeeGUIs
 
                                         admin.AddEmployee(employee);
                                         GymHomepage home = new GymHomepage();
-                                        NavigationService.Navigate(home);
-                                        log.Info("Added employee: " + employee.ToString() + "... and returned to homepage");
+                                        NavigationService.Navigate(home);                 
                                     }
                                     else
                                     {

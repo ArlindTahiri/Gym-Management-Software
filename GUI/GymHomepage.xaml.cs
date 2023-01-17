@@ -33,10 +33,15 @@ namespace GUI
 
         
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-       
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public GymHomepage()
         {
-            InitializeComponent();         
+            InitializeComponent();
+
+            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
+            var fileInfo = new FileInfo(@"log4net.config");
+            XmlConfigurator.Configure(repository, fileInfo);
         }
 
         private void Member_Click(object sender, RoutedEventArgs e)
@@ -106,6 +111,7 @@ namespace GUI
                 CurrentlyTraining.Foreground = Brushes.White;
             } else
             {
+                log.Error("There are too many members in the gym: " + admin.ListTrainingMembers().Count + "!");
                 CurrentlyTraining.Foreground = Brushes.White;
             }
         }

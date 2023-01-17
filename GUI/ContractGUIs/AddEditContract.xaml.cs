@@ -32,16 +32,9 @@ namespace GUI.ContractGUIs
         int Id;
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public AddEditContract()
         {
             InitializeComponent();
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
-
-            log.Info("Opened AddContract page");
         }
 
         public AddEditContract(int contractID)
@@ -52,6 +45,10 @@ namespace GUI.ContractGUIs
             ContractType.Text = Contract.ContractType;
             Price.Text = Contract.Price.ToString();
             AddContractButton.Content = "Vertrag bearbeiten";
+
+            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
+            var fileInfo = new FileInfo(@"log4net.config");
+            XmlConfigurator.Configure(repository, fileInfo);
         }
 
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
@@ -87,9 +84,7 @@ namespace GUI.ContractGUIs
                     if (Contract == null)
                     {
                         Contract newContract = new Contract(ContractType.Text, Int32.Parse(Price.Text));
-                        admin.AddContract(newContract);
-
-                        log.Info("Created the new contract: " + newContract.ToString() + "... and returned to GymHomepage");
+                        admin.AddContract(newContract);                   
 
                         ContractPage contractPage = new ContractPage();
                         NavigationService.Navigate(contractPage);
@@ -152,10 +147,7 @@ namespace GUI.ContractGUIs
                     {
 
                         Contract newContract = new Contract(ContractType.Text, Int32.Parse(Price.Text));
-                        admin.AddContract(newContract);
-
-                        log.Info("Created the new contract: " + newContract.ToString() + "... and returned to GymHomepage");
-
+                        admin.AddContract(newContract);                    
                         GymHomepage gymHomepage = new GymHomepage();
                         NavigationService.Navigate(gymHomepage);
                     }

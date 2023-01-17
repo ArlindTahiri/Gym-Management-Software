@@ -27,17 +27,10 @@ namespace GUI.ContractGUIs
     public partial class ContractPage : Page
     {
 
-        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];      
         public ContractPage()
         {
-          InitializeComponent();
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
-
-            log.Info("Opened Contract Page");
+          InitializeComponent();        
         }
 
         private void DeleteContractButton_Click(object sender, RoutedEventArgs e)
@@ -48,7 +41,6 @@ namespace GUI.ContractGUIs
 
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
         {
-            log.Info("Clicked on the AddContract button");
             AddEditContract addContract = new AddEditContract();
             NavigationService.Navigate(addContract);
         }

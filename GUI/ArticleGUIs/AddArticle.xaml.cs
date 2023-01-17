@@ -28,18 +28,11 @@ namespace GUI.ArticleGUIs
     /// </summary>
     public partial class AddArticle : Page
     {
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+       
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public AddArticle()
         {
-            InitializeComponent();
-
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
-
-            log.Info("Opened AddArticle Page");
+            InitializeComponent();                 
         }
 
         private void AddArticle1_Click(object sender, RoutedEventArgs e)
@@ -73,7 +66,6 @@ namespace GUI.ArticleGUIs
                     GymHomepage home = new GymHomepage();
                     NavigationService.Navigate(home);
 
-                    log.Info("Added article: " + article.ToString() + "... and returned to homepage");
                 }
             }
             else
@@ -138,9 +130,7 @@ namespace GUI.ArticleGUIs
                         admin.AddArticle(article);
 
                         GymHomepage home = new GymHomepage();
-                        NavigationService.Navigate(home);
-
-                        log.Info("Added article: " + article.ToString() + "... and returned to homepage");
+                        NavigationService.Navigate(home);                     
                     }
                 }
                 else

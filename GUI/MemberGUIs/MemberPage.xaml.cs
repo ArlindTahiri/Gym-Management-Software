@@ -27,7 +27,6 @@ namespace GUI.MemberGUIs
         public MemberPage()
         {
             InitializeComponent();
-
         }
       
         private void MemberData_Loaded(object sender, RoutedEventArgs e)

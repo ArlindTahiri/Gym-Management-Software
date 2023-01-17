@@ -36,7 +36,8 @@ namespace GUI
     public partial class DeletePage : Page
     {
         IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];     
+        IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private string destination;
         private int ID;
         private string _name;
@@ -69,7 +70,7 @@ namespace GUI
                     break;
 
                 case "CheckoutMembers": QuestionLabel.Content = "Wollen Sie wirklich bei allen Mitgliedern einen Kassensturz durchführen?";
-                    break;
+                    break;                
             }                  
         }
 
@@ -119,6 +120,10 @@ namespace GUI
                     QuestionBox.Text = query.GetOrderDetails(ID).ToString();
                     break;
             }
+
+            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
+            var fileInfo = new FileInfo(@"log4net.config");
+            XmlConfigurator.Configure(repository, fileInfo);
         }
       
 
@@ -160,7 +165,7 @@ namespace GUI
             }
 
             if (destination.Equals("Order"))
-            {
+            {             
                 admin.DeleteOrders();
                 OrderPage orderPage = new OrderPage();
                 NavigationService.Navigate(orderPage);
@@ -215,6 +220,8 @@ namespace GUI
 
             if (destination.Equals("DeleteOrder"))
             {
+                Order orderToDelete = query.GetOrderDetails(ID);
+                log.Info("Returned the order: " + orderToDelete.ToString());
                 admin.DeleteOrder(ID);
                 OrderPage orderPage = new OrderPage();
                 NavigationService.Navigate(orderPage);

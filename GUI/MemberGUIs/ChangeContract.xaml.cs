@@ -1,11 +1,17 @@
-﻿using loremipsum.Gym;
+﻿using log4net;
+using log4net.Config;
+using log4net.Repository;
+using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Diagnostics.Metrics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,11 +34,11 @@ namespace GUI.MemberGUIs
     {
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-
+        private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];     
 
         public ChangeContract()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
 
         private void ChangeButton_Click(object sender, RoutedEventArgs e)
@@ -40,30 +46,25 @@ namespace GUI.MemberGUIs
             Contract c = (Contract)ContractCB.SelectedItem;
             if (!ContractCB.Text.IsNullOrEmpty())
             {
-                IList<Member> members = admin.ListMembers();
-                foreach(Member member in members)
+                if (query.GetMemberDetails(Int32.Parse(IDCheck.Text)) != null)
                 {
-                    if(member.MemberID == Int32.Parse(IDCheck.Text))
+                    Member changingMember = query.GetMemberDetails(Int32.Parse(IDCheck.Text));
+                    Contract contractChanging = query.GetContractDetails(changingMember.ContractID);
+                    if (c.ContractID != changingMember.ContractID)
                     {
-                        if (c.ContractID != member.ContractID)
-                        {
-
-                            admin.UpdateContractFromMember(Int32.Parse(IDCheck.Text), c.ContractID);
-
-                            GymHomepage home = new GymHomepage();
-                            NavigationService.Navigate(home);
-                        }
-                        else
-                        {
-                            WarningText.Text = "Dies ist schon der aktuelle Vertrag des Mitgliedes";
-                            break;
-                        }
+                        admin.UpdateContractFromMember(Int32.Parse(IDCheck.Text), c.ContractID);
+                        GymHomepage home = new GymHomepage();
+                        NavigationService.Navigate(home);
                     }
                     else
                     {
-                        WarningText.Text = "Dieses Mitglied existiert nicht";
+                        WarningText.Text = "Dies ist schon der aktuelle Vertrag des Mitgliedes";
                     }
                 }
+                else
+                {
+                    WarningText.Text = "Dieses Mitglied existiert nicht";
+                }           
             }
             else
             {
@@ -88,41 +89,36 @@ namespace GUI.MemberGUIs
 
         private void IDCheck_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 Contract c = (Contract)ContractCB.SelectedItem;
                 if (!ContractCB.Text.IsNullOrEmpty())
                 {
-                    IList<Member> members = admin.ListMembers();
-                    foreach (Member member in members)
+                    if (query.GetMemberDetails(Int32.Parse(IDCheck.Text)) != null)
                     {
-                        if (member.MemberID == Int32.Parse(IDCheck.Text))
+                        Member changingMember = query.GetMemberDetails(Int32.Parse(IDCheck.Text));
+                        Contract contractChanging = query.GetContractDetails(changingMember.ContractID);
+                        if (c.ContractID != changingMember.ContractID)
                         {
-                            if (c.ContractID != member.ContractID)
-                            {
-
-                                admin.UpdateContractFromMember(Int32.Parse(IDCheck.Text), c.ContractID);
-
-                                GymHomepage home = new GymHomepage();
-                                NavigationService.Navigate(home);
-                            }
-                            else
-                            {
-                                WarningText.Text = "Dies ist schon der aktuelle Vertrag des Mitgliedes";
-                                break;
-                            }
+                            admin.UpdateContractFromMember(Int32.Parse(IDCheck.Text), c.ContractID);
+                            GymHomepage home = new GymHomepage();
+                            NavigationService.Navigate(home);
                         }
                         else
                         {
-                            WarningText.Text = "Dieses Mitglied existiert nicht";
+                            WarningText.Text = "Dies ist schon der aktuelle Vertrag des Mitgliedes";
                         }
+                    }
+                    else
+                    {
+                        WarningText.Text = "Dieses Mitglied existiert nicht";
                     }
                 }
                 else
                 {
                     WarningText.Text = "Bitte geben Sie für alle Daten etwas ein!";
-                }
+                }           
+            }
             }
         }
     }
-}

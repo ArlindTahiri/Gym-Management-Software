@@ -34,7 +34,7 @@ namespace GUI
     {
 
         private string destination;
-        private IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private int ID;
         private string login;

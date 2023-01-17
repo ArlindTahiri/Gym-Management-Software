@@ -31,10 +31,10 @@ namespace GUI.ArticleGUIs
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private Article article;
         private int articleID;
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
+       
         public ChangeArticle(int articleID)
         {
             InitializeComponent();
@@ -48,8 +48,6 @@ namespace GUI.ArticleGUIs
             ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
             var fileInfo = new FileInfo(@"log4net.config");
             XmlConfigurator.Configure(repository, fileInfo);
-
-            log.Info("Opened ChangeArticle Page");
         }
 
         private void ChangeArticleButton_Click(object sender, RoutedEventArgs e)
@@ -79,6 +77,11 @@ namespace GUI.ArticleGUIs
 
                     GymHomepage home = new GymHomepage();
                     NavigationService.Navigate(home);
+                }
+
+                if (article.ActualStock > Int32.Parse(ActualStock.Text))
+                { 
+                    log.Info("The amount of the article: "+article.ToString()+" has been lowered to: "+ActualStock.Text);
                 }
             }
             else

@@ -28,7 +28,6 @@ namespace GUI.EmployeeGUIs
     public partial class EmployeePage : Page
     {
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public EmployeePage()
         {
             InitializeComponent();
@@ -36,8 +35,6 @@ namespace GUI.EmployeeGUIs
             ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
             var fileInfo = new FileInfo(@"log4net.config");
             XmlConfigurator.Configure(repository, fileInfo);
-
-            log.Info("Opened Employee Page");
         }
 
         private void EditEmployee_Click(object sender, RoutedEventArgs e)

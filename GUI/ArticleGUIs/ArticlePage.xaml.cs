@@ -35,13 +35,7 @@ namespace GUI.ArticleGUIs
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         public ArticlePage()
         {
-            InitializeComponent();
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
-
-            log.Info("Opened Article Page");
+            InitializeComponent();          
         }
 
         private void ArticleInventory_Loaded(object sender, RoutedEventArgs e)

@@ -28,9 +28,7 @@ namespace GUI.MemberGUIs
     {
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-       
-       
-        
+             
         public AddMember()
         {
             InitializeComponent();

@@ -25,7 +25,6 @@ namespace GUI.Order_GUIs
     {
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        private readonly IGymPersistence persistence = (IGymPersistence)Application.Current.Properties["IGymPersistence"];
         private int orderID;
         private Order order;
 
