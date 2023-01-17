@@ -52,9 +52,11 @@ namespace GUI.MemberGUIs
                     Contract contractChanging = query.GetContractDetails(changingMember.ContractID);
                     if (c.ContractID != changingMember.ContractID)
                     {
-                        admin.UpdateContractFromMember(Int32.Parse(IDCheck.Text), c.ContractID);
-                        GymHomepage home = new GymHomepage();
-                        NavigationService.Navigate(home);
+                        if(!admin.UpdateContractFromMember(Int32.Parse(IDCheck.Text), c.ContractID)) { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                        else {
+                            MemberPage memberPage = new MemberPage();
+                            NavigationService.Navigate(memberPage);
+                        }
                     }
                     else
                     {
@@ -100,9 +102,12 @@ namespace GUI.MemberGUIs
                         Contract contractChanging = query.GetContractDetails(changingMember.ContractID);
                         if (c.ContractID != changingMember.ContractID)
                         {
-                            admin.UpdateContractFromMember(Int32.Parse(IDCheck.Text), c.ContractID);
-                            GymHomepage home = new GymHomepage();
-                            NavigationService.Navigate(home);
+                            if (!admin.UpdateContractFromMember(Int32.Parse(IDCheck.Text), c.ContractID)) { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                            else
+                            {
+                                MemberPage memberPage = new MemberPage();
+                                NavigationService.Navigate(memberPage);
+                            }
                         }
                         else
                         {

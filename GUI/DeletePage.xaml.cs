@@ -131,9 +131,13 @@ namespace GUI
         {
             if(destination.Equals("Member"))
             {
-                admin.DeleteMembers();
-                MemberPage memberPage = new MemberPage();
-                NavigationService.Navigate(memberPage);
+                if (!admin.DeleteMembers()) { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                else
+                {
+                    MemberPage memberPage = new MemberPage();
+                    NavigationService.Navigate(memberPage);
+                }
+                
             }
 
             if (destination.Equals("Employee"))
@@ -173,14 +177,30 @@ namespace GUI
 
             if (destination.Equals("Home"))
             {
-                admin.DeleteArticles();
-                admin.DeleteContracts();
-                admin.DeleteLogIns();
-                admin.DeleteMembers();
-                admin.DeleteEmployees();
-                admin.DeleteOrders();
-                GymHomepage gymHomepage = new GymHomepage();
-                NavigationService.Navigate(gymHomepage);
+                IList<int> currentlytrainingmember= admin.ListTrainingMembersID();
+                foreach(int memberID in currentlytrainingmember)
+                {
+                    admin.DeleteTrainingMember(memberID);
+                }
+                if (admin.CheckOutMembers())
+                {
+                    admin.DeleteEmployees();
+                    admin.DeleteOrders();
+                    if (admin.DeleteMembers())
+                    {
+                        admin.DeleteArticles();
+                        admin.DeleteMembers();
+                        admin.DeleteContracts();
+                        admin.DeleteLogIns();
+                    }
+                    else { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                    
+                }
+                else { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                
+
+                AddEditLogin addEditLogin = new AddEditLogin("FirstTime");
+                NavigationService.Navigate(addEditLogin);
             }
 
             if (destination.Equals("DeleteArticle"))
@@ -213,9 +233,12 @@ namespace GUI
 
             if (destination.Equals("DeleteMember"))
             {
-                admin.DeleteMember(ID);
-                MemberPage memberPage = new MemberPage();
-                NavigationService.Navigate(memberPage);
+                if (!admin.DeleteMember(ID)) { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                else
+                {
+                    MemberPage memberPage = new MemberPage();
+                    NavigationService.Navigate(memberPage);
+                }
             }
 
             if (destination.Equals("DeleteOrder"))
@@ -229,8 +252,13 @@ namespace GUI
 
             if (destination.Equals("CheckoutMembers"))
             {
-                admin.CheckOutMembers();
-                EmployeePage employeePage= new EmployeePage();
+                if (!admin.CheckOutMembers()) { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                else
+                {
+                    EmployeePage employeePage = new EmployeePage();
+                    NavigationService.Navigate(employeePage);
+                }
+                
             }
         }
 
@@ -317,6 +345,7 @@ namespace GUI
             if (destination.Equals("CheckoutMembers"))
             {            
                 EmployeePage employeePage = new EmployeePage();
+                NavigationService.Navigate(employeePage);
             }
         }
     }
