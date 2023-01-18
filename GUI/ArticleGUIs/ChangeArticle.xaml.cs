@@ -45,8 +45,6 @@ namespace GUI.ArticleGUIs
             Price.Text = ((double)article.Price / 100).ToString();
             TargetStock.Text = article.TargetStock.ToString();
             ActualStock.Text = article.ActualStock.ToString();
-            
-            
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
@@ -55,48 +53,6 @@ namespace GUI.ArticleGUIs
             NavigationService.Navigate(articlePage);
         }
 
-        private void ChangeArticleButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!Name.Text.IsNullOrEmpty() && !Price.Text.IsNullOrEmpty() && !TargetStock.Text.IsNullOrEmpty() && !ActualStock.Text.IsNullOrEmpty())
-            {
-                if (Price.Text.Contains(".") || Price.Text.Contains(","))
-                {
-                    string[] string_remove = { ".", "," };
-                    string euroPrice = Price.Text;
-
-                    foreach (string c in string_remove)
-                    {
-                        euroPrice = euroPrice.Replace(c, "");
-                    }
-
-                    int centPrice = Int32.Parse(euroPrice);
-
-                    admin.UpdateArticle(articleID, Name.Text, centPrice, Int32.Parse(ActualStock.Text), Int32.Parse(TargetStock.Text));
-
-                    GymHomepage home = new GymHomepage();
-                    NavigationService.Navigate(home);
-                }
-                else
-                {                 
-                    admin.UpdateArticle(articleID, Name.Text, Int32.Parse(Price.Text), Int32.Parse(ActualStock.Text), Int32.Parse(TargetStock.Text));
-
-                    GymHomepage home = new GymHomepage();
-                    NavigationService.Navigate(home);
-                }
-
-                if (article.ActualStock > Int32.Parse(ActualStock.Text))
-                { 
-
-                    log.Info("The amount of the article: "+article.ToString()+" has been lowered to: "+ActualStock.Text);
-                }
-            }
-            else
-            {
-                WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
-            }
-
-
-        }
 
         private void Price_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

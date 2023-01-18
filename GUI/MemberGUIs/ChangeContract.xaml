@@ -10,18 +10,31 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="116*"/>
-            <RowDefinition Height="123*"/>
+            <RowDefinition Height="150*"/>
             <RowDefinition Height="120*"/>
-            <RowDefinition Height="91*"/>
+            <RowDefinition Height="120*"/>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="120*"/>
             <RowDefinition Height="450*"/>
         </Grid.RowDefinitions>
-        <Label Content="Bitte geben Sie die ID des Mitglieds ein, das Sie bearbeiten wollen" Margin="366,32,366,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Height="56" VerticalAlignment="Top"/>
-        <TextBox Style="{DynamicResource RoundedTextBox}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="IDCheck" TextWrapping="Wrap" Text="" VerticalAlignment="Center" PreviewTextInput="IDCheck_PreviewTextInput" PreviewKeyDown="IDCheck_PreviewKeyDown" Height="56" Grid.Row="1" Margin="245,0,245,0"/>
-        <TextBlock x:Name="WarningText" TextWrapping="Wrap" Foreground="#FFD40303" TextAlignment="Center" FontSize="30" Grid.Row="3" Margin="444,0,444,10" Height="54" VerticalAlignment="Bottom"/>
-        <ComboBox x:Name="ContractCB" HorizontalAlignment="Center" Height="63" Margin="0,26,0,0" VerticalAlignment="Top" Width="674" Loaded="ContractCB_Loaded" Grid.Row="2"/>
-        <Button Foreground="White" Background="#437CD8" x:Name="ChangeButton" Content="Vertrag ändern" Margin="562,30,562,0" Click="ChangeButton_Click" Style="{DynamicResource RoundedButtonsStyle}" FontSize="30" Grid.Row="4" Height="108" VerticalAlignment="Top"/>
-        <DataGrid x:Name="MemberData" Margin="20,157,20,20" Loaded="MemberData_Loaded"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="4">
+        
+        <Label Content="Bitte geben Sie die ID des Mitglieds ein, das Sie bearbeiten wollen" Margin="350,20,350,20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" />
+
+        <Viewbox Grid.Row="1" Margin="300,10,300,10">
+            <TextBox Style="{DynamicResource RoundedTextBox}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="IDCheck" TextWrapping="Wrap" Text="" Margin="0" PreviewTextInput="IDCheck_PreviewTextInput" PreviewKeyDown="IDCheck_PreviewKeyDown" />
+        </Viewbox>
+        
+
+        <Viewbox Grid.Row="2" Margin="500,10,500,10">
+            <ComboBox x:Name="ContractCB" MinWidth="165" Loaded="ContractCB_Loaded" />
+        </Viewbox>
+
+
+        <TextBlock x:Name="WarningText" TextWrapping="Wrap" Foreground="#FFD40303" TextAlignment="Center" FontSize="30" Grid.Row="3" Margin="444,10,444,10" Height="54" />
+
+        <Button Foreground="White" Background="#437CD8" x:Name="ChangeButton" Content="Vertrag ändern" Margin="550,10,550,10" Click="ChangeButton_Click" Style="{DynamicResource RoundedButtonsStyle}" FontSize="30" Grid.Row="4"  />
+       
+        <DataGrid x:Name="MemberData" Margin="20,10,20,20" Loaded="MemberData_Loaded"  AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.Row="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="10*" MinWidth="45" Binding="{Binding MemberID}" />
                 <DataGridTextColumn Header="Vorname" Width="30*" MinWidth="10" Binding="{Binding Forename}" />
