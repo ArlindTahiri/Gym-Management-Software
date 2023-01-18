@@ -19,8 +19,18 @@
             <RowDefinition Height="308*"/>
         </Grid.RowDefinitions>
         <Label x:Name="QuestionLabel" Content="" Margin="30,0,30,59" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" FontSize="30" Height="87" VerticalAlignment="Bottom" />
-        <Button x:Name="YesButton" Content="Ja" Margin="100,50,100,50" Click="YesButton_Click" Background="#FF8EE47C" Style="{DynamicResource RoundedButtonsStyle}" Grid.Row="2" FontSize="120" FontWeight="Bold" Foreground="White"/>
-        <Button x:Name="NoButton" Content="Nein" Margin="100,50,100,50" Click="NoButton_Click" Background="#FFE86464" Style="{DynamicResource RoundedButtonsStyle}" Grid.Row="2" Grid.Column="1" FontSize="120" FontWeight="Bold" Foreground="White"/>
+        
+        <Button x:Name="YesButton"  Margin="100,50,100,50" Click="YesButton_Click" Background="#FF8EE47C" Style="{DynamicResource RoundedButtonsStyle}" Grid.Row="2"  FontWeight="Bold" Foreground="White">
+            <Viewbox>
+                <TextBlock Text="Ja" Margin="10,10,10,10" />
+            </Viewbox>
+        </Button>
+
+        <Button x:Name="NoButton" Margin="100,50,100,50" Click="NoButton_Click" Background="#FFE86464" Style="{DynamicResource RoundedButtonsStyle}" Grid.Row="2" Grid.Column="1" FontWeight="Bold" Foreground="White">
+            <Viewbox>
+                <TextBlock Text="Nein" Margin="10,10,10,10" />
+            </Viewbox>
+        </Button>
         <TextBlock x:Name="QuestionBox" Margin="30,20,30,20" TextWrapping="Wrap" TextAlignment="Center" FontSize="25" Grid.ColumnSpan="2" Grid.Row="1"/>
     </Grid>
 </Page>

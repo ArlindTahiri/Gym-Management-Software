@@ -23,19 +23,29 @@
             <ColumnDefinition Width="250*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="AddArticle" Foreground="White" Background="#437CD8"  Grid.Column="0" Grid.Row="0" Margin="20,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="AddArticle_Click">
-            <TextBlock Text="Artikel&#x0a;hinzufügen" TextAlignment="Center"/>
+        <Button x:Name="AddArticle" Foreground="White" Background="#437CD8"  Grid.Column="0" Grid.Row="0" Margin="20,20,10,10" Style="{DynamicResource RoundedButtonsStyle}" Click="AddArticle_Click">
+            <Viewbox>
+                <TextBlock Margin="10,10,10,10" Text="Artikel&#x0a;hinzufügen" TextAlignment="Center"/>
+            </Viewbox>
         </Button>
 
-        <Button x:Name="EditArticle" Foreground="White" Background="#437CD8" Grid.Column="1" Grid.Row="0" Margin="10,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="EditArticle_Click_1">
-            <TextBlock Text="Artikel&#x0a;bearbeiten" TextAlignment="Center"/>
+        <Button x:Name="EditArticle" Foreground="White" Background="#437CD8" Grid.Column="1" Grid.Row="0" Margin="10,20,10,10" Style="{DynamicResource RoundedButtonsStyle}" Click="EditArticle_Click_1">
+            <Viewbox>
+                <TextBlock Margin="10,10,10,10" Text="Artikel&#x0a;bearbeiten" TextAlignment="Center"/>
+            </Viewbox>
         </Button>
 
-        <Button x:Name="DeleteArticle" Foreground="White" Background="#437CD8" Grid.Column="2" Grid.Row="0" Margin="10,20,10,10" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="DeleteArticle_Click">
-            <TextBlock Text="Artikel&#x0a;löschen" TextAlignment="Center"/>
+        <Button x:Name="DeleteArticle" Foreground="White" Background="#437CD8" Grid.Column="2" Grid.Row="0" Margin="10,20,10,10" Style="{DynamicResource RoundedButtonsStyle}" Click="DeleteArticle_Click">
+            <Viewbox>
+                <TextBlock Margin="10,10,10,10" Text="Artikel&#x0a;löschen" TextAlignment="Center"/>
+            </Viewbox>
         </Button>
 
-        <Button x:Name="DeleteArticlesButton" Foreground="White" Background="#437CD8" Content="Alle Artikel löschen" Margin="80,15,20,15" Click="DeleteArticlesButton_Click" Style="{DynamicResource RoundedButtonsStyle}"  Grid.Column="4" Grid.Row="1"/>
+        <Button x:Name="DeleteArticlesButton" Foreground="White" Background="#437CD8" Margin="80,15,20,15" Click="DeleteArticlesButton_Click" Style="{DynamicResource RoundedButtonsStyle}"  Grid.Column="4" Grid.Row="1">
+            <Viewbox>
+                <TextBlock Margin="10,10,10,10" Text="Alle Artikel löschen" TextAlignment="Center"/>
+            </Viewbox>
+        </Button>
 
         <DataGrid x:Name="ArticleInventory" Margin="20,10,20,20" Grid.Row="2" Grid.ColumnSpan="5" Loaded="ArticleInventory_Loaded" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" FontSize="30" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}">
             <DataGrid.Columns>

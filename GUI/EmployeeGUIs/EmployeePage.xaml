@@ -23,13 +23,36 @@
             <ColumnDefinition Width="250*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="EditEmployeeButton" Foreground="White" Background="#437CD8"  Margin="10,20,10,10" Click="EditEmployee_Click" Style="{DynamicResource RoundedButtonsStyle}" FontSize="28" Grid.Column="1">
-            <TextBlock Text="Mitarbeiter&#x0a;bearbeiten" TextAlignment="Center"/>
+        <Button x:Name="AddEmployeeButton" Foreground="White" Background="#437CD8" Margin="20,20,10,10" Grid.Column="0" Grid.Row="0" Style="{DynamicResource RoundedButtonsStyle}"  Click="AddEmployeeButton_Click">
+            <Viewbox>
+                <TextBlock Margin="10,10,10,10" Text="Mitarbeiter&#x0a;hinzufügen" TextAlignment="Center"/>
+            </Viewbox>
+        </Button>
+        
+        <Button x:Name="EditEmployeeButton" Foreground="White" Background="#437CD8"  Margin="10,20,10,10" Click="EditEmployee_Click" Style="{DynamicResource RoundedButtonsStyle}" Grid.Column="1" Grid.Row="0">
+            <Viewbox>
+                <TextBlock Margin="10,10,10,10" Text="Mitarbeiter&#x0a;bearbeiten" TextAlignment="Center"/>
+            </Viewbox>
         </Button>
 
-        <Button x:Name="DeleteEmployeesButton" Foreground="White" Background="#437CD8" Content="Alle Mitarbeiter löschen" Margin="80,15,20,15" Grid.Column="4" Grid.Row="1" Click="DeleteEmployeeButton_Click" Style="{DynamicResource RoundedButtonsStyle}"/>
+        <Button x:Name="DeleteEmployeeButton" Foreground="White" Background="#437CD8"  Margin="10,20,10,10"  Style="{DynamicResource RoundedButtonsStyle}" Grid.Column="2" Grid.Row="0" Click="DeleteEmployeeButton1_Click">
+            <Viewbox>
+                <TextBlock Margin="10,10,10,10" Text="Mitarbeiter&#x0a;entfernen" TextAlignment="Center"/>
+            </Viewbox>
+        </Button>
 
-        <Button x:Name="CheckoutButton" Foreground="White" Background="#437CD8" Content="Kassensturz" Margin="10,20,10,10" Click="CheckoutButton_Click" Style="{DynamicResource RoundedButtonsStyle}" FontSize="28" Grid.Column="3"/>
+
+        <Button x:Name="CheckoutButton" Foreground="White" Background="#437CD8" Margin="10,20,10,10" Click="CheckoutButton_Click" Style="{DynamicResource RoundedButtonsStyle}" Grid.Column="3" Grid.Row="0">
+            <Viewbox>
+                <TextBlock Margin="10,10,10,10" Text="Kassensturz" TextAlignment="Center"/>
+            </Viewbox>
+        </Button>
+
+        <Button x:Name="DeleteEmployeesButton" Foreground="White" Background="#437CD8" Margin="80,15,20,15" Grid.Column="4" Grid.Row="1" Click="DeleteEmployeeButton_Click" Style="{DynamicResource RoundedButtonsStyle}">
+            <Viewbox>
+                <TextBlock Margin="10,10,10,10" Text="Alle Mitarbeiter löschen" TextAlignment="Center"/>
+            </Viewbox>
+        </Button>
 
         <DataGrid x:Name="EmployeeData" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Margin="20,10,20,20" Loaded="EmployeeData_Loaded" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" Grid.ColumnSpan="5" Grid.Row="2">
             <DataGrid.Columns>
@@ -45,12 +68,8 @@
                 <DataGridTextColumn Header="Geburtstag" Width="30*" MinWidth="10" Binding="{Binding Birthday}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="AddEmployeeButton" Foreground="White" Background="#437CD8" Margin="20,20,10,10"  Style="{DynamicResource RoundedButtonsStyle}" FontSize="28" Click="AddEmployeeButton_Click">
-            <TextBlock Text="Mitarbeiter&#x0a;hinzufügen" TextAlignment="Center"/>
-        </Button>
-        <Button x:Name="DeleteEmployeeButton" Foreground="White" Background="#437CD8"  Margin="10,20,10,10"  Style="{DynamicResource RoundedButtonsStyle}" FontSize="28" Grid.Column="2" Click="DeleteEmployeeButton1_Click">
-            <TextBlock Text="Mitarbeiter&#x0a;entfernen" TextAlignment="Center"/>
-        </Button>
+        
+        
 
         <Image Grid.Column="4" Grid.Row="0" Width="50" Height="50" MouseDown="Image_MouseDown" Source="/interface-home-3.png" OpacityMask="Black" Margin="0,20,20,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
