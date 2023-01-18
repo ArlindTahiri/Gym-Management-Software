@@ -35,7 +35,7 @@ namespace loremipsum.Gym.Entities
 
         public override string ToString()
         {
-            return ContractType+" | Preis: "+(double)Price/100+"€";
+            return "ID: "+ContractID+" | "+ContractType+" | Preis: "+(double)Price/100+"€";
         }
     }
 }
