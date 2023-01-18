@@ -218,41 +218,41 @@ namespace GUI
                     WarningBox.Content = "Bitte geben Sie eine ID ein.";
                     log.Error("Inserted no ID");
                 }
-
-                if (destination.Equals("DeleteLogin") || destination.Equals("EditLogin"))
+                if (!IDCheckBox.Text.IsNullOrEmpty())
                 {
-
-                    this.login = IDCheckBox.Text;
-
-                    if (destination.Equals("EditLogin") && query.GetLogInDetails(login) != null)
+                    if (destination.Equals("DeleteLogin") || destination.Equals("EditLogin"))
                     {
-                        AddEditLogin loginPage = new AddEditLogin(login);
-                        NavigationService.Navigate(loginPage);
-                    }
 
-                    if (destination.Equals("DeleteLogin") && query.GetLogInDetails(login) != null)
-                    {
-                        if (query.GetLogInDetails(login).Rank != 1)
+                        this.login = IDCheckBox.Text;
+
+                        if (destination.Equals("EditLogin") && query.GetLogInDetails(login) != null)
                         {
-                            DeletePage deletePage = new DeletePage("DeleteLogin", login);
-                            NavigationService.Navigate(deletePage);
+                            AddEditLogin loginPage = new AddEditLogin(login);
+                            NavigationService.Navigate(loginPage);
+                        }
+
+                        if (destination.Equals("DeleteLogin") && query.GetLogInDetails(login) != null)
+                        {
+                            if (query.GetLogInDetails(login).Rank != 1)
+                            {
+                                DeletePage deletePage = new DeletePage("DeleteLogin", login);
+                                NavigationService.Navigate(deletePage);
+                            }
+                            else
+                            {
+                                WarningBox.Content = "Sie können den amin nicht löschen!";
+                                log.Error("Tried deleting the admin account");
+                            }
                         }
                         else
                         {
-                            WarningBox.Content = "Sie können den amin nicht löschen!";
-                            log.Error("Tried deleting the admin account");
+                            WarningBox.Content = "Der eingegebene login existiert nicht. Bitte geben Sie einen gültigen login ein.";
+                            log.Error("Inserted an invalid login name.");
                         }
                     }
-                    else
-                    {
-                        WarningBox.Content = "Der eingegebene login existiert nicht. Bitte geben Sie einen gültigen login ein.";
-                        log.Error("Inserted an invalid login name.");
-                    }
-                }
-                else
-                {
+                } else {
                     WarningBox.Content = "Bitte geben Sie einen login namen ein.";
-                    log.Error("Inserted no login name");
+                    log.Error("Inserted no login name.");
                 }
             }
         }
