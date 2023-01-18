@@ -31,10 +31,6 @@ namespace GUI.EmployeeGUIs
         public EmployeePage()
         {
             InitializeComponent();
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
         }
 
         private void EditEmployee_Click(object sender, RoutedEventArgs e)

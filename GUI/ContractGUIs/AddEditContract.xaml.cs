@@ -45,10 +45,6 @@ namespace GUI.ContractGUIs
             ContractType.Text = Contract.ContractType;
             Price.Text = Contract.Price.ToString();
             AddContractButton.Content = "Vertrag bearbeiten";
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
         }
 
         private void AddContractButton_Click(object sender, RoutedEventArgs e)

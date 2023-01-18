@@ -20,6 +20,7 @@ using GUI.Order_GUIs;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
+using loremipsum;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 
@@ -33,15 +34,11 @@ namespace GUI
 
         
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog log = GymLogger.GetLog();
 
         public GymHomepage()
         {
             InitializeComponent();
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
         }
 
         private void Member_Click(object sender, RoutedEventArgs e)

@@ -44,7 +44,7 @@ namespace loremipsum.Gym.Impl
 
         /// <summary>
         /// DeleteMember checks if a member with given memberID exisits and if said member isnt training right now, if true it will checkout all the orders of said member because of the 1:n relation.
-        /// After this checkout of orders, this member has 0 orders. Now they will checkout the members contract. And after that the memberID will be forwared to persistence where said member will be deleted.
+        /// After this checkout of the members orders, this member has 0 orders. Now they will checkout the members contract. And after that the memberID will be forwared to persistence where said member will be deleted.
         /// </summary>
         /// <param name="memberID"></param>
         public bool DeleteMember(int memberID)
@@ -71,7 +71,8 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// DeleteMembers checkouts all members orders, because of 1:n relation, and contracts. After that it will check if there are any members currently training, if false then it will forward it to persistence to delete all members. 
+        /// DeleteMembers checkouts all members orders, because of the 1:n relation of the orders, and then checkouts the contract of each member.
+        /// After that it will check if there are any members currently training, if no members are training then it will forward it to persistence to delete all members. 
         /// </summary>
         public bool DeleteMembers()
         {
@@ -89,7 +90,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// ListMembers Forwards the query to persistence
+        /// ListMembers Forwards the query to the persistence and then returns a list of members.
         /// </summary>
         /// <returns>Returns a list of all the members.</returns>
         public IList<Member> ListMembers()
@@ -99,7 +100,8 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// UpdateContractFromMember updates the contract from a member, which is a relation. It will check if the member and the new contract exist. After that the members contract will be checkouted. And then it will forward to the persitence.
+        /// UpdateContractFromMember updates the contract from a member, which is a relation. It will check if the member and the new contract exist.
+        /// After that the members contract will be checkouted. And then it will forward to the persistence to change the contract.
         /// </summary>
         /// <param name="memberID"></param>
         /// <param name="contractID"></param>
@@ -120,7 +122,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// UpdateMember updates the attributes, which don't have a relation, of a member. Therefor it just checks if such member exists, if true, it will forward it to persistence.
+        /// UpdateMember updates the attributes, which don't have a relation, of a member. Therefor it just checks if a member with given memberID exists, if true, it will forward it to the persistence.
         /// </summary>
         /// <param name="memberID"></param>
         /// <param name="forename"></param>
@@ -146,7 +148,7 @@ namespace loremipsum.Gym.Impl
 
         #region Contract
         /// <summary>
-        /// AddContract will forward it to persistence to store that contract.
+        /// AddContract will forward it to the persistence to store that contract.
         /// </summary>
         /// <param name="contract"></param>
         public void AddContract(Contract contract)
@@ -155,7 +157,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// DeleteContract checks if a Member has this contract, because of the 1:n relation, if noone has this contract, it will be forwarded to the persistence to delete this contract.
+        /// DeleteContract checks if a Member has this contract, because of the 1:n relation, if no member has this contract, it will be forwarded to the persistence to delete this contract.
         /// </summary>
         /// <param name="contractID"></param>
         public void DeleteContract(int contractID)
@@ -177,7 +179,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// DeleteContracts checks if there are any members, because of the 1:n relation, if no member exists it will be forwarded to persistence where all contracts will be deleted.
+        /// DeleteContracts checks if there are any members, because of the 1:n relation members only exist if there is a contract, if no member exists it will be forwarded to the persistence where all contracts will be deleted.
         /// </summary>
         public void DeleteContracts()
         {
@@ -200,7 +202,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// UpdatContract updates the attributes, which don't have a relation, of the contract with given contractID. Therefore it will check if this contract exists, if true it will forward it to persistence to update the attributes.
+        /// UpdateContract updates the attributes of the contract with given contractID. Therefore it will check if this contract exists, if true it will forward it to persistence to update the attributes.
         /// </summary>
         /// <param name="contractID"></param>
         /// <param name="contractType"></param>
@@ -219,7 +221,7 @@ namespace loremipsum.Gym.Impl
 
         #region Employee
         /// <summary>
-        /// AddEmployee will forward it to persistence to store that Employee.
+        /// AddEmployee will forward it to the persistence to store that Employee.
         /// </summary>
         /// <param name="employee"></param>
         public void AddEmployee(Employee employee)
@@ -237,7 +239,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// DeleteEmployeeds forwards it to the persistence to delete all Employees.
+        /// DeleteEmployees forwards it to the persistence to delete all Employees.
         /// </summary>
         public void DeleteEmployees()
         {
@@ -281,7 +283,7 @@ namespace loremipsum.Gym.Impl
 
         #region Article
         /// <summary>
-        /// AddArticle will forward it to persistence to store that Article.
+        /// AddArticle will forward it to the persistence to store that Article.
         /// </summary>
         /// <param name="article"></param>
         public void AddArticle(Article article)
@@ -293,7 +295,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// DeleteArticle checks if a order with this articleID exists, if false it will forward it to the persistence to delete this Article.
+        /// DeleteArticle checks if an order with this articleID exists, if no order with this article exist it will forward it to the persistence to delete this Article.
         /// </summary>
         /// <param name="articleID"></param>
         public void DeleteArticle(int articleID)
@@ -314,7 +316,8 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// DeleteArticles checks if a order exists, if false it will forward it to the persistence to delete all Articles.
+        /// DeleteArticles checks if an order exists, because of the 1:n relation. Orders can only exists if there are articles and members.
+        /// If no Orders exist, it will forward it to the persistence to delete all Articles.
         /// </summary>
         public void DeleteArticles()
         {
@@ -336,7 +339,8 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// UpdateArticle updates the attributes, which don't have a relation, of the Article with given articleID. Therefore it will check if this Article exists, if true it will forward it to persistence to update the attributes.
+        /// UpdateArticle updates the attributes, which don't have a relation, of the Article with given articleID.
+        /// Therefore it will check if this Article exists, if true it will forward it to persistence to update the attributes.
         /// </summary>
         /// </summary>
         /// <param name="articleID"></param>
@@ -359,7 +363,7 @@ namespace loremipsum.Gym.Impl
         #region Order
 
         /// <summary>
-        /// AddOrder checks if the given memberID and the given articleID exist, after that it will check if actualamount of this article is higher than the amount this order has. If true, it will be forwarded to persistence to create that order.
+        /// AddOrder checks if the given memberID and the given articleID exist, after that it will check if the actualamount of this article is higher than the amount this order has. If true, it will be forwarded to persistence to create that order.
         /// </summary>
         /// <param name="memberID"></param>
         /// <param name="articleID"></param>
@@ -386,7 +390,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// DeleteOrder deletes a specific order, where a mistake happened. It will forward it to persistence, where the acutalamount of the article of the order increases by the amount of the order and the member currentbill will be decreased by the price of the order. 
+        /// DeleteOrder deletes a specific order, where a mistake happened. It will forward it to the persistence, where the actualamount of the article of the order increases by the amount of the order and the member currentbill will be decreased by the price of the order. 
         /// </summary>
         /// <param name="orderID"></param>
         public void DeleteOrder(int orderID)//return of articles --> mistake order --> article.actualamount increases
@@ -439,7 +443,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// Updates the attributes of Order with given orderID. Checks if orderID, memberID and articleID exists. If true it will check if the actualamount of the new article is smaller then the amount of the updated order.
+        /// Updates the attributes of an order with given orderID. Checks if orderID, memberID and articleID exists. If true it will check if the actualamount of the new article is smaller then the amount of the updated order.
         /// </summary>
         /// <param name="orderID">Order which should be updated</param>
         /// <param name="memberID">The new MemberID of the updated order</param>
@@ -490,7 +494,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// Deletes LogIn with given logInName by forwarding it to persistence.
+        /// Deletes LogIn with given logInName by forwarding it to the persistence.
         /// </summary>
         /// <param name="logInName"></param>
         public void DeleteLogIn(string logInName)
@@ -512,7 +516,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// Forwards this query to persistence.
+        /// Returnsd a list of all LogIns. Forwards this query to persistence.
         /// </summary>
         /// <returns>List of all LogIns</returns>
         public IList<LogIn> ListLogIns()
@@ -522,7 +526,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// Deletes all LogIns by forwarding it to persistence.
+        /// Deletes all LogIns by forwarding it to the persistence.
         /// </summary>
         public void DeleteLogIns()
         {
@@ -530,7 +534,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// Updates the attributs of a LogIn. Checks if the old logInName exists and if the new logInName doesnt exists, if true it will forward it to persistence to update the login.
+        /// Updates the attributs of a LogIn. Checks if the old logInName exists and if the new logInName doesnt exists, if true it will forward it to the persistence to update the login.
         /// </summary>
         /// <param name="logInName"></param>
         /// <param name="newLogInName"></param>
@@ -572,7 +576,8 @@ namespace loremipsum.Gym.Impl
         #region Checkout
         /// <summary>
         /// Checkouts the current contract of a member and stores it in a MemberBills.csv file for sending it to the bank to make the transactions.
-        /// Therefore it will check if the currentMonth is the same as the stored Month in given member, which stores the last time when the member did the checkout or the last contractChange. If true, it will calculate the exact price which the member has to pay for the contract based on days of the month.
+        /// Therefore it will check if the currentMonth is the same as the stored Month in given member, which stores the last time when the member did the checkout or the last contractChange.
+        /// If true, it will calculate the exact price which the member has to pay for the contract based on days of the month he had that contract.
         /// </summary>
         /// <param name="member"></param>
         /// <returns>Returns true if successful otherwise false</returns>
@@ -615,9 +620,9 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// Checkouts all the orders and contracts of a member for the last month and saves them in a MemberBills.csv File. Therefor it calculates the right amount the member has to pay for the contract based on the time when the member had the last contractchange,
-        /// started at the gym or the first date of the old month. After this contract checkout the attribut TimeofContractChange of all the members will be set to the first of the current month.
-        /// After that all the orders will be checkouted and stored in the MemberBills.csv File. Then all the orders will be deleted.
+        /// Checkouts all the orders and contracts of all members for the last month and saves them in a MemberBills.csv File. Therefore it calculates the right amount the member has to pay for the contract based on the time when the member had the last contractchange,
+        /// started at the gym or the first date of the old month. After this contract checkout the attribut TimeofContractChange of all the members, which did the checkout, will be set to the first of the current month.
+        /// After that all the orders will be checkouted and stored in the MemberBills.csv File. Then all the orders will be deleted out of the database.
         /// </summary>
         public bool CheckOutMembers()
         {
@@ -678,7 +683,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// Checkouts all the orders of a Member. Therefor it will get all the orders of this member and then store them in the MemberBills.csv file. After that all the orders of this member will be removed.
+        /// Checkouts all the orders of a Member. Therefore it will get all the orders of this member and then store them in the MemberBills.csv file. After that all the orders of this member will be removed out of the databse.
         /// </summary>
         /// <param name="member"></param>
         public bool CheckoutMemberForOrders(Member member)
