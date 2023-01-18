@@ -39,5 +39,8 @@
             </Viewbox>
         </Button>
 
+
+        <Image  Grid.Column="2" Grid.Row="0" Width="50" Height="50" MouseDown="Image_MouseDown" Source="/interface-arrows-left-circle-1.png"  Margin="0,20,20,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+
     </Grid>
 </Page>

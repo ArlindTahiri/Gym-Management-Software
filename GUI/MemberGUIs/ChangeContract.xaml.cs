@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using GUI.ArticleGUIs;
+using log4net;
 using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
@@ -72,6 +73,12 @@ namespace GUI.MemberGUIs
             {
                 WarningText.Text = "Bitte geben Sie für alle Daten etwas ein!";
             }
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MemberPage memberPage = new MemberPage();
+            NavigationService.Navigate(memberPage);
         }
 
         private void MemberData_Loaded(object sender, RoutedEventArgs e)

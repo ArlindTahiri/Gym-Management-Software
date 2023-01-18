@@ -10,10 +10,14 @@
 
   <ItemGroup>
     <None Remove="EmployeeGUIs\interface-home-3.png" />
+    <None Remove="interface-arrows-left-circle-1.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <Resource Include="interface-arrows-left-circle-1.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

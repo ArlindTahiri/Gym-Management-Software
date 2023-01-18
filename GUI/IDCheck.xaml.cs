@@ -266,6 +266,77 @@ namespace GUI
             }
         }
 
-               
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            switch (destination)
+            {
+                case "EditArticle":
+                    ArticlePage articlePage = new ArticlePage();
+                    NavigationService.Navigate(articlePage);
+                    break;
+
+                case "DeleteArticle":
+                    ArticlePage articlePage1 = new ArticlePage();
+                    NavigationService.Navigate(articlePage1);
+                    break;
+
+                case "EditContract":
+                    ContractPage contractPage = new ContractPage();
+                    NavigationService.Navigate(contractPage);
+                    break;
+
+                case "DeleteContract":
+                    ContractPage contractPage1 = new ContractPage();
+                    NavigationService.Navigate(contractPage1);
+                    break;
+
+                case "EditEmployee":
+                    EmployeePage employeePage = new EmployeePage();
+                    NavigationService.Navigate(employeePage);
+                    break;
+
+                case "DeleteEmployee":
+                    EmployeePage employeePage1 = new EmployeePage();
+                    NavigationService.Navigate(employeePage1);
+                    break;
+
+                case "EditMember":
+                    MemberPage memberPage = new MemberPage();
+                    NavigationService.Navigate(memberPage);
+                    break;
+
+                case "DeleteMember":
+                    MemberPage memberPage1 = new MemberPage();
+                    NavigationService.Navigate(memberPage1);
+                    break;
+
+                case "EditOrder":
+                    OrderPage orderPage = new OrderPage();
+                    NavigationService.Navigate(orderPage);
+                    break;
+
+                case "DeleteOrder":
+                    OrderPage orderPage1 = new OrderPage();
+                    NavigationService.Navigate(orderPage1);
+                    break;
+
+                case "Training":
+                    GymHomepage gymHomepage = new GymHomepage();
+                    NavigationService.Navigate(gymHomepage);
+                    break;
+
+                case "EditLogin":
+                    LoginPage loginPage = new LoginPage();
+                    NavigationService.Navigate(loginPage);
+                    break;
+
+                case "DeleteLogin":
+                    LoginPage loginPage1 = new LoginPage();
+                    NavigationService.Navigate(loginPage1);
+                    break;
+            }
+        }
+
+
     }
 }

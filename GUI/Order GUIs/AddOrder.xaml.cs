@@ -1,4 +1,5 @@
-﻿using loremipsum.Gym;
+﻿using GUI.ArticleGUIs;
+using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -59,6 +60,12 @@ namespace GUI.Order_GUIs
 
             ArticleCB.Items.Clear();
             ArticleCB.ItemsSource = admin.ListArticles();
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OrderPage orderPage = new OrderPage();
+            NavigationService.Navigate(orderPage);
         }
 
         private void MemberCB_Loaded(object sender, RoutedEventArgs e)
