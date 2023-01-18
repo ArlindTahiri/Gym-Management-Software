@@ -1,6 +1,7 @@
 ﻿using log4net;
 using log4net.Config;
 using log4net.Repository;
+using loremipsum;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using Microsoft.IdentityModel.Tokens;
@@ -30,10 +31,10 @@ namespace GUI.ArticleGUIs
     {
 
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];        
         private Article article;
         private int articleID;
+        private readonly ILog log = GymLogger.GetLog();
        
         public ChangeArticle(int articleID)
         {
@@ -44,10 +45,8 @@ namespace GUI.ArticleGUIs
             Price.Text = ((double)article.Price / 100).ToString();
             TargetStock.Text = article.TargetStock.ToString();
             ActualStock.Text = article.ActualStock.ToString();
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
+            
+            
         }
 
         private void ChangeArticleButton_Click(object sender, RoutedEventArgs e)
@@ -81,6 +80,7 @@ namespace GUI.ArticleGUIs
 
                 if (article.ActualStock > Int32.Parse(ActualStock.Text))
                 { 
+
                     log.Info("The amount of the article: "+article.ToString()+" has been lowered to: "+ActualStock.Text);
                 }
             }

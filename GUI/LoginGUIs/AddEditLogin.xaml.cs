@@ -19,6 +19,7 @@ using log4net.Config;
 using log4net.Repository;
 using System.IO;
 using System.Reflection;
+using loremipsum;
 
 namespace GUI.LoginGUIs
 {
@@ -29,18 +30,13 @@ namespace GUI.LoginGUIs
     {
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly ILog log = GymLogger.GetLog();
         private string Firstlogin;
         private LogIn logIn;
 
         public AddEditLogin()
         {
-            InitializeComponent();
-
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
+            InitializeComponent();       
         }
 
         public AddEditLogin(string firstlogin)//auto set value of rank=1;
@@ -63,9 +59,7 @@ namespace GUI.LoginGUIs
             }
 
 
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
+           
         }
 
         private void addLogin_Click(object sender, RoutedEventArgs e)
