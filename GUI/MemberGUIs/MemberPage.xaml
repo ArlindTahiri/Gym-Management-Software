@@ -48,7 +48,7 @@
             </Viewbox>
         </Button>
 
-        <Button x:Name="DeleteMembersButton" Foreground="White" Background="#437CD8" Click="DeleteMembersButton_Click" Style="{DynamicResource RoundedButtonsStyle}" Grid.Column="4" Grid.Row="1" Margin="80,15,20,15">
+        <Button x:Name="DeleteMembersButton" Foreground="White" Background="#437CD8" Click="DeleteMembersButton_Click" Style="{DynamicResource RoundedButtonsStyle}" Grid.Column="4" Grid.Row="1" Margin="80,30,20,0">
             <Viewbox>
                 <TextBlock Margin="10,10,10,10" Text="Alle Mitglieder löschen" TextAlignment="Center"/>
             </Viewbox>    

@@ -502,13 +502,20 @@ namespace loremipsum.Gym.Impl
             LogIn temp = persistence.FindLogIn(logInName);
             if(temp != null)
             {
-                IList<LogIn> logIns = persistence.FindLogIns();
-                IList<string> result = new List<string>();
-                foreach (LogIn login in logIns)
+                if(temp.Rank == 1)
                 {
-                    if (login.Rank == 1) {result.Add(login.LogInName);}
+                    IList<LogIn> logIns = persistence.FindLogIns();
+                    IList<string> result = new List<string>();
+                    foreach (LogIn login in logIns)
+                    {
+                        if (login.Rank == 1) { result.Add(login.LogInName); }
+                    }
+                    if (result.Count > 1)
+                    {
+                        persistence.DeleteLogIn(logInName);
+                    }
                 }
-                if (result.Count > 1)
+                else
                 {
                     persistence.DeleteLogIn(logInName);
                 }
@@ -544,30 +551,40 @@ namespace loremipsum.Gym.Impl
         {
             LogIn logIn = persistence.FindLogIn(logInName);
             LogIn logInNew = persistence.FindLogIn(newLogInName);
-            IList<LogIn> logIns = persistence.FindLogIns();
-            IList<LogIn> result= new List<LogIn>();
-            foreach(LogIn login in logIns)
-            {
-                if (login.Rank == 1) { result.Add(login); }
-            }
 
-            if (result.Count > 1)
+            if(logIn != null)
             {
-                if (logIn != null && logInNew == null || logIn != null && logIn.LogInName == logInNew.LogInName)
+                if (logIn.Rank == 1) //if login is an admin check
                 {
-                    persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
+                    IList<LogIn> logIns = persistence.FindLogIns();
+                    IList<LogIn> result = new List<LogIn>();
+                    foreach (LogIn login in logIns)
+                    {
+                        if (login.Rank == 1) { result.Add(login); }
+                    }
+                    if (result.Count > 1) //if there are >1 admins then just update him.
+                    {
+                        if (logInNew == null || logIn.LogInName == logInNew.LogInName)
+                        {
+                            persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
+                        }
+                    }
+                    else //if there is only one admin then check if the new rank is also rank 1
+                    {
+                        if (logInNew == null && rank == 1 || logIn.LogInName == logInNew.LogInName && rank == 1)
+                        {
+                            persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
+                        }
+                    }
                 }
-            }
-            else
-            {
-                if (logIn != null && logInNew == null && rank == 1 || logIn != null && logIn.LogInName == logInNew.LogInName && rank == 1)
+                else //no admin activity --> no checking
                 {
-                    persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
+                    if (logInNew == null  || logIn.LogInName == logInNew.LogInName)
+                    {
+                        persistence.UpdateLogIn(logIn, newLogInName, newLogInPassword, rank);
+                    }
                 }
-            }
-
-            
-            
+            } 
         }
         #endregion
 

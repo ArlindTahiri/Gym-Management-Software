@@ -42,7 +42,7 @@
             </Viewbox>
         </Button>
 
-        <Button x:Name="DeleteOrdersButton" Foreground="White" Background="#437CD8" Margin="80,15,20,15" Grid.Column="4" Grid.Row="1" Click="DeleteMembersButton_Click" Style="{DynamicResource RoundedButtonsStyle}">
+        <Button x:Name="DeleteOrdersButton" Foreground="White" Background="#437CD8" Margin="80,30,20,0" Grid.Column="4" Grid.Row="1" Click="DeleteMembersButton_Click" Style="{DynamicResource RoundedButtonsStyle}">
             <Viewbox>
                 <TextBlock Margin="10,10,10,10" Text="Alle Bestellungen löschen" TextAlignment="Center"/>
             </Viewbox>

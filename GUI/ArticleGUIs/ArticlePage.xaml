@@ -41,7 +41,7 @@
             </Viewbox>
         </Button>
 
-        <Button x:Name="DeleteArticlesButton" Foreground="White" Background="#437CD8" Margin="80,15,20,15" Click="DeleteArticlesButton_Click" Style="{DynamicResource RoundedButtonsStyle}"  Grid.Column="4" Grid.Row="1">
+        <Button x:Name="DeleteArticlesButton" Foreground="White" Background="#437CD8" Margin="80,30,20,0" Click="DeleteArticlesButton_Click" Style="{DynamicResource RoundedButtonsStyle}"  Grid.Column="4" Grid.Row="1">
             <Viewbox>
                 <TextBlock Margin="10,10,10,10" Text="Alle Artikel löschen" TextAlignment="Center"/>
             </Viewbox>

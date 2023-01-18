@@ -43,7 +43,7 @@
             </Viewbox>
         </Button>
 
-        <Button x:Name="DeleteContractsButton" Foreground="White" Background="#437CD8" Margin="80,15,20,15" Grid.Column="4" Grid.Row="1" Click="DeleteContractsButton_Click" Style="{DynamicResource RoundedButtonsStyle}">
+        <Button x:Name="DeleteContractsButton" Foreground="White" Background="#437CD8" Margin="80,30,20,0" Grid.Column="4" Grid.Row="1" Click="DeleteContractsButton_Click" Style="{DynamicResource RoundedButtonsStyle}">
             <Viewbox>
                 <TextBlock Margin="10,10,10,10" Text="Alle Verträge löschen" TextAlignment="Center"/>
             </Viewbox>
