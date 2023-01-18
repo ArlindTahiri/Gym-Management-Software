@@ -33,9 +33,9 @@ namespace UnitTestLoremIpsum
         
         public void GenerateTestData()
         {
-            e1 = new Employee("Anton", "Zunhammer", "Lindenstraße 3", 83374, "Traunwalchen", "Deutschland",
+            e1 = new Employee("Anton_test", "Zunhammer", "Lindenstraße 3", 83374, "Traunwalchen", "Deutschland",
                     "Anton.Zunhammer@gmail.com", "DE77500105176812849778", new DateTime(1999, 1, 1));
-            e2 = new Employee("Anton", "Zunhammer", "Lindenstraße 3", 83374, "Traunwalchen", "Deutschland",
+            e2 = new Employee("Anton_test", "Zunhammer", "Lindenstraße 3", 83374, "Traunwalchen", "Deutschland",
                     "Anton.Zunhammer@gmail.com", "DE77500105176812849778", new DateTime(1999, 1, 1));
         }
 
@@ -55,12 +55,12 @@ namespace UnitTestLoremIpsum
 
 
             //Update the employee e1
-            Admin.UpdateEmployee(e1.EmployeeID, "Tina", "Peters", "Eichenweg 1", 83701, "Stephanskirchen", "Deutschland",
+            Admin.UpdateEmployee(e1.EmployeeID, "Tina_test", "Peters", "Eichenweg 1", 83701, "Stephanskirchen", "Deutschland",
                     "Tina.Peters@gmail.com", "DE96500105172721576161", new DateTime(1986, 3, 30));
 
             //Test if the updated employee is in the database
             Employee newEmployee = Query.GetEmployeeDetails(e1.EmployeeID);
-            Assert.IsTrue(newEmployee.Iban.Equals("DE96500105172721576161") && newEmployee.Forename.Equals("Tina") && newEmployee.Surname.Equals("Peters") &&
+            Assert.IsTrue(newEmployee.Iban.Equals("DE96500105172721576161") && newEmployee.Forename.Equals("Tina_test") && newEmployee.Surname.Equals("Peters") &&
                 newEmployee.Street.Equals("Eichenweg 1") && newEmployee.PostcalCode == 83701 && newEmployee.City.Equals("Stephanskirchen") && newEmployee.Country.Equals("Deutschland") &&
                 newEmployee.EMail.Equals("Tina.Peters@gmail.com") && newEmployee.Birthday.Equals(new DateTime(1986, 3, 30)));
 

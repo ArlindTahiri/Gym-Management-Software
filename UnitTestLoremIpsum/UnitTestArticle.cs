@@ -38,11 +38,11 @@ namespace UnitTestLoremIpsum
 
         public void GenerateTestData()
         {
-            a1 = new Article("Erdbeer-Proteinshake", 4, 15, 15);
-            a2 = new Article("Milkshake", 3, -10, 25);
-            a3 = new Article("Vanille Proteinriegel", 2, 10, -10);
+            a1 = new Article("Erdbeer-Proteinshake_test", 4, 15, 15);
+            a2 = new Article("Milkshake_test", 3, -10, 25);
+            a3 = new Article("Vanille Proteinriegel_test", 2, 10, -10);
 
-            c1 = new Contract("Normal Plan", 1999);
+            c1 = new Contract("Normal Plan_test", 1999);
 
         }
 
@@ -61,9 +61,9 @@ namespace UnitTestLoremIpsum
 
 
             //Test if you can update article properties
-            Admin.UpdateArticle(a1.ArticleID, "Vanille-Schoko Proteinriegel", 3, 20, 20);
+            Admin.UpdateArticle(a1.ArticleID, "Vanille-Schoko Proteinriegel_test", 3, 20, 20);
             Article newArticle = Query.GetArticleDetails(a1.ArticleID);
-            Assert.IsTrue(newArticle.Price == 3 && newArticle.ArticleName.Equals("Vanille-Schoko Proteinriegel") && newArticle.ActualStock == 20 && newArticle.TargetStock == 20);
+            Assert.IsTrue(newArticle.Price == 3 && newArticle.ArticleName.Equals("Vanille-Schoko Proteinriegel_test") && newArticle.ActualStock == 20 && newArticle.TargetStock == 20);
 
 
             //check if there are articles in IList
@@ -74,7 +74,7 @@ namespace UnitTestLoremIpsum
             //add contract and member to create an order
             Admin.AddContract(c1);
             Assert.IsTrue(Query.GetContractDetails(c1.ContractID).CompareTo(c1) == 0);
-            m1 = Admin.AddMember(c1.ContractID, "Martin", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
+            m1 = Admin.AddMember(c1.ContractID, "Martin_test", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
                     "martinmeyer@gmail.com", "DE94500105172327561324", new DateTime(1990, 11, 24));
             Assert.IsTrue(Query.GetMemberDetails(m1.MemberID).CompareTo(m1) ==0);
             o1 = Admin.AddOrder(m1.MemberID, a1.ArticleID, 2);

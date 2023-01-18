@@ -32,8 +32,8 @@ namespace UnitTestLoremIpsum
 
         public void GenerateTestData()
         {
-            c1 = new Contract("Normal Plan", 10);
-            c2 = new Contract("Normal Plan", 10);
+            c1 = new Contract("Normal Plan_test", 10);
+            c2 = new Contract("Normal Plan_test", 10);
         }
 
         [TestMethod]
@@ -50,11 +50,11 @@ namespace UnitTestLoremIpsum
             Assert.IsTrue(Query.GetContractDetails(c2.ContractID) == null);
 
             //Update Contract Properties from c1
-            Admin.UpdateContract(c1.ContractID, "Premium Pro Plan", 3499);
+            Admin.UpdateContract(c1.ContractID, "Premium Pro Plan_test", 3499);
 
             //Test if contract c1 is with new properties in database
             Contract newContract = Query.GetContractDetails(c1.ContractID);
-            Assert.IsTrue(newContract.Price == 3499 && newContract.ContractType.Equals("Premium Pro Plan"));
+            Assert.IsTrue(newContract.Price == 3499 && newContract.ContractType.Equals("Premium Pro Plan_test"));
 
             //check if there are contracts in the IList
             IList<Contract> contracts = Admin.ListContracts();
@@ -62,7 +62,7 @@ namespace UnitTestLoremIpsum
 
 
             //add an member who has contract c1 and try to delete c1
-            m1 = Admin.AddMember(c1.ContractID, "Martin", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
+            m1 = Admin.AddMember(c1.ContractID, "Martin_test", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
                     "martinmeyer@gmail.com", "DE94500105172327561324", new DateTime(1990, 11, 24));
 
             //delete contract c1
