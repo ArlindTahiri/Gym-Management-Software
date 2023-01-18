@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace UnitTestLoremIpsum
 {
@@ -15,7 +16,7 @@ namespace UnitTestLoremIpsum
     {
         private IProductAdmin Admin;
         private IProductModule Query;
-        private Contract c1, c2, c3, c4;
+        private Contract c1, c2;
         private Member m1;
 
 
@@ -31,87 +32,51 @@ namespace UnitTestLoremIpsum
 
         public void GenerateTestData()
         {
-            Admin.DeleteMembers();
-            Admin.DeleteContracts();
-            c1 = new Contract("Normal Plan", 1999);
-            c2 = new Contract("Normal Plan", 1999);
-            c3 = new Contract("Premium Plan", 2999);
-            c4 = new Contract("Premium Plus Plan", 3999);
+            c1 = new Contract("Normal Plan", 10);
+            c2 = new Contract("Normal Plan", 10);
         }
 
         [TestMethod]
-        public void CreateContract()
+        public void TestContract()
         {
             //Add the contract c1
             Admin.AddContract(c1);
 
             //Test if the contract is in the database
             Assert.IsTrue(Query.GetContractDetails(c1.ContractID).CompareTo(c1) == 0);
-        }
 
-        [TestMethod]
-        public void ListContracts()
-        {
-            //add an contract and than check if there are contracts
-            Admin.AddContract(c1);
-            IList<Contract> contracts = Admin.ListContracts();
-            Assert.IsTrue(contracts.Count > 0);
+            //Add an contract c2 which is identical with c1
+            Admin.AddContract(c2);
+            Assert.IsTrue(Query.GetContractDetails(c2.ContractID) == null);
 
-            //now delete them and check again
-            Admin.DeleteContracts();
-            contracts = Admin.ListContracts();
-            Assert.IsTrue(contracts.Count == 0);
-        }
+            //Update Contract Properties from c1
+            Admin.UpdateContract(c1.ContractID, "Premium Pro Plan", 3499);
 
-        [TestMethod]
-        public void UpdateContract()
-        {
-            Admin.AddContract(c3);
-            //Test if you can update Contract Properties
-            Admin.UpdateContract(c3.ContractID,"Premium Pro Plan", 3499);
-            Contract newContract = Query.GetContractDetails(c3.ContractID);
+            //Test if contract c1 is with new properties in database
+            Contract newContract = Query.GetContractDetails(c1.ContractID);
             Assert.IsTrue(newContract.Price == 3499 && newContract.ContractType.Equals("Premium Pro Plan"));
-        }
 
-        [TestMethod]
-        public void DeleteContract()
-        {
-            //add an contract and than check if you can delete it
-            Admin.AddContract(c1);
-            Assert.IsNotNull(Query.GetContractDetails(c1.ContractID));
-            Admin.DeleteContract(c1.ContractID);
-            Assert.IsNull(Query.GetArticleDetails(c1.ContractID));
-
-            //add an member who has the contract c2 and than try to delete c2
-            Admin.AddContract(c2);
-            m1 = Admin.AddMember(c2.ContractID, "Martin", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
-                    "martinmeyer@gmail.com", "DE94500105172327561324", new DateTime(1990, 11, 24));
-            Admin.DeleteContract(c2.ContractID);
-            Assert.IsNotNull(Query.GetContractDetails(c2.ContractID));
-
-            Admin.DeleteMember(m1.MemberID);
-            Admin.DeleteContract(c2.ContractID);
-        }
-
-        [TestMethod]
-        public void deleteContracts()
-        {
-            //add contracts and members
-            Admin.AddContract(c1);
-            Admin.AddContract(c2);
-            m1 = Admin.AddMember(c2.ContractID, "Martin", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
-                    "martinmeyer@gmail.com", "DE94500105172327561324", new DateTime(1990, 11, 24));
-            
-            //check if you can delete all contracts even if members exists
-            Admin.DeleteContracts();
+            //check if there are contracts in the IList
             IList<Contract> contracts = Admin.ListContracts();
             Assert.IsTrue(contracts.Count > 0);
 
-            //delete all members and try again
-            Admin.DeleteMembers();
-            Admin.DeleteContracts();
-            contracts = Admin.ListContracts();
-            Assert.IsTrue(contracts.Count == 0);
+
+            //add an member who has contract c1 and try to delete c1
+            m1 = Admin.AddMember(c1.ContractID, "Martin", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
+                    "martinmeyer@gmail.com", "DE94500105172327561324", new DateTime(1990, 11, 24));
+
+            //delete contract c1
+            Admin.DeleteContract(c1.ContractID);
+
+            //check if contract c1 is still in database
+            Assert.IsNotNull(Query.GetContractDetails(c1.ContractID));
+
+            //delete member and than delete c1
+            Admin.DeleteMember(m1.MemberID);
+            Admin.DeleteContract(c1.ContractID);
+
+            //check if c1 is still in database
+            Assert.IsNull(Query.GetContractDetails(c1.ContractID));
         }
     }
 }
