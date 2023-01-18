@@ -54,7 +54,7 @@ namespace loremipsum.Gym.Entities
 
         public override string ToString()
         {
-            return EmployeeID+" | "+ Forename + " " + Surname;
+            return "ID: "+EmployeeID+" | "+ Forename + " " + Surname;
         }
     }
 }
