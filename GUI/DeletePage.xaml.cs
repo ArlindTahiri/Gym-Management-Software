@@ -7,6 +7,7 @@ using GUI.Order_GUIs;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
+using loremipsum;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using Microsoft.Identity.Client;
@@ -37,7 +38,7 @@ namespace GUI
     {
         IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog log = GymLogger.GetLog();
         private string destination;
         private int ID;
         private string _name;
@@ -119,11 +120,7 @@ namespace GUI
                     QuestionLabel.Content = "Wollen Sie wirklich diese Bestellung löschen?";
                     QuestionBox.Text = query.GetOrderDetails(ID).ToString();
                     break;
-            }
-
-            ILoggerRepository repository = LogManager.GetRepository(Assembly.GetCallingAssembly());
-            var fileInfo = new FileInfo(@"log4net.config");
-            XmlConfigurator.Configure(repository, fileInfo);
+            }          
         }
       
 
