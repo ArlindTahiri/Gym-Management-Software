@@ -33,7 +33,14 @@
 
         <TextBlock x:Name ="WarningText" Text="" Grid.Column="1" Grid.Row="2" Margin="10,10,10,10" TextWrapping="Wrap" Foreground="#FFD40303" TextAlignment="Center"/>
 
-        <Button x:Name="AddOrderButton" Foreground="White" Background="#437CD8" Content="Bestellung hinzufügen" Grid.Column="1" Grid.Row="3" Margin="20,100,20,100" FontSize="28" Style="{DynamicResource RoundedButtonsStyle}" Click="AddOrderButton_Click"/>
+        <Button x:Name="AddOrderButton" Foreground="White" Background="#437CD8" Grid.Column="1" Grid.Row="3" Margin="20,100,20,100" Style="{DynamicResource RoundedButtonsStyle}" Click="AddOrderButton_Click">
+            <Viewbox>
+                <TextBlock Text="Bestellung hinzufügen" Margin="10,10,10,10" />
+            </Viewbox>
+        </Button>
+
+
+        <Image  Grid.Column="2" Grid.Row="0" Width="50" Height="50" MouseDown="Image_MouseDown" Source="/interface-arrows-left-circle-1.png"  Margin="0,20,20,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

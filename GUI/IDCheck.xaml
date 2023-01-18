@@ -16,7 +16,7 @@
             <RowDefinition Height="457*"/>
         </Grid.RowDefinitions>
         <TextBox Style="{DynamicResource RoundedTextBox}" x:Name="IDCheckBox" HorizontalAlignment="Center" Width="1152" TextAlignment="Center" FontSize="30" Grid.Row="1" PreviewKeyDown="IDCheck1_PreviewKeyDown" Height="60" VerticalAlignment="Center" PreviewTextInput="IDCheckBox_PreviewTextInput" TextWrapping="Wrap"/>
-        <Label x:Name="QuestionBox" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Height="73" Width="1580" FontSize="30" HorizontalContentAlignment="Center" Margin="0,36,0,0"/>
+        <Label x:Name="QuestionBox" Content=""  FontSize="30" HorizontalContentAlignment="Center" Margin="90,20,90,10"/>
         <Label x:Name="WarningBox" Content="" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="72" Width="1580" FontSize="30" HorizontalContentAlignment="Center" Grid.Row="2" Foreground="Red" Margin="0,0,0,35"/>
         <DataGrid Visibility="Collapsed" x:Name="ArticleInventory" AutoGenerateColumns="False" CanUserResizeColumns="False" IsReadOnly="True" Margin="10,30,10,20" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" RowStyle="{DynamicResource DataGridRowStyle}" RenderTransformOrigin="0.499,0.578" Grid.Row="3">
             <DataGrid.Columns>
@@ -88,6 +88,8 @@
                 <DataGridTextColumn Header="Nachname" Width="30*" Binding="{Binding Surname}" />
             </DataGrid.Columns>
         </DataGrid>
+
+        <Image  Grid.Row="0" Width="50" Height="50" MouseDown="Image_MouseDown" Source="/interface-arrows-left-circle-1.png"  Margin="0,20,20,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

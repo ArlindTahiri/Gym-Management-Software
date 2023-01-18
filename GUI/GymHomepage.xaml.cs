@@ -93,7 +93,7 @@ namespace GUI
         private void TrainingMembers_Loaded(object sender, RoutedEventArgs e)
         {
             TrainingMembers.ItemsSource = admin.ListTrainingMembers();
-            CurrentlyTraining.Content = "Aktuell trainierende Mitglieder: "+ admin.ListTrainingMembers().Count;
+            CurrentlyTraining.Text = "Aktuell trainierende Mitglieder: "+ admin.ListTrainingMembers().Count;
         }
 
         private void Homepage_Loaded(object sender, RoutedEventArgs e)

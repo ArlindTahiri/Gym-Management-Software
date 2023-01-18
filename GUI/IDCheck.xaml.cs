@@ -5,6 +5,7 @@ using GUI.LoginGUIs;
 using GUI.MemberGUIs;
 using GUI.Order_GUIs;
 using log4net;
+using loremipsum;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
@@ -36,17 +37,18 @@ namespace GUI
         private string destination;
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
+        ILog log = GymLogger.GetLog();
         private int ID;
         private string login;
         public IDCheck(string destination)
         {
             InitializeComponent();
-            this.destination = destination;           
+            this.destination = destination;
 
             switch (destination)
             {
                 case "EditArticle": QuestionBox.Content = "Bitte geben Sie die ID des Artikels ein, den Sie ändern wollen.";
-                    ArticleInventory.ItemsSource = admin.ListArticles();    
+                    ArticleInventory.ItemsSource = admin.ListArticles();
                     ArticleInventory.Visibility = Visibility.Visible;
                     break;
 
@@ -130,7 +132,8 @@ namespace GUI
             {
                 if (!IDCheckBox.Text.IsNullOrEmpty())
                 {
-                    if (!(destination.Equals("EditLogin") || destination.Equals("DeleteLogin"))){
+                    if (!(destination.Equals("EditLogin") || destination.Equals("DeleteLogin")))
+                    {
 
                         ID = Int32.Parse(IDCheckBox.Text);
                         if (destination.Equals("EditArticle") && query.GetArticleDetails(ID) != null)
@@ -208,17 +211,21 @@ namespace GUI
                             GymHomepage home = new GymHomepage();
                             NavigationService.Navigate(home);
                         }
-                    } 
-                    else
-                    {
-                        WarningBox.Content = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
                     }
-
-                    if (destination.Equals("DeleteLogin") || destination.Equals("EditLogin")){
+                }
+                else
+                {
+                    WarningBox.Content = "Bitte geben Sie eine ID ein.";
+                    log.Error("Inserted no ID");
+                }
+                if (!IDCheckBox.Text.IsNullOrEmpty())
+                {
+                    if (destination.Equals("DeleteLogin") || destination.Equals("EditLogin"))
+                    {
 
                         this.login = IDCheckBox.Text;
 
-                        if (destination.Equals("EditLogin") && query.GetLogInDetails(login) != null) 
+                        if (destination.Equals("EditLogin") && query.GetLogInDetails(login) != null)
                         {
                             AddEditLogin loginPage = new AddEditLogin(login);
                             NavigationService.Navigate(loginPage);
@@ -226,21 +233,30 @@ namespace GUI
 
                         if (destination.Equals("DeleteLogin") && query.GetLogInDetails(login) != null)
                         {
-                            DeletePage deletePage = new DeletePage("DeleteLogin", login);
-                            NavigationService.Navigate(deletePage);
+                            if (query.GetLogInDetails(login).Rank != 1)
+                            {
+                                DeletePage deletePage = new DeletePage("DeleteLogin", login);
+                                NavigationService.Navigate(deletePage);
+                            }
+                            else
+                            {
+                                WarningBox.Content = "Sie können den amin nicht löschen!";
+                                log.Error("Tried deleting the admin account");
+                            }
+                        }
+                        else
+                        {
+                            WarningBox.Content = "Der eingegebene login existiert nicht. Bitte geben Sie einen gültigen login ein.";
+                            log.Error("Inserted an invalid login name.");
                         }
                     }
-                    else
-                    {
-                        WarningBox.Content = "Die eingegebene ID ist ungültig. Bitte geben Sie eine existierende ID ein.";
-                    }
-                }
-                else
-                {
-                    WarningBox.Content = "Die eingegebene ID ist ungültig. Bitte geben Sie eine gültige ID ein.";
+                } else {
+                    WarningBox.Content = "Bitte geben Sie einen login namen ein.";
+                    log.Error("Inserted no login name.");
                 }
             }
         }
+    
 
         private void IDCheckBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -250,6 +266,77 @@ namespace GUI
             }
         }
 
-               
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            switch (destination)
+            {
+                case "EditArticle":
+                    ArticlePage articlePage = new ArticlePage();
+                    NavigationService.Navigate(articlePage);
+                    break;
+
+                case "DeleteArticle":
+                    ArticlePage articlePage1 = new ArticlePage();
+                    NavigationService.Navigate(articlePage1);
+                    break;
+
+                case "EditContract":
+                    ContractPage contractPage = new ContractPage();
+                    NavigationService.Navigate(contractPage);
+                    break;
+
+                case "DeleteContract":
+                    ContractPage contractPage1 = new ContractPage();
+                    NavigationService.Navigate(contractPage1);
+                    break;
+
+                case "EditEmployee":
+                    EmployeePage employeePage = new EmployeePage();
+                    NavigationService.Navigate(employeePage);
+                    break;
+
+                case "DeleteEmployee":
+                    EmployeePage employeePage1 = new EmployeePage();
+                    NavigationService.Navigate(employeePage1);
+                    break;
+
+                case "EditMember":
+                    MemberPage memberPage = new MemberPage();
+                    NavigationService.Navigate(memberPage);
+                    break;
+
+                case "DeleteMember":
+                    MemberPage memberPage1 = new MemberPage();
+                    NavigationService.Navigate(memberPage1);
+                    break;
+
+                case "EditOrder":
+                    OrderPage orderPage = new OrderPage();
+                    NavigationService.Navigate(orderPage);
+                    break;
+
+                case "DeleteOrder":
+                    OrderPage orderPage1 = new OrderPage();
+                    NavigationService.Navigate(orderPage1);
+                    break;
+
+                case "Training":
+                    GymHomepage gymHomepage = new GymHomepage();
+                    NavigationService.Navigate(gymHomepage);
+                    break;
+
+                case "EditLogin":
+                    LoginPage loginPage = new LoginPage();
+                    NavigationService.Navigate(loginPage);
+                    break;
+
+                case "DeleteLogin":
+                    LoginPage loginPage1 = new LoginPage();
+                    NavigationService.Navigate(loginPage1);
+                    break;
+            }
+        }
+
+
     }
 }

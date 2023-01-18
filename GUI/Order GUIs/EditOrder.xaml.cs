@@ -55,6 +55,12 @@ namespace GUI.Order_GUIs
             }
         }
 
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OrderPage orderPage = new OrderPage();
+            NavigationService.Navigate(orderPage);
+        }
+
         private void ChangeOrder(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)

@@ -20,6 +20,7 @@ using log4net.Repository;
 using System.IO;
 using System.Reflection;
 using loremipsum;
+using GUI.ArticleGUIs;
 
 namespace GUI.LoginGUIs
 {
@@ -57,9 +58,12 @@ namespace GUI.LoginGUIs
                 Rank.Text = logIn.Rank.ToString();
                 addLogin.Content = "Login bearbeiten";
             }
+        }
 
-
-           
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LoginPage loginPage = new LoginPage();
+            NavigationService.Navigate(loginPage);
         }
 
         private void addLogin_Click(object sender, RoutedEventArgs e)

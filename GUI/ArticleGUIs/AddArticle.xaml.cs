@@ -99,6 +99,12 @@ namespace GUI.ArticleGUIs
             }
         }
 
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ArticlePage articlePage = new ArticlePage();
+            NavigationService.Navigate(articlePage);
+        }
+
         private void CreateArticle(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -139,5 +145,6 @@ namespace GUI.ArticleGUIs
                 }
             }
         }
+
     }
-    }
+}

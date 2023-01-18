@@ -128,7 +128,9 @@ namespace GUI
         {
             if(destination.Equals("Member"))
             {
-                if (!admin.DeleteMembers()) { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                if (!admin.DeleteMembers()) { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen.");
+                    log.Error("MemberBills.csv was still opened while trying to delete members!");
+                }
                 else
                 {
                     MemberPage memberPage = new MemberPage();
@@ -140,6 +142,7 @@ namespace GUI
             if (destination.Equals("Employee"))
             {
                 admin.DeleteEmployees();
+                log.Info("Deleted all employees.");
                 EmployeePage employeePage= new EmployeePage();
                 NavigationService.Navigate(employeePage);
             }
@@ -147,6 +150,7 @@ namespace GUI
             if (destination.Equals("Article"))
             {
                 admin.DeleteArticles();
+                log.Info("Deleted all articles.");
                 ArticlePage articlePage =new ArticlePage();
                 NavigationService.Navigate(articlePage);
             }
@@ -154,6 +158,7 @@ namespace GUI
             if (destination.Equals("Contract"))
             {
                 admin.DeleteContracts();
+                log.Info("Deleted all contracts.");
                 ContractPage contractPage =new ContractPage();
                 NavigationService.Navigate(contractPage);
             }
@@ -161,6 +166,7 @@ namespace GUI
             if (destination.Equals("Login"))
             {
                 admin.DeleteLogIns();
+                log.Info("Deleted all logins.");
                 LoginPage loginPage = new LoginPage();
                 NavigationService.Navigate(loginPage);
             }
@@ -168,6 +174,7 @@ namespace GUI
             if (destination.Equals("Order"))
             {             
                 admin.DeleteOrders();
+                log.Info("Deleted all orders.");
                 OrderPage orderPage = new OrderPage();
                 NavigationService.Navigate(orderPage);
             }
@@ -189,11 +196,16 @@ namespace GUI
                         admin.DeleteMembers();
                         admin.DeleteContracts();
                         admin.DeleteLogIns();
+                        log.Info("Deleted everything.");
                     }
-                    else { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                    else { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen.");
+                        log.Error("MemberBills.csv was still opened while trying to delete everything!");
+                    }
                     
                 }
-                else { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                else { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen.");
+                    log.Error("MemberBills.csv was still opened while trying to checkout members!");
+                }
                 
 
                 AddEditLogin addEditLogin = new AddEditLogin("FirstTime");
@@ -249,7 +261,9 @@ namespace GUI
 
             if (destination.Equals("CheckoutMembers"))
             {
-                if (!admin.CheckOutMembers()) { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen."); }
+                if (!admin.CheckOutMembers()) { MessageBox.Show("Bitte schließen Sie alle anderen Anwendungen, die gerade auf MemberBills.csv zugreifen.");
+                    log.Error("MemberBills.csv was still opened while trying to checkout members!");
+                }
                 else
                 {
                     EmployeePage employeePage = new EmployeePage();

@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using GUI.ArticleGUIs;
+using log4net;
 using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
@@ -53,11 +54,16 @@ namespace GUI.EmployeeGUIs
             EMail.Text = employee.EMail;
             Iban.Text = employee.Iban;
             Birthday.Text = employee.Birthday.ToString("dd.MM.yyyy");
-
-            
+            Textblock_Header.Text = "Mitarbeiter bearbeiten";
         }
 
-       
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            EmployeePage employeePage = new EmployeePage();
+            NavigationService.Navigate(employeePage);
+        }
+
+
         private void PostalCode_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             TextValidation.CheckIsNumeric(e);

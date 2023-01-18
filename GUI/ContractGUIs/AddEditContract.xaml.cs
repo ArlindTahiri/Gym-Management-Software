@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using GUI.ArticleGUIs;
+using log4net;
 using log4net.Config;
 using log4net.Repository;
 using loremipsum.Gym;
@@ -45,6 +46,12 @@ namespace GUI.ContractGUIs
             ContractType.Text = Contract.ContractType;
             Price.Text = Contract.Price.ToString();
             AddContractButton.Content = "Vertrag bearbeiten";
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ContractPage contractPage = new ContractPage();
+            NavigationService.Navigate(contractPage);
         }
 
         private void AddContractButton_Click(object sender, RoutedEventArgs e)

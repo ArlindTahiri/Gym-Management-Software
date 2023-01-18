@@ -49,6 +49,12 @@ namespace GUI.ArticleGUIs
             
         }
 
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ArticlePage articlePage = new ArticlePage();
+            NavigationService.Navigate(articlePage);
+        }
+
         private void ChangeArticleButton_Click(object sender, RoutedEventArgs e)
         {
             if (!Name.Text.IsNullOrEmpty() && !Price.Text.IsNullOrEmpty() && !TargetStock.Text.IsNullOrEmpty() && !ActualStock.Text.IsNullOrEmpty())

@@ -30,7 +30,14 @@
         <Label Content="Soll-Bestand" Margin="447,0,447,10" Grid.Row="4" FontSize="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="57" VerticalAlignment="Bottom"/>
         <Label Content="Ist-Bestand" Margin="447,0,447,10" Grid.Row="6" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="58" VerticalAlignment="Bottom"/>
         <Label x:Name="WarningLabel" Content="" HorizontalAlignment="Center" Width="1198" HorizontalContentAlignment="Center" Foreground="Red" Grid.Row="8" Margin="0,10,0,10" FontSize="25" VerticalContentAlignment="Center"/>
-        <Button x:Name="AddArticle1" Content="Artikel hinzufügen" Margin="500,10,500,20" Click="AddArticle1_Click" Style="{DynamicResource RoundedButtonsStyle}" Grid.Row="9" FontSize="30" Foreground="White" Background="#437CD8"/>
+
+        <Button x:Name="AddArticle1" Margin="500,10,500,20" Click="AddArticle1_Click" Style="{DynamicResource RoundedButtonsStyle}" Grid.Row="9" Foreground="White" Background="#437CD8">
+            <Viewbox>
+                <TextBlock Margin="10,10,10,10" Text="Artikel hinzufügen"/>
+            </Viewbox>
+        </Button>
+
+        <Image  Grid.Row="0" Width="50" Height="50" MouseDown="Image_MouseDown" Source="/interface-arrows-left-circle-1.png"  Margin="0,20,20,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

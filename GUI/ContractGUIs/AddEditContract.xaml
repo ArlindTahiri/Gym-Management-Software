@@ -28,7 +28,14 @@
         <TextBox x:Name="ContractType" VerticalContentAlignment="Center" TextAlignment="Center" Grid.Row="1" Grid.Column="0"  FontSize="30" Margin="50,10,50,10" TextWrapping="Wrap"  PreviewKeyDown="CreateContract" Style="{DynamicResource RoundedTextBox}"/>
         <TextBox x:Name="Price" Grid.Row="1" VerticalContentAlignment="Center" TextAlignment="Center" Grid.Column="1"  Margin="50,10,50,10" FontSize="30" TextWrapping="Wrap"  PreviewTextInput="Price_PreviewTextInput" PreviewKeyDown="CreateContract" Style="{DynamicResource RoundedTextBox}"/>
         <Label x:Name="WarningLabel" Content="" Grid.Row="2" Grid.ColumnSpan="2" Margin="400,10,400,10" HorizontalContentAlignment="Center" Foreground="Red"/>
-        <Button x:Name="AddContractButton" Foreground="White"  FontSize="30" Content="Vertrag hinzufügen" Background="#437CD8" Grid.Row="3" Grid.ColumnSpan="2" Margin="400,100,400,100" Click="AddContractButton_Click"  Style="{DynamicResource RoundedButtonsStyle}"/>
 
+        <Button Foreground="White" Background="#437CD8" Grid.Row="3" Grid.ColumnSpan="2" Margin="400,100,400,100" Click="AddContractButton_Click"  Style="{DynamicResource RoundedButtonsStyle}">
+            <Viewbox>
+                <Label x:Name="AddContractButton" Margin="10,10,10,10" Foreground="White" Content="Vertrag hinzufügen"/>
+            </Viewbox>
+        </Button>
+
+        <Image  Grid.Column="1" Grid.Row="0" Width="50" Height="50" MouseDown="Image_MouseDown" Source="/interface-arrows-left-circle-1.png"  Margin="0,20,20,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        
     </Grid>
 </Page>
