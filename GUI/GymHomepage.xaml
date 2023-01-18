@@ -6,9 +6,9 @@
       xmlns:local="clr-namespace:GUI"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
-      Title="GymHomepage">
+      Title="GymHomepage"  Background="#EFEFEF">
 
-    <Grid x:Name="Homepage" Loaded="Homepage_Loaded" Background="#EFEFEF">
+    <Grid x:Name="Homepage" Loaded="Homepage_Loaded">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="150*" />

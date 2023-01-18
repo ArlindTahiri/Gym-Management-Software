@@ -1,4 +1,5 @@
-﻿using loremipsum.Gym;
+﻿using GUI.EmployeeGUIs;
+using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Query.Internal;
@@ -38,6 +39,12 @@ namespace GUI.MemberGUIs
         private void PostalCode_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             TextValidation.CheckIsNumeric(e);
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MemberPage memberPage = new MemberPage();
+            NavigationService.Navigate(memberPage);
         }
 
         private void ContractCB_Loaded(object sender, RoutedEventArgs e)

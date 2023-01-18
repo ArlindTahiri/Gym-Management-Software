@@ -52,6 +52,12 @@ namespace GUI.MemberGUIs
             TextValidation.CheckIsNumeric(e);
         }
 
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MemberPage memberPage = new MemberPage();
+            NavigationService.Navigate(memberPage);
+        }
+
         private void ChangeMember(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)

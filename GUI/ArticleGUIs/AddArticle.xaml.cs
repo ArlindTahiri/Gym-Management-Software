@@ -35,44 +35,6 @@ namespace GUI.ArticleGUIs
             InitializeComponent();                 
         }
 
-        private void AddArticle1_Click(object sender, RoutedEventArgs e)
-        {
-            if (!Name.Text.IsNullOrEmpty() && !Price.Text.IsNullOrEmpty() && !TargetStock.Text.IsNullOrEmpty() && !ActualStock.Text.IsNullOrEmpty())
-            {
-                if (Price.Text.Contains(".") || Price.Text.Contains(","))
-                {
-                    string[] string_remove = { ".", "," };
-                    string euroPrice = Price.Text;
-
-                    foreach (string c in string_remove)
-                    {
-                        euroPrice = euroPrice.Replace(c, "");
-                    }
-
-                    int centPrice = Int32.Parse(euroPrice);
-
-                    Article article = new Article(Name.Text, centPrice, Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
-                    admin.AddArticle(article);
-
-                    GymHomepage home = new GymHomepage();
-                    NavigationService.Navigate(home);
-
-                }
-                else
-                {
-                    Article article = new Article(Name.Text, Int32.Parse(Price.Text), Int32.Parse(TargetStock.Text), Int32.Parse(ActualStock.Text));
-                    admin.AddArticle(article);
-
-                    GymHomepage home = new GymHomepage();
-                    NavigationService.Navigate(home);
-
-                }
-            }
-            else
-            {
-                WarningLabel.Content = "Bitte geben Sie für alle Daten etwas ein!";
-            }
-        }
 
         private void Price_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

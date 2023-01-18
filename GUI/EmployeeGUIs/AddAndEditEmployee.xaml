@@ -17,7 +17,6 @@
             <RowDefinition Height="75*"/>
             <RowDefinition Height="75*"/>
             <RowDefinition Height="150*"/>
-
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="230*"/>
@@ -43,14 +42,14 @@
             <Label Content="Vorname:" Margin="10,5,10,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </Viewbox>
         <Viewbox Grid.Row="1" Grid.Column="1"  Margin="10,10,50,10" HorizontalAlignment="Left">
-            <TextBox VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Surname" Margin="0" TextWrapping="NoWrap" PreviewKeyDown="CreateEmployee" MinWidth="300" />
+            <TextBox  VerticalContentAlignment="Center"  Style="{DynamicResource RoundedTextBox}" x:Name="Name"  TextWrapping="NoWrap" Margin="0" PreviewKeyDown="CreateEmployee" MinWidth="300" />
         </Viewbox>
 
         <Viewbox Grid.Row="1" Grid.Column="2">
             <Label Content="Nachname:" Margin="10,5,10,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
         </Viewbox>
         <Viewbox Grid.Row="1" Grid.Column="3" Margin="10,10,20,10" HorizontalAlignment="Left" >
-            <TextBox  VerticalContentAlignment="Center"  Style="{DynamicResource RoundedTextBox}" x:Name="Name"  TextWrapping="NoWrap" Margin="0" PreviewKeyDown="CreateEmployee" MinWidth="330" />
+            <TextBox VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Surname" Margin="0" TextWrapping="NoWrap" PreviewKeyDown="CreateEmployee" MinWidth="330" />
         </Viewbox>
 
         <Viewbox Grid.Row="2" Grid.Column="0">
@@ -92,18 +91,18 @@
             <TextBox  VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="EMail" Margin="0" TextWrapping="NoWrap" PreviewKeyDown="CreateEmployee" MinWidth="300" />
         </Viewbox>
 
-        <Viewbox Grid.Row="5" Grid.Column="0">
-            <Label Content="IBAN:" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,5,10,5"/>
-        </Viewbox>
-        <Viewbox Grid.Row="5" Grid.Column="1" Margin="10,10,50,10" HorizontalAlignment="Left">
-            <TextBox VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Iban" Margin="0" TextWrapping="NoWrap" PreviewKeyDown="CreateEmployee" MinWidth="300"  />
-        </Viewbox>
-
         <Viewbox Grid.Row="4" Grid.Column="2">
             <Label Content="Geburtstag (TT.MM.JJJ):" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,5,10,5"/>
         </Viewbox>
         <Viewbox Grid.Row="4" Grid.Column="3" Margin="10,10,20,10" HorizontalAlignment="Left">
             <TextBox  VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Birthday" Margin="0" TextWrapping="NoWrap" PreviewKeyDown="CreateEmployee" MinWidth="330" />
+        </Viewbox>
+
+        <Viewbox Grid.Row="5" Grid.Column="0">
+            <Label Content="IBAN:" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="10,5,10,5"/>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="1" Margin="10,10,50,10" HorizontalAlignment="Left">
+            <TextBox VerticalContentAlignment="Center" Style="{DynamicResource RoundedTextBox}" x:Name="Iban" Margin="0" TextWrapping="NoWrap" PreviewKeyDown="CreateEmployee" MinWidth="300"  />
         </Viewbox>
 
 
