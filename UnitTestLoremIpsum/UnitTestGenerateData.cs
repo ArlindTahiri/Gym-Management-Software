@@ -1,4 +1,5 @@
-﻿using loremipsum.Gym;
+﻿using log4net;
+using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using loremipsum.Gym.Persistence;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -36,13 +37,24 @@ namespace UnitTestLoremIpsum
         public void GenerateTestData()
         {
             //delete all entities in database
+            IList<int> currentlytrainingmember = Admin.ListTrainingMembersID();
+            foreach (int memberID in currentlytrainingmember)
+            {
+                Admin.DeleteTrainingMember(memberID);
+            }
+            if (Admin.CheckOutMembers())
+            {
+                Admin.DeleteEmployees();
+                Admin.DeleteOrders();
+                if (Admin.DeleteMembers())
+                {
+                    Admin.DeleteArticles();
+                    Admin.DeleteMembers();
+                    Admin.DeleteContracts();
+                    Admin.DeleteLogIns();
+                }
 
-            Admin.DeleteOrders();
-            Admin.DeleteMembers();
-            Admin.DeleteContracts();
-            Admin.DeleteArticles();
-            Admin.DeleteEmployees();
-            Admin.DeleteLogIns();
+            }
 
             //LogIns
             l1 = new LogIn("admin", "freeW@ve44",1);
@@ -142,14 +154,13 @@ namespace UnitTestLoremIpsum
             IList<Member> members = Admin.ListMembers();
             Assert.IsTrue(members.Count == 6);
 
-
             //add orders
-            o1 = Admin.AddOrder(m1.MemberID,a1.ArticleID,3);
-            o2 = Admin.AddOrder(m2.MemberID,a4.ArticleID,6);
-            o3 = Admin.AddOrder(m1.MemberID,a3.ArticleID,10);
-            o4 = Admin.AddOrder(m4.MemberID,a2.ArticleID,5);
-            o5 = Admin.AddOrder(m5.MemberID,a6.ArticleID,20);
-            o6 = Admin.AddOrder(m6.MemberID,a6.ArticleID,4);
+            o1 = Admin.AddOrder(m1.MemberID, a1.ArticleID, 3);
+            o2 = Admin.AddOrder(m2.MemberID, a4.ArticleID, 6);
+            o3 = Admin.AddOrder(m1.MemberID, a3.ArticleID, 10);
+            o4 = Admin.AddOrder(m4.MemberID, a2.ArticleID, 5);
+            o5 = Admin.AddOrder(m5.MemberID, a6.ArticleID, 20);
+            o6 = Admin.AddOrder(m6.MemberID, a6.ArticleID, 4);
         }
     }
 }

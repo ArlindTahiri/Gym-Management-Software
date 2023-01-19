@@ -44,37 +44,36 @@ namespace UnitTestLoremIpsum
         {
             //Add contract to add member m1
             Admin.AddContract(c1);
+            c1 = Query.GetContractDetails(c1.ContractID);
             m1 = Admin.AddMember(c1.ContractID, "Martin_test", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
                     "martinmeyer@gmail.com", "DE94500105172327561324", new DateTime(1990, 11, 24));
+            m1 = Query.GetMemberDetails(m1.MemberID);
 
             //Test if the member is in the database
             Assert.IsTrue(m1.ContractID == c1.ContractID && m1.Forename.Equals("Martin_test") && m1.Surname.Equals("Meyer") && m1.Street.Equals("Mohrenstrasse 54") &&
                     m1.PostcalCode == 04161 && m1.City.Equals("Leipzig") && m1.Country.Equals("Deutschland") &&
                     m1.EMail.Equals("martinmeyer@gmail.com") && m1.Iban.Equals("DE94500105172327561324") && m1.Birthday.Equals(new DateTime(1990, 11, 24)));
 
-            //Add an member m2 with no contract
-            try
-            {
-                m2 = Admin.AddMember(c2.ContractID, "Anton_test", "Müller", "Rhinstrasse 90", 80711, "München", "Deutschland",
-                   "anton.mueller@gmail.com", "DE90500105174767217514", new DateTime(1991, 1, 24));
-                Assert.Fail();
-            }
-            catch
-            {
-                Console.WriteLine("Exception erkannt");
-            }
+            //update member m1
+            Admin.UpdateMember(m1.MemberID, "Jennifer_test2", "Meier", "Rhinstrasse 96", 80711, "München", "Deutschland",
+                  "jennifer.meier@gmail.com", "DE90500105174767217514", new DateTime(1991, 11, 24));
+            m1 = Query.GetMemberDetails(m1.MemberID);
+            //check if the updated member is in the database
+            Assert.IsTrue(m1.ContractID == c1.ContractID && m1.Forename.Equals("Jennifer_test2") && m1.Surname.Equals("Meier") && m1.Street.Equals("Rhinstrasse 96") &&
+                    m1.PostcalCode == 80711 && m1.City.Equals("München") && m1.Country.Equals("Deutschland") &&
+                    m1.EMail.Equals("jennifer.meier@gmail.com") && m1.Iban.Equals("DE90500105174767217514") && m1.Birthday.Equals(new DateTime(1991, 11, 24)));
 
-            //Add an member m3 which is identical with m1
-            try
-            {
-                m3 = Admin.AddMember(c1.ContractID, "Martin_test", "Meyer", "Mohrenstrasse 54", 04161, "Leipzig", "Deutschland",
-                    "martinmeyer@gmail.com", "DE94500105172327561324", new DateTime(1990, 11, 24));
-                Assert.Fail();
-            }
-            catch
-            {
-                Console.WriteLine("Exception erkannt");
-            }
+            //update contract from member m1
+            Admin.AddContract(c2);
+            Admin.UpdateContractFromMember(m1.MemberID, c2.ContractID);
+            m1 = Query.GetMemberDetails(m1.MemberID);
+            Assert.IsTrue(m1.ContractID == c2.ContractID);
+
+            //Test if you can update the contract if contract == null
+            int invalid = -1;
+            Admin.UpdateContractFromMember(m1.MemberID, invalid);
+            m1 = Query.GetMemberDetails(m1.MemberID);
+            Assert.IsTrue(m1.ContractID != invalid);
 
             //check if there are members in the IList
             IList<Member> members = Admin.ListMembers();
@@ -89,6 +88,9 @@ namespace UnitTestLoremIpsum
             //delete member m1
             Admin.DeleteMember(m1.MemberID);
             Assert.IsNull(Query.GetMemberDetails(m1.MemberID));
+
+            Admin.DeleteContract(c1.ContractID);
+            Admin.DeleteContract(c2.ContractID);
         }
     }
 }
