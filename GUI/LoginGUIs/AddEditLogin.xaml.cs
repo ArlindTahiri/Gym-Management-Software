@@ -49,6 +49,7 @@ namespace GUI.LoginGUIs
                 Rank.Text = 1.ToString();
                 Rank.IsReadOnly = true;
                 WarningText.Text = "Der erste erstellte Benutzer muss Adminrechte haben.\nDer Rang 1 ist somit vorgegeben.";
+                GoBackIcon.Visibility = Visibility.Collapsed;
             }
             else
             {

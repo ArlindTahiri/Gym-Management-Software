@@ -39,14 +39,24 @@ namespace GUI
         public GymPasswordPage()
         {
             InitializeComponent();
+            GoBackIcon.Visibility = Visibility.Collapsed;
             if (admin.ListLogIns().Count == 0)
             {
                 Destination = "AddLogIn";
+                NoLoginTextBlock.Visibility = Visibility.Visible;
+                LogInButtonTextblock.Text = "Login erstellen";
+                UsernameLabel.Visibility = Visibility.Collapsed;
+                Username.Visibility= Visibility.Collapsed;
+                PasswordLabel.Visibility = Visibility.Collapsed;
+                PasswordBox.Visibility = Visibility.Collapsed;
+                WariningLabel.Visibility = Visibility.Collapsed;
             }
             else
             {
                 Destination = "Homepage";
             }
+           
+
         }
 
         private void LogIn_Click(object sender, RoutedEventArgs e)
@@ -120,5 +130,42 @@ namespace GUI
                 NavigationService.Navigate(homepage);
             }
         }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            switch (Destination)
+            {
+                case "Inventar":
+                    GymHomepage homepage = new GymHomepage();
+                    NavigationService.Navigate(homepage);
+                    break;
+
+                case "Contract":
+                    GymHomepage homepage1 = new GymHomepage();
+                    NavigationService.Navigate(homepage1);
+                    break;
+
+                case "Employee":
+                    GymHomepage homepage2 = new GymHomepage();
+                    NavigationService.Navigate(homepage2);
+                    break;
+
+                case "Member":
+                    GymHomepage homepage3 = new GymHomepage();
+                    NavigationService.Navigate(homepage3);
+                    break;
+
+                case "Order":
+                    GymHomepage homepage4 = new GymHomepage();
+                    NavigationService.Navigate(homepage4);
+                    break;
+
+                case "Login":
+                    GymHomepage homepage5 = new GymHomepage();
+                    NavigationService.Navigate(homepage5);
+                    break;
+            }
+        }
+
     }
 }
