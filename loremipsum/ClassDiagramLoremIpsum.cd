@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="loremipsum.Gym.Entities.Article" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAgAAAQAAAAQEAAAAAAEAAAAQAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Gym\Entities\Article.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="loremipsum.Gym.Entities.Contract" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAQEAAAAAAAAAgAAEAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Gym\Entities\Contract.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="loremipsum.Gym.Entities.Employee" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAAAQMAAABACAABCIIAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Gym\Entities\Employee.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="loremipsum.Gym.Entities.LogIn" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAABAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Gym\Entities\LogIn.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="loremipsum.Gym.Entities.Member" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAEAAAAAQMAAABACAgBiIIAAAAAAIoAAABAAA=</HashCode>
+      <FileName>Gym\Entities\Member.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Contract" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="loremipsum.Gym.Entities.Order" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAQEAAAAAACAEAAIAAAAgAAAAAABAAA=</HashCode>
+      <FileName>Gym\Entities\Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Member" />
+      <Property Name="Article" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="loremipsum.Gym.Impl.Gym" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CypQAEIgABMAAIBCgAGACgCCQwAcABALgEAAAZDEAAI=</HashCode>
+      <FileName>Gym\Impl\Gym.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="persistence" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="loremipsum.Gym.Persistence.GymPersistenceEF" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASBQEQMAAAKQAIDAIAAACECACAAYQBAIEkAIAAkQBAA=</HashCode>
+      <FileName>Gym\Persistence\GymPersistenceEF.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="loremipsum.Gym.GymFactory" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Gym\GymFactory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="gym" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="loremipsum.Gym.IGymPersistence" Collapsed="true">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASBQEQMAAAKQAIDAIAAACECACAAYQBAIEkAIAAkQBAA=</HashCode>
+      <FileName>Gym\IGymPersistence.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="loremipsum.Gym.IProductAdmin" Collapsed="true">
+    <Position X="8.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AyhQAEIgAAIAAIBCgAGACgCAQwAYABAJgEAAAZBEAAI=</HashCode>
+      <FileName>Gym\IProductAdmin.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="loremipsum.Gym.IProductModule" Collapsed="true">
+    <Position X="10" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAEAAABEAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Gym\IProductModule.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
