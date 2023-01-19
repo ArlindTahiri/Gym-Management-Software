@@ -39,7 +39,6 @@ namespace loremipsum.Gym.Impl
                 return persistence.CreateMember(contract, forename, surname, street, postcalCode, city, country, eMail, iban, birthday);
             }
             else { return null; }
-            
         }
 
         /// <summary>
@@ -67,7 +66,6 @@ namespace loremipsum.Gym.Impl
                 }
             }
             return temp;
-            
         }
 
         /// <summary>
@@ -86,7 +84,6 @@ namespace loremipsum.Gym.Impl
                 }
             }
             return temp;
-            
         }
 
         /// <summary>
@@ -175,7 +172,6 @@ namespace loremipsum.Gym.Impl
             {
                 persistence.DeleteContract(contractID);
             }
-            
         }
 
         /// <summary>
@@ -188,7 +184,6 @@ namespace loremipsum.Gym.Impl
             {
                 persistence.DeleteContracts();//only delete contracts if there are no members because members can only exists with contract
             }
-            
         }
 
         /// <summary>
@@ -472,7 +467,6 @@ namespace loremipsum.Gym.Impl
                             persistence.UpdateOrder(order, member, article, amount);
                         }
                     }
-
                 }
             }
         }
@@ -523,7 +517,7 @@ namespace loremipsum.Gym.Impl
         }
 
         /// <summary>
-        /// Returnsd a list of all LogIns. Forwards this query to persistence.
+        /// Returns a list of all LogIns. Forwards this query to persistence.
         /// </summary>
         /// <returns>List of all LogIns</returns>
         public IList<LogIn> ListLogIns()
@@ -551,7 +545,6 @@ namespace loremipsum.Gym.Impl
         {
             LogIn logIn = persistence.FindLogIn(logInName);
             LogIn logInNew = persistence.FindLogIn(newLogInName);
-
             if(logIn != null)
             {
                 if (logIn.Rank == 1) //if login is an admin check
@@ -601,7 +594,6 @@ namespace loremipsum.Gym.Impl
         public bool CheckoutMemberForChangingContract(Member member)
         {
             Contract contract = persistence.FindContract(member.ContractID);
-
             DateTime currentDate = DateTime.Now.Date;
             int daysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
             try
@@ -625,7 +617,6 @@ namespace loremipsum.Gym.Impl
                             sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
                         }
                     }
-
                     //set TimeOfContractChange to today
                     persistence.UpdateMemberTimeOfContractChange(member);
                     return true;
@@ -633,7 +624,6 @@ namespace loremipsum.Gym.Impl
                 else { return false; }
             }
             catch (IOException) { return false; }
-            
         }
 
         /// <summary>
@@ -645,7 +635,6 @@ namespace loremipsum.Gym.Impl
         {
             IList<Member> members = persistence.FindMembers();
             IList<Order> orders = persistence.FindOrders();
-            DateTime currentDate = DateTime.Now.Date;
             DateTime lastMonth = DateTime.Now.Date.AddMonths(-1);
             int daysInLastMonth = DateTime.DaysInMonth(lastMonth.Year, lastMonth.Month);
             string FileUrl = "MemberBills.csv";
@@ -675,8 +664,6 @@ namespace loremipsum.Gym.Impl
                         }
                         membersChangeTimeOfContractChange.Add(member);
                     }
-
-
                     //done with writing all of the contracts in csv
                 }
                 //now set the TimeOfContractChange of each Member, which got checkouted to the first of the month
@@ -696,7 +683,6 @@ namespace loremipsum.Gym.Impl
                 return true;
             }
             catch (IOException) { return false; }
-            
         }
 
         /// <summary>
@@ -708,7 +694,6 @@ namespace loremipsum.Gym.Impl
             DateTime currentDate = DateTime.Now.Date;
             string FileUrl = "MemberBills.csv";
             IList<Order> ordersFromMember = ListAllOrdersFromMember(member.MemberID);
-
             try
             {
                 //now write all orders in csv
@@ -734,7 +719,6 @@ namespace loremipsum.Gym.Impl
                 return true;
             }
             catch (IOException) { return false; }
-            
         }
         #endregion
 
@@ -800,7 +784,6 @@ namespace loremipsum.Gym.Impl
                     members = (int[])deser.Deserialize(reader);
                 }
                 currentlyTrainingMembersID = members.ToList();
-                
             }
             return currentlyTrainingMembersID;
         }
@@ -822,6 +805,7 @@ namespace loremipsum.Gym.Impl
         #endregion
 
         #endregion
+
 
 
         #region IProductModule
