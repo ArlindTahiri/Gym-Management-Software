@@ -153,6 +153,14 @@ namespace UnitTestLoremIpsum
             //check if 6 members are in database
             IList<Member> members = Admin.ListMembers();
             Assert.IsTrue(members.Count == 6);
+
+            //add orders
+            o1 = Admin.AddOrder(m1.MemberID, a1.ArticleID, 3);
+            o2 = Admin.AddOrder(m2.MemberID, a4.ArticleID, 6);
+            o3 = Admin.AddOrder(m1.MemberID, a3.ArticleID, 10);
+            o4 = Admin.AddOrder(m4.MemberID, a2.ArticleID, 5);
+            o5 = Admin.AddOrder(m5.MemberID, a6.ArticleID, 20);
+            o6 = Admin.AddOrder(m6.MemberID, a6.ArticleID, 4);
         }
     }
 }
