@@ -37,5 +37,10 @@ namespace loremipsum.Gym.Entities
             }
             
         }
+
+        public override string ToString()
+        {
+            return "OrderID: "+OrderID+ " | MemberID: "+ MemberID+" | ArtikelID: "+ ArticleID+" | Menge: "+Amount;
+        }
     }
 }
