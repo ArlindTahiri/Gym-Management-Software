@@ -12,8 +12,8 @@ using loremipsum.Gym.Persistence;
 namespace loremipsum.Migrations
 {
     [DbContext(typeof(GymContext))]
-    [Migration("20230115134134_Add-Migration -Project loremipsum")]
-    partial class AddMigrationProjectloremipsum
+    [Migration("20230119074414_Gym")]
+    partial class Gym
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
