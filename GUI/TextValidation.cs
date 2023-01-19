@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -19,14 +21,10 @@ namespace GUI
             }
         }
 
-        public static bool CheckIsMail(string mail)
+        public static bool CheckIsMail(string email)
         {
-            if(mail.Contains("@") && mail.Contains(".") && !mail.StartsWith("@") && !mail.StartsWith(".") && !mail.EndsWith("@") && !mail.EndsWith(".")){
-                return true;
-            } else
-            {
-                return false;
-            }
+            Regex reg = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
+            return reg.IsMatch(email);
         }
 
         public static bool CheckIsPostalCode (string postalCode)
