@@ -607,14 +607,14 @@ namespace loremipsum.Gym.Impl
                         using (StreamWriter sw = File.CreateText(FileUrl))
                         {
                             sw.WriteLine("Datum,MemberID,TransaktionsID,Preis,Transaktionsart,IBan,Anzahl");
-                            sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                            sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + price + "," + "Vertrag" + "," + member.Iban + ",");
                         }
                     }
                     else
                     {
                         using (StreamWriter sw = File.AppendText(FileUrl))
                         {
-                            sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + (double)price / 100 + "," + "Vertrag" + "," + member.Iban + ",");
+                            sw.WriteLine(DateTime.Now.ToString() + "," + member.MemberID + "," + member.ContractID + "," + price + "," + "Vertrag" + "," + member.Iban + ",");
                         }
                     }
                     //set TimeOfContractChange to today
