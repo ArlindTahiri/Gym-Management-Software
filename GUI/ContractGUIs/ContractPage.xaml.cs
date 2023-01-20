@@ -52,8 +52,8 @@ namespace GUI.ContractGUIs
 
         private void DeleteContractsButton_Click(object sender, RoutedEventArgs e)
         {
-            DeletePage deletePage = new DeletePage("Contract");
-            NavigationService.Navigate(deletePage);
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("DeleteAllContracts");
+            NavigationService.Navigate(gymPasswordPage);
         }
 
         private void ChangeContractButton_Click(object sender, RoutedEventArgs e)

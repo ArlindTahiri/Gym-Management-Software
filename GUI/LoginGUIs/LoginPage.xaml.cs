@@ -35,8 +35,8 @@ namespace GUI.LoginGUIs
 
         private void DeleteLoginsButton_Click(object sender, RoutedEventArgs e)
         {
-            DeletePage deletePage = new DeletePage("Login");
-            NavigationService.Navigate(deletePage);
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("DeleteAllLogIns");
+            NavigationService.Navigate(gymPasswordPage);
         }
 
         private void AddLogins_Click(object sender, RoutedEventArgs e)

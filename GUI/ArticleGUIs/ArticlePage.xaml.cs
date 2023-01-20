@@ -45,8 +45,8 @@ namespace GUI.ArticleGUIs
 
         private void DeleteArticlesButton_Click(object sender, RoutedEventArgs e)
         {
-            DeletePage deletePage = new DeletePage("Article");
-            NavigationService.Navigate(deletePage);
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("DeleteAllArticles");
+            NavigationService.Navigate(gymPasswordPage);
         }
 
         private void AddArticle_Click(object sender, RoutedEventArgs e)

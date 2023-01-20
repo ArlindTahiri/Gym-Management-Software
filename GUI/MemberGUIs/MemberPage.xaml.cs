@@ -36,8 +36,8 @@ namespace GUI.MemberGUIs
 
         private void DeleteMembersButton_Click(object sender, RoutedEventArgs e)
         {
-            DeletePage deletePage = new DeletePage("Member");
-            NavigationService.Navigate(deletePage);
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("DeleteAllMembers");
+            NavigationService.Navigate(gymPasswordPage);
         }
 
         private void AddMemberButton_Click(object sender, RoutedEventArgs e)

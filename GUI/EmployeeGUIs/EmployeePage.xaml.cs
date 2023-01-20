@@ -46,8 +46,8 @@ namespace GUI.EmployeeGUIs
 
         private void DeleteEmployeeButton_Click(object sender, RoutedEventArgs e)
         {
-            DeletePage deletePage = new DeletePage("Employee");
-            NavigationService.Navigate(deletePage); 
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("DeleteAllEmployees");
+            NavigationService.Navigate(gymPasswordPage);
         }
 
         private void CheckoutButton_Click(object sender, RoutedEventArgs e)

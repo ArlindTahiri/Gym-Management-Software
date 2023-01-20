@@ -86,8 +86,8 @@ namespace GUI
 
         private void DeleteEverythingButton_Click(object sender, RoutedEventArgs e)
         {
-            DeletePage deletePage = new DeletePage("Home");
-            NavigationService.Navigate(deletePage);
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("DeleteEverything");
+            NavigationService.Navigate(gymPasswordPage);
         }
 
         private void TrainingMembers_Loaded(object sender, RoutedEventArgs e)

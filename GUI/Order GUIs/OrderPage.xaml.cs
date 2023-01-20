@@ -35,8 +35,8 @@ namespace GUI.Order_GUIs
 
         private void DeleteMembersButton_Click(object sender, RoutedEventArgs e)
         {
-            DeletePage deletePage = new DeletePage("Order");
-            NavigationService.Navigate(deletePage);
+            GymPasswordPage gymPasswordPage = new GymPasswordPage("DeleteAllOrders");
+            NavigationService.Navigate(gymPasswordPage);
         }
 
         private void AddOrder_Click(object sender, RoutedEventArgs e)
