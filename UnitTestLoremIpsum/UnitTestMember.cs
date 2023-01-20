@@ -16,7 +16,7 @@ namespace UnitTestLoremIpsum
     {
         public IProductAdmin Admin;
         public IProductModule Query;
-        public Member m1, m2, m3;
+        public Member m1;
         public Contract c1, c2;
 
         [TestInitialize()]
@@ -31,9 +31,6 @@ namespace UnitTestLoremIpsum
 
         public void GenerateTestData()
         {
-            Admin.DeleteMembers();
-            Admin.DeleteContracts();
-
             //add contract so we can add members
             c1 = new Contract("Premium Plan_tess", 20);
             c2 = new Contract("Standart_test", 10);

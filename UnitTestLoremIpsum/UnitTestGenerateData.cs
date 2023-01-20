@@ -57,7 +57,7 @@ namespace UnitTestLoremIpsum
             }
 
             //LogIns
-            l1 = new LogIn("admin", "freeW@ve44",1);
+            l1 = new LogIn("admin", "admin",1);
             l2 = new LogIn("user451", "blaurot!3",2);
             l3 = new LogIn("user342", "tischge!st",2);
             l4 = new LogIn("user023", "@land3mine",2);
