@@ -382,6 +382,9 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="#437CD8"/>
                                 <Setter Property="Foreground" Value="#437CD8"/>
                             </Trigger>
+                            <Trigger Property="IsSelectionActive" Value="False">
+                                <Setter Property="Foreground" Value="#437CD8"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>

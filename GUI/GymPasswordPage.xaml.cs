@@ -68,67 +68,60 @@ namespace GUI
             {
                 if (login.LogInPassword == PasswordBox.Password.ToString())
                 {
-                    // paste all the code here.
+                    if (Destination == "Member" && login.Rank <= 2)
+                    {
+                        MemberPage memberPage = new MemberPage();
+                        NavigationService.Navigate(memberPage);
+                    }
+
+                    if (Destination == "Contract" && login.Rank <= 2)
+                    {
+                        ContractPage contractPage = new ContractPage();
+                        NavigationService.Navigate(contractPage);
+                    }
+
+                    if (Destination == "Employee" && login.Rank == 1)
+                    {
+                        EmployeePage employeePage = new EmployeePage();
+                        NavigationService.Navigate(employeePage);
+                    }
+
+                    if (Destination == "Inventar" && login.Rank <= 2)
+                    {
+                        ArticlePage articlePage = new ArticlePage();
+                        NavigationService.Navigate(articlePage);
+                    }
+
+                    if (Destination == "Login" && login.Rank == 1)
+                    {                      
+                        LoginPage loginPage = new LoginPage();
+                        NavigationService.Navigate(loginPage);
+                    }                                     
+
+                    if (Destination == "Order" && login.Rank <= 2)
+                    {
+                        OrderPage orderPage = new OrderPage();
+                        NavigationService.Navigate(orderPage);
+                    }
+
+                    if (Destination == "Homepage")
+                    {
+                        GymHomepage homepage = new GymHomepage();
+                        NavigationService.Navigate(homepage);
+                    }
+
                 }
-                else { WarningText.Content = "Das eingegebene Log In Passwort ist falsch.\n Bitte geben Sie das richtige Passwort ein."; }
+                else { WarningText.Content = "Das eingegebene Log In Passwort ist falsch. Bitte geben Sie das richtige Passwort ein."; }
             }
-            else { WarningText.Content = "Der eingegebene Log In Name exisitert nicht.\n Bitte geben Sie einen vorhandenen Log In Namen ein."; }
-            
+            else { WarningText.Content = "Der eingegebene Log In Name exisitert nicht. Bitte geben Sie einen vorhandenen Log In Namen ein."; }
 
-            if (Destination == "Member")
-            {
-                MemberPage memberPage = new MemberPage();
-                NavigationService.Navigate(memberPage);
-            }
-
-            if(Destination == "Contract")
-            {
-                ContractPage contractPage = new ContractPage();
-                NavigationService.Navigate(contractPage);
-            }
-
-            if(Destination == "Employee")
-            {
-                EmployeePage employeePage = new EmployeePage();
-                NavigationService.Navigate(employeePage);
-            }
-
-            if(Destination == "Inventar")
-            {
-                ArticlePage articlePage = new ArticlePage();
-                NavigationService.Navigate(articlePage);
-            }
-
-            if(Destination == "Login")
-            {
-                if (admin.ListLogIns().Count == 0) //if there are no logins you have to go directly to addlogin page and create rank 1 account
-                {
-                    AddEditLogin addLogin = new AddEditLogin("FirstTime");
-                    NavigationService.Navigate(addLogin);
-                }
-                else
-                {
-                    LoginPage loginPage = new LoginPage();
-                    NavigationService.Navigate(loginPage);
-                }
-            }
-            if(Destination == "AddLogIn")
+            if (Destination == "AddLogIn")
             {
                 AddEditLogin addEditLogin = new AddEditLogin("FirstTime");
                 NavigationService.Navigate(addEditLogin);
             }
+      
 
-            if(Destination == "Order")
-            {
-                OrderPage orderPage = new OrderPage();
-                NavigationService.Navigate(orderPage);
-            }
-
-            if(Destination == "Homepage")
-            {
-                GymHomepage homepage= new GymHomepage();
-                NavigationService.Navigate(homepage);
-            }
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
@@ -167,5 +160,71 @@ namespace GUI
             }
         }
 
+        private void Password_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                string username = Username.Text;
+                string password = PasswordBox.Password.ToString();
+                LogIn login = query.GetLogInDetails(Username.Text);
+                if (login != null)
+                {
+                    if (login.LogInPassword == PasswordBox.Password.ToString())
+                    {
+                        if (Destination == "Member" && login.Rank <= 2)
+                        {
+                            MemberPage memberPage = new MemberPage();
+                            NavigationService.Navigate(memberPage);
+                        }
+
+                        if (Destination == "Contract" && login.Rank <= 2)
+                        {
+                            ContractPage contractPage = new ContractPage();
+                            NavigationService.Navigate(contractPage);
+                        }
+
+                        if (Destination == "Employee" && login.Rank == 1)
+                        {
+                            EmployeePage employeePage = new EmployeePage();
+                            NavigationService.Navigate(employeePage);
+                        }
+
+                        if (Destination == "Inventar" && login.Rank <= 2)
+                        {
+                            ArticlePage articlePage = new ArticlePage();
+                            NavigationService.Navigate(articlePage);
+                        }
+
+                        if (Destination == "Login" && login.Rank == 1)
+                        {
+                            LoginPage loginPage = new LoginPage();
+                            NavigationService.Navigate(loginPage);
+                        }
+
+                        if (Destination == "Order" && login.Rank <= 2)
+                        {
+                            OrderPage orderPage = new OrderPage();
+                            NavigationService.Navigate(orderPage);
+                        }
+
+                        if (Destination == "Homepage")
+                        {
+                            GymHomepage homepage = new GymHomepage();
+                            NavigationService.Navigate(homepage);
+                        }
+
+                    }
+                    else { WarningText.Content = "Das eingegebene Log In Passwort ist falsch. Bitte geben Sie das richtige Passwort ein."; }
+                }
+                else { WarningText.Content = "Der eingegebene Log In Name exisitert nicht. Bitte geben Sie einen vorhandenen Log In Namen ein."; }
+
+                if (Destination == "AddLogIn")
+                {
+                    AddEditLogin addEditLogin = new AddEditLogin("FirstTime");
+                    NavigationService.Navigate(addEditLogin);
+                }
+
+            }
+        }
     }
 }
