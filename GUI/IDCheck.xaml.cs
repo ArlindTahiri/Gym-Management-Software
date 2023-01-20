@@ -37,7 +37,7 @@ namespace GUI
         private string destination;
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
-        ILog log = GymLogger.GetLog();
+        private readonly ILog log = GymLogger.GetLog();
         private int ID;
         private string login;
         public IDCheck(string destination)
