@@ -4,6 +4,8 @@ using GUI.EmployeeGUIs;
 using GUI.LoginGUIs;
 using GUI.MemberGUIs;
 using GUI.Order_GUIs;
+using log4net;
+using loremipsum;
 using loremipsum.Gym;
 using loremipsum.Gym.Entities;
 using System;
@@ -32,6 +34,7 @@ namespace GUI
         public string Destination;
         private readonly IProductAdmin admin = (IProductAdmin)Application.Current.Properties["IProductAdmin"];
         private readonly IProductModule query = (IProductModule)Application.Current.Properties["IProductModule"];
+        private readonly ILog log = GymLogger.GetLog();
         public GymPasswordPage(string destination)
         {
             Destination = destination;
@@ -75,41 +78,48 @@ namespace GUI
                         MemberPage memberPage = new MemberPage();
                         NavigationService.Navigate(memberPage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf die Mitglieder zugreifen zu können."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf die Mitglieder zugreifen zu können.";
+                    }
 
                     if (Destination == "Contract" && login.Rank <= 2)
                     {
                         ContractPage contractPage = new ContractPage();
                         NavigationService.Navigate(contractPage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf die Verträge zugreifen zu können."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf die Verträge zugreifen zu können.";
+                    }
 
                     if (Destination == "Employee" && login.Rank == 1)
                     {
                         EmployeePage employeePage = new EmployeePage();
                         NavigationService.Navigate(employeePage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf die Mitarbeiter zugreifen zu können."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf die Mitarbeiter zugreifen zu können.";
+                    }
 
                     if (Destination == "Inventar" && login.Rank <= 2)
                     {
                         ArticlePage articlePage = new ArticlePage();
                         NavigationService.Navigate(articlePage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf das Inventar zugreifen zu können."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf das Inventar zugreifen zu können.";
+                    }
 
                     if (Destination == "Login" && login.Rank == 1)
-                    {                      
+                    {
                         LoginPage loginPage = new LoginPage();
                         NavigationService.Navigate(loginPage);
-                    } else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf die Logins zugreifen zu können."; }
+                    }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf die Logins zugreifen zu können.";
+                    }
 
                     if (Destination == "Order" && login.Rank <= 2)
                     {
                         OrderPage orderPage = new OrderPage();
                         NavigationService.Navigate(orderPage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf die Bestellungen zugreifen zu können."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf die Bestellungen zugreifen zu können.";
+                    }
 
                     if (Destination == "Homepage")
                     {
@@ -117,67 +127,78 @@ namespace GUI
                         NavigationService.Navigate(homepage);
                     }
 
-                    if(Destination == "DeleteAllMembers" && login.Rank == 1)
+                    if (Destination == "DeleteAllMembers" && login.Rank == 1)
                     {
                         DeletePage deletePage = new DeletePage("Member");
                         NavigationService.Navigate(deletePage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Mitglieder zu löschen."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Mitglieder zu löschen.";
+                    }
 
                     if (Destination == "DeleteAllOrders" && login.Rank == 1)
                     {
                         DeletePage deletePage = new DeletePage("Order");
                         NavigationService.Navigate(deletePage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Bestellungen zu löschen."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Bestellungen zu löschen.";
+                    }
 
                     if (Destination == "DeleteAllLogIns" && login.Rank == 1)
                     {
                         DeletePage deletePage = new DeletePage("Login");
                         NavigationService.Navigate(deletePage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Logins zu löschen."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Logins zu löschen.";
+                    }
 
                     if (Destination == "DeleteAllEmployees" && login.Rank == 1)
                     {
                         DeletePage deletePage = new DeletePage("Employee");
                         NavigationService.Navigate(deletePage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Mitarbeiter zu löschen."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Mitarbeiter zu löschen.";
+                    }
 
-                    if (Destination== "DeleteAllContracts" && login.Rank ==1)
+                    if (Destination == "DeleteAllContracts" && login.Rank == 1)
                     {
                         DeletePage deletePage = new DeletePage("Contract");
                         NavigationService.Navigate(deletePage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Verträge zu löschen."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Verträge zu löschen.";
+                    }
 
                     if (Destination == "DeleteAllArticles" && login.Rank == 1)
                     {
                         DeletePage deletePage = new DeletePage("Article");
                         NavigationService.Navigate(deletePage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Artikel zu löschen."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um auf alle Artikel zu löschen.";
+                    }
 
                     if (Destination == "DeleteEverything" && login.Rank == 1)
                     {
                         DeletePage deletePage = new DeletePage("Home");
                         NavigationService.Navigate(deletePage);
                     }
-                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um alles zu löschen."; }
+                    else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um alles zu löschen.";
+                    }
 
                 }
-                else { WarningText.Content = "Das eingegebene Log In Passwort ist falsch. Bitte geben Sie das richtige Passwort ein."; } //hier logging
+                else
+                {
+                    WarningText.Content = "Das eingegebene Log In Passwort ist falsch. Bitte geben Sie das richtige Passwort ein.";
+                    log.Error("Entered the wrong password for user: " + login.LogInName);
+                }
             }
-            else { WarningText.Content = "Der eingegebene Log In Name exisitert nicht. Bitte geben Sie einen vorhandenen Log In Namen ein."; }
+            else { WarningText.Content = "Der eingegebene Log In Name exisitert nicht. Bitte geben Sie einen vorhandenen Log In Namen ein.";
+                log.Error("Entered a Log In Name that doesnt exist: " + Username.Text);
+            }
 
             if (Destination == "AddLogIn")
             {
                 AddEditLogin addEditLogin = new AddEditLogin("FirstTime");
                 NavigationService.Navigate(addEditLogin);
-            }
-      
-
+            }                             
         }
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
@@ -360,16 +381,19 @@ namespace GUI
                         else { WarningText.Content = "Das eingegebene Log In hat nicht genügend Rechte, um alles zu löschen."; }
 
                     }
-                    else { WarningText.Content = "Das eingegebene Log In Passwort ist falsch. Bitte geben Sie das richtige Passwort ein."; } //hier logging
+                    else { WarningText.Content = "Das eingegebene Log In Passwort ist falsch. Bitte geben Sie das richtige Passwort ein.";
+                        log.Error("Entered the wrong password for user: " + login.LogInName);
+                    } 
                 }
-                else { WarningText.Content = "Der eingegebene Log In Name exisitert nicht. Bitte geben Sie einen vorhandenen Log In Namen ein."; }
+                else { WarningText.Content = "Der eingegebene Log In Name exisitert nicht. Bitte geben Sie einen vorhandenen Log In Namen ein.";
+                        log.Error("Entered a Log In Name that doesnt exist: " + Username.Text);
+                }
 
                 if (Destination == "AddLogIn")
                 {
                     AddEditLogin addEditLogin = new AddEditLogin("FirstTime");
                     NavigationService.Navigate(addEditLogin);
                 }
-
             }
         }
     }
