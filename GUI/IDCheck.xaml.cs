@@ -240,7 +240,7 @@ namespace GUI
                             }
                             else
                             {
-                                WarningBox.Content = "Sie können den amin nicht löschen!";
+                                WarningBox.Content = "Sie können den admin nicht löschen!";
                                 log.Error("Tried deleting the admin account");
                             }
                         }
